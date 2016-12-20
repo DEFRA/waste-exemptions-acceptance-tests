@@ -1,5 +1,9 @@
 # Waste exemptions acceptance tests
 
+[![Build Status](https://travis-ci.org/EnvironmentAgency/waste-exemptions-acceptance-tests.svg?branch=master)](https://travis-ci.org/EnvironmentAgency/waste-exemptions-acceptance-tests)
+[![security](https://hakiri.io/github/EnvironmentAgency/waste-exemptions-acceptance-tests/master.svg)](https://hakiri.io/github/EnvironmentAgency/waste-exemptions-acceptance-tests/master)
+[![Dependency Status](https://dependencyci.com/github/EnvironmentAgency/waste-exemptions-acceptance-tests/badge)](https://dependencyci.com/github/EnvironmentAgency/waste-exemptions-acceptance-tests)
+
 If your business produces waste or emissions that pollute you may require an environmental permit. However you may also be able to get an exemption if your business activities are considered to be easily controlled and only create low risks of pollution.
 
 The waste exemptions service is used by organisations to apply for an exemption.
