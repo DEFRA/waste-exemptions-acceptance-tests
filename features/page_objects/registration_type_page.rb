@@ -16,10 +16,9 @@ class RegistrationTypePage < SitePrism::Page
     submit_button.click
   end
 
-
   def submit_renew
     renew_registration.click
     submit_button.click
-  end  
+  end
 
 end

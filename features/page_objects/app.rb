@@ -12,15 +12,23 @@ class App
   end
 
   def registration_type_page
-  	@last_page = RegistrationTypePage.new
+    @last_page = RegistrationTypePage.new
   end
 
   def contact_details_page
-  	@last_page = ContactDetailsPage.new
+    @last_page = ContactDetailsPage.new
   end
 
   def user_type_page
-  	@last_page = UserTypePage.new
+    @last_page = UserTypePage.new
+  end
+
+  def organisation_name_page
+    @last_page = OrganisationNamePage.new
+  end
+
+  def address_page
+    @last_page = AddressPage.new
   end
 
 end
