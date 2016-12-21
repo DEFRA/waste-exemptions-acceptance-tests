@@ -10,5 +10,6 @@ Feature: Individual registers a waste exemption
 
  @frontoffice @happy_path
  Scenario: Registration by an individual
+ When I complete a registration as an individual
 
    

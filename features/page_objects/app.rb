@@ -15,4 +15,8 @@ class App
   	@last_page = WhatDoYouWantToDoPage.new
   end
 
+  def contact_details_page
+  	@last_page = ContactDetailsPage.new
+  end
+
 end

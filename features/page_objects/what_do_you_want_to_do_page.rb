@@ -11,4 +11,15 @@ class WhatDoYouWantToDoPage < SitePrism::Page
     submit_button.click
   end
 
+  def submit_reregister
+    re_register.click
+    submit_button.click
+  end
+
+
+  def submit_renew
+    renew_registration.click
+    submit_button.click
+  end  
+
 end
