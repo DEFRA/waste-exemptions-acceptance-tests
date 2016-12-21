@@ -1,4 +1,4 @@
-class WhatDoYouWantToDoPage < SitePrism::Page
+class RegistrationTypePage < SitePrism::Page
 
   element(:new_registration, "input[id='yes_option1']")
   element(:re_register, "input[id='yes_option2']")

@@ -11,12 +11,16 @@ class App
     @last_page = FrontOfficeHomePage.new
   end
 
-  def what_do_you_want_to_do_page
-  	@last_page = WhatDoYouWantToDoPage.new
+  def registration_type_page
+  	@last_page = RegistrationTypePage.new
   end
 
   def contact_details_page
   	@last_page = ContactDetailsPage.new
+  end
+
+  def user_type_page
+  	@last_page = UserTypePage.new
   end
 
 end
