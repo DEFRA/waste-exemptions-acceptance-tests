@@ -11,4 +11,8 @@ class App
     @last_page = FrontOfficeHomePage.new
   end
 
+  def what_do_you_want_to_do_page
+  	@last_page = WhatDoYouWantToDoPage.new
+  end
+
 end

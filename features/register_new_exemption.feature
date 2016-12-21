@@ -4,6 +4,11 @@ Feature: Individual registers a waste exemption
  I want to register a waste exemption
  So that ...
 
+ Background:
+ Given I am an external user
+ And I register a new exemption
+
  @frontoffice @happy_path
  Scenario: Registration by an individual
-   Given I am an external user
+
+   
