@@ -19,4 +19,8 @@ When(/^I register an exemption$/) do
     result: 'ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH'
   )
 
+  @app.correspondence_contact_page.submit(
+    tel_number: '01234567899'
+  )
+
 end

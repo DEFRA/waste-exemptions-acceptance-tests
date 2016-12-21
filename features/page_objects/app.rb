@@ -31,4 +31,8 @@ class App
     @last_page = AddressPage.new
   end
 
+  def correspondence_contact_page
+    @last_page = CorrespondenceContactPage.new
+  end
+
 end
