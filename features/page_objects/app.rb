@@ -35,4 +35,12 @@ class App
     @last_page = CorrespondenceContactPage.new
   end
 
+  def farm_questions_page
+    @last_page = FarmQuestionsPage.new
+  end
+
+  def site_address_page
+    @last_page = SiteAddressPage.new
+  end
+
 end
