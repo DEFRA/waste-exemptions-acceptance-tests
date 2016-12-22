@@ -8,7 +8,6 @@ class SiteAddressPage < SitePrism::Page
   element(:results_dropdown, 'select#address_match_selection')
 
   element(:grid_ref_helper, "summary[id='show-hide-details-summary-1']")
-  
 
   element(:grid_ref, "div[id='text_field_grid_reference']")
   element(:site_details, "input[id='text_area_site_info']")

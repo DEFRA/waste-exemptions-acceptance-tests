@@ -25,9 +25,13 @@ When(/^I register an exemption$/) do
 
   @app.farm_questions_page.submit
 
-  @app.site_address_page.submit_grid_ref(
-    grid_ref: 'ST1111111111',
-    site_details: "by a tree near a river there's a hole in the ground"
-  )
+  # @app.site_address_page.submit_grid_ref(
+  #   grid_ref: 'ST1111111111',
+  #   site_details: "by a tree near a river there's a hole in the ground"
+  # )
 
+  @app.site_address_page.submit_address(
+    postcode: 'BS1 5AH',
+    result: 'ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH'
+  )
 end
