@@ -1,4 +1,4 @@
-class SiteAddressPage < SitePrism::Page
+class SiteLocationPage < SitePrism::Page
 
   element(:postcode, "input[id='find_address']")
 
@@ -9,8 +9,8 @@ class SiteAddressPage < SitePrism::Page
 
   element(:grid_ref_helper, "summary[id='show-hide-details-summary-1']")
 
-  element(:grid_ref, "div[id='text_field_grid_reference']")
-  element(:site_details, "input[id='text_area_site_info']")
+  element(:grid_ref, "input[id='text_field_grid_reference']")
+  element(:site_details, "textarea[id='text_area_site_info']")
 
   element(:submit_button, "input[value='Continue']")
 

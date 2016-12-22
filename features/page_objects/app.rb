@@ -39,8 +39,12 @@ class App
     @last_page = FarmQuestionsPage.new
   end
 
-  def site_address_page
-    @last_page = SiteAddressPage.new
+  def site_location_page
+    @last_page = SiteLocationPage.new
+  end
+
+  def choose_exemptions_page
+    @last_page = ChooseExemptionsPage.new
   end
 
 end
