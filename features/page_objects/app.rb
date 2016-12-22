@@ -47,4 +47,8 @@ class App
     @last_page = ChooseExemptionsPage.new
   end
 
+  def check_details_page
+    @last_page = CheckDetailsPage.new
+  end
+
 end
