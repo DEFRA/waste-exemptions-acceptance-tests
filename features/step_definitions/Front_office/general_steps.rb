@@ -30,6 +30,9 @@ When(/^I register an exemption$/) do
     site_details: "by a tree near a river there's a hole in the ground"
   )
 
-  @app.choose_exemptions_page.waste_tab.click
+  @app.choose_exemptions_page.using_waste.click
+  @app.choose_exemptions_page.submit(
+    exemption: '4'
+  )
 
 end
