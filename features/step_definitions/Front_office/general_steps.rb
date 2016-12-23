@@ -31,8 +31,15 @@ When(/^I register an exemption$/) do
   )
 
   @app.choose_exemptions_page.submit(
-  	tab: :using_waste,
+    tab: :using_waste,
     exemption: 'U1'
   )
 
+  @app.check_details_page.submit
+  @app.declaration_page.submit
+
+end
+
+Then(/^I will informed my registration is complete$/) do
+  expect(page).to have_content 'Registration complete'
 end

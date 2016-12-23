@@ -12,6 +12,7 @@ Feature: Individual registers a waste exemption
  Scenario: Registration by an individual
  Given I am an individual
  When I register an exemption
+ Then I will informed my registration is complete
 
 
    

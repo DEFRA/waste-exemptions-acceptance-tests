@@ -51,4 +51,12 @@ class App
     @last_page = CheckDetailsPage.new
   end
 
+  def declaration_page
+    @last_page = DeclarationPage.new
+  end
+
+  def confirmation_page
+    @last_page = ConfirmationPage.new
+  end
+
 end
