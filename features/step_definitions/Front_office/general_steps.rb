@@ -11,7 +11,7 @@ end
 
 When(/^I register an exemption$/) do
   @app.organisation_name_page.submit(
-    org_name: 'John Smith'
+    org_name: 'Mr Test'
   )
 
   @app.address_page.submit_address(
@@ -26,7 +26,7 @@ When(/^I register an exemption$/) do
   @app.farm_questions_page.submit
 
   @app.site_location_page.submit_grid_ref(
-    grid_ref: 'ST1111111111',
+    grid_ref: 'ST5820572708',
     site_details: "by a tree near a river there's a hole in the ground"
   )
 

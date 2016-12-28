@@ -11,6 +11,10 @@ class App
     @last_page = FrontOfficeHomePage.new
   end
 
+  def back_office_home_page
+    @last_page = BackOfficeHomePage.new
+  end
+
   def registration_type_page
     @last_page = RegistrationTypePage.new
   end
@@ -57,6 +61,18 @@ class App
 
   def confirmation_page
     @last_page = ConfirmationPage.new
+  end
+
+  def back_office_signin_page
+    @last_page = BackOfficeSigninPage.new
+  end
+
+  def registration_details_page
+    @last_page = RegistrationDetailsPage.new
+  end
+
+  def deregistration_page
+    @last_page = DeregistrationPage.new
   end
 
 end
