@@ -15,4 +15,12 @@ class DeregistrationPage < SitePrism::Page
     deregister_button.click
   end
 
+    def cease(args = {})
+    deregister_status_dropdown.click
+    ceased_option.click
+    deregistration_comment.set(args[:deregistration_comment]) if args.key?(:deregistration_comment)
+
+    deregister_button.click
+  end
+
 end
