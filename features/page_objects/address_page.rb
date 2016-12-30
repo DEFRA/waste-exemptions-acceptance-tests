@@ -5,7 +5,7 @@ class AddressPage < SitePrism::Page
   element(:find_address, "input[value='Find address']")
 
   element(:show_list, "input[id='address_match_selection']")
-  element(:results_dropdown, 'select#address_match_selection')
+  element(:results_dropdown, "select#address_match_selection")
 
   element(:submit_button, "input[value='Continue']")
 

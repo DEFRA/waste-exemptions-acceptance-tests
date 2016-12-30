@@ -6,11 +6,13 @@ class App
   # Using an attr_reader automatically gives us a my_app.last_page method
   attr_reader :last_page
 
+  # FRONT OFFICE SPECIFIC PAGES
   # /
   def front_office_home_page
     @last_page = FrontOfficeHomePage.new
   end
 
+  # JOURNEY PAGES
   def registration_type_page
     @last_page = RegistrationTypePage.new
   end
@@ -57,6 +59,30 @@ class App
 
   def confirmation_page
     @last_page = ConfirmationPage.new
+  end
+
+  # BACK OFFICE SPECIFIC PAGES
+  # /
+  def back_office_home_page
+    @last_page = BackOfficeHomePage.new
+  end
+
+  # / (when not signed in)
+  def login_page
+    @last_page = LoginPage.new
+  end
+
+  # / (once signed in)
+  def search_page
+    @last_page = SearchPage.new
+  end
+
+  def registration_details_page
+    @last_page = RegistrationDetailsPage.new
+  end
+
+  def deregistration_page
+    @last_page = DeregistrationPage.new
   end
 
 end
