@@ -1,38 +1,27 @@
 class BackOfficeHomePage < SitePrism::Page
 
-  element(:menu_home, :xpath, "html/body/header/div/div/a[2]")
-  element(:menu_registrations, :xpath, "html/body/header/div/nav/ul/li[1]/a")
-  element(:menu_search, :xpath, "html/body/header/div/nav/ul/li[1]/ul/li[1]/a")
-  element(:menu_new_registration, :xpath, "html/body/header/div/nav/ul/li[1]/ul/li[2]/a")
-  element(:sign_out, :xpath, "html/body/header/div/nav/ul/li[3]/a")
+  # This takes the app_host set for Capybara (which is expected to be the public
+  # version of the site set in the .config.yml) and converts it to the admin
+  # equivalent. The intended outcome is we go from
+  # https://my-service.org.gov.uk to https://admin-my-service.org.gov.uk
+  # N.B. set as a class method because its intended caller is set_url(), which
+  # is also a class method.
+  def self.convert_url
+    host_url = Capybara.app_host
+    prefix = "https://admin-"
 
-  element(:search_field, "input[id='search']")
-  element(:search_submitted, "#stage_submitted")
-  element(:search_not_submitted, "#stage_not_submitted")
-  element(:search_all, "#stage_all")
-  element(:search_button, ".btn-success")
-
-  element(:first_search_result, ".h4 > a:first-child")
-
-  element(:alert_deregister_success, "div.alert-success[role='alert']", text: "Enrollment deregistered successfully")
-
-  def search(args = {})
-    puts @exemption_number
-    search_field.set(args[@exemption_number]) if args.key?(@exemption_number)
-    select_search(args[:type])
-
-    search_button.click
+    # We check whether the url starts with either https or http (case
+    # insenstive). In both cases we replace that the prefix above.
+    admin_url = if host_url =~ %r{https://}i
+                  host_url.gsub(%r{https://}i, prefix)
+                elsif host_url =~ %r{http://}i
+                  host_url.gsub(%r{http://}i, prefix)
+                end
+    admin_url
   end
 
-  def select_search(type)
-    case type
-    when :search_submitted
-      search_submitted.click
-    when :search_not_submitted
-      search_not_submitted.click
-    when :search_all
-      search_all.click
-    end
-  end
+  # This call needs to come after we have defined our convert_url function
+  # else it will be unable to find it.
+  set_url("#{BackOfficeHomePage.convert_url}/")
 
 end
