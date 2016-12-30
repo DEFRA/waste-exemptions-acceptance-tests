@@ -8,13 +8,13 @@ When(/^I revoke a registration$/) do
   @app.registration_details_page.deregister.click
 
   @app.deregistration_page.revoke(
-    deregistration_comment: 'This is a test'
+    deregistration_comment: "This is a test"
   )
 
 end
 
 Then(/^I will be informed the registration is revoked$/) do
-  expect(@app.registration_details_page.text).to include('Enrollment deregistered successfully')
+  expect(@app.registration_details_page.text).to include("Enrollment deregistered successfully")
 
   @app.back_office_home_page.sign_out.click
 end

@@ -1,7 +1,7 @@
 class ChooseExemptionsPage < SitePrism::Page
 
   # element(:using_waste, "li[id='tablist1-tab2']")
-  element(:using_waste, '#tablist1-tab2')
+  element(:using_waste, "#tablist1-tab2")
   element(:treating_waste, "li[id='tablist1-tab3']")
   element(:disposing_waste, "li[id='tablist1-tab4']")
   element(:storing_waste, "li[id='tablist1-tab5']")
@@ -16,7 +16,7 @@ class ChooseExemptionsPage < SitePrism::Page
     select_tab(args[:tab])
 
     if args.key?(:exemption)
-      exemptions.find { |chk| chk['id'] == search_val }.click
+      exemptions.find { |chk| chk["id"] == search_val }.click
     end
 
     submit_button.click

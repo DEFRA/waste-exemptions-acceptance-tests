@@ -4,6 +4,6 @@ class DeclarationPage < SitePrism::Page
 
   def submit(_args = {})
     submit_button.click
- end
+  end
 
 end

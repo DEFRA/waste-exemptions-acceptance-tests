@@ -5,7 +5,7 @@ class SiteLocationPage < SitePrism::Page
   element(:find_address, "input[value='Find address']")
 
   element(:show_list, "input[id='address_match_selection']")
-  element(:results_dropdown, 'select#address_match_selection')
+  element(:results_dropdown, "select#address_match_selection")
 
   element(:grid_ref_helper, "summary[id='show-hide-details-summary-1']")
 

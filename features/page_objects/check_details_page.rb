@@ -6,8 +6,14 @@ class CheckDetailsPage < SitePrism::Page
   element(:change_email, "table[id='reviewing-change-yourcontactdetails-yourbusinessemail']")
 
   # Business details
-  element(:change_person_responsible, "table[id='reviewing-change-businessdetails-personresponsibleforthewasteoperation']")
-  element(:change_person_responsible_address, "table[id='reviewing-change-businessdetails-addressofthepersonresponsible']")
+  element(
+    :change_person_responsible,
+    "table[id='reviewing-change-businessdetails-personresponsibleforthewasteoperation']"
+  )
+  element(
+    :change_person_responsible_address,
+    "table[id='reviewing-change-businessdetails-addressofthepersonresponsible']"
+  )
 
   # Waste operation contact details
   element(:change_waste_contact_name, "table[id='reviewing-change-wasteoperationcontact-name']")
@@ -24,7 +30,7 @@ class CheckDetailsPage < SitePrism::Page
 
   def submit(args = {})
     if args.key?(:exemption)
-      exemptions.find { |chk| chk['value'] == args[:exemption] }.click
+      exemptions.find { |chk| chk["value"] == args[:exemption] }.click
     end
 
     submit_button.click

@@ -11,28 +11,28 @@ end
 
 When(/^I register an exemption$/) do
   @app.organisation_name_page.submit(
-    org_name: 'Mr Test'
+    org_name: "Mr Test"
   )
 
   @app.address_page.submit_address(
-    postcode: 'BS1 5AH',
-    result: 'ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH'
+    postcode: "BS1 5AH",
+    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
 
   @app.correspondence_contact_page.submit(
-    tel_number: '01234567899'
+    tel_number: "01234567899"
   )
 
   @app.farm_questions_page.submit
 
   @app.site_location_page.submit_grid_ref(
-    grid_ref: 'ST5820572708',
+    grid_ref: "ST5820572708",
     site_details: "by a tree near a river there's a hole in the ground"
   )
 
   @app.choose_exemptions_page.submit(
     tab: :using_waste,
-    exemption: 'U1'
+    exemption: "U1"
   )
 
   @app.check_details_page.submit
@@ -41,5 +41,5 @@ When(/^I register an exemption$/) do
 end
 
 Then(/^I will informed my registration is complete$/) do
-  expect(page).to have_content 'Registration complete'
+  expect(page).to have_content "Registration complete"
 end

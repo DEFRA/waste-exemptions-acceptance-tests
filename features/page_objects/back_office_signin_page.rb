@@ -1,6 +1,6 @@
 class BackOfficeSigninPage < SitePrism::Page
 
-  set_url('https://admin-we-qa.envage.co.uk')
+  set_url("https://admin-we-qa.envage.co.uk")
 
   element(:user_email, "input[id='user_email']")
   element(:user_password, "input[id='user_password']")
