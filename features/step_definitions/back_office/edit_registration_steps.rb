@@ -14,7 +14,7 @@ When(/^I revoke a registration$/) do
 end
 
 When(/^I cease a registration$/) do
-   @app.search_page.menu_home.click
+  @app.search_page.menu_home.click
   @app.search_page.search_field.set @exemption_number
   @app.search_page.search_button.click
   @app.search_page.first_search_result.click

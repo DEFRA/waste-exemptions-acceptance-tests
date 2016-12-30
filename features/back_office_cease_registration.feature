@@ -1,4 +1,4 @@
-@backoffice @wip
+@backoffice
 Feature: Back office user ceases a customers waste exemption activity
   As an back office user
   I want to cease a waste exemption
