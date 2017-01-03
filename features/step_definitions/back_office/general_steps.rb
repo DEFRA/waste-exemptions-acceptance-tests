@@ -57,7 +57,7 @@ When(/^I complete a registration$/) do
 
 end
 
-When(/^I complete a registration using a postcode for site address$/) do
+When(/^I complete a registration using a (.*) for site address$/) do |postcode|
   @app.search_page.menu_registrations.click
   @app.search_page.menu_new_registration.click
 
@@ -88,8 +88,7 @@ When(/^I complete a registration using a postcode for site address$/) do
   @app.farm_questions_page.submit
 
   @app.site_location_page.submit_address(
-    postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    postcode: postcode
   )
 
   @app.choose_exemptions_page.submit(
@@ -104,16 +103,16 @@ When(/^I complete a registration using a postcode for site address$/) do
   puts @exemption_number
 end
 
-Then(/^I will be able to check what the National Grid Reference is for the site$/) do
+Then(/^I will be able to check what the National Grid Reference (.*) is for the site$/) do |ngr|
   @app.search_page.menu_home.click
   @app.search_page.search_field.set @exemption_number
   @app.search_page.search_button.click
   @app.search_page.first_search_result.click
-  @app.registration_details_page.site_location_details_section.click
-  expect(@app.registration_details_page.ngr.text).to include("ST5820572708")
+  @app.registration_details_page.site_section.click
+  expect(@app.registration_details_page.ngr.text).to include(ngr)
 end
 
-Then(/^I will be told what area that site is located in$/) do
-  expect(@app.registration_details_page.area.text).to include("Wessex")
+Then(/^I will be told what (.*) that site is located in$/) do |area|
+  expect(@app.registration_details_page.area.text).to include(area)
 end
 # rubocop:enable Metrics/BlockLength

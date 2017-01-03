@@ -9,10 +9,14 @@ Feature: Back office user registers a customers new waste exemption activity
       And I have a valid username and password
 
   @happy_path
-  Scenario: Registration by a NCCC user using a postcode for site address - NGR and area is added to registration
-     When I complete a registration using a postcode for site address
-     Then I will be able to check what the National Grid Reference is for the site
-     And I will be told what area that site is located in
+  Scenario Outline: Registration by a NCCC user using a postcode for site address - NGR and area is added to registration
+     When I complete a registration using a <postcode> for site address
+     Then I will be able to check what the National Grid Reference <ngr> is for the site
+     And I will be told what <area> that site is located in
+
+     Examples:
+     | postcode | ngr           | area   |
+     | BS1 5AH  | ST5813072687  | wessex |
 
 
       
