@@ -6,6 +6,7 @@ class SiteLocationPage < SitePrism::Page
 
   element(:show_list, "input[id='address_match_selection']")
   element(:results_dropdown, "select#address_match_selection")
+  element(:last_result, "select#address_match_selection option:last-of-type")
 
   element(:grid_ref_helper, "summary[id='show-hide-details-summary-1']")
 
@@ -17,7 +18,7 @@ class SiteLocationPage < SitePrism::Page
   def submit_address(args = {})
     postcode.set(args[:postcode]) if args.key?(:postcode)
     find_address.click
-    results_dropdown.select(args[:result]) if args.key?(:result)
+    last_result.select_option
     submit_button.click
   end
 
