@@ -101,6 +101,7 @@ When(/^I complete a registration using a postcode for site address$/) do
   @app.declaration_page.submit
 
   @exemption_number = @app.confirmation_page.ref_no.text
+  puts @exemption_number
 end
 
 Then(/^I will be able to check what the National Grid Reference is for the site$/) do
@@ -110,5 +111,9 @@ Then(/^I will be able to check what the National Grid Reference is for the site$
   @app.search_page.first_search_result.click
   @app.registration_details_page.site_location_details_section.click
   expect(@app.registration_details_page.ngr.text).to include("ST5820572708")
+end
+
+Then(/^I will be told what area that site is located in$/) do
+  expect(@app.registration_details_page.area.text).to include("Wessex")
 end
 # rubocop:enable Metrics/BlockLength
