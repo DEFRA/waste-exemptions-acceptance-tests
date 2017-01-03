@@ -1,23 +1,20 @@
 class DeregistrationPage < SitePrism::Page
 
-  element(:deregister_status_dropdown, "#admin_deregister_enrollment_form_reason")
+  element(:deregister_status_dropdown, "#admin_deregister_enrollment_exemption_form_status")
   element(:revoked_option, "option[value='revoked']")
   element(:ceased_option, "option[value='ceased']")
   element(:deregistration_comment, "#admin_deregister_enrollment_form_comment")
 
   element(:deregister_button, "input[name='commit']")
 
-  def revoke(args = {})
-    deregister_status_dropdown.click
-    revoked_option.click
-    deregistration_comment.set(args[:deregistration_comment]) if args.key?(:deregistration_comment)
+  def submit(args = {})
+    case args[:reason]
+    when :cease
+      ceased_option.select_option
+    when :revoke
+      revoked_option.select_option
+    end
 
-    deregister_button.click
-  end
-
-  def cease(args = {})
-    deregister_status_dropdown.click
-    ceased_option.click
     deregistration_comment.set(args[:deregistration_comment]) if args.key?(:deregistration_comment)
 
     deregister_button.click
