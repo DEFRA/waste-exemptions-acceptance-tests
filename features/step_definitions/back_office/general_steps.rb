@@ -100,7 +100,7 @@ When(/^I complete a registration using a (.*) for site address$/) do |postcode|
   @app.declaration_page.submit
 
   @exemption_number = @app.confirmation_page.ref_no.text
-  
+
 end
 
 Then(/^I will be able to check what the National Grid Reference (.*) is for the site$/) do |ngr|
