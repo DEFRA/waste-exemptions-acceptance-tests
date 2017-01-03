@@ -11,8 +11,8 @@ end
 # rubocop:disable Metrics/BlockLength
 When(/^I complete a registration$/) do
 
-  @app.search_page.menu_registrations.click
-  @app.search_page.menu_new_registration.click
+  @app.search_page.nav_bar.registrations_menu.click
+  @app.search_page.nav_bar.new_option.click
 
   @app.contact_details_page.submit(
     full_name: "Mr Test",
