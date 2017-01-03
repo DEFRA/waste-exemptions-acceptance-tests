@@ -7,10 +7,10 @@ When(/^I revoke a registration$/) do
 
   @app.registration_details_page.deregister.click
 
-  @app.deregistration_page.revoke(
+  @app.deregistration_page.submit(
+    reason: :revoke,
     deregistration_comment: "This is a test"
   )
-
 end
 
 When(/^I cease a registration$/) do
@@ -21,7 +21,8 @@ When(/^I cease a registration$/) do
 
   @app.registration_details_page.deregister.click
 
-  @app.deregistration_page.cease(
+  @app.deregistration_page.submit(
+    reason: :cease,
     deregistration_comment: "This is a test"
   )
 end
