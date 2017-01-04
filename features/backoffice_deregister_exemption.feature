@@ -6,8 +6,12 @@ Feature: Back office user deregisters a waste exemption activity from a registra
 
   Background:
     Given I am an internal user
-      And I have a valid username and password
+    And I have a valid username and password
+    And I complete a registration
 
   @happy_path
   Scenario: Deregistration of an exemption for an active registration by a NCCC user
-  When I complete a registration
+  
+  When I deregister an exemption
+
+

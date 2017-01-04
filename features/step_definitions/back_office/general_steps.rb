@@ -46,13 +46,13 @@ When(/^I complete a registration$/) do
   )
 
   @app.choose_exemptions_page.submit(
-    exemptions: ["S1","D2","T4","U10"]
+    exemptions: %w(S1 D2 T4 U10)
   )
 
   @app.check_details_page.submit
   @app.declaration_page.submit
-  
-# Stores the exemption number so the exemption can be edited in later steps
+
+  # Stores the exemption number so the exemption can be edited in later steps
   @exemption_number = @app.confirmation_page.ref_no.text
 
 end
