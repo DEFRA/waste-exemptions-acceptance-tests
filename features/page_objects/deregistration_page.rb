@@ -7,6 +7,8 @@ class DeregistrationPage < SitePrism::Page
 
   element(:deregister_button, "input[name='commit']")
 
+  section(:nav_bar, AdminNavBarSection, ".add-bottom-margin .container")
+
   def submit(args = {})
     case args[:reason]
     when :cease
