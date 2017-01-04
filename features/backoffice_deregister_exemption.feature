@@ -13,5 +13,7 @@ Feature: Back office user deregisters a waste exemption activity from a registra
   Scenario: Deregistration of an exemption for an active registration by a NCCC user
   
   When I deregister an exemption
+  Then I am shown the exemption is deregistered
+
 
 

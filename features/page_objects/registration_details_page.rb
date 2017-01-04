@@ -3,7 +3,9 @@ class RegistrationDetailsPage < SitePrism::Page
   element(:ngr, :xpath, ".//*[@id='site-tab']/div/table/tbody/tr[2]/td[2]")
   element(:area, :xpath, ".//*[@id='site-tab']/div/table/tbody/tr[4]/td[2]")
   element(:deregister, "#deregister-enrollment")
-
+  element(:exemption_details_section, ".row:nth-child(3) .col-xs-11")
+  element(:deregister_first_exemption, ".enrollment_exemption:nth-of-type(1) .btn")
+  element(:first_exemption_status, ".enrollment_exemption:nth-of-type(1) td:nth-of-type(4)")
   section(:nav_bar, AdminNavBarSection, ".add-bottom-margin .container")
 
 end

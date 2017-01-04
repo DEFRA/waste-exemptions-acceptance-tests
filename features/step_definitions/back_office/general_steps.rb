@@ -54,6 +54,7 @@ When(/^I complete a registration$/) do
 
   # Stores the exemption number so the exemption can be edited in later steps
   @exemption_number = @app.confirmation_page.ref_no.text
+  puts @exemption_number
 
 end
 
