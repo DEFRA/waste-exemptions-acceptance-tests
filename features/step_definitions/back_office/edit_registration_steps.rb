@@ -9,9 +9,9 @@ When(/^I revoke a registration$/) do
 
   @app.registration_details_page.deregister.click
 
-    @app.registration_deregistration_page.submit(
+  @app.deregistration_page.deregister_registration(
     reason: :revoke,
-    registration_deregistration_comment: "This is a test"
+    reg_dereg_comment: "This is a test"
   )
 end
 
@@ -26,9 +26,9 @@ When(/^I cease a registration$/) do
 
   @app.registration_details_page.deregister.click
 
-  @app.registration_deregistration_page.deregister_registration(
+  @app.deregistration_page.deregister_registration(
     reason: :cease,
-    registration_deregistration_comment: "This is a test"
+    reg_dereg_comment: "This is a test"
   )
 end
 
@@ -51,7 +51,7 @@ When(/^I deregister an exemption$/) do
   @app.registration_details_page.deregister_first_exemption.click
   @app.deregistration_page.deregister_exemption(
     reason: :revoke,
-    exemption_deregistration_comment: "This is a test"
+    exemption_dereg_comment: "This is a test"
   )
 end
 
