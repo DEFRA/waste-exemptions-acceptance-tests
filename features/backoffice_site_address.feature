@@ -1,4 +1,4 @@
-@backoffice @wip
+@backoffice
 Feature: National grid reference and site area details are found from site postcode
   As a back office user
   I want to know the National grid refence (NGR) and area
