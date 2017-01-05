@@ -40,10 +40,7 @@ When(/^I register an exemption$/) do
     site_details: "by a tree near a river there's a hole in the ground"
   )
 
-  @app.choose_exemptions_page.submit(
-    tab: :using_waste,
-    exemption: "U1"
-  )
+  @app.choose_exemptions_page.submit
 
   @app.check_details_page.submit
   @app.declaration_page.submit

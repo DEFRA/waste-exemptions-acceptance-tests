@@ -14,8 +14,7 @@ Feature: Back office user deregisters a waste exemption activity from a registra
   
   When I deregister an exemption
   Then I am shown the exemption is deregistered
-  When I revoke a registration
-  Then I will be informed the registration is deregistered
+
 
 
 

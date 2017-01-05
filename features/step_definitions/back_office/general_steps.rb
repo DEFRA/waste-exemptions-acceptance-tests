@@ -46,7 +46,7 @@ When(/^I complete a registration$/) do
   )
 
   @app.choose_exemptions_page.submit(
-    exemptions: (S1 D2 T4 U10)
+    exemptions: ["S1", "D2"]
   )
 
   @app.check_details_page.submit
