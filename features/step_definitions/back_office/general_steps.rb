@@ -57,7 +57,7 @@ When(/^I complete a registration$/) do
 
 end
 
-When(/^I complete a registration using a (.*) for site address$/) do |postcode|
+When(/^I complete a registration using postcode (.*) for the site address$/) do |postcode|
   @app.search_page.menu_registrations.click
   @app.search_page.menu_new_registration.click
 
@@ -103,7 +103,7 @@ When(/^I complete a registration using a (.*) for site address$/) do |postcode|
 
 end
 
-Then(/^I will be able to check what the National Grid Reference (.*) is for the site$/) do |ngr|
+Then(/^I will see the site's National Grid Reference has been automatically found to be (.*)$/) do |ngr|
   @app.search_page.menu_home.click
   @app.search_page.search_field.set @exemption_number
   @app.search_page.search_button.click
@@ -112,7 +112,7 @@ Then(/^I will be able to check what the National Grid Reference (.*) is for the 
   expect(@app.registration_details_page.ngr.text).to include(ngr)
 end
 
-Then(/^I will be told what (.*) that site is located in$/) do |area|
+And(/^I will see the EA admin area is set to (.*)$/) do |area|
   expect(@app.registration_details_page.area.text).to include(area)
 end
 # rubocop:enable Metrics/BlockLength
