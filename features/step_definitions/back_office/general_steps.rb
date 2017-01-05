@@ -58,8 +58,8 @@ When(/^I complete a registration$/) do
 end
 
 When(/^I complete a registration using postcode (.*) for the site address$/) do |postcode|
-  @app.search_page.menu_registrations.click
-  @app.search_page.menu_new_registration.click
+  @app.search_page.nav_bar.registrations_menu.click
+  @app.search_page.nav_bar.new_option.click
 
   @app.contact_details_page.submit(
     full_name: "Mr Test",
@@ -104,7 +104,7 @@ When(/^I complete a registration using postcode (.*) for the site address$/) do 
 end
 
 Then(/^I will see the site's National Grid Reference has been automatically found to be (.*)$/) do |ngr|
-  @app.search_page.menu_home.click
+  @app.search_page.nav_bar.home_link.click
   @app.search_page.search_field.set @exemption_number
   @app.search_page.search_button.click
   @app.search_page.first_search_result.click
