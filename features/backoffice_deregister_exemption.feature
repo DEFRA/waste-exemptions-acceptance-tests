@@ -1,4 +1,4 @@
-@backoffice @wip
+@backoffice
 Feature: Back office user deregisters a waste exemption activity from a registration
   As a back office user
   I want to deregister a waste exemption
@@ -14,7 +14,8 @@ Feature: Back office user deregisters a waste exemption activity from a registra
   
   When I deregister an exemption
   Then I am shown the exemption is deregistered
-
+  But when I deregister the last active exemption
+  Then the registration is deregistered
 
 
 

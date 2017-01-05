@@ -14,7 +14,7 @@ class ChooseExemptionsPage < SitePrism::Page
   # Identifies what tab that exemption is on using the identify_tab method
   # Selects that tab using the select_tab method
   # Then clicks on the relevant checkbox for that exemption number
-  def submit(args = {exemptions: ["S1", "D2"]})
+  def submit(args = { exemptions: %w(S1 D2) })
     if args.key?(:exemptions)
       args[:exemptions].each do |ex|
         tab = identify_tab(ex)

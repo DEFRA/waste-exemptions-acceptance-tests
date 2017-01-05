@@ -1,4 +1,4 @@
-@backoffice
+@backoffice @smoke
 Feature: Back office user revokes a customers waste exemption activity
   As an back office user
   I want to revoke a waste exemption
@@ -12,4 +12,4 @@ Feature: Back office user revokes a customers waste exemption activity
   @happy_path
   Scenario: Revoking registration by NCCC user
      When I revoke a registration
-     Then I will be informed the registration is deregistered
+     Then I will see the registration is deregistered

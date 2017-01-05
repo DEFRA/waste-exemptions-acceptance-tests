@@ -12,4 +12,4 @@ Feature: Back office user ceases a customers waste exemption activity
   @happy_path
   Scenario: Ceasing a registration by NCCC user
      When I cease a registration
-     Then I will be informed the registration is deregistered
+     Then I will see the registration is deregistered
