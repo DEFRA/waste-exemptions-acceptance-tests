@@ -71,11 +71,11 @@ Then(/^when I deregister the last active exemption$/) do
   )
 end
 
-Then(/^I am shown the exemption is deregistered$/) do
+Then(/^I can see the exemption is deregistered$/) do
   expect(@app.registration_details_page.first_exemption_status.text).to include("Revoked")
 end
 
-Then(/^the registration is deregistered$/) do
+Then(/^I can see the registration is deregistered$/) do
   expect(@app.registration_details_page.registration_status.text).to eq("Revoked")
   @app.search_page.nav_bar.sign_out_link.click
 end

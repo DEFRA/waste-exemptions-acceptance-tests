@@ -91,10 +91,7 @@ When(/^I complete a registration using postcode (.*) for the site address$/) do 
     postcode: postcode
   )
 
-  @app.choose_exemptions_page.submit(
-    tab: :storing_waste,
-    exemption: "S1"
-  )
+  @app.choose_exemptions_page.submit
 
   @app.check_details_page.submit
   @app.declaration_page.submit
