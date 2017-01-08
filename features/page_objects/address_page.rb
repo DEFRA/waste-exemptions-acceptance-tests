@@ -9,10 +9,12 @@ class AddressPage < SitePrism::Page
 
   element(:submit_button, "input[value='Continue']")
 
-  def submit_address(args = {})
+  def submit(args = {})
     postcode.set(args[:postcode]) if args.key?(:postcode)
     find_address.click
+
     results_dropdown.select(args[:result]) if args.key?(:result)
+
     submit_button.click
   end
 

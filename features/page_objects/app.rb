@@ -77,12 +77,19 @@ class App
     @last_page = SearchPage.new
   end
 
-  def registration_details_page
-    @last_page = RegistrationDetailsPage.new
+  # /admin/enrollments/[id]
+  def registration_page
+    @last_page = RegistrationPage.new
   end
 
-  def deregistration_page
-    @last_page = DeregistrationPage.new
+  # /admin/enrollments/[id]/deregistration/new
+  def deregister_registration_page
+    @last_page = DeregisterRegistrationPage.new
+  end
+
+  # /admin/enrollment_exemptions/[id]/edit_deregister
+  def deregister_exemption_page
+    @last_page = DeregisterExemptionPage.new
   end
 
 end

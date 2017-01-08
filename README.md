@@ -43,6 +43,18 @@ Into that file you'll need to add the `app_host:` entry, with the url of the FRA
 
 If left as that by default when **Quke** is executed it will run against your selected environment using the headless browser **PhantomJS**.
 
+### Back office
+
+The project contains logic to automatically determine the URL to the back office, by assuming `app_host:` is the front office URL for one of our standard environments (development, QA, pre-prod or production).
+
+This means you can run all the tests, even though you have only given **Quke** details for the front office.
+
+However if you're not running the project against one of these standard environments (for example you are running against a deployment in [Heroku](https://heroku.com), or something you have running locally) you can override this logic and simply tell **Quke** the back office URL via an environment variable.
+
+```bash
+WEX_BO_URL="http://localhost:3001" bundle exec quke --tags ~@ci
+```
+
 ## Execution
 
 Simply call
@@ -93,6 +105,14 @@ To have consistency across the project the following tags are defined and should
 |@ci|A feature that is intended to be run only on our continuous integration service (you should never need to use this tag).|
 
 It's also common practice to use a custom tag whilst working on a new feature or scenario e.g. `@focus` or `@wip`. That is perfectly acceptable but please ensure they are removed before your change is merged.
+
+## Tips
+
+In our experience one of the most complex and time consuming aspects of creating new features is identifying the right [CSS selector](http://www.w3schools.com/cssref/css_selectors.asp) to use, to pick the HTML element you need to work with.
+
+A tool we have found useful is a Chrome addin called [SelectorGadget](http://selectorgadget.com/).
+
+You can also test them using the Chrome developer tools. Open them up, select the elements tab and then `ctrl/cmd+f`. You should get an input field into which you can enter your selector and confirm/test its working. See <https://developers.google.com/web/updates/2015/05/search-dom-tree-by-css-selector>
 
 ## Contributing to this project
 
