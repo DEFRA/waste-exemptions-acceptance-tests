@@ -29,6 +29,14 @@ class App
     @last_page = OrganisationNamePage.new
   end
 
+  def company_number_page
+    @last_page = CompanyNumberPage.new
+  end
+
+    def company_name_page
+    @last_page = CompanyNamePage.new
+  end
+
   def address_page
     @last_page = AddressPage.new
   end

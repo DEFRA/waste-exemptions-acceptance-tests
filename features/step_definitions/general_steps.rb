@@ -30,8 +30,10 @@ When(/^I register an exemption$/) do
   )
 
   @app.correspondence_contact_page.submit(
+    full_name: "Mr Test",
     tel_number: "01234567899"
   )
+  sleep(10)
 
   @app.farm_questions_page.submit
 
