@@ -2,10 +2,10 @@ Given(/^I have a valid username and password$/) do
 
   # Back office login page
   @app.login_page.submit(
-    # email: "tim.stone.ea@gmail.com",
-    # password: "Abcde12345"
-    email: "super_agent_user@example.gov.uk",
-    password: "Password123"
+    email: "tim.stone.ea@gmail.com",
+    password: "Abcde12345"
+    #email: "super_agent_user@example.gov.uk",
+    #password: "Password123"
   )
 
 end
@@ -174,10 +174,10 @@ Then(/^I will see the site's National Grid Reference has been automatically foun
   @app.search_page.search_field.set @exemption_number
   @app.search_page.search_button.click
   @app.search_page.first_search_result.click
-  @app.registration_details_page.site_section.click
-  expect(@app.registration_details_page.ngr.text).to include(ngr)
+  @app.registration_page.site_details.expander_link.click
+  expect(@app.registration_page.site_details.grid_reference.text).to include(ngr)
 end
 
 And(/^I will see the EA admin area is set to (.*)$/) do |area|
-  expect(@app.registration_details_page.area.text).to include(area)
+  expect(@app.registration_page.site_details.area.text).to include(area)
 end
