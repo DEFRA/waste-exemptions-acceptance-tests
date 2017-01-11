@@ -25,6 +25,15 @@ class App
     @last_page = UserTypePage.new
   end
 
+  def add_partner_page
+    @last_page = AddPartnerPage.new
+  end
+
+  # /wec/enrollments/reviewing_partners
+  def reviewing_partners_page
+    @last_page = ReviewingPartnersPage.new
+  end
+
   def organisation_name_page
     @last_page = OrganisationNamePage.new
   end
