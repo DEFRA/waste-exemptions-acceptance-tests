@@ -12,7 +12,7 @@ Given(/^I am an individual$/) do
     org_type: "WasteExemptionsShared::OrganisationType::Individual"
   )
 
-    @app.organisation_name_page.submit(
+  @app.organisation_name_page.submit(
     org_name: "Mr Test"
   )
 

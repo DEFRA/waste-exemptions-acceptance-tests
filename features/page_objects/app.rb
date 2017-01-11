@@ -33,7 +33,7 @@ class App
     @last_page = CompanyNumberPage.new
   end
 
-    def company_name_page
+  def company_name_page
     @last_page = CompanyNamePage.new
   end
 

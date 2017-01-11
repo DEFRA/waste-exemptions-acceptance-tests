@@ -19,3 +19,9 @@ Feature: Individual registers a waste exemption
  Given I am a limited company
  When I register an exemption
  Then I will be informed the registration is complete
+
+ @frontoffice @happy_path
+ Scenario: Registration by an limited liability partnership
+ Given I am a limited liability partnership
+ When I register an exemption
+ Then I will be informed the registration is complete
