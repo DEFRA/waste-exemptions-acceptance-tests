@@ -8,7 +8,7 @@ Feature: National grid reference and site area details are found from site postc
     Given I am an internal user
       And I have a valid username and password
 
-  @happy_path @wip
+  @happy_path
   Scenario Outline: Registration by a NCCC user using a postcode for site address - NGR and area is added to registration
      When I complete a registration using postcode <postcode> for the site address
      Then I will see the site's National Grid Reference has been automatically found to be <ngr>

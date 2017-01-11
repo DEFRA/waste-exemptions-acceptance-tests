@@ -4,8 +4,6 @@ Given(/^I have a valid username and password$/) do
   @app.login_page.submit(
     email: "tim.stone.ea@gmail.com",
     password: "Abcde12345"
-    #email: "super_agent_user@example.gov.uk",
-    #password: "Password123"
   )
 
 end

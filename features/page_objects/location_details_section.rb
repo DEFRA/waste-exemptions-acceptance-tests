@@ -1,4 +1,4 @@
-class SiteDetailsSection < SitePrism::Section
+class LocationDetailsSection < SitePrism::Section
 
   # IMPORTANT! The section is hidden when the page is first loaded you, so to
   # see its details you first need to click 'it'. For example to 'see' i.e. be
@@ -11,7 +11,7 @@ class SiteDetailsSection < SitePrism::Section
   # This is just a factor of how bootstrap works.
   #
   # When adding it to your pages use
-  # section(:site_details, SiteDetailsSection, SiteDetailsSection::SELECTOR)
+  # section(:site_details, LocationDetailsSection, LocationDetailsSection::SELECTOR)
 
   SELECTOR = ".col-sm-9 .row:nth-child(4) .panel-default".freeze
 
