@@ -13,7 +13,7 @@ class SearchPage < SitePrism::Page
 
   element(:first_search_result, ".h4 > a:first-child")
 
-  section(:nav_bar, AdminNavBarSection, ".add-bottom-margin .container")
+  section(:nav_bar, AdminNavBarSection, AdminNavBarSection::SELECTOR)
 
   def submit(args = {})
     search_field.set(args[@exemption_number]) if args.key?(@exemption_number)

@@ -1,15 +1,27 @@
 class FarmQuestionsPage < SitePrism::Page
 
-  element(:off_farm, "input[id='event_off_farm']")
-  element(:on_farm, "input[id='event_on_farm']")
-  element(:not_farmer, "input[id='not_farmer']")
-  element(:farmer, "input[id='farmer']")
+  # Will this waste operation take place on a farm?
+  element(:on_farm_yes, "#event_on_farm")
+  element(:on_farm_no, "#event_off_farm")
 
-  element(:submit_button, "input[value='Continue']")
+  # Is the person carrying out the waste operation a farmer?
+  element(:farmer_yes, "#farmer")
+  element(:farmer_no, "#not_farmer")
 
-  def submit(_args = {})
-    off_farm.click
-    farmer.click
+  element(:submit_button, "input[name='commit']")
+
+  def submit(args = {})
+    if args[:on_farm]
+      on_farm_yes.click
+    else
+      on_farm_no.click
+    end
+
+    if args[:farmer]
+      farmer_yes.click
+    else
+      farmer_no.click
+    end
 
     submit_button.click
   end

@@ -24,7 +24,7 @@ When(/^I register an exemption$/) do
     org_name: "Mr Test"
   )
 
-  @app.address_page.submit_address(
+  @app.address_page.submit(
     postcode: "BS1 5AH",
     result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
@@ -41,8 +41,7 @@ When(/^I register an exemption$/) do
   )
 
   @app.choose_exemptions_page.submit(
-    tab: :using_waste,
-    exemption: "U1"
+    exemptions: %w(S1 D2)
   )
 
   @app.check_details_page.submit

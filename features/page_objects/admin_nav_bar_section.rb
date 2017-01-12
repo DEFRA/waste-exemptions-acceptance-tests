@@ -14,9 +14,10 @@ class AdminNavBarSection < SitePrism::Section
   # confirm/test its working. See
   # https://developers.google.com/web/updates/2015/05/search-dom-tree-by-css-selector
 
-  # Finally the root selector for this section appears to be
-  # ".add-bottom-margin .container". So when adding it to you're pages use
-  # section(:nav_bar, AdminNavBarSection, ".add-bottom-margin .container")
+  # When adding it to your pages use
+  # section(:nav_bar, AdminNavBarSection, AdminNavBarSection::SELECTOR)
+
+  SELECTOR = ".add-bottom-margin .container".freeze
 
   element(:home_link, "a.navbar-brand")
 
