@@ -30,6 +30,31 @@ When(/^I register an exemption$/) do
   )
 
   @app.correspondence_contact_page.submit(
+    full_name: "Mr Test",
+    tel_number: "01234567899"
+  )
+
+  @app.farm_questions_page.submit
+
+  @app.site_location_page.submit_grid_ref(
+    grid_ref: "ST5820572708",
+    site_details: "by a tree near a river there's a hole in the ground"
+  )
+
+  @app.choose_exemptions_page.submit(
+    tab: :using_waste,
+    exemption: "U1"
+  )
+
+  @app.check_details_page.submit
+  @app.declaration_page.submit
+
+end
+
+When(/^I register an exemption for a|my partnership$/) do
+
+  @app.correspondence_contact_page.submit(
+    full_name: "Mr Test",
     tel_number: "01234567899"
   )
 

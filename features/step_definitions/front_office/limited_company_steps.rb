@@ -1,4 +1,4 @@
-Given(/^I am an individual$/) do
+Given(/^I am a limited company$/) do
 
   # Contact details page
   @app.contact_details_page.submit(
@@ -7,13 +7,15 @@ Given(/^I am an individual$/) do
     email: "tim.stone.ea@gmail.com",
     confirm_email: "tim.stone.ea@gmail.com"
   )
-
   @app.user_type_page.submit(
-    org_type: "WasteExemptionsShared::OrganisationType::Individual"
+    org_type: "WasteExemptionsShared::OrganisationType::LimitedCompany"
   )
 
-  @app.organisation_name_page.submit(
-    org_name: "Mr Test"
+  @app.company_number_page.submit(
+    company_number: "12345678"
   )
 
+  @app.company_name_page.submit(
+    company_name: "Testing limited"
+  )
 end
