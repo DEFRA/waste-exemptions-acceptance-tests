@@ -11,14 +11,14 @@ Feature: Back office users can 'deregister' the whole registration
 
   @happy_path
   Scenario: Revoking a registration with multiple exemptions
-     When I have a registration with the exemptions "S1, D2"
+     When I have a registration with the exemptions "D2, S1"
       And I "revoke" the registration
      Then I can see all exemptions are "Revoked"
       And I can also see the registration is "Revoked"
 
   @happy_path
   Scenario: Ceasing a registration with multiple exemptions
-     When I have a registration with the exemptions "S1, D2"
+     When I have a registration with the exemptions "D2, S1"
       And I "cease" the registration
      Then I can see all exemptions are "Ceased"
       And I can also see the registration is "Ceased"

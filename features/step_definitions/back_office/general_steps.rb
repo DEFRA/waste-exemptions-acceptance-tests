@@ -49,7 +49,7 @@ When(/^I complete a registration$/) do
   )
 
   @app.choose_exemptions_page.submit(
-    exemptions: %w(S1 D2)
+    exemptions: %w(D2 S1)
   )
 
   @app.check_details_page.submit
@@ -100,7 +100,7 @@ When(/^I complete a registration using postcode (.*) for the site address$/) do 
   )
 
   @app.choose_exemptions_page.submit(
-    exemptions: %w(S1 D2)
+    exemptions: %w(D2 S1)
   )
 
   @app.check_details_page.submit
