@@ -11,21 +11,21 @@ Feature: Back office users can 'deregister' individual exemptions
 
   @happy_path
   Scenario: Revoking one exemption on a registration with multiple exemptions
-     When I have a registration with the exemptions "S1, D2"
+     When I have a registration with the exemptions "D2, S1"
       And I "revoke" an exemption
      Then I can see the exemption is "Revoked"
       But I can also see the registration is "Active"
 
   @happy_path
   Scenario: Ceasing one exemption on a registration with multiple exemptions
-     When I have a registration with the exemptions "S1, D2"
+     When I have a registration with the exemptions "D2, S1"
       And I "cease" an exemption
      Then I can see the exemption is "Ceased"
       But I can also see the registration is "Active"
 
   @happy_path
   Scenario: Revoking all exemptions on a registration with multiple exemptions
-     When I have a registration with the exemptions "S1, D2"
+     When I have a registration with the exemptions "D2, S1"
       And I "revoke" an exemption
      Then I can see the exemption is "Revoked"
       But When I "revoke" the last active exemption
@@ -33,7 +33,7 @@ Feature: Back office users can 'deregister' individual exemptions
 
   @happy_path
   Scenario: Ceasing all exemptions on a registration with multiple exemptions
-     When I have a registration with the exemptions "S1, D2"
+     When I have a registration with the exemptions "D2, S1"
       And I "cease" an exemption
      Then I can see the exemption is "Ceased"
       But When I "cease" the last active exemption
@@ -41,7 +41,7 @@ Feature: Back office users can 'deregister' individual exemptions
 
   @happy_path
   Scenario: Revoking and ceasing all exemptions on a registration with multiple exemptions
-     When I have a registration with the exemptions "S1, D2"
+     When I have a registration with the exemptions "D2, S1"
       And I "revoke" an exemption
      Then I can see the exemption is "Revoked"
       But When I "cease" the last active exemption
