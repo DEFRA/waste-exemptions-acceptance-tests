@@ -39,7 +39,7 @@ When(/^I register an exemption$/) do
 
   @app.choose_exemptions_page.submit(
     tab: :using_waste,
-    exemptions: %w(U1)
+    exemptions: %w(S1)
   )
 
   @app.check_details_page.submit
@@ -62,7 +62,7 @@ When(/^I register an exemption for a|my partnership$/) do
   )
 
   @app.choose_exemptions_page.submit(
-    exemptions: %w(S1 D2)
+    exemptions: %w(D2 S1)
   )
 
   @app.check_details_page.submit
