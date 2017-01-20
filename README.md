@@ -1,28 +1,28 @@
 # Waste exemptions acceptance tests
 
-[![Build Status](https://travis-ci.org/EnvironmentAgency/waste-exemptions-acceptance-tests.svg?branch=master)](https://travis-ci.org/EnvironmentAgency/waste-exemptions-acceptance-tests)
-[![security](https://hakiri.io/github/EnvironmentAgency/waste-exemptions-acceptance-tests/master.svg)](https://hakiri.io/github/EnvironmentAgency/waste-exemptions-acceptance-tests/master)
-[![Dependency Status](https://dependencyci.com/github/EnvironmentAgency/waste-exemptions-acceptance-tests/badge)](https://dependencyci.com/github/EnvironmentAgency/waste-exemptions-acceptance-tests)
+[![Build Status](https://travis-ci.org/DEFRA/waste-exemptions-acceptance-tests.svg?branch=master)](https://travis-ci.org/DEFRA/waste-exemptions-acceptance-tests)
+[![security](https://hakiri.io/github/DEFRA/waste-exemptions-acceptance-tests/master.svg)](https://hakiri.io/github/DEFRA/waste-exemptions-acceptance-tests/master)
+[![Dependency Status](https://dependencyci.com/github/DEFRA/waste-exemptions-acceptance-tests/badge)](https://dependencyci.com/github/DEFRA/waste-exemptions-acceptance-tests)
 
 If your business produces waste or emissions that pollute you may require an environmental permit. However you may also be able to get an exemption if your business activities are considered to be easily controlled and only create low risks of pollution.
 
 The waste exemptions service is used by organisations to apply for an exemption.
 
 
-This project contains the acceptance tests for the service. It is built around [Quke](https://github.com/EnvironmentAgency/quke), a Ruby gem that simplifies the process of writing and running Cucumber acceptance tests.
+This project contains the acceptance tests for the service. It is built around [Quke](https://github.com/DEFRA/quke), a Ruby gem that simplifies the process of writing and running Cucumber acceptance tests.
 
 ## Pre-requisites
 
 This project is setup to run against version 2.2.2 of Ruby.
 
-The rest of the pre-requisites are the same as those for [Quke](https://github.com/EnvironmentAgency/quke#pre-requisites).
+The rest of the pre-requisites are the same as those for [Quke](https://github.com/DEFRA/quke#pre-requisites).
 
 ## Installation
 
 First clone the repository and then drop into your new local repo
 
 ```bash
-git clone https://github.com/EnvironmentAgency/waste-exemptions-acceptance-tests.git && cd waste-exemptions-acceptance-tests
+git clone https://github.com/DEFRA/waste-exemptions-acceptance-tests.git && cd waste-exemptions-acceptance-tests
 ```
 
 Next download and install the dependencies
@@ -33,7 +33,7 @@ bundle install
 
 ## Configuration
 
-You can figure how the project runs using [Quke config files](https://github.com/EnvironmentAgency/quke#configuration). Before executing this project for the first time you'll need to create an initial `.config.yml` file.
+You can figure how the project runs using [Quke config files](https://github.com/DEFRA/quke#configuration). Before executing this project for the first time you'll need to create an initial `.config.yml` file.
 
 ```bash
 touch .config.yml
@@ -63,7 +63,7 @@ Simply call
 bundle exec quke
 ```
 
-You can create [multiple config files](https://github.com/EnvironmentAgency/quke#multiple-configs), for example you may wish to have one setup for running against **Chrome**, and another to run against a different environment. You can tell **Quke** which config file to use by adding an environment variable argument to the command.
+You can create [multiple config files](https://github.com/DEFRA/quke#multiple-configs), for example you may wish to have one setup for running against **Chrome**, and another to run against a different environment. You can tell **Quke** which config file to use by adding an environment variable argument to the command.
 
 ```bash
 QUKE_CONFIG='chrome.config.yml' bundle exec quke
