@@ -1,10 +1,10 @@
 class ChooseExemptionsPage < SitePrism::Page
 
-  # element(:using_waste, "li[id='tablist1-tab2']")
-  element(:using_waste, "#tablist1-tab2")
-  element(:treating_waste, "li[id='tablist1-tab3']")
-  element(:disposing_waste, "li[id='tablist1-tab4']")
-  element(:storing_waste, "li[id='tablist1-tab5']")
+  element(:how_to_tab, "#tablist1-tab1")
+  element(:using_waste_tab, "#tablist1-tab2")
+  element(:treating_waste_tab, "#tablist1-tab3")
+  element(:disposing_waste_tab, "#tablist1-tab4")
+  element(:storing_waste_tab, "#tablist1-tab5")
 
   elements(:exemptions, "input[name='enrollment[enrollment_exemptions_attributes][exemption_ids][]']")
 
@@ -30,26 +30,41 @@ class ChooseExemptionsPage < SitePrism::Page
   def identify_tab(ex)
     case ex.chars.first
     when "S"
-      :storing_waste
+      :storing_waste_tab
     when "U"
-      :using_waste
+      :using_waste_tab
     when "T"
-      :treating_waste
+      :treating_waste_tab
     when "D"
-      :disposing_waste
+      :disposing_waste_tab
     end
   end
 
   def select_tab(tab)
     case tab
-    when :using_waste
-      using_waste.click
-    when :treating_waste
-      treating_waste.click
-    when :disposing_waste
-      disposing_waste.click
-    when :storing_waste
-      storing_waste.click
+    when :using_waste_tab
+      using_waste_tab.click
+    when :treating_waste_tab
+      treating_waste_tab.click
+    when :disposing_waste_tab
+      disposing_waste_tab.click
+    when :storing_waste_tab
+      storing_waste_tab.click
+    end
+  end
+
+  def select_tab_by_title(title)
+    case title.downcase
+    when "how to add"
+      how_to_tab
+    when "using waste"
+      using_waste_tab
+    when "treating waste"
+      treating_waste_tab
+    when "disposing of waste"
+      disposing_waste_tab
+    when "storing waste"
+      storing_waste_tab
     end
   end
 

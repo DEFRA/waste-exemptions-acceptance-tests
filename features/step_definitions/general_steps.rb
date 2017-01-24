@@ -38,7 +38,6 @@ When(/^I register an exemption$/) do
   )
 
   @app.choose_exemptions_page.submit(
-    tab: :using_waste,
     exemptions: %w(S1)
   )
 
@@ -47,31 +46,10 @@ When(/^I register an exemption$/) do
 
 end
 
-When(/^I register an exemption for a|my partnership$/) do
-
-  @app.correspondence_contact_page.submit(
-    full_name: "Mr Test",
-    tel_number: "01234567899"
-  )
-
-  @app.farm_questions_page.submit
-
-  @app.site_location_page.submit_grid_ref(
-    grid_ref: "ST5820572708",
-    site_details: "by a tree near a river there's a hole in the ground"
-  )
-
-  @app.choose_exemptions_page.submit(
-    exemptions: %w(D2 S1)
-  )
-
-  @app.check_details_page.submit
-  @app.declaration_page.submit
-
+Then(/^I will be informed the registration is complete$/) do
+  expect(page).to have_content "Registration complete"
 end
 
-Then(/^I will be informed the registration is complete$/) do
-
-  expect(page).to have_content "Registration complete"
-
+Then(/^I will be on the "([^"]*)" page$/) do |page_name|
+  expect(@app.last_page.current_url).to include(page_name)
 end
