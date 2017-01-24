@@ -38,7 +38,6 @@ When(/^I register an exemption$/) do
   )
 
   @app.choose_exemptions_page.submit(
-    tab: :using_waste,
     exemptions: %w(S1)
   )
 
@@ -49,4 +48,8 @@ end
 
 Then(/^I will be informed the registration is complete$/) do
   expect(page).to have_content "Registration complete"
+end
+
+Then(/^I will be on the "([^"]*)" page$/) do |page_name|
+  expect(@app.last_page.current_url).to include(page_name)
 end
