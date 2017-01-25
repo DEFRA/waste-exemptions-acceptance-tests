@@ -109,4 +109,9 @@ class App
     @last_page = DeregisterExemptionPage.new
   end
 
+  # /admin/enrollment_exports
+  def enrollment_exports_page
+    @last_page = EnrollmentExportsPage.new
+  end
+
 end
