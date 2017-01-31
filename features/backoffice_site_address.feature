@@ -20,7 +20,7 @@ Feature: National grid reference and site area details are found from site postc
      | CV35 9ES | Staffordshire Warwickshire and West Midlands | SP2604755720 |
      | SA17 5AF | Outside England                              | SN4104108640 |
 
-  @happy_path @wip
+  @happy_path
   Scenario Outline: Registration by a NCCC user using a National Grid reference (NGR) for site address - area is added to registration
      When I complete a registration using a national grid reference <ngr> for the site address
      Then I will see the EA admin area is set to <area>
