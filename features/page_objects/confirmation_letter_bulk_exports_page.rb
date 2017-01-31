@@ -1,21 +1,21 @@
-class EnrollmentExportsPage < SitePrism::Page
+class ConfirmationLetterBulkExportsPage < SitePrism::Page
 
   element(:export_alert, "div.alert-success[role='alert']")
-  element(:from_day, "#enrollment_export_from_date_3i")
-  element(:from_month, "#enrollment_export_from_date_2i")
-  element(:from_year, "#enrollment_export_from_date_1i")
+  element(:from_day, "#confirmation_letter_bulk_export_from_date_3i")
+  element(:from_month, "#confirmation_letter_bulk_export_from_date_2i")
+  element(:from_year, "#confirmation_letter_bulk_export_from_date_1i")
 
-  element(:to_day, "#enrollment_export_to_date_3i")
-  element(:to_month, "#enrollment_export_to_date_2i")
-  element(:to_year, "#enrollment_export_to_date_1i")
+  element(:to_day, "#confirmation_letter_bulk_export_to_date_3i")
+  element(:to_month, "#confirmation_letter_bulk_export_to_date_2i")
+  element(:to_year, "#confirmation_letter_bulk_export_to_date_1i")
 
   element(:request_export, "input[name='commit']")
 
   element(:refresh, ".btn-sm")
 
-  element(:latest_export_file, ".enrollment_export:first-of-type a")
+  element(:latest_export_file, ".confirmation_letter_bulk_export:first-of-type a")
 
-  element(:latest_export_status, ".enrollment_export:first-of-type span")
+  element(:latest_export_status, ".confirmation_letter_bulk_export:first-of-type span")
 
   section(:nav_bar, AdminNavBarSection, AdminNavBarSection::SELECTOR)
 

@@ -114,4 +114,8 @@ class App
     @last_page = EnrollmentExportsPage.new
   end
 
+  def confirmation_letter_bulk_exports_page
+    @last_page = ConfirmationLetterBulkExportsPage.new
+  end
+
 end
