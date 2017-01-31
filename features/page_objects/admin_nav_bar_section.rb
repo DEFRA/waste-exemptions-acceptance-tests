@@ -25,6 +25,7 @@ class AdminNavBarSection < SitePrism::Section
   element(:search_option, ".dropdown-menu li:nth-child(1) a")
   element(:new_option, ".dropdown-menu li:nth-child(2) a")
   element(:export_option, "a[href$='/enrollment_exports']")
+  element(:confirmation_letters, "a[href$='confirmation_letter_bulk_exports']")
 
   element(:users_menu, ".dropdown+ .dropdown .dropdown-toggle")
   element(:view_users_option, ".dropdown-menu li:nth-child(1) a")
