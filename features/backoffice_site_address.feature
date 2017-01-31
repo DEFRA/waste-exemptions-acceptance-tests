@@ -11,11 +11,22 @@ Feature: National grid reference and site area details are found from site postc
   @happy_path
   Scenario Outline: Registration by a NCCC user using a postcode for site address - NGR and area is added to registration
      When I complete a registration using postcode <postcode> for the site address
-     Then I will see the site's National Grid Reference has been automatically found to be <ngr>
-     And I will see the EA admin area is set to <area>
+     Then I will see the EA admin area is set to <area>
+      And I will see the national grid reference is set to <ngr>
 
      Examples:
-     | postcode | ngr           | area                                         |
-     | BS1 5AH  | ST5813072687  | Wessex                                       |
-     | CV35 9ES | SP2604755720  | Staffordshire Warwickshire and West Midlands |
-     | SA17 5AF | SN4104108640  | Outside England                              |
+     | postcode | area                                         | ngr          |
+     | BS1 5AH  | Wessex                                       | ST5813072687 |
+     | CV35 9ES | Staffordshire Warwickshire and West Midlands | SP2604755720 |
+     | SA17 5AF | Outside England                              | SN4104108640 |
+
+  @happy_path @wip
+  Scenario Outline: Registration by a NCCC user using a National Grid reference (NGR) for site address - area is added to registration
+     When I complete a registration using a national grid reference <ngr> for the site address
+     Then I will see the EA admin area is set to <area>
+
+     Examples:
+     | ngr           | area                                         |
+     | SD4261205201  | Greater Manchester Merseyside and Cheshire   |
+     | NY2435912477  | Cumbria and Lancashire                       |
+     

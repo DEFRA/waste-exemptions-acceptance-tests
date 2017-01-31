@@ -112,6 +112,57 @@ end
 # rubocop:enable Metrics/BlockLength
 
 # rubocop:disable Metrics/BlockLength
+When(/^I complete a registration using a national grid reference (.*) for the site address$/) do |ngr|
+  @app.search_page.nav_bar.registrations_menu.click
+  @app.search_page.nav_bar.new_option.click
+
+  @app.contact_details_page.submit(
+    full_name: "Mr Test",
+    tel_number: "01234567899",
+    email: "tim.stone.ea@gmail.com",
+    confirm_email: "tim.stone.ea@gmail.com"
+  )
+
+  @app.user_type_page.submit(
+    org_type: "WasteExemptionsShared::OrganisationType::Individual"
+  )
+
+  @app.organisation_name_page.submit(
+    org_name: "Mr Test"
+  )
+
+  @app.address_page.submit(
+    postcode: "BS1 5AH",
+    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+  )
+
+  @app.correspondence_contact_page.submit(
+    tel_number: "01234567899"
+  )
+
+  @app.farm_questions_page.submit(
+    on_farm: false,
+    farmer: false
+  )
+
+  @app.site_location_page.submit_grid_ref(
+    grid_ref: ngr,
+    site_details: "NGR area lookup test"
+
+  )
+
+  @app.choose_exemptions_page.submit(
+    exemptions: %w(D2 S1)
+  )
+
+  @app.check_details_page.submit
+  @app.declaration_page.submit
+
+  @exemption_number = @app.confirmation_page.ref_no.text
+end
+# rubocop:enable Metrics/BlockLength
+
+# rubocop:disable Metrics/BlockLength
 Given(/^I have a registration with the exemptions "([^"]*)"$/) do |exemptions|
 
   @app.search_page.nav_bar.registrations_menu.click
@@ -167,17 +218,17 @@ Given(/^I have a registration with the exemptions "([^"]*)"$/) do |exemptions|
 end
 # rubocop:enable Metrics/BlockLength
 
-Then(/^I will see the site's National Grid Reference has been automatically found to be (.*)$/) do |ngr|
+Then(/^I will see the EA admin area is set to (.*)$/) do |area|
   @app.search_page.nav_bar.home_link.click
   @app.search_page.search_field.set @exemption_number
   @app.search_page.search_button.click
   @app.search_page.first_search_result.click
   @app.registration_page.site_details.expander_link.click
-  expect(@app.registration_page.site_details.grid_reference.text).to include(ngr)
+  expect(@app.registration_page.site_details.area.text).to include(area)
 end
 
-And(/^I will see the EA admin area is set to (.*)$/) do |area|
-  expect(@app.registration_page.site_details.area.text).to include(area)
+Then(/^I will see the national grid reference is set to (.*)$/) do |ngr|
+  expect(@app.registration_page.site_details.grid_reference.text).to include(ngr)
 end
 
 When(/^I export registrations for today$/) do
