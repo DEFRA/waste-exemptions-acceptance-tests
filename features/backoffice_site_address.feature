@@ -26,7 +26,6 @@ Feature: National grid reference and site area details are found from site postc
      Then I will see the EA admin area is set to <area>
 
      Examples:
-     | ngr           | area                                         |
-     | SD4261205201  | Greater Manchester Merseyside and Cheshire   |
-     | NY2435912477  | Cumbria and Lancashire                       |
-     
+     | ngr           | area                                       |
+     | SD4261205201  | Cumbria and Lancashire                     |
+     | SJ6206087294  | Greater Manchester Merseyside and Cheshire |
