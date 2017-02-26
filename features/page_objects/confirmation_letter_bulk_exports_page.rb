@@ -1,3 +1,5 @@
+require_relative "sections/admin_nav_bar_section"
+
 class ConfirmationLetterBulkExportsPage < SitePrism::Page
 
   element(:export_alert, "div.alert-success[role='alert']")

@@ -17,7 +17,7 @@ class AdminNavBarSection < SitePrism::Section
   # When adding it to your pages use
   # section(:nav_bar, AdminNavBarSection, AdminNavBarSection::SELECTOR)
 
-  SELECTOR = ".add-bottom-margin .container".freeze
+  SELECTOR ||= ".add-bottom-margin .container".freeze
 
   element(:home_link, "a.navbar-brand")
 

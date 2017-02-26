@@ -11,7 +11,7 @@ class RegistrationDetailsSection < SitePrism::Section
   # When adding it to your pages use
   # section(:registration_details, RegistrationDetailsSection, RegistrationDetailsSection::SELECTOR)
 
-  SELECTOR = ".col-sm-9 .row:nth-child(2) .panel-default".freeze
+  SELECTOR ||= ".col-sm-9 .row:nth-child(2) .panel-default".freeze
 
   element(:expander_link, "a[href='#registration-details']")
 

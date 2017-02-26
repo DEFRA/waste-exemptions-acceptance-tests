@@ -13,7 +13,7 @@ class LocationDetailsSection < SitePrism::Section
   # When adding it to your pages use
   # section(:site_details, LocationDetailsSection, LocationDetailsSection::SELECTOR)
 
-  SELECTOR = ".col-sm-9 .row:nth-child(4) .panel-default".freeze
+  SELECTOR ||= ".col-sm-9 .row:nth-child(4) .panel-default".freeze
 
   element(:expander_link, "a[href='#site-details']")
 
