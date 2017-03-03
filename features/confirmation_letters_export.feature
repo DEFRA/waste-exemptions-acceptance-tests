@@ -8,7 +8,7 @@ Feature: Back office users can create confirmation letter exports
     Given I am an internal user
       And I have a valid username and password
 
-  @happy_path
   Scenario: Back office user exports confirmation letters
      When I export confirmation letters for today
-     Then I will see the confirmation letter export status as complete
+     Then I will see the confirmation letter export is successfully completed
+      And I will see the filename of the export
