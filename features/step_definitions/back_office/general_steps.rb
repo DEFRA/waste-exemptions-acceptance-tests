@@ -291,7 +291,7 @@ Then(/^I will see the exported registrations file status as complete$/) do
   expect(@app.enrollment_exports_page.latest_export_status.text).to eq("Complete")
 end
 
-Then(/^I will see the confirmation letter export status as complete$/) do
+Then(/^I will see the confirmation letter export is successfully completed$/) do
 
   refresh_cnt = 0
   loop do
@@ -307,4 +307,9 @@ Then(/^I will see the confirmation letter export status as complete$/) do
   # Asserts export has been run and doesn't have any validation errors
   # if this is not run we could have a false postitive check of success
   expect(@app.confirmation_letter_bulk_exports_page.latest_export_status.text).to eq("Complete")
+end
+
+Then(/^I will see the filename of the export$/) do
+  pending # Write code here that turns the phrase above into concrete actions
+  # expect(@app.confirmation_letter_bulk_exports_page.latest_export_file.text).not_to eq("n/a")
 end
