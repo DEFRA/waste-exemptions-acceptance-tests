@@ -1,3 +1,5 @@
+require_relative "sections/admin_nav_bar_section"
+
 class DeregisterRegistrationPage < SitePrism::Page
 
   element(:alert_registration_dereg, "div.alert-success[role='alert']", text: "Enrollment deregistered successfully")
