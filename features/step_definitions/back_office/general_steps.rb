@@ -8,7 +8,6 @@ Given(/^I have a valid username and password$/) do
 
 end
 
-# rubocop:disable Metrics/BlockLength
 When(/^I complete a registration$/) do
 
   @app.search_page.nav_bar.registrations_menu.click
@@ -59,9 +58,7 @@ When(/^I complete a registration$/) do
   @exemption_number = @app.confirmation_page.ref_no.text
 
 end
-# rubocop:enable Metrics/BlockLength
 
-# rubocop:disable Metrics/BlockLength
 When(/^I complete a registration using postcode (.*) for the site address$/) do |postcode|
   @app.search_page.nav_bar.registrations_menu.click
   @app.search_page.nav_bar.new_option.click
@@ -109,9 +106,7 @@ When(/^I complete a registration using postcode (.*) for the site address$/) do 
   @exemption_number = @app.confirmation_page.ref_no.text
 
 end
-# rubocop:enable Metrics/BlockLength
 
-# rubocop:disable Metrics/BlockLength
 When(/^I complete a registration using a national grid reference (.*) for the site address$/) do |ngr|
   @app.search_page.nav_bar.registrations_menu.click
   @app.search_page.nav_bar.new_option.click
@@ -160,9 +155,7 @@ When(/^I complete a registration using a national grid reference (.*) for the si
 
   @exemption_number = @app.confirmation_page.ref_no.text
 end
-# rubocop:enable Metrics/BlockLength
 
-# rubocop:disable Metrics/BlockLength
 Given(/^I have a registration with the exemptions "([^"]*)"$/) do |exemptions|
 
   @app.search_page.nav_bar.registrations_menu.click
@@ -216,7 +209,6 @@ Given(/^I have a registration with the exemptions "([^"]*)"$/) do |exemptions|
   @exemption_number = @app.confirmation_page.ref_no.text
 
 end
-# rubocop:enable Metrics/BlockLength
 
 Then(/^I will see the EA admin area is set to (.*)$/) do |area|
   @app.search_page.nav_bar.home_link.click
