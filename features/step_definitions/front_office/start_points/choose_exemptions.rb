@@ -49,7 +49,7 @@ end
 
 When(/^I click continue on the last tab$/) do
   @app.choose_exemptions_page.submit(
-    exemptions: %w(S1)
+    exemptions: %w[S1]
   )
 end
 
