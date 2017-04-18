@@ -48,7 +48,7 @@ When(/^I complete a registration$/) do
   )
 
   @app.choose_exemptions_page.submit(
-    exemptions: %w(D2 S1)
+    exemptions: %w[D2 S1]
   )
 
   @app.check_details_page.submit
@@ -97,7 +97,7 @@ When(/^I complete a registration using postcode (.*) for the site address$/) do 
   )
 
   @app.choose_exemptions_page.submit(
-    exemptions: %w(D2 S1)
+    exemptions: %w[D2 S1]
   )
 
   @app.check_details_page.submit
@@ -147,7 +147,7 @@ When(/^I complete a registration using a national grid reference (.*) for the si
   )
 
   @app.choose_exemptions_page.submit(
-    exemptions: %w(D2 S1)
+    exemptions: %w[D2 S1]
   )
 
   @app.check_details_page.submit

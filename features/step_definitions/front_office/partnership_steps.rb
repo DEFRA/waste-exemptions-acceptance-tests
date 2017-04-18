@@ -46,7 +46,7 @@ When(/^I register an exemption for a|my partnership$/) do
   )
 
   @app.choose_exemptions_page.submit(
-    exemptions: %w(D2 S1)
+    exemptions: %w[D2 S1]
   )
 
   @app.check_details_page.submit
