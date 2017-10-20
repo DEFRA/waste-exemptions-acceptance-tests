@@ -35,6 +35,7 @@ When(/^I register an exemption for a|my partnership$/) do
 
   @app.correspondence_contact_page.submit(
     full_name: "Mr Test",
+    premises: "Test house",
     tel_number: "01234567899"
   )
 
