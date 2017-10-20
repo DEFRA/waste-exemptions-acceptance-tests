@@ -16,7 +16,7 @@ class CorrespondenceContactPage < SitePrism::Page
   def submit(args = {})
     tel_number.set(args[:tel_number]) if args.key?(:tel_number)
     full_name.set(args[:full_name]) if args.key?(:full_name)
-
+    premises.set(args[:premises]) if args.key?(:premises)
     submit_button.click
   end
 
