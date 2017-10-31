@@ -39,9 +39,22 @@ You can figure how the project runs using [Quke config files](https://github.com
 touch .config.yml
 ```
 
-Into that file you'll need to add the `app_host:` entry, with the url of the FRAE environment you wish to test against.
+Into that file you'll need to add the `app_host:` entry, with the url of the WEX environment you wish to test against.
 
 If left as that by default when **Quke** is executed it will run against your selected environment using the headless browser **PhantomJS**.
+
+### Custom WEX config
+
+Recently we have needed to add special logic for running the tests in our environments (dev, QA and Pre-prod). Though fine locally tests are failing if the a submit button is 'off the page' i.e. you would need to scroll to click it. Because of this when setting up the tests to run automatically from the Jenkins slave you will need to add the following to the `.config.yml`.
+
+```yaml
+custom:
+  window_size:
+    width: 1000
+    height: 2000
+```
+
+The project now includes logic to look for this and if present will resize the window accordingly. Ideally this situation should be periodically tested to see if this workaround is still required.
 
 ### Back office
 
