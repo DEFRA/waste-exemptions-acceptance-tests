@@ -2,8 +2,8 @@ Given(/^I have a valid username and password$/) do
 
   # Back office login page
   @app.login_page.submit(
-    email: "tim.stone.ea@gmail.com",
-    password: "Abcde12345"
+    email: Quke::Quke.config.custom["accounts"]["SystemUser"]["username"],
+    password: Quke::Quke.config.custom["accounts"]["SystemUser"]["password"]
   )
 
 end
