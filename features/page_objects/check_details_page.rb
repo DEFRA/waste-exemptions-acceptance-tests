@@ -29,9 +29,7 @@ class CheckDetailsPage < SitePrism::Page
   element(:submit_button, "input[name='commit']")
 
   def submit(args = {})
-    if args.key?(:exemption)
-      exemptions.find { |chk| chk["value"] == args[:exemption] }.click
-    end
+    exemptions.find { |chk| chk["value"] == args[:exemption] }.click if args.key?(:exemption)
 
     submit_button.click
   end
