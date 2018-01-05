@@ -143,7 +143,6 @@ When(/^I complete a registration using a national grid reference (.*) for the si
   @app.site_location_page.submit_grid_ref(
     grid_ref: ngr,
     site_details: "NGR area lookup test"
-
   )
 
   @app.choose_exemptions_page.submit(
