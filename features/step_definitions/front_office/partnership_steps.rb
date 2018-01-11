@@ -13,7 +13,7 @@ Given(/^I am a partnership$/) do
   # Add first partner
   @app.add_partner_page.submit(
     name: "First test partner",
-    postcode: "S60 1BY"
+    postcode: "BS1 5AH"
   )
 
   @app.reviewing_partners_page.add_partner.click
@@ -21,7 +21,7 @@ Given(/^I am a partnership$/) do
   # Add second partner
   @app.add_partner_page.submit(
     name: "Second test partner",
-    postcode: "S60 1BY"
+    postcode: "BS1 5AH"
   )
 
   expect(page).to have_content "First test partner"

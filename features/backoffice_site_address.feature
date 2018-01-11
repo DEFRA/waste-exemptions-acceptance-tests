@@ -16,7 +16,7 @@ Feature: National grid reference and site area details are found from site postc
 
      Examples:
      | postcode | area                                         | ngr          |
-     | S60 1BY  | Wessex                                       | ST5813072687 |
+     | BS1 5AH  | Wessex                                       | ST5813072687 |
      | CV35 9ES | Staffordshire Warwickshire and West Midlands | SP2604755720 |
      | SA17 5AF | Outside England                              | SN4104108640 |
 
