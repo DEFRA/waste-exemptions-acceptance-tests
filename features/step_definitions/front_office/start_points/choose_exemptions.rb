@@ -16,8 +16,8 @@ Given(/^I am on the choose exemptions page$/) do
   @app.organisation_name_page.submit(org_name: "Mr Test")
 
   @app.address_page.submit(
-    postcode: "S60 1BY",
-    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
+    postcode: "BS1 5AH",
+    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
 
   @app.correspondence_contact_page.submit(
