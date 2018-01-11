@@ -21,8 +21,8 @@ end
 When(/^I register an exemption$/) do
 
   @app.address_page.submit(
-    postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    postcode: "S60 1BY",
+    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
 
   @app.correspondence_contact_page.submit(
