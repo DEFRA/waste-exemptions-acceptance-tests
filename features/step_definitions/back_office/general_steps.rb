@@ -29,8 +29,8 @@ When(/^I complete a registration$/) do
   )
 
   @app.address_page.submit(
-    postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    postcode: "S60 1BY",
+    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
 
   @app.correspondence_contact_page.submit(
@@ -79,8 +79,8 @@ When(/^I complete a registration using postcode (.*) for the site address$/) do 
   )
 
   @app.address_page.submit(
-    postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    postcode: "S60 1BY",
+    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
 
   @app.correspondence_contact_page.submit(
@@ -127,8 +127,8 @@ When(/^I complete a registration using a national grid reference (.*) for the si
   )
 
   @app.address_page.submit(
-    postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    postcode: "S60 1BY",
+    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
 
   @app.correspondence_contact_page.submit(
@@ -176,8 +176,8 @@ Given(/^I have a registration with the exemptions "([^"]*)"$/) do |exemptions|
   )
 
   @app.address_page.submit(
-    postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    postcode: "S60 1BY",
+    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
 
   @app.correspondence_contact_page.submit(
