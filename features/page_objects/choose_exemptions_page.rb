@@ -27,8 +27,8 @@ class ChooseExemptionsPage < SitePrism::Page
     submit_button.click
   end
 
-  def identify_tab(ex)
-    case ex.chars.first
+  def identify_tab(exemption)
+    case exemption.chars.first
     when "S"
       :storing_waste_tab
     when "U"
