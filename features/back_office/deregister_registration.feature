@@ -6,8 +6,8 @@ Feature: Back office users can 'deregister' the whole registration
   Or the business needs to revoke it
 
   Background:
-    Given I am an internal user
-      And I have a valid username and password
+    Given I sign in as a super user
+      
 
   @happy_path
   Scenario: Revoking a registration with multiple exemptions

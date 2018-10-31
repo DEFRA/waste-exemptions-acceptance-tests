@@ -5,8 +5,8 @@ Feature: National grid reference and site area details are found from site postc
   So that I can check the activity location for exemption restrictions
 
   Background:
-    Given I am an internal user
-      And I have a valid username and password
+    Given I sign in as a super user
+      
 
   @happy_path
   Scenario Outline: Registration by a NCCC user using a postcode for site address - NGR and area is added to registration
