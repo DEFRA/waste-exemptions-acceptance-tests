@@ -5,8 +5,8 @@ Feature: Back office users can export registrations
   So that I can report on registration numbers and exemption types
 
   Background:
-    Given I am an internal user
-      And I have a valid username and password
+    Given I sign in as a system user
+      
 
   @happy_path
   Scenario: Back office user exporting registrations

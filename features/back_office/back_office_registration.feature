@@ -5,8 +5,8 @@ Feature: Back office user registers a customers new waste exemption activity
   So that I can register exemptions for customers over the phone
 
   Background:
-    Given I am an internal user
-      And I have a valid username and password
+    Given I sign in as a super user
+      
 
   @happy_path
   Scenario: Registration by a NCCC user

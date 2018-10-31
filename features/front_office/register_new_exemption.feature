@@ -5,8 +5,7 @@ Feature: Individual registers a waste exemption
   So that know that I am complying with regulations
 
   Background:
-    Given I am an external user
-      And I select a new exemption
+    Given start a new waste exemption registraton
 
   @happy_path
   Scenario: Registration by an individual

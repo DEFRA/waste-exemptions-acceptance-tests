@@ -1,21 +1,8 @@
-Given(/^I am an external user$/) do
 
+Given(/^start a new waste exemption registraton$/) do
   @app = App.new
   @app.front_office_home_page.load
-
-end
-
-Given(/^I am an internal user$/) do
-
-  @app = App.new
-  @app.back_office_home_page.load
-
-end
-
-Given(/^I select a new exemption$/) do
-
   @app.registration_type_page.submit_new
-
 end
 
 When(/^I register an exemption$/) do

@@ -1,11 +1,21 @@
-Given(/^I have a valid username and password$/) do
-
+Given(/^I sign in as a system user$/) do
+  @app = App.new
+  @app.login_page.load
   # Back office login page
   @app.login_page.submit(
     email: Quke::Quke.config.custom["accounts"]["SystemUser"]["username"],
-    password: Quke::Quke.config.custom["accounts"]["SystemUser"]["password"]
+    password: ENV["WEX_DEFAULT_PASSWORD"]
   )
+end
 
+Given(/^I sign in as a super user$/) do
+  @app = App.new
+  @app.login_page.load
+  # Back office login page
+  @app.login_page.submit(
+    email: Quke::Quke.config.custom["accounts"]["SuperUser"]["username"],
+    password: ENV["WEX_DEFAULT_PASSWORD"]
+  )
 end
 
 When(/^I complete a registration$/) do
