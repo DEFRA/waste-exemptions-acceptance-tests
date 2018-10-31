@@ -22,7 +22,7 @@ end
 desc "Runs the tests used by continuous integration to check the project"
 task :ci do
   Rake::Task["rubocop"].invoke
-  sh %( bundle exec quke --tags @ci )
+  sh %( QUKE_CONFIG=.config-ci.yml bundle exec quke --tags @ci )
 end
 desc "Run all browserstack tests"
 task browserstack: %i[ie11_W10 Chrome70_W10 Safari12_OSX Chrome70_OSX Firefox63_OSX iPhone_8 Google_Pixel]
