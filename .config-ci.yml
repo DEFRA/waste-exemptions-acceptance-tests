@@ -1,0 +1,17 @@
+
+custom:
+  accounts:
+    DataAgent:
+      username: data_agent_user@example.gov.uk
+    AdminAgent:
+      username: admin_agent_user@example.gov.uk
+    SuperAgent:
+      username: super_agent_user@example.gov.uk
+    SystemUser:
+      username: system_user@example.gov.uk
+  
+  urls:
+    front_office: "http://example.com"
+    back_office: "http://example.com"
+
+
