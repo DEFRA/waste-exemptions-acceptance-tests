@@ -7,7 +7,7 @@ Feature: Individual registers a waste exemption
   Background:
     Given start a new waste exemption registraton
 
-  @happy_path @wip
+  @happy_path
   Scenario: Registration by an individual
     Given I am an individual
      When I register an exemption
