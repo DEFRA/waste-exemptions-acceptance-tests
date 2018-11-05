@@ -1,4 +1,4 @@
-@backoffice
+@backoffice @export
 Feature: Back office users can create confirmation letter exports
   As a back office user
   I need the ability to create confirmation letters for a given period
