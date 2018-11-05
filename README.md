@@ -13,7 +13,7 @@ This project contains the acceptance tests for the service. It is built around [
 
 ## Pre-requisites
 
-This project is setup to run against version 2.2.2 of Ruby.
+This project is setup to run against version 2.2.3 of Ruby.
 
 The rest of the pre-requisites are the same as those for [Quke](https://github.com/DEFRA/quke#pre-requisites).
 
@@ -33,24 +33,11 @@ bundle install
 
 ## Configuration
 
-You can figure how the project runs using [Quke config files](https://github.com/DEFRA/quke#configuration). Before executing this project for the first time you'll need to create an initial `.config.yml` file.
+You can figure how the project runs using [Quke config files](https://github.com/DEFRA/quke#configuration). 
+Quke relies on yaml files to configure how the tests are run, the default being .config.yml
+You'll need to set WEX_DEFAULT_PASSWORD to the appropriate password to enable authentication into the back office.
 
-```bash
-touch .config.yml
-```
-
-Into that file you'll need to add as a minimum this, replacing the example values with ones relevant to the environment under test.
-
-```yaml
-app_host: 'https://urlofenvironmenttotest.example.com'
-custom:
-  accounts:
-    SystemUser:
-      username: system.user@example.com
-      password: SystemUserPassword1
-```
-
-If left as that by default when **Quke** is executed it will run against your selected environment using the headless browser **PhantomJS**.
+If left as that by default when **Quke** is executed it will run against your selected environment using Chrome.
 
 ### Custom WEX config
 
@@ -64,18 +51,6 @@ custom:
 ```
 
 The project now includes logic to look for this and if present will resize the window accordingly. Ideally this situation should be periodically tested to see if this workaround is still required.
-
-### Back office
-
-The project contains logic to automatically determine the URL to the back office, by assuming `app_host:` is the front office URL for one of our standard environments (development, QA, pre-prod or production).
-
-This means you can run all the tests, even though you have only given **Quke** details for the front office.
-
-However if you're not running the project against one of these standard environments (for example you are running against a deployment in [Heroku](https://heroku.com), or something you have running locally) you can override this logic and simply tell **Quke** the back office URL via an environment variable.
-
-```bash
-WEX_BO_URL="http://localhost:3001" bundle exec quke --tags ~@ci
-```
 
 ## Execution
 
@@ -124,8 +99,9 @@ To have consistency across the project the following tags are defined and should
 |@frontoffice|Any feature or scenario expected to be run against the front office application|
 |@backoffice|Any feature or scenario expected to be run against the back office application|
 |@happypath|A scenario which details a complete registration with no errors|
+|@export| Back office export functionality|
 |@functional|Any feature or scenario which is testing just a specific function of the service e.g. validation errors|
-|@fix|A feature or scenario that highlights an error or issue with the service that needs to be fixed|
+|@broken|A feature or scenario that highlights an error or issue with the service that needs to be fixed|
 |@ci|A feature that is intended to be run only on our continuous integration service (you should never need to use this tag).|
 
 It's also common practice to use a custom tag whilst working on a new feature or scenario e.g. `@focus` or `@wip`. That is perfectly acceptable but please ensure they are removed before your change is merged.

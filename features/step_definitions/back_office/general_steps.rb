@@ -13,7 +13,7 @@ Given(/^I sign in as a super user$/) do
   @app.login_page.load
   # Back office login page
   @app.login_page.submit(
-    email: Quke::Quke.config.custom["accounts"]["SuperUser"]["username"],
+    email: Quke::Quke.config.custom["accounts"]["SuperAgent"]["username"],
     password: ENV["WEX_DEFAULT_PASSWORD"]
   )
 end
