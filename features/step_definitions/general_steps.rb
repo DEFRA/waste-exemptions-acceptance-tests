@@ -1,4 +1,3 @@
-
 Given(/^start a new waste exemption registraton$/) do
   @app = App.new
   @app.front_office_home_page.load

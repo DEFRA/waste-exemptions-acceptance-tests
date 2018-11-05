@@ -1,4 +1,3 @@
-
 # Represents all pages in the application. Was created to avoid needing to
 # create individual instances of each page throughout the steps.
 # https://github.com/natritmeyer/site_prism#epilogue
