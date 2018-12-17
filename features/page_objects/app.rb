@@ -12,53 +12,29 @@ class App
   end
 
   # JOURNEY PAGES
-  def registration_type_page
-    @last_page = RegistrationTypePage.new
-  end
 
-  def contact_details_page
-    @last_page = ContactDetailsPage.new
-  end
-
-  def user_type_page
-    @last_page = UserTypePage.new
+  def address_page
+    @last_page = AddressPage.new
   end
 
   def add_partner_page
     @last_page = AddPartnerPage.new
   end
 
-  # /wec/enrollments/reviewing_partners
-  def reviewing_partners_page
-    @last_page = ReviewingPartnersPage.new
+  def applicant_email_page
+    @last_page = ApplicantEmailPage.new
   end
 
-  def organisation_name_page
-    @last_page = OrganisationNamePage.new
+  def applicant_phone_page
+    @last_page = ApplicantPhonePage.new
   end
 
-  def company_number_page
-    @last_page = CompanyNumberPage.new
+  def applicant_name_page
+    @last_page = ApplicantNamePage.new
   end
 
-  def company_name_page
-    @last_page = CompanyNamePage.new
-  end
-
-  def address_page
-    @last_page = AddressPage.new
-  end
-
-  def correspondence_contact_page
-    @last_page = CorrespondenceContactPage.new
-  end
-
-  def farm_questions_page
-    @last_page = FarmQuestionsPage.new
-  end
-
-  def site_location_page
-    @last_page = SiteLocationPage.new
+  def business_type_page
+    @last_page = BusinessTypePage.new
   end
 
   def choose_exemptions_page
@@ -69,12 +45,49 @@ class App
     @last_page = CheckDetailsPage.new
   end
 
-  def declaration_page
-    @last_page = DeclarationPage.new
+  def company_name_page
+    @last_page = CompanyNamePage.new
+  end
+
+  def company_number_page
+    @last_page = CompanyNumberPage.new
   end
 
   def confirmation_page
     @last_page = ConfirmationPage.new
+  end
+
+  def correspondence_contact_page
+    @last_page = CorrespondenceContactPage.new
+  end
+
+  def declaration_page
+    @last_page = DeclarationPage.new
+  end
+
+  def farm_questions_page
+    @last_page = FarmQuestionsPage.new
+  end
+
+  def location_page
+    @last_page = LocationPage.new
+  end
+
+  def organisation_name_page
+    @last_page = OrganisationNamePage.new
+  end
+
+  def registration_type_page
+    @last_page = RegistrationTypePage.new
+  end
+
+  # /wec/enrollments/reviewing_partners
+  def reviewing_partners_page
+    @last_page = ReviewingPartnersPage.new
+  end
+
+  def site_location_page
+    @last_page = SiteLocationPage.new
   end
 
   # BACK OFFICE SPECIFIC PAGES
@@ -83,19 +96,8 @@ class App
     @last_page = BackOfficeHomePage.new
   end
 
-  # / (when not signed in)
-  def login_page
-    @last_page = LoginPage.new
-  end
-
-  # / (once signed in)
-  def search_page
-    @last_page = SearchPage.new
-  end
-
-  # /admin/enrollments/[id]
-  def registration_page
-    @last_page = RegistrationPage.new
+  def confirmation_letter_bulk_exports_page
+    @last_page = ConfirmationLetterBulkExportsPage.new
   end
 
   # /admin/enrollments/[id]/deregistration/new
@@ -113,8 +115,19 @@ class App
     @last_page = EnrollmentExportsPage.new
   end
 
-  def confirmation_letter_bulk_exports_page
-    @last_page = ConfirmationLetterBulkExportsPage.new
+  # / (when not signed in)
+  def login_page
+    @last_page = LoginPage.new
+  end
+
+  # /admin/enrollments/[id]
+  def registration_page
+    @last_page = RegistrationPage.new
+  end
+
+  # / (once signed in)
+  def search_page
+    @last_page = SearchPage.new
   end
 
 end

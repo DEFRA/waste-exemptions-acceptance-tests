@@ -6,11 +6,6 @@ end
 
 When(/^I register an exemption$/) do
 
-  @app.address_page.submit(
-    postcode: "BS1 5AH",
-    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
-  )
-
   @app.correspondence_contact_page.submit(
     full_name: "Mr Test",
     tel_number: "01234567899"
