@@ -1,4 +1,4 @@
-require_relative "sections/admin_nav_bar_section"
+require_relative "../sections/admin_nav_bar_section"
 
 class DeregisterRegistrationPage < SitePrism::Page
 
