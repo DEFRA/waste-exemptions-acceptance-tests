@@ -13,7 +13,7 @@ Feature: Individual registers a waste exemption
      When I register an exemption
      Then I will be informed the registration is complete
 
-  @happy_path
+  @happy_path @ts
   Scenario: Registration by a limited company
     Given I am a limited company
      When I register an exemption

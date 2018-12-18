@@ -37,6 +37,22 @@ class App
     @last_page = BusinessTypePage.new
   end
 
+  def contact_email_page
+    @last_page = ContactEmailPage.new
+  end
+
+  def contact_name_page
+    @last_page = ContactNamePage.new
+  end
+
+  def contact_position_page
+    @last_page = ContactPositionPage.new
+  end
+
+  def contact_telephone_page
+    @last_page = ContactTelephonePage.new
+  end
+
   def choose_exemptions_page
     @last_page = ChooseExemptionsPage.new
   end
@@ -49,32 +65,32 @@ class App
     @last_page = CompanyNamePage.new
   end
 
-  def company_number_page
-    @last_page = CompanyNumberPage.new
+  def registration_number_page
+    @last_page = RegistrationNumberPage.new
   end
 
   def confirmation_page
     @last_page = ConfirmationPage.new
   end
 
-  def correspondence_contact_page
-    @last_page = CorrespondenceContactPage.new
-  end
-
   def declaration_page
     @last_page = DeclarationPage.new
   end
 
-  def farm_questions_page
-    @last_page = FarmQuestionsPage.new
+  def farmer_page
+    @last_page = FarmerPage.new
   end
 
   def location_page
     @last_page = LocationPage.new
   end
 
-  def organisation_name_page
-    @last_page = OrganisationNamePage.new
+  def operator_name_page
+    @last_page = OperatorNamePage.new
+  end
+
+  def on_farm_page
+    @last_page = OnFarmPage.new
   end
 
   def registration_type_page

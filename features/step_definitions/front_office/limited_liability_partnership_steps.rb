@@ -10,7 +10,7 @@ Given(/^I am a limited liability partnership$/) do
   )
   @app.business_type_page.submit(business_type: :llp)
 
-  @app.company_number_page.submit(
+  @app.registration_number_page.submit(
     company_number: "12345678"
   )
 

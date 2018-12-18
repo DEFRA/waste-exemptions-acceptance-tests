@@ -34,7 +34,7 @@ When(/^I complete a registration$/) do
     org_type: "WasteExemptionsShared::OrganisationType::Individual"
   )
 
-  @app.organisation_name_page.submit(
+  @app.operator_name_page.submit(
     org_name: "Mr Test"
   )
 
@@ -84,7 +84,7 @@ When(/^I complete a registration using postcode (.*) for the site address$/) do 
     org_type: "WasteExemptionsShared::OrganisationType::Individual"
   )
 
-  @app.organisation_name_page.submit(
+  @app.operator_name_page.submit(
     org_name: "Mr Test"
   )
 
@@ -132,7 +132,7 @@ When(/^I complete a registration using a national grid reference (.*) for the si
     org_type: "WasteExemptionsShared::OrganisationType::Individual"
   )
 
-  @app.organisation_name_page.submit(
+  @app.operator_name_page.submit(
     org_name: "Mr Test"
   )
 
@@ -181,7 +181,7 @@ Given(/^I have a registration with the exemptions "([^"]*)"$/) do |exemptions|
     org_type: "WasteExemptionsShared::OrganisationType::Individual"
   )
 
-  @app.organisation_name_page.submit(
+  @app.operator_name_page.submit(
     org_name: "Mr Test"
   )
 

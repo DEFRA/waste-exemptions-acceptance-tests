@@ -1,6 +1,6 @@
 class DeclarationPage < SitePrism::Page
 
-  element(:submit_button, "input[name='commit']")
+  element(:submit_button, "input[type='submit']")
 
   def submit(_args = {})
     submit_button.click

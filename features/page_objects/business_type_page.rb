@@ -10,10 +10,10 @@ class BusinessTypePage < SitePrism::Page
   element(:submit_button, "input[name='commit']")
 
   def submit(args = {})
-    case args[:type]
+    case args[:business_type]
     when :individual
       individual.select_option
-    when limited
+    when :limited
       limited.select_option
     when :partnership
       partnership.select_option
