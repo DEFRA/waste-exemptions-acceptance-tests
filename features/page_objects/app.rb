@@ -1,6 +1,7 @@
 # Represents all pages in the application. Was created to avoid needing to
 # create individual instances of each page throughout the steps.
 # https://github.com/natritmeyer/site_prism#epilogue
+# rubocop:disable Metrics/ClassLength
 class App
   # Using an attr_reader automatically gives us a my_app.last_page method
   attr_reader :last_page
@@ -12,11 +13,6 @@ class App
   end
 
   # JOURNEY PAGES
-
-  def address_page
-    @last_page = AddressPage.new
-  end
-
   def add_partner_page
     @last_page = AddPartnerPage.new
   end
@@ -61,6 +57,10 @@ class App
     @last_page = CheckDetailsPage.new
   end
 
+  def contact_address_page
+    @last_page = ContactAddressPage.new
+  end
+
   def company_name_page
     @last_page = CompanyNamePage.new
   end
@@ -89,6 +89,10 @@ class App
     @last_page = OperatorNamePage.new
   end
 
+  def operator_address_page
+    @last_page = OperatorAddressPage.new
+  end
+
   def on_farm_page
     @last_page = OnFarmPage.new
   end
@@ -97,13 +101,16 @@ class App
     @last_page = RegistrationTypePage.new
   end
 
-  # /wec/enrollments/reviewing_partners
   def reviewing_partners_page
     @last_page = ReviewingPartnersPage.new
   end
 
-  def site_location_page
-    @last_page = SiteLocationPage.new
+  def site_grid_reference_page
+    @last_page = SiteGridReferencePage.new
+  end
+
+  def site_address_page
+    @last_page = SiteAddressPage.new
   end
 
   # BACK OFFICE SPECIFIC PAGES
@@ -116,34 +123,28 @@ class App
     @last_page = ConfirmationLetterBulkExportsPage.new
   end
 
-  # /admin/enrollments/[id]/deregistration/new
   def deregister_registration_page
     @last_page = DeregisterRegistrationPage.new
   end
 
-  # /admin/enrollment_exemptions/[id]/edit_deregister
   def deregister_exemption_page
     @last_page = DeregisterExemptionPage.new
   end
 
-  # /admin/enrollment_exports
   def enrollment_exports_page
     @last_page = EnrollmentExportsPage.new
   end
 
-  # / (when not signed in)
   def login_page
     @last_page = LoginPage.new
   end
 
-  # /admin/enrollments/[id]
   def registration_page
     @last_page = RegistrationPage.new
   end
 
-  # / (once signed in)
   def search_page
     @last_page = SearchPage.new
   end
-
+  # rubocop:enable Metrics/ClassLength
 end

@@ -30,20 +30,6 @@ Given(/^I am a partnership$/) do
 end
 
 When(/^I register an exemption for a|my partnership$/) do
-
-  @app.correspondence_contact_page.submit(
-    full_name: "Mr Test",
-    premises: "Test house",
-    tel_number: "01234567899"
-  )
-
-  @app.farm_questions_page.submit
-
-  @app.site_location_page.submit_grid_ref(
-    grid_ref: "ST5820572708",
-    site_details: "by a tree near a river there's a hole in the ground"
-  )
-
   @app.choose_exemptions_page.submit(
     exemptions: %w[D2 S1]
   )

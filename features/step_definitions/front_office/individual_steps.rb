@@ -8,7 +8,13 @@ Given(/^I am an individual$/) do
     confirm_email: "tim.stone.ea@gmail.com"
   )
   @app.business_type_page.submit(business_type: :individual)
-  @app.operator_name_page.submit(org_name: "Waste exemptinons and sons")
+  @app.operator_name_page.submit(
+    org_name: "Mr Waste"
+  )
+  @app.operator_address_page.submit(
+    postcode: "BS1 5AH",
+    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+  )
   @app.contact_name_page.submit(
     first_name: "Bob",
     last_name: "Cratchett"
@@ -19,15 +25,19 @@ Given(/^I am an individual$/) do
     email: "tim.stone.ea@gmail.com",
     confirm_email: "tim.stone.ea@gmail.com"
   )
-  @app.on_farm_page.submit(on_farm: true)
-  @app.farmer_page.submit(farmer: true)
-  @app.address_page.submit(
+  @app.contact_address_page.submit(
     postcode: "BS1 5AH",
     result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
-
-  @app.operator_name_page.submit(
-    org_name: "Mr Test"
+  @app.on_farm_page.submit(on_farm: true)
+  @app.farmer_page.submit(farmer: true)
+  # @app.site_grid_reference_page.choose_address.click
+  # @app.site_address_page.submit(
+  #   postcode: "BS1 5AH",
+  #   result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+  # )
+  @app.site_grid_reference_page.submit(
+    grid_ref: "ST 58132 72695",
+    site_details: "Yer it is"
   )
-
 end

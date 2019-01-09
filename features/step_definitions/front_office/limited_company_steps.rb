@@ -8,13 +8,15 @@ Given(/^I am a limited company$/) do
     confirm_email: "tim.stone.ea@gmail.com"
   )
   @app.business_type_page.submit(business_type: :limited)
-
   @app.registration_number_page.submit(
     registration_number: "00445790"
   )
-
   @app.operator_name_page.submit(
     org_name: "Testco"
+  )
+  @app.operator_address_page.submit(
+    postcode: "BS1 5AH",
+    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @app.contact_name_page.submit(
     first_name: "Bob",
@@ -26,14 +28,14 @@ Given(/^I am a limited company$/) do
     email: "tim.stone.ea@gmail.com",
     confirm_email: "tim.stone.ea@gmail.com"
   )
-  @app.on_farm_page.submit(on_farm: true)
-  @app.farmer_page.submit(farmer: true)
-  @app.address_page.submit(
+  @app.contact_address_page.submit(
     postcode: "BS1 5AH",
     result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
-
-  @app.operator_name_page.submit(
-    org_name: "Mr Test"
+  @app.on_farm_page.submit(on_farm: true)
+  @app.farmer_page.submit(farmer: true)
+  @app.site_grid_reference_page.submit(
+    grid_ref: "ST 58132 72695",
+    site_details: "Yer it is"
   )
 end

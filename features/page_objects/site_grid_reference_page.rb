@@ -1,4 +1,4 @@
-class SiteLocationPage < SitePrism::Page
+class SiteGridReferencePage < SitePrism::Page
 
   element(:postcode, "input[id='find_address']")
 
@@ -8,10 +8,12 @@ class SiteLocationPage < SitePrism::Page
   element(:results_dropdown, "select#address_match_selection")
   element(:last_result, "select#address_match_selection option:last-of-type")
 
-  element(:grid_ref_helper, "summary[id='show-hide-details-summary-1']")
+  element(:choose_address, "a[href^='/site-grid-reference/skip_to_address']")
 
-  element(:grid_ref, "input[id='text_field_grid_reference']")
-  element(:site_details, "textarea[id='text_area_site_info']")
+  element(:grid_ref_helper, ".summary")
+
+  element(:grid_ref, "#site_grid_reference_form_grid_reference")
+  element(:site_details, "#site_grid_reference_form_description")
 
   element(:submit_button, "input[value='Continue']")
 
@@ -22,8 +24,7 @@ class SiteLocationPage < SitePrism::Page
     submit_button.click
   end
 
-  def submit_grid_ref(args = {})
-    grid_ref_helper.click
+  def submit(args = {})
     grid_ref.set(args[:grid_ref]) if args.key?(:grid_ref)
     site_details.set(args[:site_details]) if args.key?(:site_details)
     submit_button.click
