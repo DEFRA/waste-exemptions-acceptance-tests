@@ -1,4 +1,4 @@
-Given(/^I am a partnership$/) do
+Given(/^I am a charity$/) do
   @app.location_page.submit(location: :england)
   people = @app.applicant_name_page.applicant
   @app.applicant_name_page.submit(person: people[0])
@@ -7,9 +7,9 @@ Given(/^I am a partnership$/) do
     email: "tim.stone.ea@gmail.com",
     confirm_email: "tim.stone.ea@gmail.com"
   )
-  @app.business_type_page.submit(business_type: :partnership)
+  @app.business_type_page.submit(business_type: :charity)
   @app.operator_name_page.submit(
-    org_name: "Test partnership"
+    org_name: "Test charity"
   )
   @app.operator_address_page.submit(
     postcode: "BS1 5AH",
@@ -19,7 +19,7 @@ Given(/^I am a partnership$/) do
     first_name: "Bob",
     last_name: "Cratchett"
   )
-  @app.contact_position_page.submit(position: "Partner")
+  @app.contact_position_page.submit(position: "Manager")
   @app.contact_telephone_page.submit(tel_no: "0117 9000000")
   @app.contact_email_page.submit(
     email: "tim.stone.ea@gmail.com",
@@ -30,7 +30,7 @@ Given(/^I am a partnership$/) do
     result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @app.on_farm_page.submit(on_farm: true)
-  @app.farmer_page.submit(farmer: true)
+  @app.farmer_page.submit(farmer: false)
   @app.site_grid_reference_page.submit(
     grid_ref: "ST 58132 72695",
     site_details: "Yer it is"

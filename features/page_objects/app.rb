@@ -65,10 +65,6 @@ class App
     @last_page = CompanyNamePage.new
   end
 
-  def registration_number_page
-    @last_page = RegistrationNumberPage.new
-  end
-
   def confirmation_page
     @last_page = ConfirmationPage.new
   end
@@ -99,6 +95,14 @@ class App
 
   def registration_type_page
     @last_page = RegistrationTypePage.new
+  end
+
+  def registration_number_page
+    @last_page = RegistrationNumberPage.new
+  end
+
+  def register_in_wales_page
+    @last_page = RegisterInWalesPage.new
   end
 
   def reviewing_partners_page

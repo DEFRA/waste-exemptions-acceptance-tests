@@ -1,4 +1,4 @@
-Given(/^start a new waste exemption registraton$/) do
+Given(/^I start a new waste exemption registraton$/) do
   @app = App.new
   @app.front_office_home_page.load
   @app.registration_type_page.submit_new
@@ -7,6 +7,14 @@ end
 When(/^I register an exemption$/) do
   @app.choose_exemptions_page.submit(
     exemptions: %w[S1]
+  )
+  @app.check_details_page.submit
+  @app.declaration_page.submit
+end
+
+When(/^I register multiple exemptions$/) do
+  @app.choose_exemptions_page.submit(
+    exemptions: %w[D2 S1]
   )
   @app.check_details_page.submit
   @app.declaration_page.submit
