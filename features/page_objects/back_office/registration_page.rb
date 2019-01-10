@@ -1,7 +1,7 @@
-require_relative "sections/admin_nav_bar_section"
-require_relative "sections/exemption_details_section"
-require_relative "sections/registration_details_section"
-require_relative "sections/site_details_section"
+require_relative "../sections/admin_nav_bar_section"
+require_relative "../sections/exemption_details_section"
+require_relative "../sections/registration_details_section"
+require_relative "../sections/site_details_section"
 
 class RegistrationPage < SitePrism::Page
 
