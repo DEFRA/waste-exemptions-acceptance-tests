@@ -1,10 +1,10 @@
 class RegistrationTypePage < SitePrism::Page
 
-  element(:new_registration, "input[id='yes_option1']")
-  element(:re_register, "input[id='yes_option2']")
-  element(:renew_registration, "input[id='yes_option3']")
+  element(:new_registration, "#start_form_start_new", visible: false)
+  element(:re_register, "#start_form_start_reregister", visible: false)
+  element(:change_registration, "#start_form_start_change", visible: false)
 
-  element(:submit_button, "input[name='commit']")
+  element(:submit_button, "input[type='submit']")
 
   def submit_new
     new_registration.click
@@ -16,8 +16,8 @@ class RegistrationTypePage < SitePrism::Page
     submit_button.click
   end
 
-  def submit_renew
-    renew_registration.click
+  def submit_change
+    change_registration.click
     submit_button.click
   end
 

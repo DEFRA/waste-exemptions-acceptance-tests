@@ -1,11 +1,11 @@
-class AddressPage < SitePrism::Page
+class SiteAddressPage < SitePrism::Page
 
-  element(:postcode, "input[id='find_address']")
+  element(:postcode, "#site_postcode_form_postcode")
 
   element(:find_address, "input[value='Find address']")
 
   element(:show_list, "input[id='address_match_selection']")
-  element(:results_dropdown, "select#address_match_selection")
+  element(:results_dropdown, "select#site_address_lookup_form_temp_address")
 
   element(:submit_button, "input[value='Continue']")
 

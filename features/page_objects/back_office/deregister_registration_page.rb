@@ -1,12 +1,14 @@
-require_relative "sections/admin_nav_bar_section"
+require_relative "../sections/admin_nav_bar_section"
 
-class DeregisterExemptionPage < SitePrism::Page
+class DeregisterRegistrationPage < SitePrism::Page
 
-  element(:reason_dropdown, "#admin_deregister_enrollment_exemption_form_status")
+  element(:alert_registration_dereg, "div.alert-success[role='alert']", text: "Enrollment deregistered successfully")
+
+  element(:reason_dropdown, "#admin_deregister_enrollment_form_reason")
   element(:revoked_option, "option[value='revoked']")
   element(:ceased_option, "option[value='ceased']")
 
-  element(:comment, "#admin_deregister_enrollment_exemption_form_deregistered_comment")
+  element(:comment, "#admin_deregister_enrollment_form_comment")
 
   element(:deregister_button, "input[name='commit']")
 
