@@ -3,7 +3,7 @@ Feature: Waste exemption activities outside of England are advised to register w
   As a waste holder
   I want to know where to register a waste activity exemption that is outside of England
   So that I know I am not making a mistake incorrectly registering in England
-@ts
+  
   Scenario: Choosing Wales as the waste activity location advises user to register with Natural Resources Wales
   	Given I start a new waste exemption registraton
       And I choose Wales

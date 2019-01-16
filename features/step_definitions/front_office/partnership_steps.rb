@@ -8,6 +8,10 @@ Given(/^I am a partnership$/) do
     confirm_email: "tim.stone.ea@gmail.com"
   )
   @app.business_type_page.submit(business_type: :partnership)
+  people = @app.main_people_page.main
+  @app.main_people_page.add_main_person(person: people[0])
+  @app.main_people_page.submit(person: people[1])
+
   @app.operator_name_page.submit(
     org_name: "Test partnership"
   )

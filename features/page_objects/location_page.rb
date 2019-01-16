@@ -1,9 +1,9 @@
 class LocationPage < SitePrism::Page
 
-  element(:england, "#location_form_location_england", visible: false)
-  element(:wales, "#location_form_location_wales", visible: false)
-  element(:scotland, "#location_form_location_scotland", visible: false)
-  element(:northern_ireland, "#location_form_location_northern_ireland", visible: false)
+  element(:england, "#location_form_location_england + label")
+  element(:wales, "#location_form_location_wales + label")
+  element(:scotland, "#location_form_location_scotland + label")
+  element(:northern_ireland, "#location_form_location_northern_ireland + label")
 
   element(:submit_button, "input[type='submit']")
 

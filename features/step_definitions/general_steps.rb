@@ -12,6 +12,12 @@ When(/^I register an exemption$/) do
   @app.declaration_page.submit
 end
 
+When(/^I register an exemption "([^"]*)"$/) do |exemption|
+  @app.choose_exemptions_page.choose_exemption(exemption)
+  @app.check_details_page.submit
+  @app.declaration_page.submit
+end
+
 When(/^I register multiple exemptions$/) do
   @app.choose_exemptions_page.submit(
     exemptions: %w[D2 S1]
