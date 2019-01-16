@@ -1,8 +1,8 @@
 class FarmerPage < SitePrism::Page
 
   # Is the person carrying out the waste operation a farmer?
-  element(:farmer_yes, "#on_a_farm_form_on_a_farm_true", visible: false)
-  element(:farmer_no, "#on_a_farm_form_on_a_farm_false", visible: false)
+  element(:farmer_yes, "#on_a_farm_form_on_a_farm_true + label")
+  element(:farmer_no, "#on_a_farm_form_on_a_farm_false + label")
 
   element(:submit_button, "input[type='submit']")
 

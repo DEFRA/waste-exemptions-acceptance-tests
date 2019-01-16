@@ -6,10 +6,11 @@ Feature: Registering a waste exemption
 
   Background:
     Given I start a new waste exemption registraton
-
+    
+@smoke
   Scenario: Registration by an individual
     Given I am an individual
-     When I register an exemption
+     When I register an exemption "S1"
      Then I will be informed the registration is complete
 
   Scenario: Registration by a limited company
