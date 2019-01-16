@@ -15,4 +15,10 @@ class ChooseExemptionsPage < SitePrism::Page
     submit_button.click
   end
 
+  def choose_exemption(exemption)
+    element = "#exemptions_form_checkbox-#{exemption}+ label"
+    find(:css, element).click
+    submit_button.click
+  end
+
 end

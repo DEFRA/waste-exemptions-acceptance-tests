@@ -13,10 +13,6 @@ class App
   end
 
   # JOURNEY PAGES
-  def add_partner_page
-    @last_page = AddPartnerPage.new
-  end
-
   def applicant_email_page
     @last_page = ApplicantEmailPage.new
   end
@@ -79,6 +75,10 @@ class App
 
   def location_page
     @last_page = LocationPage.new
+  end
+
+  def main_people_page
+    @last_page = MainPeoplePage.new
   end
 
   def operator_name_page

@@ -1,11 +1,11 @@
 class BusinessTypePage < SitePrism::Page
 
-  element(:individual, "input[value='soleTrader']", visible: false)
-  element(:limited, "input[value='limitedCompany']", visible: false)
-  element(:partnership, "input[value='partnership']", visible: false)
-  element(:llp, "input[value='limitedLiabilityPartnership']", visible: false)
-  element(:local_authority, "input[value='localAuthority']", visible: false)
-  element(:charity, "input[value='charity']", visible: false)
+  element(:individual, "#business_type_form_business_type_soletrader + label")
+  element(:limited, "#business_type_form_business_type_limitedcompany + label")
+  element(:partnership, "#business_type_form_business_type_partnership + label")
+  element(:llp, "#business_type_form_business_type_limitedliabilitypartnership + label")
+  element(:local_authority, "#business_type_form_business_type_localauthority + label")
+  element(:charity, "#business_type_form_business_type_charity + label")
 
   element(:submit_button, "input[name='commit']")
 
