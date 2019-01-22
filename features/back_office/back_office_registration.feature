@@ -1,4 +1,4 @@
-@backoffice @ts
+@backoffice
 Feature: Back office user registers a customers new waste exemption activity
   As a back office user
   I want to register a waste exemption
