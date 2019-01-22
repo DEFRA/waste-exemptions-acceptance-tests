@@ -5,7 +5,7 @@ Feature: Back office users can create confirmation letter exports
   So that I send all assisted digital registrations proof of their registration
 
   Background:
-    Given I sign in as a super user
+    Given I sign in as a super agent
       
 
   Scenario: Back office user exports confirmation letters

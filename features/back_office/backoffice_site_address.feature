@@ -5,7 +5,7 @@ Feature: National grid reference and site area details are found from site postc
   So that I can check the activity location for exemption restrictions
 
   Background:
-    Given I sign in as a super user
+    Given I sign in as a super agent
       
 
   @happy_path
