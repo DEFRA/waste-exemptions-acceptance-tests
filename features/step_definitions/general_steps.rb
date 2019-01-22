@@ -1,5 +1,6 @@
 Given(/^I start a new waste exemption registraton$/) do
   @app = App.new
+  @email_address = generate_email
   @app.front_office_home_page.load
   @app.registration_type_page.submit_new
 end

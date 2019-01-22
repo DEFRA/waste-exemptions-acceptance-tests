@@ -46,8 +46,8 @@ When(/^I complete a registration$/) do
   @app.contact_details_page.submit(
     full_name: "Mr Test",
     tel_number: "01234567899",
-    email: "tim.stone.ea@gmail.com",
-    confirm_email: "tim.stone.ea@gmail.com"
+    email: @email_address,
+    confirm_email: @email_address
   )
 
   @app.user_type_page.submit(
@@ -96,8 +96,8 @@ When(/^I complete a registration using postcode (.*) for the site address$/) do 
   @app.contact_details_page.submit(
     full_name: "Mr Test",
     tel_number: "01234567899",
-    email: "tim.stone.ea@gmail.com",
-    confirm_email: "tim.stone.ea@gmail.com"
+    email: @email_address,
+    confirm_email: @email_address
   )
 
   @app.user_type_page.submit(
@@ -144,8 +144,8 @@ When(/^I complete a registration using a national grid reference (.*) for the si
   @app.contact_details_page.submit(
     full_name: "Mr Test",
     tel_number: "01234567899",
-    email: "tim.stone.ea@gmail.com",
-    confirm_email: "tim.stone.ea@gmail.com"
+    email: @email_address,
+    confirm_email: @email_address
   )
 
   @app.user_type_page.submit(
@@ -193,8 +193,8 @@ Given(/^I have a registration with the exemptions "([^"]*)"$/) do |exemptions|
   @app.contact_details_page.submit(
     full_name: "Mr Test",
     tel_number: "01234567899",
-    email: "tim.stone.ea@gmail.com",
-    confirm_email: "tim.stone.ea@gmail.com"
+    email: @email_address,
+    confirm_email: @email_address
   )
 
   @app.user_type_page.submit(

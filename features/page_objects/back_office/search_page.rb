@@ -15,6 +15,8 @@ class SearchPage < SitePrism::Page
 
   section(:nav_bar, AdminNavBarSection, AdminNavBarSection::SELECTOR)
 
+  element(:sign_out, "a[href='/users/sign_out']")
+
   def submit(args = {})
     search_field.set(args[@exemption_number]) if args.key?(@exemption_number)
     select_search(args[:type])
