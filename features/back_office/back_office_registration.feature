@@ -1,11 +1,11 @@
-@backoffice
+@backoffice @ts
 Feature: Back office user registers a customers new waste exemption activity
   As a back office user
   I want to register a waste exemption
   So that I can register exemptions for customers over the phone
 
   Background:
-    Given I sign in as a super user
+    Given I sign in as a super agent
       
 
   @happy_path

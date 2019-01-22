@@ -9,7 +9,7 @@
 # will be by simply setting `app_host`. You can then use it directly using
 # Capybara `visit('/Main_Page')` or `visit('/')` rather than having to repeat
 # the full url each time
-app_host: 'http://localhost:3000'
+app_host: 'http://localhost:3001'
 
 # Tells Quke which browser to use for testing. Choices are firefox, chrome
 # browserstack and phantomjs, with the default being phantomjs
@@ -63,19 +63,19 @@ javascript_errors: false
 custom:
   accounts:
     DataAgent:
-      username: data_agent_user@example.gov.uk
+      username: data_agent@wex.gov.uk
     AdminAgent:
-      username: admin_agent_user@example.gov.uk
+      username: admin_agent@wex.gov.uk
     SuperAgent:
-      username: super_agent_user@example.gov.uk
+      username: super_agent@wex.gov.uk
     SystemUser:
-      username: system_user@example.gov.uk
+      username: system_user@wex.gov.uk
 
 
 # Local setup    
   urls:
-    front_office: "http://localhost:3000"
-    back_office: "http:/localhost:3001"
+    front_office: "http://localhost:3001"
+    back_office: "http:/localhost:8001"
 
 
 # If you are running Quke behind a proxy you can configure the proxy details
