@@ -31,13 +31,9 @@ Given(/^I am an individual$/) do
   )
   @app.on_farm_page.submit(on_farm: true)
   @app.farmer_page.submit(farmer: true)
-  # @app.site_grid_reference_page.choose_address.click
-  # @app.site_address_page.submit(
-  #   postcode: "BS1 5AH",
-  #   result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
-  # )
-  @app.site_grid_reference_page.submit(
-    grid_ref: "ST 58132 72695",
-    site_details: "Yer it is"
+  @app.site_grid_reference_page.choose_address.click
+  @app.site_address_page.submit(
+    postcode: "BS1 5AH",
+    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
 end
