@@ -6,7 +6,7 @@ Feature: Back office users can 'deregister' the whole registration
   Or the business needs to revoke it
 
   Background:
-    Given I sign in as a super user
+    Given I sign in as a super agent
       
   Scenario: Revoking a registration with multiple exemptions
      When I have a registration with the exemptions "D2, S1"

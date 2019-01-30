@@ -4,8 +4,8 @@ Given(/^I am a partnership$/) do
   @app.applicant_name_page.submit(person: people[0])
   @app.applicant_phone_page.submit(tel_number: "0117 9000000")
   @app.applicant_email_page.submit(
-    email: "tim.stone.ea@gmail.com",
-    confirm_email: "tim.stone.ea@gmail.com"
+    email: @email_address,
+    confirm_email: @email_address
   )
   @app.business_type_page.submit(business_type: :partnership)
   people = @app.main_people_page.main
@@ -26,8 +26,8 @@ Given(/^I am a partnership$/) do
   @app.contact_position_page.submit(position: "Partner")
   @app.contact_telephone_page.submit(tel_no: "0117 9000000")
   @app.contact_email_page.submit(
-    email: "tim.stone.ea@gmail.com",
-    confirm_email: "tim.stone.ea@gmail.com"
+    email: @email_address,
+    confirm_email: @email_address
   )
   @app.contact_address_page.submit(
     postcode: "BS1 5AH",

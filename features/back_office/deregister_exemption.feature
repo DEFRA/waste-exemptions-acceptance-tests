@@ -6,7 +6,7 @@ Feature: Back office users can 'deregister' individual exemptions
   Or the business needs to revoke it
 
   Background:
-    Given I sign in as a super user
+    Given I sign in as a super agent
       
 
   @happy_path

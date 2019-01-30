@@ -2,13 +2,13 @@
 custom:
   accounts:
     DataAgent:
-      username: data_agent_user@example.gov.uk
+      username: data_agent@wex.gov.uk
     AdminAgent:
-      username: admin_agent_user@example.gov.uk
+      username: admin_agent@wex.gov.uk
     SuperAgent:
-      username: super_agent_user@example.gov.uk
+      username: super_agent@wex.gov.uk
     SystemUser:
-      username: system_user@example.gov.uk
+      username: system_user@wex.gov.uk
   
   urls:
     front_office: "http://example.com"
