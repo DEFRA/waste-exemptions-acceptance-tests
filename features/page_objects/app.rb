@@ -143,12 +143,16 @@ class App
     @last_page = LoginPage.new
   end
 
-  def registration_page
-    @last_page = RegistrationPage.new
+  def registration_dashboard_page
+    @last_page = RegistrationDashboardPage.new
   end
 
   def search_page
     @last_page = SearchPage.new
+  end
+
+  def users_page
+    @last_page = UsersPage.new
   end
   # rubocop:enable Metrics/ClassLength
 end

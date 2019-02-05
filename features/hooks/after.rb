@@ -3,5 +3,5 @@ After("@backoffice") do
   # as each back office scenario finishs that we have logged out. Rather than
   # peppering our steps with calls to click the log out link, we have this hook
   # which is called after every scenario tagged with @backoffice do it.
-  @app.search_page.sign_out.click
+  visit("/users/sign_out")
 end
