@@ -38,6 +38,10 @@ Given(/^I sign in as a data agent$/) do
   )
 end
 
+When(/^I search for "([^"]*)"$/) do |term|
+  @app.registration_page.submit(search_term: term)
+end
+
 When(/^I complete a registration$/) do
 
   @app.search_page.nav_bar.registrations_menu.click
