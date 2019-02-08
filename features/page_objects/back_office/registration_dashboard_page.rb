@@ -7,12 +7,29 @@ class RegistrationDashboardPage < SitePrism::Page
   element(:search_term, "#term")
   element(:submit_button, "input[name='commit']")
 
-  sections :results, ".registration-details" do
-    element(:edit, "ul li:nth-child(1) a")
-    element(:deregister, "ul li:nth-child(2) a")
-    element(:resume, "ul li:nth-child(3) a")
-    element(:change_ad, "ul li:nth-child(4) a")
-    element(:letter, "ul li:nth-child(5) a")
+  def deregister(registration_number)
+    element = "#" + "deregister_" + registration_number.to_s
+    find(:css, element).click
+  end
+
+  def resume(registration_number)
+    element = "#" + "resume_" + registration_number.to_s
+    find(:css, element).click
+  end
+
+  def edit(registration_number)
+    element = "#" + "edit_" + registration_number.to_s
+    find(:css, element).click
+  end
+
+  def change_ad(registration_number)
+    element = "#" + "change_ad_" + registration_number.to_s
+    find(:css, element).text
+  end
+
+  def confirmation_letter(registration_number)
+    element = "#" + "confirmation_letter_" + registration_number.to_s
+    find(:css, element).text
   end
 
   def submit(args = {})
