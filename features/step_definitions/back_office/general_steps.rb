@@ -39,7 +39,15 @@ Given(/^I sign in as a data agent$/) do
 end
 
 When(/^I search for "([^"]*)"$/) do |term|
-  @app.registration_page.submit(search_term: term)
+  @app.registration_dashboard_page.submit(search_term: term)
+end
+
+When(/^I edit "([^"]*)"$/) do |reg|
+  @app.registration_dashboard_page.edit(reg)
+end
+
+When(/^I deregister "([^"]*)"$/) do |reg|
+  @app.registration_dashboard_page.deregister(reg)
 end
 
 When(/^I complete a registration$/) do

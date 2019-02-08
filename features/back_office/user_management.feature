@@ -1,4 +1,4 @@
-@backoffice @ts
+@backoffice
 Feature: Manage back office users
   As a system user
   I want to be able to add users to the waste exemptions service
@@ -22,4 +22,10 @@ Scenario: Super agent can not add users
  Scenario: System user adds new user
  Given I sign in as a system user
   When I invite a new user
+@ts
+Scenario: test
+Given I sign in as a system user
+  And I search for "WEX000100"
+When I deregister "WEX000100"
+
 
