@@ -14,8 +14,8 @@ Given(/^I am a limited liability partnership$/) do
   @app.operator_name_page.submit(
     org_name: "Test LLP"
   )
-  @app.operator_address_page.submit_manual_address(
-    postcode: "BS1 5AH",
+  @app.operator_address_page.submit_unknown_address_manually(
+    postcode: "BS1 9XX",
     house_no: "1",
     address_line_one: "test lane",
     address_line_two: "teston",

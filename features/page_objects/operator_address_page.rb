@@ -8,6 +8,7 @@ class OperatorAddressPage < SitePrism::Page
 
   element(:find_address, "input[value='Find address']")
   element(:cannot_find_address, "a[href^='/operator-address-lookup/skip']")
+  element(:enter_address_manually, "a[href^='/operator-postcode/skip_to_manual_address']")
 
   element(:show_list, "input[id='address_match_selection']")
   element(:results_dropdown, "select#operator_address_lookup_form_temp_address")
@@ -27,6 +28,17 @@ class OperatorAddressPage < SitePrism::Page
     postcode.set(args[:postcode]) if args.key?(:postcode)
     find_address.click
     cannot_find_address.click
+    house_no.set(args[:house_no]) if args.key?(:house_no)
+    address_line_one.set(args[:address_line_one]) if args.key?(:address_line_one)
+    address_line_two.set(args[:address_line_two]) if args.key?(:address_line_two)
+    city.set(args[:city]) if args.key?(:city)
+    submit_button.click
+  end
+
+  def submit_unknown_address_manually(args = {})
+    postcode.set(args[:postcode]) if args.key?(:postcode)
+    find_address.click
+    enter_address_manually.click
     house_no.set(args[:house_no]) if args.key?(:house_no)
     address_line_one.set(args[:address_line_one]) if args.key?(:address_line_one)
     address_line_two.set(args[:address_line_two]) if args.key?(:address_line_two)

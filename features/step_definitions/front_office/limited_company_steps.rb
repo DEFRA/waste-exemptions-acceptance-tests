@@ -14,9 +14,12 @@ Given(/^I am a limited company$/) do
   @app.operator_name_page.submit(
     org_name: "Testco"
   )
-  @app.operator_address_page.submit(
+  @app.operator_address_page.submit_manual_address(
     postcode: "BS1 5AH",
-    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    house_no: "1",
+    address_line_one: "test lane",
+    address_line_two: "teston",
+    city: "testville"
   )
   @app.contact_name_page.submit(
     first_name: "Bob",
