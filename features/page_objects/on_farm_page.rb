@@ -1,8 +1,8 @@
 class OnFarmPage < SitePrism::Page
 
   # Will this waste operation take place on a farm?
-  element(:on_farm_yes, "#is_a_farm_form_is_a_farm_true + label")
-  element(:on_farm_no, "#is_a_farm_form_is_a_farm_false + label")
+  element(:on_farm_yes, "#on_a_farm_form_on_a_farm_true + label")
+  element(:on_farm_no, "#on_a_farm_form_on_a_farm_false + label")
 
   element(:submit_button, "input[type='submit']")
 
