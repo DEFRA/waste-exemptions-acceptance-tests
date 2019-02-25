@@ -104,6 +104,7 @@ To have consistency across the project the following tags are defined and should
 |@broken|A feature or scenario that highlights an error or issue with the service that needs to be fixed|
 |@ci|A feature that is intended to be run only on our continuous integration service (you should never need to use this tag).|
 |@email| Tests scenarios which send an email|
+|@new| New back office funcationality|
 
 It's also common practice to use a custom tag whilst working on a new feature or scenario e.g. `@focus` or `@wip`. That is perfectly acceptable but please ensure they are removed before your change is merged.
 
