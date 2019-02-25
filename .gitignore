@@ -38,7 +38,4 @@ output.html
 # Ignore bundler config.
 /.bundle/
 
-# Ignore your project specific .config.yml config files
-*.config.yml
-
 bowerstack_local_log.txt
