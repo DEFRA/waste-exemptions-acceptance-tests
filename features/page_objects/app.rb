@@ -119,6 +119,11 @@ class App
 
   # BACK OFFICE SPECIFIC PAGES
   # /
+
+  def accept_page
+    @last_page = AcceptPage.new
+  end
+
   def back_office_home_page
     @last_page = BackOfficeHomePage.new
   end
@@ -141,6 +146,10 @@ class App
 
   def login_page
     @last_page = LoginPage.new
+  end
+
+  def invitation_page
+    @last_page = InvitationPage.new
   end
 
   def registration_dashboard_page

@@ -1,6 +1,9 @@
 class MailinatorInboxPage < SitePrism::Page
   # Mailinator inbox
   element(:registration_complete_email, :xpath, "//*[normalize-space()='Waste exemptions registration']")
+  element(:invite_email, :xpath, "//*[normalize-space()='Create a Waste Exemptions back office account']")
+
+  iframe :email_details, MailinatorEmailDetailsPage, "#msg_body"
 
   def wait_for_email
     refresh_cnt = 0
