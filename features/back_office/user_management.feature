@@ -18,7 +18,7 @@ Scenario: Super agent can not add users
  Given I sign in as a super agent
   When I am on the waste exemptions dashboard
   Then I will not have the option to manage users
-@ts @email
+@email
  Scenario: System user adds new user
  Given I sign in as a system user
    And I invite a new back office user
