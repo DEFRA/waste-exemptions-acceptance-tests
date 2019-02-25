@@ -6,6 +6,7 @@ class RegistrationDashboardPage < SitePrism::Page
 
   element(:search_term, "#term")
   element(:submit_button, "input[name='commit']")
+  element(:create_new_registration, "a[href='/start/new']")
 
   def deregister(registration_number)
     element = "#" + "deregister_" + registration_number.to_s

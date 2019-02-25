@@ -1,4 +1,4 @@
-@backoffice
+@backoffice @new
 Feature: Manage back office users
   As a system user
   I want to be able to add users to the waste exemptions service
