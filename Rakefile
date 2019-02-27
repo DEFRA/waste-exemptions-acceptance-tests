@@ -25,7 +25,7 @@ task :ci do
   sh %( QUKE_CONFIG=.config-ci.yml bundle exec quke --tags @ci )
 end
 desc "Run all browserstack tests"
-task browserstack: %i[ie11_W10 Chrome70_W10 Chrome70_OSX Firefox63_OSX Google_Pixel Edge16_W10 Edge17_W10 Firefox63_W10 ]
+task browserstack: %i[ie11_W10 Chrome70_W10 Chrome70_OSX Firefox63_OSX Google_Pixel Edge16_W10 Edge17_W10 Firefox63_W10]
 # Safari12_OSX iPhone_8
 # Taking out due to local Safari OS X12 issue https://www.browserstack.com/question/664
 
