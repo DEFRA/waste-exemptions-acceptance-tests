@@ -75,7 +75,7 @@ custom:
 # Local setup    
   urls:
     front_office: "http://localhost:3001"
-    back_office: "http:/localhost:8001"
+    back_office: "http://localhost:8001"
 
 
 # If you are running Quke behind a proxy you can configure the proxy details

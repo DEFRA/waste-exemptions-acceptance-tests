@@ -9,7 +9,7 @@ Feature: Back office user completes assisted digital registration for a customer
      When I complete a limited companies registration
      Then I will be informed the registration is complete
 
-  Scenario: Registration of Partnerships waste exemnption activity by a NCCC user
+  Scenario: Registration of Partnerships waste exemption activity by a NCCC user
     Given I sign in as a super agent
      When I complete a partnerships registration
      Then I will be informed the registration is complete

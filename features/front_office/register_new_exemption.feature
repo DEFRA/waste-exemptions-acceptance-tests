@@ -7,17 +7,18 @@ Feature: Registering a waste exemption
   Background:
     Given I start a new waste exemption registraton
     
-@smoke @email
+@smoke
   Scenario: Registration by an individual
     Given I am an individual
      When I register an exemption "S1"
      Then I will be informed the registration is complete
-      And I will receive a confirmation email
-
+      
+@email
   Scenario: Registration by a limited company
     Given I am a limited company
      When I register an exemption
      Then I will be informed the registration is complete
+      And I will receive a confirmation email
 
   Scenario: Registration by a limited liability partnership
     Given I am a limited liability partnership
