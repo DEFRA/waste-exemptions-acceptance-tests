@@ -75,7 +75,7 @@ custom:
 # Local setup    
   urls:
     front_office: "http://localhost:3001"
-    back_office: "http:/localhost:8001"
+    back_office: "http://localhost:8001"
     mail_client: "http://localhost:1080"
 
 # Dev setup

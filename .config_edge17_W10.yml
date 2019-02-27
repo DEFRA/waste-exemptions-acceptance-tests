@@ -158,9 +158,9 @@ browserstack:
     browserstack.maskSendKeys: true
 
     # https://www.browserstack.com/automate/capabilities
-    browser: Firefox
-    os: 'OS X'
-    browser_version: '63.0'
-    os_version: 'Mojave'
-    # adding native events to help with clicking label instead of opaque radio button
-    nativeEvents: 'true'
+    browser: Edge
+    os: 'Windows'
+    # device: 'iPhone X'
+    # realMobile: 'true'
+    browser_version: '17.0'
+    os_version: '10'
