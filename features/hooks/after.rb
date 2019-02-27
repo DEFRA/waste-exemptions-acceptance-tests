@@ -3,5 +3,5 @@ After("@backoffice") do
   # as each back office scenario finishs that we have logged out. Rather than
   # peppering our steps with calls to click the log out link, we have this hook
   # which is called after every scenario tagged with @backoffice do it.
-  visit("/users/sign_out")
+  Capybara.reset_session!
 end
