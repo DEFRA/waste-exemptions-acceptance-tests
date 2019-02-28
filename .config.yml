@@ -9,7 +9,7 @@
 # will be by simply setting `app_host`. You can then use it directly using
 # Capybara `visit('/Main_Page')` or `visit('/')` rather than having to repeat
 # the full url each time
-app_host: 'http://localhost:3001'
+app_host: 'https://wex-pre.aws.defra.cloud'
 
 # Tells Quke which browser to use for testing. Choices are firefox, chrome
 # browserstack and phantomjs, with the default being phantomjs
@@ -75,10 +75,10 @@ custom:
 
 
 # Local setup    
-  urls:
-    front_office: "http://localhost:3001"
-    back_office: "http://localhost:8001"
-    mail_client: "http://localhost:1080"
+  # urls:
+  #   front_office: "http://localhost:3001"
+  #   back_office: "http://localhost:8001"
+  #   mail_client: "http://localhost:1080"
 
 # Dev setup
   # urls:
@@ -91,6 +91,12 @@ custom:
   #   front_office: "https://wex-tst.aws.defra.cloud"
   #   back_office: "https://admin-wex-tst.aws.defra.cloud"
   #   mail_client: "http://mailinator.com"
+
+
+  urls:
+    front_office: "https://wex-pre.aws.defra.cloud"
+    back_office: "https://admin-wex-pre.aws.defra.cloud"
+    mail_client: "http://mailinator.com"
 
 
 # If you are running Quke behind a proxy you can configure the proxy details
