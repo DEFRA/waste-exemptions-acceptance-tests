@@ -6,7 +6,6 @@ Then(/^I will receive a confirmation email$/) do
   else
     @email_app.mailinator_page.load
     @email_app.mailinator_page.submit(inbox: @email_address)
-    @email_app.mailinator_inbox_page.wait_for_email
     expect(@email_app.mailinator_inbox_page).to have_text "complete"
   end
 end
