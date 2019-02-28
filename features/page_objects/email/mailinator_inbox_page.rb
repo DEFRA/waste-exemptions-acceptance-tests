@@ -8,7 +8,7 @@ class MailinatorInboxPage < SitePrism::Page
   def wait_for_email
     refresh_cnt = 0
     loop do
-      if has_confirmation_email?
+      if has_registration_complete_email?
         refresh_cnt = 60
       else
         # reloads the page if service layer hasn't updated in time

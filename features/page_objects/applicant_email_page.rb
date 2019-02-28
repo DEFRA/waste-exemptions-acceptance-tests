@@ -1,6 +1,6 @@
 class ApplicantEmailPage < SitePrism::Page
 
-  element(:email, "#applicant_email_form_contact_email")
+  element(:email, "#applicant_email_form_applicant_email")
   element(:confirm_email, "#applicant_email_form_confirmed_email")
 
   element(:submit_button, "input[type='submit']")
