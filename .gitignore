@@ -41,4 +41,4 @@ output.html
 bowerstack_local_log.txt
 
 # Ignore your project specific .config.yml config file
-*.config.yml
+.config.yml
