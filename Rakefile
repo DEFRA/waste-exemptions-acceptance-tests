@@ -24,6 +24,27 @@ task :ci do
   Rake::Task["rubocop"].invoke
   sh %( QUKE_CONFIG=.config-ci.yml bundle exec quke --tags @ci )
 end
+
+desc "Run @smoke tests against the local environment"
+task :loc do
+  sh %( QUKE_CONFIG=.config.loc.yml bundle exec quke --tags @smoke)
+end
+
+desc "Run @smoke tests against the dev environment"
+task :dev do
+  sh %( QUKE_CONFIG=.config.dev.yml bundle exec quke --tags @smoke)
+end
+
+desc "Run @smoke tests against the test environment"
+task :tst do
+  sh %( QUKE_CONFIG=.config.tst.yml bundle exec quke --tags @smoke)
+end
+
+desc "Run @smoke tests against the pre-production environment"
+task :pre do
+  sh %( QUKE_CONFIG=.config.pre.yml bundle exec quke --tags @smoke)
+end
+
 desc "Run all browserstack tests"
 task browserstack: %i[ie11_W10 Chrome70_W10 Chrome70_OSX Firefox63_OSX Google_Pixel Edge16_W10 Edge17_W10 Firefox63_W10]
 # Safari12_OSX iPhone_8

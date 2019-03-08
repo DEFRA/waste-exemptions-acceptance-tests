@@ -1,0 +1,127 @@
+# The standard place to add your features and step_definitions is in a folder
+# named 'features' at the root of the project. However if you'd like to name
+# this folder something else, you can tell Quke what the new name is here.
+# The default is features
+# features_folder: 'cukes'
+
+# Normally Capybara expects to be testing an in-process Rack application, but
+# we're using it to talk to a remote host. Users of Quke can set what this
+# will be by simply setting `app_host`. You can then use it directly using
+# Capybara `visit('/Main_Page')` or `visit('/')` rather than having to repeat
+# the full url each time
+app_host: "https://wex-pre.aws.defra.cloud"
+
+# Tells Quke which browser to use for testing. Choices are firefox, chrome
+# browserstack and phantomjs, with the default being phantomjs
+driver: chrome
+
+# Let Quke know you want to run the browser in headless mode. Headless mode
+# means the browser still runs but you won't see it displayed. The benefit is
+# that your tests will take less time as it's less resource intensive.
+# This option only applies when the driver is set to 'chrome' or 'firefox'.
+# Phantomjs is a headless only browser, and option is meaningless for
+# browserstack
+headless: true
+
+# Add a pause (in seconds) between steps so you can visually track how the
+# browser is responding. Only useful if using a non-headless browser. The
+# default is 0
+pause: 0
+
+# Specify whether Quke should stop all tests once an error occurs. Useful in
+# Continuous Integration (CI) environments where a quick Yes/No is preferable to
+# a detailed response. By default Quke sets this to false if not set in the
+# config.
+#
+# If you are running in parallel mode this gets applied to each process spawned.
+# So if 4 processes are spawned and one of them errors, only the one that errors
+# will be stopped.
+stop_on_error: true
+
+# By default Quke will display web pages where a failure has taken place.
+# A copy of the html is saved and Quke will display it in your default browser.
+# This can be useful to diagnose why something has failed, but there are times
+# you may not want Quke to do this.
+#
+# Please note, if the driver is phantomjs or the `headless` is true nothing will
+# be displayed even if this is set to true.
+display_failures: false
+
+# Capybara will attempt to find an element for a period of time, rather than
+# immediately failing because the element cannot be found. This defaults to 2
+# seconds. However if the site you are working with is slow or features
+# elements that take some time to load you can increase this default.
+max_wait_time: 5
+
+# Currently only supported when using the phantomjs driver (ignored by the
+# others). In phantomjs if a site has a javascript error we can configure it
+# to throw an error which will cause the test to fail. Quke by default sets this
+# to true, however you can override it by setting this flag to false.
+# For example you may be dealing with a legacy site and JavaScript errors
+# are out of your scope. You still want to test other aspects of the site
+# but not let these errors prevent you from using phantomjs.
+javascript_errors: false
+
+# If set Quke will tell Cucumber to output to the console using its
+# 'progress' formatter (simply displays a . for each passing scenario and F for
+# each failing one), rather than the default 'pretty' which displays each
+# scenario in detail.
+# If you don't need to see the detail on each run, this might be easier to
+# follow than the detailed output you see using the default 'pretty' print
+# format.
+print_progress: true
+
+# Tell Quke you want to run tests in parallel. This will make use of the
+# available cores on your machine to run the tests in parallel, reducing the
+# time it takes them to run.
+#
+# This is great if you have a large test suite (the performance improvement is
+# egligible if you only have a few). However your scenarios must be independent,
+# and the console output will be 'number of processes' * cucumber output. So
+# this is best used if you are just after a simple pass/fail result.
+parrellel:
+  enable: true
+  # The available options are based on those the ParallelTests gem supports
+  #
+  # - found - order of finding files
+  # - steps - number of cucumber/spinach steps
+  # - scenarios - individual cucumber scenarios
+  # - filesize - by size of the file
+  # - runtime - info from runtime log
+  # - default - runtime when runtime log is filled otherwise filesize
+  #
+  # N.B. For cucumber the default actually seems to be number of feature files.
+  #
+  # The reason this is available is to allow you to fine tune your test runs.
+  # If you have a test suite which involves features that have 1 scenario, and
+  # others that have many, you may wish to group by scenario instead of the
+  # default features in order to balance what gets assigned to what processes
+  # https://github.com/grosser/parallel_tests#setup-for-non-rails
+  group_by: scenarios
+
+# Anything you place under the 'custom' node in the `.config.yml` file will be
+# available within your steps and page objects by calling
+# `Quke::Quke.config.custom`. So using the example below we could access its
+# values in the following ways
+#
+# Quke::Quke.config.custom["default_org_name"] # = "Testy Ltd"
+# Quke::Quke.config.custom["accounts"]["account2"]["username"] # = "john.doe@example.gov.uk"
+# Quke::Quke.config.custom["urls"]["front_office"] # = "http://myservice.service.gov.uk"
+#
+# As long as what you add is valid YAML (check with a tool like
+# http://www.yamllint.com/) Quke will be able to pick it up and make it
+# available in your tests.
+custom:
+  accounts:
+    DataAgent:
+      username: data_agent@wex.gov.uk
+    AdminAgent:
+      username: admin_agent@wex.gov.uk
+    SuperAgent:
+      username: super_agent@wex.gov.uk
+    SystemUser:
+      username: system_user@wex.gov.uk
+  urls:
+    front_office: "https://wex-pre.aws.defra.cloud"
+    back_office: "https://admin-wex-pre.aws.defra.cloud"
+    mail_client: "http://mailinator.com"
