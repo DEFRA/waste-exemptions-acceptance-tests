@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AcceptPage < SitePrism::Page
 
   element(:password, "#user_password")

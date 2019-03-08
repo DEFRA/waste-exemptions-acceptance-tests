@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MailinatorInboxPage < SitePrism::Page
   # Mailinator inbox
   element(:registration_complete_email, :xpath, "//*[normalize-space()='Waste exemptions registration']")

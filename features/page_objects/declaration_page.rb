@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DeclarationPage < SitePrism::Page
 
   element(:declaration_checkbox, "#declaration_form_declaration+ label")

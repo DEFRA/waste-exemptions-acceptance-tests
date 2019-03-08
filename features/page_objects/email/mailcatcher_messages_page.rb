@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MailcatcherMessagesPage < SitePrism::Page
 
   element(:confirmation_link, "#confirmation_link")

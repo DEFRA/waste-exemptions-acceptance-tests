@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Given(/^I choose Wales$/) do
   @app.location_page.submit(location: :wales)
 end

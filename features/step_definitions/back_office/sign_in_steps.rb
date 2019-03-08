@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Given(/^I sign in as a system user$/) do
   @app = App.new
   @app.login_page.load

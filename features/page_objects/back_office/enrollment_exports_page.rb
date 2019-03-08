@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative "../sections/admin_nav_bar_section"
 
 class EnrollmentExportsPage < SitePrism::Page
@@ -22,14 +24,24 @@ class EnrollmentExportsPage < SitePrism::Page
   section(:nav_bar, AdminNavBarSection, AdminNavBarSection::SELECTOR)
 
   def submit(args = {})
+    populate_from_filter(args)
+    populate_to_filter(args)
+    request_export.click
+  end
+
+  private
+
+  def populate_from_filter(args)
     from_day.select(args[:from_day]) if args.key?(:from_day)
     from_month.select(args[:from_month]) if args.key?(:from_month)
     from_year.select(args[:from_year]) if args.key?(:from_year)
+  end
+
+  def populate_to_filter(args)
     # defaults to current day's date if left blank
     to_day.select(args[:to_day]) if args.key?(:to_day)
     to_month.select(args[:to_month]) if args.key?(:to_month)
     to_year.select(args[:to_year]) if args.key?(:to_year)
-    request_export.click
   end
 
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RegistrationTypePage < SitePrism::Page
 
   element(:new_registration, "#start_form_start_new + label")

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SiteGridReferencePage < SitePrism::Page
 
   element(:postcode, "input[id='find_address']")

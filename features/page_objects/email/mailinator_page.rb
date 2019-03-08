@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MailinatorPage < SitePrism::Page
   # Mailinator email checker main page
   set_url(Quke::Quke.config.custom["urls"]["mail_client"])

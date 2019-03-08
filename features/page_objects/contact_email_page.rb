@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ContactEmailPage < SitePrism::Page
 
   element(:email, "#contact_email_form_contact_email")

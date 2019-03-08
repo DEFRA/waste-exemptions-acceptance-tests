@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicantEmailPage < SitePrism::Page
 
   element(:email, "#applicant_email_form_applicant_email")

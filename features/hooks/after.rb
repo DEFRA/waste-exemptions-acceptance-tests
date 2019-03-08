@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 After("@backoffice") do
   # As all our back office tests start with logging in we need to ensure that
   # as each back office scenario finishs that we have logged out. Rather than

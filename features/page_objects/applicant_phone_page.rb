@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicantPhonePage < SitePrism::Page
 
   element(:tel_number, "#applicant_phone_form_phone_number")

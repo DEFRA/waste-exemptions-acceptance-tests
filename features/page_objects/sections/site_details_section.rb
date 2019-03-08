@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SiteDetailsSection < SitePrism::Section
 
   # IMPORTANT! The section is hidden when the page is first loaded you, so to
@@ -13,7 +15,7 @@ class SiteDetailsSection < SitePrism::Section
   # When adding it to your pages use
   # section(:site_details, SiteDetailsSection, SiteDetailsSection::SELECTOR)
 
-  SELECTOR ||= ".col-sm-9 .row:nth-child(4) .panel-default".freeze
+  SELECTOR ||= ".col-sm-9 .row:nth-child(4) .panel-default"
 
   element(:expander_link, "a[href='#site-details']")
 
