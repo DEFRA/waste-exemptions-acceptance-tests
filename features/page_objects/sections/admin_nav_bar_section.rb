@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AdminNavBarSection < SitePrism::Section
 
   # IMPORTANT! Because of the way the nav-bar works in order to see the options
@@ -17,7 +19,7 @@ class AdminNavBarSection < SitePrism::Section
   # When adding it to your pages use
   # section(:nav_bar, AdminNavBarSection, AdminNavBarSection::SELECTOR)
 
-  SELECTOR ||= ".add-bottom-margin .container".freeze
+  SELECTOR ||= ".add-bottom-margin .container"
 
   element(:home_link, "a.navbar-brand")
 

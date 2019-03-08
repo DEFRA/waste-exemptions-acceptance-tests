@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OperatorAddressPage < SitePrism::Page
 
   element(:house_no, "#operator_address_manual_form_premises")

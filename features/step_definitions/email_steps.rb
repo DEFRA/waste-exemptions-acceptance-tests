@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Then(/^I will receive a confirmation email$/) do
   if @email_app.local?
     @email_app.mailcatcher_main_page.load

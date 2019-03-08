@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RegistrationDetailsSection < SitePrism::Section
 
   # IMPORTANT! This section is visible when the page is first loaded, so you
@@ -11,7 +13,7 @@ class RegistrationDetailsSection < SitePrism::Section
   # When adding it to your pages use
   # section(:registration_details, RegistrationDetailsSection, RegistrationDetailsSection::SELECTOR)
 
-  SELECTOR ||= ".col-sm-9 .row:nth-child(2) .panel-default".freeze
+  SELECTOR ||= ".col-sm-9 .row:nth-child(2) .panel-default"
 
   element(:expander_link, "a[href='#registration-details']")
 

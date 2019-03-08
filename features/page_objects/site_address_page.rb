@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SiteAddressPage < SitePrism::Page
 
   element(:postcode, "#site_postcode_form_postcode")

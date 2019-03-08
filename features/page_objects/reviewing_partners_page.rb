@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ReviewingPartnersPage < SitePrism::Page
   element(:add_partner, ".form-group .ignore-visited")
 

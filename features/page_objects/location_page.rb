@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class LocationPage < SitePrism::Page
 
   element(:england, "#location_form_location_england + label")

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OnFarmPage < SitePrism::Page
 
   # Will this waste operation take place on a farm?

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ExemptionDetailsSection < SitePrism::Section
 
   # IMPORTANT! The section is hidden when the page is first loaded you, so to
@@ -13,7 +15,7 @@ class ExemptionDetailsSection < SitePrism::Section
   # When adding it to your pages use
   # section(:exemption_details, ExemptionDetailsSection, ExemptionDetailsSection::SELECTOR)
 
-  SELECTOR ||= ".col-sm-9 .row:nth-child(3) .panel-default".freeze
+  SELECTOR ||= ".col-sm-9 .row:nth-child(3) .panel-default"
 
   element(:expander_link, "a[href='#exemption-details']")
 

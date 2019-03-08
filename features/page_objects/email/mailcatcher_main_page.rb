@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MailcatcherMainPage < SitePrism::Page
 
   set_url(Quke::Quke.config.custom["urls"]["mail_client"])

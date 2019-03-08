@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChooseExemptionsPage < SitePrism::Page
 
   elements(:exemptions, "input[name='exemptions_form[exemptions][]']", visible: false)

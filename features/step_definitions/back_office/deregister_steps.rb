@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 When(/^I "([^"]*)" an exemption$/) do |status|
 
   @app.search_page.nav_bar.home_link.click

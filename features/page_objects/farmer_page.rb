@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FarmerPage < SitePrism::Page
 
   # Is the person carrying out the waste operation a farmer?

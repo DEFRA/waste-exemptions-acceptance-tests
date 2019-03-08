@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 When(/I complete a limited companies registration$/) do
   @email_address = generate_email
   @app.registration_dashboard_page.create_new_registration.click

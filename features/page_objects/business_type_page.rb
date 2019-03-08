@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BusinessTypePage < SitePrism::Page
 
   element(:individual, "#business_type_form_business_type_soletrader + label")
@@ -10,20 +12,11 @@ class BusinessTypePage < SitePrism::Page
   element(:submit_button, "input[name='commit']")
 
   def submit(args = {})
-    case args[:business_type]
-    when :individual
-      individual.select_option
-    when :limited
-      limited.select_option
-    when :partnership
-      partnership.select_option
-    when :llp
-      llp.select_option
-    when :local_authority
-      local_authority.select_option
-    when :charity
-      charity.select_option
-    end
+    # As long as the arg passed in matches the name of an element we can simply
+    # invoke the element using ruby's send() method. In this way we can avoid
+    # overly long case/switch statements that check the value of the arg to
+    # determine which element to select
+    send(args[:business_type]).select_option
 
     submit_button.click
   end

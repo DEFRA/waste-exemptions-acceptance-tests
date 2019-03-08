@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 When(/^I search for "([^"]*)"$/) do |term|
   @app.registration_dashboard_page.submit(search_term: term)
 end

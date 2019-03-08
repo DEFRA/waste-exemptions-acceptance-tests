@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ContactNamePage < SitePrism::Page
 
   element(:first_name, "#contact_name_form_first_name")

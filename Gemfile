@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source "https://rubygems.org"
 
 gem "quke"
@@ -12,3 +14,7 @@ gem "rake"
 
 # Create random names
 gem "faker"
+
+# Gem used by the Defra ruby services team to ensure a consistent style across
+# our code base
+gem "defra_ruby_style"

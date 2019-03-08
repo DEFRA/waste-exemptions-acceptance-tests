@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Given(/^I am a charity$/) do
   @app.location_page.submit(location: :england)
   people = @app.applicant_name_page.applicant

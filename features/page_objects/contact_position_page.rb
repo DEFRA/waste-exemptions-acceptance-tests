@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ContactPositionPage < SitePrism::Page
 
   element(:position, "#contact_position_form_position")

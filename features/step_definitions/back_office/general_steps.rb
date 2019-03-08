@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 When(/^I complete a registration using postcode (.*) for the site address$/) do |postcode|
   @app.search_page.nav_bar.registrations_menu.click
   @app.search_page.nav_bar.new_option.click

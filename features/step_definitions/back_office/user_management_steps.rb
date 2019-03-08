@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 When(/^I am on the waste exemptions dashboard$/) do
   expect(@app.registration_dashboard_page).to have_text("Waste exemptions dashboard")
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OperatorNamePage < SitePrism::Page
 
   element(:org_name, "#operator_name_form_operator_name", visible: false)

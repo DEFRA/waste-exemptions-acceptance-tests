@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Before("@email") do
   @email_app = EmailApp.new
   if @email_app.local?

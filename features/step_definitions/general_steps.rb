@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Given(/^I start a new waste exemption registraton$/) do
   @app = App.new
   @email_address = generate_email
