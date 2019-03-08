@@ -9,90 +9,101 @@ end
 
 desc "Runs the tests used by continuous integration to check the project"
 task :ci do
-  sh %( QUKE_CONFIG=.config-ci.yml bundle exec quke --tags @ci )
+  sh %( QUKE_CONFIG=config/ci.config.yml bundle exec quke --tags @ci )
 end
 
 desc "Run @smoke tests against the local environment"
 task :loc do
-  sh %( QUKE_CONFIG=config/.config.loc.yml bundle exec quke --tags @smoke)
+  sh %( QUKE_CONFIG=config/loc.config.yml bundle exec quke --tags @smoke)
 end
 
 desc "Run @smoke tests against the dev environment"
 task :dev do
-  sh %( QUKE_CONFIG=config/.config.dev.yml bundle exec quke --tags @smoke)
+  sh %( QUKE_CONFIG=config/dev.config.yml bundle exec quke --tags @smoke)
 end
 
 desc "Run @smoke tests against the test environment"
 task :tst do
-  sh %( QUKE_CONFIG=config/.config.tst.yml bundle exec quke --tags @smoke)
+  sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke --tags @smoke)
 end
 
 desc "Run @smoke tests against the pre-production environment"
 task :pre do
-  sh %( QUKE_CONFIG=config/.config.pre.yml bundle exec quke --tags @smoke)
+  sh %( QUKE_CONFIG=config/pre.config.yml bundle exec quke --tags @smoke)
 end
 
 desc "Run all browserstack tests"
-task browserstack: %i[ie11_W10 Chrome70_W10 Chrome70_OSX Firefox63_OSX Google_Pixel Edge16_W10 Edge17_W10 Firefox63_W10]
-# Safari12_OSX iPhone_8
-# Taking out due to local Safari OS X12 issue https://www.browserstack.com/question/664
+task browserstack: %i[
+  chrome70_osx
+  chrome70_w10
+  edge16_w10
+  edge17_w10
+  firefox63_osx
+  firefox63_w10
+  galaxy_note_8
+  google_pixel
+  ie11_w10
+  iphone_8_plus
+  iphone_xs
+  safari12_osx
+]
 
-desc "Run Internet explorer 11.0 Windows 10 test"
-task :ie11_W10 do
-  sh %( QUKE_CONFIG=config/browserstack.config_ie11_W10.yml bundle exec quke --tags @smoke)
+desc "Run @smoke tests against Chrome 70 OS X Mojave"
+task :chrome70_osx do
+  sh %( QUKE_CONFIG=config/browserstack/chrome70_osx.config.yml bundle exec quke --tags @smoke)
 end
 
-desc "Run Edge 16 Windows 10 test"
-task :Edge16_W10  do
-  sh %( QUKE_CONFIG=config/browserstack.config_Edge16_W10.yml bundle exec quke --tags @smoke)
+desc "Run @smoke tests against Chrome 70 Windows 10"
+task :chrome70_w10 do
+  sh %( QUKE_CONFIG=config/browserstack/chrome70_w10.config.yml bundle exec quke --tags @smoke)
 end
 
-desc "Run Edge 17 Windows 10 test"
-task :Edge17_W10 do
-  sh %( QUKE_CONFIG=config/browserstack.config_Edge17_W10.yml bundle exec quke --tags @smoke)
+desc "Run @smoke tests against Edge 16 Windows 10"
+task :edge16_w10 do
+  sh %( QUKE_CONFIG=config/browserstack/edge16_w10.config.yml bundle exec quke --tags @smoke)
 end
 
-desc "Run Chrome 70 Windows 10 test"
-task :Chrome70_W10 do
-  sh %( QUKE_CONFIG=config/browserstack.config_Chrome70_W10.yml bundle exec quke --tags @smoke)
+desc "Run @smoke tests against Edge 17 Windows 10"
+task :edge17_w10 do
+  sh %( QUKE_CONFIG=config/browserstack/edge17_w10.config.yml bundle exec quke --tags @smoke)
 end
 
-desc "Run Firefox 63 W10 test"
-task :Firefox63_W10  do
-  sh %( QUKE_CONFIG=config/browserstack.config_Firefox63_W10.yml bundle exec quke --tags @smoke)
+desc "Run @smoke tests against Firefox 63 OS X Mojave"
+task :firefox63_osx do
+  sh %( QUKE_CONFIG=config/browserstack/firefox63_osx.config.yml bundle exec quke --tags @smoke)
 end
 
-desc "Run Safari 12 OS X Mojave test"
-task :Safari12_OSX  do
-  sh %( QUKE_CONFIG=config/browserstack.config_Safari12_OSX.yml bundle exec quke --tags @smoke)
+desc "Run @smoke tests against Firefox 63 W10"
+task :firefox63_w10 do
+  sh %( QUKE_CONFIG=config/browserstack/firefox63_w10.config.yml bundle exec quke --tags @smoke)
 end
 
-desc "Run Chrome 70 OS X Mojave test"
-task :Chrome70_OSX  do
-  sh %( QUKE_CONFIG=config/browserstack.config_Chrome70_OSX.yml bundle exec quke --tags @smoke)
+desc "Run @smoke tests against Samsung Galaxy Note 8"
+task :galaxy_note_8 do
+  sh %( QUKE_CONFIG=config/browserstack/galaxy_note_8.config.yml bundle exec quke --tags @smoke)
 end
 
-desc "Run Firefox 63 OS X Mojave test"
-task :Firefox63_OSX  do
-  sh %( QUKE_CONFIG=config/browserstack.config_Firefox63_OSX.yml bundle exec quke --tags @smoke)
+desc "Run @smoke tests against Google Pixel 2"
+task :google_pixel do
+  sh %( QUKE_CONFIG=config/browserstack/google_pixel.config.yml bundle exec quke --tags @smoke)
 end
 
-desc "Run iPhone XS test"
-task :iPhone_XS do
-  sh %( QUKE_CONFIG=config/browserstack.config_iPhone_XS.yml bundle exec quke --tags @smoke)
+desc "Run @smoke tests against Internet Explorer 11.0 Windows 10"
+task :ie11_w10 do
+  sh %( QUKE_CONFIG=config/browserstack/ie11_w10.config.yml bundle exec quke --tags @smoke)
 end
 
-desc "Run iPhone 8 plus test"
-task :iPhone_8 do
-  sh %( QUKE_CONFIG=config/browserstack.config_iPhone_8.yml bundle exec quke --tags @smoke)
+desc "Run @smoke tests against iPhone 8 Plus"
+task :iphone_8_plus do
+  sh %( QUKE_CONFIG=config/browserstack/iphone_8_plus.config.yml bundle exec quke --tags @smoke)
 end
 
-desc "Run Samsung Galaxy Note 8 test"
-task :Galaxy_Note_8 do
-  sh %( QUKE_CONFIG=config/browserstack.config_Galaxy_Note_8.yml bundle exec quke --tags @smoke)
+desc "Run @smoke tests against iPhone XS"
+task :iphone_xs do
+  sh %( QUKE_CONFIG=config/browserstack/iphone_xs.config.yml bundle exec quke --tags @smoke)
 end
 
-desc "Run Google Pixel 2 test"
-task :Google_Pixel do
-  sh %( QUKE_CONFIG=config/browserstack.config_Google_Pixel.yml bundle exec quke --tags @smoke)
+desc "Run @smoke tests against Safari 12 OS X Mojave"
+task :safari12_osx do
+  sh %( QUKE_CONFIG=config/browserstack/safari12_osx.config.yml bundle exec quke --tags @smoke)
 end

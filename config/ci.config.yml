@@ -1,0 +1,18 @@
+# Though not used when we run our CI features these are needed because of the
+# way the page objects are loaded.
+# They are automatically loaded as the project is read, a consequence of
+# cucumber putting everything into global. As such if a reference is made to
+# an item in the custom config and its not there the project won't load.
+custom:
+  accounts:
+    DataAgent:
+      username: data_agent@wex.gov.uk
+    AdminAgent:
+      username: admin_agent@wex.gov.uk
+    SuperAgent:
+      username: super_agent@wex.gov.uk
+    SystemUser:
+      username: system_user@wex.gov.uk
+  urls:
+    front_office: "http://example.com"
+    back_office: "http://example.com"
