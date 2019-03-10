@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
-def generate_email
-  @email_address = rand(100_000_000).to_s + "@mailinator.com"
+def back_office_root_url(path = "")
+  File.join(@world.back_office_url, path)
+end
+
+def front_office_root_url(path = "")
+  File.join(@world.front_office_url, path)
 end

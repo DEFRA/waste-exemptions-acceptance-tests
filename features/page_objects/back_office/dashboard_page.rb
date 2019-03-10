@@ -1,14 +1,21 @@
 # frozen_string_literal: true
 
-require_relative "sections/govuk_banner.rb"
+require_relative "sections/admin_menu_section.rb"
 
-class RegistrationDashboardPage < SitePrism::Page
+class DashboardPage < SitePrism::Page
 
-  section(:govuk_banner, GovukBanner, GovukBanner::SELECTOR)
+  set_url(Quke::Quke.config.custom["urls"]["back_office"])
+
+  section(:admin_menu, AdminMenuSection, AdminMenuSection::SELECTOR)
 
   element(:search_term, "#term")
-  element(:submit_button, "input[name='commit']")
+  element(:submitted_filter, "#filter_registrations + label")
+  element(:unsubmitted_filter, "#filter_transient_registrations + label")
+
   element(:create_new_registration, "a[href='/start/new']")
+  element(:change_password, "a[href='/users/password/edit']")
+
+  element(:submit_button, "input[name='commit']")
 
   def deregister(registration_number)
     element = "#" + "deregister_" + registration_number.to_s

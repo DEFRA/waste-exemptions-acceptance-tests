@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class FrontOfficeHomePage < SitePrism::Page
+class HomePage < SitePrism::Page
 
   set_url("/")
 

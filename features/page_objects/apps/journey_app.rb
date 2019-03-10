@@ -1,20 +1,16 @@
 # frozen_string_literal: true
 
-# Represents all pages in the application. Was created to avoid needing to
-# create individual instances of each page throughout the steps.
+# Represents all pages in the registration journey. Was created to avoid needing
+# to create individual instances of each page throughout the steps.
 # https://github.com/natritmeyer/site_prism#epilogue
-# rubocop:disable Metrics/ClassLength
-class App
+class JourneyApp
   # Using an attr_reader automatically gives us a my_app.last_page method
   attr_reader :last_page
 
-  # FRONT OFFICE SPECIFIC PAGES
-  # /
-  def front_office_home_page
-    @last_page = FrontOfficeHomePage.new
+  def home_page
+    @last_page = HomePage.new
   end
 
-  # JOURNEY PAGES
   def applicant_email_page
     @last_page = ApplicantEmailPage.new
   end
@@ -79,8 +75,8 @@ class App
     @last_page = LocationPage.new
   end
 
-  def main_people_page
-    @last_page = MainPeoplePage.new
+  def partners_page
+    @last_page = PartnersPage.new
   end
 
   def operator_name_page
@@ -118,52 +114,4 @@ class App
   def site_address_page
     @last_page = SiteAddressPage.new
   end
-
-  # BACK OFFICE SPECIFIC PAGES
-  # /
-
-  def accept_page
-    @last_page = AcceptPage.new
-  end
-
-  def back_office_home_page
-    @last_page = BackOfficeHomePage.new
-  end
-
-  def confirmation_letter_bulk_exports_page
-    @last_page = ConfirmationLetterBulkExportsPage.new
-  end
-
-  def deregister_registration_page
-    @last_page = DeregisterRegistrationPage.new
-  end
-
-  def deregister_exemption_page
-    @last_page = DeregisterExemptionPage.new
-  end
-
-  def enrollment_exports_page
-    @last_page = EnrollmentExportsPage.new
-  end
-
-  def login_page
-    @last_page = LoginPage.new
-  end
-
-  def invitation_page
-    @last_page = InvitationPage.new
-  end
-
-  def registration_dashboard_page
-    @last_page = RegistrationDashboardPage.new
-  end
-
-  def search_page
-    @last_page = SearchPage.new
-  end
-
-  def users_page
-    @last_page = UsersPage.new
-  end
-  # rubocop:enable Metrics/ClassLength
 end

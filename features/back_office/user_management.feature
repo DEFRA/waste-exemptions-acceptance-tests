@@ -1,31 +1,25 @@
-@backoffice @new
+@backoffice
 Feature: Manage back office users
   As a system user
-  I want to be able to add users to the waste exemptions service
-  So people can access the service 
+  I need to be able to add new and manage existing back office users
+  So people can access the service
 
-Scenario: Data agent can not add users
-  Given I sign in as a data agent
-  When I am on the waste exemptions dashboard
-  Then I will not have the option to manage users
+  Background:
+	  Given I sign in as a system user
 
-Scenario: Data agent can not add users
- Given I sign in as an admin agent
-  When I am on the waste exemptions dashboard
-  Then I will not have the option to manage users
+  @email
+  Scenario: System user adds a new user
+     When I invite a new back office user
+      And the invite is accepted
+     Then a password is set
+      And the new back office user can sign in
 
-Scenario: Super agent can not add users
- Given I sign in as a super agent
-  When I am on the waste exemptions dashboard
-  Then I will not have the option to manage users
-@email
- Scenario: System user adds new user
- Given I sign in as a system user
-   And I invite a new back office user
-  When the invite is accepted
-   And a password is set
-  Then the new back office user can sign in
+  @data
+  Scenario: System user changes a users role
+     When I change a users role to super agent
+     Then I see their role has changed
 
-
-
-
+  @data
+  Scenario: System user deactivates a user
+     When I deactivate a user
+     Then I see their status has changed
