@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
-require_relative "sections/govuk_banner.rb"
+require_relative "sections/admin_menu_section.rb"
 
 class InvitationPage < SitePrism::Page
 
-  section(:govuk_banner, GovukBanner, GovukBanner::SELECTOR)
+  section(:admin_menu, AdminMenuSection, AdminMenuSection::SELECTOR)
 
   element(:user_email, "#user_email")
 
   element(:sys, "#user_role_system+ label")
   element(:sa, "#user_role_super_agent+ label")
   element(:admin, "#user_role_admin_agent+ label")
-  element(:admin, "#user_role_data_agent+ label")
+  element(:data, "#user_role_data_agent+ label")
 
   element(:submit_button, "input[name='commit']")
 

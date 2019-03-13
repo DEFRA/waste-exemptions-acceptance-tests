@@ -2,12 +2,10 @@
 
 [![Build Status](https://travis-ci.org/DEFRA/waste-exemptions-acceptance-tests.svg?branch=master)](https://travis-ci.org/DEFRA/waste-exemptions-acceptance-tests)
 [![security](https://hakiri.io/github/DEFRA/waste-exemptions-acceptance-tests/master.svg)](https://hakiri.io/github/DEFRA/waste-exemptions-acceptance-tests/master)
-[![Dependency Status](https://dependencyci.com/github/DEFRA/waste-exemptions-acceptance-tests/badge)](https://dependencyci.com/github/DEFRA/waste-exemptions-acceptance-tests)
 
 If your business produces waste or emissions that pollute you may require an environmental permit. However you may also be able to get an exemption if your business activities are considered to be easily controlled and only create low risks of pollution.
 
-The waste exemptions service is used by organisations to apply for an exemption.
-
+The Waste Exemptions service is used by organisations to apply for an exemption.
 
 This project contains the acceptance tests for the service. It is built around [Quke](https://github.com/DEFRA/quke), a Ruby gem that simplifies the process of writing and running Cucumber acceptance tests.
 
@@ -33,24 +31,12 @@ bundle install
 
 ## Configuration
 
-You can figure how the project runs using [Quke config files](https://github.com/DEFRA/quke#configuration). 
+You can figure how the project runs using [Quke config files](https://github.com/DEFRA/quke#configuration).
+
 Quke relies on yaml files to configure how the tests are run, the default being .config.yml
-You'll need to set WEX_DEFAULT_PASSWORD to the appropriate password to enable authentication into the back office.
+You'll need to set the environment variable `WEX_DEFAULT_PASSWORD` to the appropriate password to enable authentication into the back office.
 
-If left as that by default when **Quke** is executed it will run against your selected environment using Chrome.
-
-### Custom WEX config
-
-Recently we have needed to add special logic for running the tests in our environments (dev, QA and Pre-prod). Though fine locally tests are failing if the a submit button is 'off the page' i.e. you would need to scroll to click it. Because of this when setting up the tests to run automatically from the Jenkins slave you will need to add the following to the `.config.yml`.
-
-```yaml
-custom:
-  window_size:
-    width: 1000
-    height: 2000
-```
-
-The project now includes logic to look for this and if present will resize the window accordingly. Ideally this situation should be periodically tested to see if this workaround is still required.
+If left as that by default when Quke is executed it will run against your selected environment using Chrome.
 
 ## Execution
 
@@ -65,6 +51,16 @@ You can create [multiple config files](https://github.com/DEFRA/quke#multiple-co
 ```bash
 QUKE_CONFIG='chrome.config.yml' bundle exec quke
 ```
+
+### Rake tasks
+
+Within this project a series of [Rake](https://github.com/ruby/rake) tasks have been added. Each rake task is configured to run one of the configuration files already setup. To see the list of available commands run
+
+```bash
+bundle exec rake -T
+```
+
+You can then run your chosen configuration e.g. `bundle exec rake chrome70_osx`
 
 ## Use of tags
 
@@ -98,15 +94,38 @@ To have consistency across the project the following tags are defined and should
 |---|---|
 |@frontoffice|Any feature or scenario expected to be run against the front office application|
 |@backoffice|Any feature or scenario expected to be run against the back office application|
-|@happypath|A scenario which details a complete registration with no errors|
-|@export| Back office export functionality|
-|@functional|Any feature or scenario which is testing just a specific function of the service e.g. validation errors|
-|@broken|A feature or scenario that highlights an error or issue with the service that needs to be fixed|
 |@ci|A feature that is intended to be run only on our continuous integration service (you should never need to use this tag).|
-|@email| Tests scenarios which send an email|
-|@new| New back office funcationality|
+|@email|Tests scenarios which include steps that interact with an email client|
+|@data|Steps that rely on pre-existing data being generated|
 
 It's also common practice to use a custom tag whilst working on a new feature or scenario e.g. `@focus` or `@wip`. That is perfectly acceptable but please ensure they are removed before your change is merged.
+
+## Project outline
+
+This hopefully will help new starters to the project and Cucumber understand the lifecyle of a scenario.
+
+### Before hooks
+
+Before the scenario runs any [before hooks](https://docs.cucumber.io/cucumber/api/#before) defined in the project will be run. In this project we currently have 3
+
+- One that always runs, which is used to copy the global `$world_state` to an instance used for the current run
+- One that if the scenario is tagged `@data` will generate some registrations and a user. Logic in the hook ensures this is only run once, and is used as a handy way of having known data that can be used across multiple scenarios
+- One that if the scenario is tagged `@email` will setup the project ready to interact with the email client (which depends on whether the tests are running against a local instance, or one of our environments)
+
+Specifically to explain `state` in Cucumber, unlike a typical program everything is `loaded` when the scenario executes. This means all helpers, page objects and step definitions are available to use across the project. Set `@my_var` to `"Hello"` in one step, and it will be available in all other steps, helpers and page objects.
+
+However when the scenario finishes `@my_var` will no longer hold anything. So to persist values between scenarios we use the `$world_state` global object. You are advised to add any values you wish to persist to the `@world` instance which you will see used throughout the project, as we have logic that will ensure it is available in subsequent scenarios.
+
+### Background
+
+Next up if the scenario is in a feature with a `Background` defined the steps in it will be run first. Only then will the scenario itself be run.
+
+### After hooks
+
+Last thing to run is any [after hooks](https://docs.cucumber.io/cucumber/api/#after) hooks we have defined. In this project we have 2
+
+- One that always runs, which is used to copy the instance of `@world` into `$world_state` so it can be used in any subsequent scenarios
+- One that if the scenario is tagged `@backoffice` will run. In this case it is to reset the session. Because we first need to login for all back office scenarios, if we didn't reset the session then when the next scenario starts it would fail. This is because it will be expecting to interact with the login page but the app will have already logged them in because it can see a valid session 
 
 ## Tips
 

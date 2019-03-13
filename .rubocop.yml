@@ -9,3 +9,22 @@ inherit_gem:
 Metrics/BlockLength:
   Exclude:
     - "features/step_definitions/**/*"
+
+# With Cucumber everything gets loaded into the 'world' from the start so there
+# is no single point of entry where we can instantiate and control state that
+# that needs to be shared. One of the ways this manifests is with helper
+# methods. Typically if you have one you place it in
+# `features/support/helpers.rb` and it is then available globally in your
+# steps. However on larger projects like this where you want to to give some
+# clarity as to where a method is defined, and ensure there are no collisions
+# it is preferable to namespace them.
+#
+# This blocks it from being included out of the box and the fix is simply to
+# add `include MyHelpersNamespace` either in the file where its used, or with
+# the pattern we've adopted which is after the module has been defined.
+#
+# As we are not including it from within another module or class instance
+# Rubocop quite rightly throughs this error, but as this is how Cucumber behaves
+# we have to disable this cop.
+Style/MixinUsage:
+  Enabled: false

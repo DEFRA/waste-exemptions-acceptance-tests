@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 Then(/^I will receive a confirmation email$/) do
-  if @email_app.local?
-    @email_app.mailcatcher_main_page.load
-    @email_app.mailcatcher_main_page.open_email(1)
-    expect(@email_app.mailcatcher_messages_page).to have_text "Registration complete"
+  if @world.email.local?
+    @world.email.mailcatcher_main_page.load
+    @world.email.mailcatcher_main_page.open_email(1)
+    expect(@world.email.mailcatcher_messages_page).to have_text "Registration complete"
   else
-    @email_app.mailinator_page.load
-    @email_app.mailinator_page.submit(inbox: @email_address)
-    expect(@email_app.mailinator_inbox_page).to have_text "complete"
+    @world.email.mailinator_page.load
+    @world.email.mailinator_page.submit(inbox: @email_address)
+    expect(@world.email.mailinator_inbox_page).to have_text "complete"
   end
 end

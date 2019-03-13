@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class GovukBanner < SitePrism::Section
+class AdminMenuSection < SitePrism::Section
 
   # GOV.UK black banner and menu items
 
