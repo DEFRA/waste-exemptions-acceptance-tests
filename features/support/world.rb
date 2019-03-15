@@ -3,8 +3,8 @@
 class World
 
   attr_reader :journey, :bo, :email
-  attr_accessor :known_bo_user_email, :current_reg, :last_email, :last_reference
-  attr_accessor :last_window, :last_completed_reg, :last_incomplete_reg, :last_reference_no
+  attr_accessor :known_bo_user_email, :known_reg, :known_reg_no, :current_reg
+  attr_accessor :last_email, :last_reference, :last_window
 
   def initialize
     @journey = JourneyApp.new

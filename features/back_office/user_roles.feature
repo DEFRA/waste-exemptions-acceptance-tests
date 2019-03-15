@@ -10,6 +10,7 @@ Feature: Back office users have different roles with different permissions
       And I will have the option to create a new registration
       And I can access create a new registration
       And I can search for registrations
+      And I can view their details
 
   Scenario: User is a super_agent
     Given I sign in as a super agent
@@ -18,6 +19,7 @@ Feature: Back office users have different roles with different permissions
       But I will have the option to create a new registration
       And I can access create a new registration
       But I can search for registrations
+      And I can view their details
 
   Scenario: User is an admin_agent
     Given I sign in as an admin agent
@@ -26,6 +28,7 @@ Feature: Back office users have different roles with different permissions
       But I will have the option to create a new registration
       And I can access create a new registration
       And I can search for registrations
+      And I can view their details
 
   Scenario: User is an data_agent
     Given I sign in as an data agent
@@ -34,3 +37,4 @@ Feature: Back office users have different roles with different permissions
       And I will not have the option to create a new registration
       And I cannot access create a new registration
       But I can search for registrations
+      And I can view their details

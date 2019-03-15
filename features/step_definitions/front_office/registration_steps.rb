@@ -13,8 +13,7 @@ Then("I am a limited company") do
 end
 
 Then("I register an exemption") do
-  @world.last_reference_no = add_submitted_registration(@world.current_reg)
-  @world.last_completed_reg = @world.current_reg
+  @world.last_reference = add_submitted_registration(@world.current_reg)
 end
 
 Then("I will be informed the registration is complete") do
