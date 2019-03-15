@@ -17,29 +17,26 @@ class DashboardPage < SitePrism::Page
 
   element(:submit_button, "input[name='commit']")
 
-  def deregister(registration_number)
-    element = "#" + "deregister_" + registration_number.to_s
-    find(:css, element).click
+  elements(:results, ".registration-list")
+
+  def view_link(registration_number)
+    find(:css, "#view_#{registration_number}")
   end
 
-  def resume(registration_number)
-    element = "#" + "resume_" + registration_number.to_s
-    find(:css, element).click
+  def edit_link(registration_number)
+    find(:css, "#edit_#{registration_number}")
   end
 
-  def edit(registration_number)
-    element = "#" + "edit_" + registration_number.to_s
-    find(:css, element).click
+  def deregister_link(registration_number)
+    find(:css, "#deregister_#{registration_number}")
   end
 
-  def change_ad(registration_number)
-    element = "#" + "change_ad_" + registration_number.to_s
-    find(:css, element).text
+  def resume_link(registration_number)
+    find(:css, "#resume_#{registration_number}")
   end
 
-  def confirmation_letter(registration_number)
-    element = "#" + "confirmation_letter_" + registration_number.to_s
-    find(:css, element).text
+  def confirmation_letter_link(registration_number)
+    find(:css, "#confirmation_letter_#{registration_number}")
   end
 
   def submit(args = {})

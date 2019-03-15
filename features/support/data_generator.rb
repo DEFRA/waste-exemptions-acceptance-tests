@@ -59,9 +59,9 @@ def generate_site
 end
 
 def prepopulate_registrations
-  @world.current_reg = generate_registration(:individual, "Mr Waste submitted")
-  @world.last_reference_no = add_submitted_registration(@world.current_reg)
+  @world.known_reg = generate_registration(:individual, "Mr Waste submitted")
+  @world.known_reg_no = add_submitted_registration(@world.known_reg)
 
-  @world.current_reg = generate_registration(:individual, "Mr Waste unsubmitted")
-  add_unsubmitted_registration(@world.current_reg)
+  unsubmitted_reg = generate_registration(:individual, "Mr Waste unsubmitted")
+  add_unsubmitted_registration(unsubmitted_reg)
 end

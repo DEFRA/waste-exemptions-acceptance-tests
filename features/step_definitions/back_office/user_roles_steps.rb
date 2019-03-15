@@ -15,8 +15,9 @@ Then("I can search for registrations") do
   @world.bo.dashboard_page.load
   @world.bo.dashboard_page.submit(search_term: "Mr Waste")
   expect(page).to have_content("Waste exemptions dashboard")
-  # We know this should exist because of the registrations created in our
+  # We know results should exist because of the registrations created in our
   # before(@data) hook
+  expect(@world.bo.dashboard_page).to have_results
   expect(page).to have_content("Mr Waste")
 end
 
@@ -47,4 +48,19 @@ Then("I cannot access create a new registration") do
   visit(back_office_root_url("/start/new"))
   expect(page).to have_content("Your account does not have permission")
   expect(page).to have_current_path("/pages/permission")
+end
+
+Then("I can view their details") do
+  # result = @world.bo.dashboard_page.results[0]
+  # within(@world.bo.dashboard_page.results[0]) do
+  #   puts "Hello1 #{result.path}"
+  #   puts "Hello2 #{result.tag_name}"
+  #   puts "Hello4 #{result.text}"
+  #   puts "Hello5 #{result.value}"
+  #   click_link("[id^=view_WEX]")
+  # end
+  @world.bo.dashboard_page.view_link(@world.known_reg_no).click
+  # @world.bo.dashboard_page.results[0].details_link.click
+  expect(page).to have_content("Registration details for")
+  expect(page).to have_current_path(%r{^\/registrations\/WEX})
 end
