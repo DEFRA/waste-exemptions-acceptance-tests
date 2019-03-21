@@ -5,7 +5,7 @@ When(/^I am on the waste exemptions dashboard$/) do
 end
 
 When(/^I invite a new back office user$/) do
-  @world.last_email = generate_example_email
+  @world.last_email = generate_example_email(nil, nil)
   @world.bo.dashboard_page.admin_menu.user_management.click
   create_user(:system_user, @world.last_email)
   # Clears session otherwise invite link will not work
@@ -18,10 +18,10 @@ When(/^the invite is accepted$/) do
     @world.email.mailcatcher_main_page.open_email(1)
     @world.email.mailcatcher_messages_page.accept_invite.click
   else
-    @world.mail.mailinator_page.load
-    @world.mail.mailinator_page.submit(inbox: @world.last_email)
-    @world.mail.mailinator_inbox_page.invite_email.click
-    @world.mail.mailinator_inbox_page.email_details do |frame|
+    @world.email.mailinator_page.load
+    @world.email.mailinator_page.submit(inbox: @world.last_email)
+    @world.email.mailinator_inbox_page.invite_email.click
+    @world.email.mailinator_inbox_page.email_details do |frame|
       @world.last_window = window_opened_by { frame.accept_invite.click }
     end
   end
