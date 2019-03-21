@@ -19,6 +19,8 @@ class DashboardPage < SitePrism::Page
 
   elements(:results, ".registration-list")
 
+  elements(:resume_links, "[id^=resume]")
+
   def view_link(registration_number)
     find(:css, "#view_#{registration_number}")
   end

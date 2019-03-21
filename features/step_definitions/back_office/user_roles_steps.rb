@@ -51,16 +51,23 @@ Then("I cannot access create a new registration") do
 end
 
 Then("I can view their details") do
-  # result = @world.bo.dashboard_page.results[0]
-  # within(@world.bo.dashboard_page.results[0]) do
-  #   puts "Hello1 #{result.path}"
-  #   puts "Hello2 #{result.tag_name}"
-  #   puts "Hello4 #{result.text}"
-  #   puts "Hello5 #{result.value}"
-  #   click_link("[id^=view_WEX]")
-  # end
   @world.bo.dashboard_page.view_link(@world.known_reg_no).click
-  # @world.bo.dashboard_page.results[0].details_link.click
   expect(page).to have_content("Registration details for")
   expect(page).to have_current_path(%r{^\/registrations\/WEX})
+end
+
+Then("I can continue an in progress registration") do
+  @world.bo.dashboard_page.load
+  @world.bo.dashboard_page.unsubmitted_filter.click
+  @world.bo.dashboard_page.submit(search_term: "Mr Waste")
+  @world.bo.dashboard_page.resume_links[0].click
+
+  expect(page).to have_content("Who should we contact about this waste exemption operation?")
+end
+
+Then("I cannot continue an in progress registration") do
+  @world.bo.dashboard_page.load
+  @world.bo.dashboard_page.unsubmitted_filter.click
+  @world.bo.dashboard_page.submit(search_term: "Mr Waste")
+  expect(@world.bo.dashboard_page.resume_links.count).to eq(0)
 end
