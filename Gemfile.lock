@@ -133,7 +133,6 @@ DEPENDENCIES
   faker
   quke!
   rake
-  rubocop
 
 BUNDLED WITH
    1.17.3
