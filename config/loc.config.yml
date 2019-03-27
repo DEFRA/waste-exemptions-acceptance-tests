@@ -69,7 +69,7 @@ javascript_errors: false
 # If you don't need to see the detail on each run, this might be easier to
 # follow than the detailed output you see using the default 'pretty' print
 # format.
-print_progress: true
+print_progress: false
 
 # Tell Quke you want to run tests in parallel. This will make use of the
 # available cores on your machine to run the tests in parallel, reducing the
@@ -79,7 +79,7 @@ print_progress: true
 # egligible if you only have a few). However your scenarios must be independent,
 # and the console output will be 'number of processes' * cucumber output. So
 # this is best used if you are just after a simple pass/fail result.
-parrellel:
+parallel:
   enable: false
   # The available options are based on those the ParallelTests gem supports
   #
