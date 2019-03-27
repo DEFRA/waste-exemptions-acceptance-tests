@@ -13,8 +13,13 @@ task :ci do
 end
 
 desc "Run @smoke tests against the local environment"
-task :loc do
+task :locs do
   sh %( QUKE_CONFIG=config/loc.config.yml bundle exec quke --tags @smoke)
+end
+
+desc "Run all tests against the local environment"
+task :loc do
+  sh %( QUKE_CONFIG=config/loc.config.yml bundle exec quke)
 end
 
 desc "Run @smoke tests against the dev environment"
@@ -23,8 +28,18 @@ task :dev do
 end
 
 desc "Run @smoke tests against the test environment"
-task :tst do
+task :tsts do
   sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke --tags @smoke)
+end
+
+desc "Run all tests against the test environment"
+task :tst do
+  sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke)
+end
+
+desc "Run all @wip tests against the test environment"
+task :tstwip do
+  sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke --tags @wip)
 end
 
 desc "Run @smoke tests against the pre-production environment"

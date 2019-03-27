@@ -16,6 +16,7 @@ class DashboardPage < SitePrism::Page
   element(:change_password, "a[href='/users/password/edit']")
 
   element(:submit_button, "input[name='commit']")
+  element(:sign_out_button, ".user-info .button")
 
   elements(:results, ".registration-list")
 
