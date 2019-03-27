@@ -79,8 +79,8 @@ print_progress: false
 # egligible if you only have a few). However your scenarios must be independent,
 # and the console output will be 'number of processes' * cucumber output. So
 # this is best used if you are just after a simple pass/fail result.
-parrellel:
-  enable: true
+parallel:
+  enable: false
   # The available options are based on those the ParallelTests gem supports
   #
   # - found - order of finding files
