@@ -21,7 +21,7 @@ driver: chrome
 # This option only applies when the driver is set to 'chrome' or 'firefox'.
 # Phantomjs is a headless only browser, and option is meaningless for
 # browserstack
-headless: true
+headless: false
 
 # Add a pause (in seconds) between steps so you can visually track how the
 # browser is responding. Only useful if using a non-headless browser. The
@@ -69,7 +69,7 @@ javascript_errors: false
 # If you don't need to see the detail on each run, this might be easier to
 # follow than the detailed output you see using the default 'pretty' print
 # format.
-print_progress: true
+print_progress: false
 
 # Tell Quke you want to run tests in parallel. This will make use of the
 # available cores on your machine to run the tests in parallel, reducing the
@@ -79,8 +79,8 @@ print_progress: true
 # egligible if you only have a few). However your scenarios must be independent,
 # and the console output will be 'number of processes' * cucumber output. So
 # this is best used if you are just after a simple pass/fail result.
-parrellel:
-  enable: true
+parallel:
+  enable: false
   # The available options are based on those the ParallelTests gem supports
   #
   # - found - order of finding files
