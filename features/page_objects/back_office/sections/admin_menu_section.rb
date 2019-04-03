@@ -8,5 +8,6 @@ class AdminMenuSection < SitePrism::Section
 
   element(:home_page, "#proposition-name")
   element(:user_management, "a[href='/users']")
+  element(:data_exports, "a[href='/data-exports']")
 
 end
