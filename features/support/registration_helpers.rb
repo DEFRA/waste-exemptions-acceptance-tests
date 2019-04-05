@@ -22,7 +22,6 @@ def add_submitted_registration(registration, load_root_page = true)
 end
 
 def add_unsubmitted_registration(registration, load_root_page = true)
-  # Possible issue: this takes user through front end flow even if called from back office flow.
   @world.journey.home_page.load if load_root_page
 
   @world.journey.registration_type_page.submit(start_option: :new_registration)
