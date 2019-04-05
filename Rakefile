@@ -24,7 +24,7 @@ end
 
 desc "Run tests with custom tags against the local environment"
 task :loctag do
-  sh %( QUKE_CONFIG=config/loc.config.yml bundle exec quke --tags @email)
+  sh %( QUKE_CONFIG=config/loc.config.yml bundle exec quke --tags @wip)
 end
 
 desc "Run @smoke tests against the dev environment"
@@ -44,7 +44,7 @@ end
 
 desc "Run tests against the test environment with custom tags"
 task :tsttag do
-  sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke --tags @email)
+  sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke --tags @wip)
 end
 
 desc "Run all @wip tests against the test environment"
