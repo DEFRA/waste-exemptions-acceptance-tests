@@ -1,3 +1,6 @@
+# Config file for any environment. Set the environment in this file.
+# Work in progress.
+
 # The standard place to add your features and step_definitions is in a folder
 # named 'features' at the root of the project. However if you'd like to name
 # this folder something else, you can tell Quke what the new name is here.
@@ -9,7 +12,11 @@
 # will be by simply setting `app_host`. You can then use it directly using
 # Capybara `visit('/Main_Page')` or `visit('/')` rather than having to repeat
 # the full url each time
-app_host: "https://wex-pre.aws.defra.cloud"
+# app_host:
+  # loc: "http://localhost:3001"
+  # dev: "https://wex-dev.aws.defra.cloud"
+  # tst: "https://wex-tst.aws.defra.cloud"
+  # pre: "https://wex-pre.aws.defra.cloud"
 
 # Tells Quke which browser to use for testing. Choices are firefox, chrome
 # browserstack and phantomjs, with the default being phantomjs
@@ -26,7 +33,7 @@ headless: false
 # Add a pause (in seconds) between steps so you can visually track how the
 # browser is responding. Only useful if using a non-headless browser. The
 # default is 0
-pause: 0
+pause: 5
 
 # Specify whether Quke should stop all tests once an error occurs. Useful in
 # Continuous Integration (CI) environments where a quick Yes/No is preferable to
@@ -112,6 +119,7 @@ parallel:
 # http://www.yamllint.com/) Quke will be able to pick it up and make it
 # available in your tests.
 custom:
+  environment: "tst" # Choose from: loc dev tst pre prd
   accounts:
     DataAgent:
       username: data_agent@wex.gov.uk
@@ -122,7 +130,19 @@ custom:
     SystemUser:
       username: system_user@wex.gov.uk
   urls:
-    front_office: "https://wex-pre.aws.defra.cloud"
-    back_office: "https://admin-wex-pre.aws.defra.cloud"
-    back_office_email: "https://admin-wex-pre.aws.defra.cloud/last-email"
-    mail_client: "https://wex-pre.aws.defra.cloud/last-email"
+    loc:
+      front_office: "http://localhost:3001"
+      back_office: "http://localhost:8001"
+      mail_client: "http://localhost:1080"
+    dev:
+      front_office: "https://wex-dev.aws.defra.cloud"
+      back_office: "https://admin-wex-dev.aws.defra.cloud"
+      mail_client: "https://admin-wex-dev.aws.defra.cloud/last-email"
+    tst:
+      front_office: "https://wex-tst.aws.defra.cloud"
+      back_office: "https://admin-wex-tst.aws.defra.cloud"
+      mail_client: "https://admin-wex-tst.aws.defra.cloud/last-email"
+    pre:
+      front_office: "https://wex-pre.aws.defra.cloud"
+      back_office: "https://admin-wex-pre.aws.defra.cloud"
+      mail_client: "https://admin-wex-pre.aws.defra.cloud/last-email"
