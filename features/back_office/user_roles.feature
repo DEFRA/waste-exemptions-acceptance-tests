@@ -12,6 +12,7 @@ Feature: Back office users have different roles with different permissions
       And I can search for registrations
       And I can view their details
       And I can continue an in progress registration
+      And I can access data exports
 
   Scenario: User is a super_agent
     Given I sign in as a super agent
@@ -22,6 +23,7 @@ Feature: Back office users have different roles with different permissions
       But I can search for registrations
       And I can view their details
       And I can continue an in progress registration
+      And I can access data exports
 
   Scenario: User is an admin_agent
     Given I sign in as an admin agent
@@ -32,6 +34,7 @@ Feature: Back office users have different roles with different permissions
       And I can search for registrations
       And I can view their details
       And I can continue an in progress registration
+      And I can access data exports
 
   Scenario: User is an data_agent
     Given I sign in as an data agent
@@ -42,3 +45,4 @@ Feature: Back office users have different roles with different permissions
       But I can search for registrations
       And I can view their details
       But I cannot continue an in progress registration
+      But I can access data exports

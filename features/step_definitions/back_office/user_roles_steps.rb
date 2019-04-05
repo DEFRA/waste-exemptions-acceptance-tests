@@ -71,3 +71,11 @@ Then("I cannot continue an in progress registration") do
   @world.bo.dashboard_page.submit(search_term: "Mr Waste")
   expect(@world.bo.dashboard_page.resume_links.count).to eq(0)
 end
+
+Then("I can access data exports") do
+  @world.bo.dashboard_page.load
+  expect(@world.bo.dashboard_page.admin_menu).to have_data_exports
+
+  @world.bo.dashboard_page.admin_menu.data_exports.click
+  expect(find("h1.heading-large").text).to eq("Data Exports")
+end
