@@ -18,7 +18,4 @@ end
 
 Then("I will be informed the registration is complete") do
   expect(page).to have_content "Registration complete"
-  # Add extra sign out step
-  @world.bo.registration_complete_page.admin_menu_section.dashboard_link.click
-  @world.bo.dashboard_page.sign_out_button.click
 end

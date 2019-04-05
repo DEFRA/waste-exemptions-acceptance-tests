@@ -1,4 +1,4 @@
-@backoffice
+@backoffice @email
 Feature: Manage back office users
   As a system user
   I need to be able to add new and manage existing back office users

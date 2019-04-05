@@ -8,7 +8,3 @@ def generate_example_email(first_name, last_name)
 
   "#{first_name.downcase}.#{last_name.downcase}#{rand(1..999)}@example.com".delete("'")
 end
-
-def generate_mailinator_email
-  "#{rand(100_000_000)}@mailinator.com"
-end
