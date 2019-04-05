@@ -24,7 +24,7 @@ end
 
 desc "Run tests with custom tags against the local environment"
 task :loctag do
-  sh %( QUKE_CONFIG=config/loc.config.yml bundle exec quke --tags @wip)
+  sh %( QUKE_CONFIG=config/loc.config.yml bundle exec quke --tags @email)
 end
 
 desc "Run @smoke tests against the dev environment"
