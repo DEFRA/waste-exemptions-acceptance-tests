@@ -53,8 +53,8 @@ end
 
 def generate_site
   {
-    grid_ref: "ST 58132 72695",
-    site_details: "Yer it is"
+    grid_ref: "SE 09287 25320",
+    site_details: "Up north"
   }
 end
 

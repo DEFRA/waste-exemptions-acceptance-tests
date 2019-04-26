@@ -55,7 +55,7 @@ def complete_operator_name_and_address(registration)
   @world.journey.operator_name_page.submit(org_name: registration[:operator_name])
   @world.journey.operator_address_page.submit(
     postcode: "BS1 5AH",
-    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
 end
 
@@ -77,7 +77,7 @@ def complete_contact_details(person)
   @world.journey.contact_email_page.submit(email: person[:email], confirm_email: person[:email])
   @world.journey.contact_address_page.submit(
     postcode: "BS1 5AH",
-    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
 end
 

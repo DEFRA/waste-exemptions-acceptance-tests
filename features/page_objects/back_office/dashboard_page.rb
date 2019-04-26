@@ -8,6 +8,7 @@ class DashboardPage < SitePrism::Page
 
   section(:admin_menu, AdminMenuSection, AdminMenuSection::SELECTOR)
 
+  element(:content, "#content")
   element(:search_term, "#term")
   element(:submitted_filter, "#filter_registrations + label")
   element(:unsubmitted_filter, "#filter_transient_registrations + label")
@@ -21,6 +22,7 @@ class DashboardPage < SitePrism::Page
   elements(:results, ".registration-list")
 
   elements(:resume_links, "[id^=resume]")
+  elements(:confirmation_letter_links, "[id^=confirmation_letter_]")
 
   def view_link(registration_number)
     find(:css, "#view_#{registration_number}")
