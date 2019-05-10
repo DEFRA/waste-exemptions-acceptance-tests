@@ -24,12 +24,12 @@ Then("I can see confirmation letter links") do
 end
 
 And("I can see a confirmation letter for a known registration") do
-  # Select the first confirmation letter link for the search term:
-  @world.bo.dashboard_page.confirmation_letter_links[0].click
-
   # As we cannot directly read PDFs through web test automation, use a dedicated URL to view the content as HTML:
-  url = URI.parse(current_url).to_s
-  visit(url + "?show_as_html=true")
+  # Also, when testing headlessly, the direct link to the PDF (first confirmation letter link) doesn't work.
+  # So we need to bypass the PDF link by going directly to the HTML version of the link.
+  # Get target URL from first confirmation letter link and use this to go to the HTML version:
+  letter_html_url = @world.bo.dashboard_page.confirmation_letter_links.first[:href].to_s + "?show_as_html=true"
+  visit(letter_html_url)
 
   # Check confirmation letter with what's been generated in features/support/data_generator.rb :
   expect(@world.bo.confirmation_letter_page.heading).to have_text("Confirmation of waste exemption registration")

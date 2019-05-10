@@ -31,6 +31,14 @@ class BackOfficeApp
     @last_page = DeactivateUserPage.new
   end
 
+  def edit_page
+    @last_page = EditPage.new
+  end
+
+  def edit_details_page
+    @last_page = EditDetailsPage.new
+  end
+
   def invitation_page
     @last_page = InvitationPage.new
   end
