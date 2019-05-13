@@ -28,8 +28,8 @@ def generate_registration(business_type, operator_name = nil)
 end
 
 def generate_person
-  first_name ||= Faker::Name.first_name
-  last_name ||= Faker::Name.last_name
+  first_name ||= Faker::Name.unique.first_name
+  last_name ||= Faker::Name.unique.last_name
 
   {
     first_name: first_name,
@@ -41,7 +41,7 @@ def generate_person
 end
 
 def generate_operator_name(business_type, operator_name)
-  operator_name = "#{Faker::Company.name} Ltd" if business_type == :limited
+  operator_name = "#{Faker::Company.unique.name} Ltd" if business_type == :limited
   operator_name
 end
 
