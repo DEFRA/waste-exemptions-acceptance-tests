@@ -15,6 +15,10 @@ class BackOfficeApp
     @last_page = ChangeUserRolePage.new
   end
 
+  def confirmation_letter_page
+    @last_page = ConfirmationLetterPage.new
+  end
+
   def deregister_page
     @last_page = DeregisterPage.new
   end
@@ -25,6 +29,14 @@ class BackOfficeApp
 
   def deactivate_user_page
     @last_page = DeactivateUserPage.new
+  end
+
+  def edit_page
+    @last_page = EditPage.new
+  end
+
+  def edit_details_page
+    @last_page = EditDetailsPage.new
   end
 
   def invitation_page

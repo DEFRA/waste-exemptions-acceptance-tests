@@ -8,9 +8,10 @@ class DashboardPage < SitePrism::Page
 
   section(:admin_menu, AdminMenuSection, AdminMenuSection::SELECTOR)
 
+  element(:content, "#content")
   element(:search_term, "#term")
-  element(:submitted_filter, "#filter_registrations + label")
-  element(:unsubmitted_filter, "#filter_transient_registrations + label")
+  element(:submitted_filter, "#filter_registrations", visible: false)
+  element(:unsubmitted_filter, "#filter_new_registrations", visible: false)
 
   element(:create_new_registration, "a[href='/start/new']")
   element(:change_password, "a[href='/users/password/edit']")
@@ -21,6 +22,7 @@ class DashboardPage < SitePrism::Page
   elements(:results, ".registration-list")
 
   elements(:resume_links, "[id^=resume]")
+  elements(:confirmation_letter_links, "a[href*='confirmation-letter']")
 
   def view_link(registration_number)
     find(:css, "#view_#{registration_number}")

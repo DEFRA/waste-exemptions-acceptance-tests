@@ -9,7 +9,7 @@
 # will be by simply setting `app_host`. You can then use it directly using
 # Capybara `visit('/Main_Page')` or `visit('/')` rather than having to repeat
 # the full url each time
-app_host: "http://localhost:3001"
+app_host: "https://wex-prd.aws.defra.cloud"
 
 # Tells Quke which browser to use for testing. Choices are firefox, chrome
 # browserstack and phantomjs, with the default being phantomjs
@@ -21,7 +21,7 @@ driver: chrome
 # This option only applies when the driver is set to 'chrome' or 'firefox'.
 # Phantomjs is a headless only browser, and option is meaningless for
 # browserstack
-headless: true
+headless: false
 
 # Add a pause (in seconds) between steps so you can visually track how the
 # browser is responding. Only useful if using a non-headless browser. The
@@ -45,7 +45,7 @@ stop_on_error: true
 #
 # Please note, if the driver is phantomjs or the `headless` is true nothing will
 # be displayed even if this is set to true.
-display_failures: true
+display_failures: false
 
 # Capybara will attempt to find an element for a period of time, rather than
 # immediately failing because the element cannot be found. This defaults to 2
@@ -122,6 +122,7 @@ custom:
     SystemUser:
       username: system_user@wex.gov.uk
   urls:
-    front_office: "http://localhost:3001"
-    back_office: "http://localhost:8001"
-    mail_client: "http://localhost:1080"
+    front_office: "https://wex-prd.aws.defra.cloud"
+    back_office: "https://admin-wex-prd.aws.defra.cloud"
+    back_office_email: "https://admin-wex-prd.aws.defra.cloud/last-email"
+    mail_client: "https://wex-prd.aws.defra.cloud/last-email"
