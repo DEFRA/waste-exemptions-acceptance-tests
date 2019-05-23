@@ -57,6 +57,16 @@ task :pre do
   sh %( QUKE_CONFIG=config/pre.config.yml bundle exec quke --tags @smoke)
 end
 
+desc "Run all tests against the production environment"
+task :prd do
+  sh %( QUKE_CONFIG=config/prd.config.yml bundle exec quke --tags ~@email)
+end
+
+desc "Run tests against the prod environment with custom tags"
+task :prdtag do
+  sh %( QUKE_CONFIG=config/prd.config.yml bundle exec quke --tags @wip)
+end
+
 desc "Run all browserstack tests"
 task browserstack: %i[
   chrome70_osx

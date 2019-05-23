@@ -36,8 +36,8 @@ And("I can see a confirmation letter for a known registration") do
   expect(@world.bo.confirmation_letter_page.heading_ref).to have_text("Your reference: " + @world.known_reg_no.to_s)
   page_content = @world.bo.confirmation_letter_page.content
   expect(page_content).to have_text("Grid reference: SE 09287 25320")
-  expect(page_content).to have_text("Business or organisation type: translation missing: en.organisation_type")
-  expect(page_content).to have_text("Chipping, shredding, cutting or pulverising waste wood")
+  expect(page_content).to have_text("Business or organisation type: Individual or sole trader")
+  expect(page_content).to have_text("waste wood and waste plant matter by chipping, shredding, cutting or pulverising")
 end
 
 Then("I cannot see a confirmation letter") do

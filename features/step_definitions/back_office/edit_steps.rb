@@ -38,8 +38,7 @@ When("I can see the new details on the registration details page") do
   expect(@world.bo.registration_details_page.content).to have_text(@new_person[:first_name])
   expect(@world.bo.registration_details_page.content).to have_text(@new_person[:last_name])
   expect(@world.bo.registration_details_page.content).to have_text(@new_person[:email])
-  # The 'not_' in the next line is because of bug RUBY-325:
-  expect(@world.bo.registration_details_page.content).not_to have_text(@new_details[:operator_name])
+  expect(@world.bo.registration_details_page.content).to have_text(@new_details[:operator_name])
   expect(@world.bo.registration_details_page.content).to have_text(@new_person[:first_name])
 end
 
