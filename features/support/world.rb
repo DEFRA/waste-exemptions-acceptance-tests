@@ -3,7 +3,7 @@
 class World
 
   attr_reader :journey, :bo, :email
-  attr_accessor :known_bo_user_email, :known_reg, :known_reg_no, :current_reg
+  attr_accessor :known_bo_user_email, :known_reg, :known_reg_no, :current_reg, :known_trans_applicant
   attr_accessor :reg_to_complete, :completed_reg
   attr_accessor :last_email, :last_reference, :last_window
 

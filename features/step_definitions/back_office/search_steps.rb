@@ -23,6 +23,36 @@ Then("I can see confirmation letter links") do
   expect(@world.bo.dashboard_page.confirmation_letter_links.count.positive?).to eq(true)
 end
 
+And("refreshing doesn't create new registrations") do
+  # Search for the applicant name from the last unsubmitted registration
+  @world.bo.dashboard_page.unsubmitted_filter.click
+  @world.bo.dashboard_page.submit(search_term: @world.known_trans_applicant)
+  @world.bo.dashboard_page.view_details_links[0].click
+  expect(@world.bo.registration_details_page.heading).to have_text("In-progress registration details for")
+
+  # Get the last registration number from the heading:
+  last_reg = @world.bo.registration_details_page.heading.text.scan(/\d+/)[0].to_s
+  last_reg_number = last_reg.to_i
+  puts "Last known reg = " + last_reg
+
+  # Refresh the start page. This should only generate one new registration.
+  find_link("Waste exemptions back office").click
+  find_link("Start a new registration").click
+  20.times do
+    page.evaluate_script "window.location.reload()"
+  end
+
+  # Work out the registration 2 numbers higher than the previous registration:
+  last_reg_plus = "WEX" + format("%06d", last_reg_number + 2)
+
+  # Search for the higher registration number and check it doesn't exist:
+  find_link("Dashboard").click
+  @world.bo.dashboard_page.unsubmitted_filter.click
+  @world.bo.dashboard_page.submit(search_term: last_reg_plus)
+  expect(@world.bo.dashboard_page).to have_no_results
+
+end
+
 And("I can see a confirmation letter for a known registration") do
   # As we cannot directly read PDFs through web test automation, use a dedicated URL to view the content as HTML:
   # Also, when testing headlessly, the direct link to the PDF (first confirmation letter link) doesn't work.

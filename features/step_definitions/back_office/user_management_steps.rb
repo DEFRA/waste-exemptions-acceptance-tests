@@ -43,6 +43,7 @@ When("I change a users role to super agent") do
 
   # This currently relies on the previous scenario to have generated a last_email.
   # Consider generating a value for this here to remove the dependency.
+  # These tests will fail if there are more than 10 pages of users.
   @world.bo.users_page.look_for(@world.last_email)
 
   @world.bo.users_page.change_user_role(@world.last_email)
