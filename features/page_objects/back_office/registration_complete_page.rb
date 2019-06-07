@@ -6,6 +6,7 @@ class RegistrationCompletePage < SitePrism::Page
 
   section(:admin_menu_section, AdminMenuSection, AdminMenuSection::SELECTOR)
 
+  element(:home_link, "#proposition-name")
   element(:registration_number, ".strong")
 
 end

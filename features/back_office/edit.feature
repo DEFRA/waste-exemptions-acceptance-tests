@@ -15,10 +15,6 @@ Feature: Back office user edits a registration
       And I complete the edit
      Then I can see the new details on the registration details page
 
-  Scenario: Negative access test
-     When I sign in as an admin agent
-     Then I cannot edit the most recent registration
-
   Scenario: Cancel registration
    Given I sign in as a super agent
     When I edit the most recent registration

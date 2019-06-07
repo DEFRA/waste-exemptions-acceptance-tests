@@ -64,4 +64,9 @@ def prepopulate_registrations
 
   unsubmitted_reg = generate_registration(:individual, "Mr Waste unsubmitted")
   add_unsubmitted_registration(unsubmitted_reg)
+
+  # Get the first and last name of the last unsubmitted applicant
+  new_first_name = unsubmitted_reg[:applicant][:first_name].to_s
+  new_last_name = unsubmitted_reg[:applicant][:last_name].to_s
+  @world.known_trans_applicant = new_first_name + " " + new_last_name
 end
