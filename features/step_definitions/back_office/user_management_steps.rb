@@ -39,26 +39,33 @@ Then(/^the new back office user can sign in$/) do
 end
 
 When("I change a users role to super agent") do
-  # This step won't work if there are more users than can fit on one page.
   @world.bo.dashboard_page.admin_menu.user_management.click
-  @world.bo.users_page.change_user_role(@world.known_bo_user_email)
-  expect(@world.bo.change_user_role_page).to have_text(@world.known_bo_user_email)
+
+  # This currently relies on the previous scenario to have generated a last_email.
+  # Consider generating a value for this here to remove the dependency.
+  @world.bo.users_page.look_for(@world.last_email)
+
+  @world.bo.users_page.change_user_role(@world.last_email)
+  expect(@world.bo.change_user_role_page).to have_text(@world.last_email)
   @world.bo.change_user_role_page.submit(role: :super)
 end
 
 Then("I see their role has changed") do
-  user = @world.bo.users_page.user_details(@world.known_bo_user_email)
+  @world.bo.users_page.look_for(@world.last_email)
+  user = @world.bo.users_page.user_details(@world.last_email)
   expect(user.role).to have_text("super agent")
 end
 
 When("I deactivate a user") do
   @world.bo.dashboard_page.admin_menu.user_management.click
-  @world.bo.users_page.deactivate_user(@world.known_bo_user_email)
-  expect(@world.bo.deactivate_user_page).to have_text(@world.known_bo_user_email)
+  @world.bo.users_page.look_for(@world.last_email)
+  @world.bo.users_page.deactivate_user(@world.last_email)
+  expect(@world.bo.deactivate_user_page).to have_text(@world.last_email)
   @world.bo.deactivate_user_page.submit
 end
 
 Then("I see their status has changed") do
-  user = @world.bo.users_page.user_details(@world.known_bo_user_email)
+  @world.bo.users_page.look_for(@world.last_email)
+  user = @world.bo.users_page.user_details(@world.last_email)
   expect(user.status).to have_text("deactivated")
 end

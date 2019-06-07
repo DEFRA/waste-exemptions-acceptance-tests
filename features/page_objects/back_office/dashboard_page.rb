@@ -21,6 +21,7 @@ class DashboardPage < SitePrism::Page
 
   elements(:results, ".registration-list")
 
+  elements(:view_details_links, "a[href*='new-registrations']")
   elements(:resume_links, "[id^=resume]")
   elements(:confirmation_letter_links, "a[href*='confirmation-letter']")
 

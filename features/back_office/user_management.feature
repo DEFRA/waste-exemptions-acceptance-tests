@@ -14,12 +14,10 @@ Feature: Manage back office users
      Then a password is set
       And the new back office user can sign in
 
-  @data
   Scenario: System user changes a users role
      When I change a users role to super agent
      Then I see their role has changed
 
-  @data
   Scenario: System user deactivates a user
      When I deactivate a user
      Then I see their status has changed

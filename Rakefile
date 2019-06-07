@@ -53,8 +53,13 @@ task :tstwip do
 end
 
 desc "Run @smoke tests against the pre-production environment"
-task :pre do
+task :presmo do
   sh %( QUKE_CONFIG=config/pre.config.yml bundle exec quke --tags @smoke)
+end
+
+desc "Run all tests against the pre-production environment"
+task :pre do
+  sh %( QUKE_CONFIG=config/pre.config.yml bundle exec quke)
 end
 
 desc "Run all tests against the production environment"

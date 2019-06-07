@@ -8,6 +8,7 @@ class UsersPage < SitePrism::Page
 
   section(:admin_menu, AdminMenuSection, AdminMenuSection::SELECTOR)
 
+  element(:content, "#content")
   element(:invite_user, "a[href='/users/invitation/new']")
 
   sections :users, "table tbody tr" do
@@ -30,6 +31,15 @@ class UsersPage < SitePrism::Page
   def deactivate_user(user_email)
     selected_user = user_details(user_email)
     selected_user.deactivate.click
+  end
+
+  def look_for(user_email)
+    # Look for the known email on page. If it's not there, click Next and look again.
+    10.times do
+      break if content.has_text?(user_email)
+
+      find_link("Next ›").click
+    end
   end
 
 end

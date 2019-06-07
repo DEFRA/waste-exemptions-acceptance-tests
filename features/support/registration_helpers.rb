@@ -31,6 +31,20 @@ def add_unsubmitted_registration(registration, load_root_page = true)
   complete_organisation_details(registration)
 end
 
+def continue_unsubmitted_registration(registration)
+  complete_contact_details(registration[:contact])
+  complete_farm_questions(registration)
+
+  @world.journey.site_grid_reference_page.submit(
+    grid_ref: registration[:site][:grid_ref],
+    site_details: registration[:site][:site_details]
+  )
+
+  @world.journey.choose_exemptions_page.submit(exemptions: registration[:exemptions])
+
+  complete_confirmations
+end
+
 def complete_applicant_details(person)
   @world.journey.applicant_name_page.submit(first_name: person[:first_name], last_name: person[:last_name])
   @world.journey.applicant_phone_page.submit(tel_number: person[:telephone])
@@ -90,5 +104,6 @@ def complete_confirmations
   @world.journey.check_details_page.submit
   @world.journey.declaration_page.submit
 
+  # Return the reference number of the registration that was just completed:
   @world.journey.confirmation_page.ref_no.text
 end
