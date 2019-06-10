@@ -9,7 +9,7 @@ Feature: Back office user completes assisted digital registration for a user
      When I complete a limited companies registration
      Then I will be informed the registration is complete
 
-  Scenario: Registration of a Partnership by a back office user
+  Scenario: Registration of a partnership by a back office user
     Given I sign in as an admin agent
      When I complete a partnerships registration
      Then I will be informed the registration is complete

@@ -35,8 +35,9 @@ Feature: Back office users have different roles with different permissions
       And I can view their details
       And I can continue an in progress registration
       And I can access data exports
+      But I cannot edit the most recent registration
 
-  Scenario: User is an data_agent
+  Scenario: User is a data_agent
     Given I sign in as an data agent
      Then I will not have the option to manage users
       And I cannot access the user management screen
@@ -46,3 +47,4 @@ Feature: Back office users have different roles with different permissions
       And I can view their details
       But I cannot continue an in progress registration
       But I can access data exports
+      But I cannot edit the most recent registration

@@ -43,6 +43,7 @@ When("I can see the new details on the registration details page") do
 end
 
 When("I cannot edit the most recent registration") do
+  find_link("Waste exemptions back office").click
   @world.bo.dashboard_page.submit(search_term: @world.last_reference)
   expect(@world.bo.dashboard_page.content).not_to have_text("Edit")
 end
