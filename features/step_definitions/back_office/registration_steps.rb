@@ -22,7 +22,6 @@ Then("I complete an in progress registration") do
   find_link("Waste exemptions back office").click
   @world.bo.dashboard_page.unsubmitted_filter.click
   @world.bo.dashboard_page.submit(search_term: "Mr Waste")
-  sleep(10)
 
   # Check first that I can view details for an in progress registration (RUBY-329)
   @world.bo.dashboard_page.view_details_links[0].click
@@ -32,7 +31,6 @@ Then("I complete an in progress registration") do
   # Start the resume process
   @world.bo.dashboard_page.unsubmitted_filter.click
   @world.bo.dashboard_page.submit(search_term: "Mr Waste")
-  sleep(10)
   @world.bo.dashboard_page.resume_links[0].click
   expect(page).to have_content("Who should we contact about this waste exemption operation?")
 
