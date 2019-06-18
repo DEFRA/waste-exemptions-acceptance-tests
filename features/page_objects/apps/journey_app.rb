@@ -11,6 +11,10 @@ class JourneyApp
     @last_page = HomePage.new
   end
 
+  def address_page
+    @last_page = AddressPage.new
+  end
+
   def applicant_email_page
     @last_page = ApplicantEmailPage.new
   end
@@ -51,10 +55,6 @@ class JourneyApp
     @last_page = CheckDetailsPage.new
   end
 
-  def contact_address_page
-    @last_page = ContactAddressPage.new
-  end
-
   def company_name_page
     @last_page = CompanyNamePage.new
   end
@@ -83,10 +83,6 @@ class JourneyApp
     @last_page = OperatorNamePage.new
   end
 
-  def operator_address_page
-    @last_page = OperatorAddressPage.new
-  end
-
   def on_farm_page
     @last_page = OnFarmPage.new
   end
@@ -111,7 +107,4 @@ class JourneyApp
     @last_page = SiteGridReferencePage.new
   end
 
-  def site_address_page
-    @last_page = SiteAddressPage.new
-  end
 end

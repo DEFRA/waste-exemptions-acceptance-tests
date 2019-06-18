@@ -9,12 +9,12 @@ class DashboardPage < SitePrism::Page
   section(:admin_menu, AdminMenuSection, AdminMenuSection::SELECTOR)
 
   element(:content, "#content")
+  element(:heading, ".heading-large")
   element(:search_term, "#term")
   element(:submitted_filter, "#filter_registrations", visible: false)
   element(:unsubmitted_filter, "#filter_new_registrations", visible: false)
 
   element(:create_new_registration, "a[href='/start/new']")
-  element(:change_password, "a[href='/users/password/edit']")
 
   element(:submit_button, "input[name='commit']")
   element(:sign_out_button, ".user-info .button")

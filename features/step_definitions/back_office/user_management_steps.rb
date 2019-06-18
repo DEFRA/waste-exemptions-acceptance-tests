@@ -38,6 +38,20 @@ Then(/^the new back office user can sign in$/) do
   expect(@world.bo.dashboard_page).to have_text(@world.last_email)
 end
 
+Then("the new back office user cannot change their password") do
+  # Not yet implemented. Make this into a positive test when RUBY-416 is delivered.
+  expect(@world.bo.dashboard_page.content).to have_no_text("Change password")
+
+  # To add once RUBY-416 is implemented:
+  # find_link("Change password").click
+  # new_password = "Change" + rand(10_000..99_999).to_s
+  # Submit an invalid password on the password page
+  # Submit the new password on the password page
+  # Go back, log out and back in with the new password
+  # As this is a disposable user, we don't need to change the password back.
+
+end
+
 When("I change a users role to super agent") do
   @world.bo.dashboard_page.admin_menu.user_management.click
 

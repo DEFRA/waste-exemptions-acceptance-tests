@@ -13,6 +13,7 @@ Feature: Manage back office users
       And the invite is accepted
      Then a password is set
       And the new back office user can sign in
+      And the new back office user cannot change their password
 
   Scenario: System user changes a users role
      When I change a users role to super agent
