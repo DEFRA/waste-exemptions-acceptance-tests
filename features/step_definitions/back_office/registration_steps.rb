@@ -5,8 +5,8 @@ Then("I complete a limited companies registration") do
 
   @world.current_reg = generate_registration(:limited)
 
-  # Stores the exemption number so the exemption can be edited in later steps
-  @world.last_reference = add_submitted_registration(@world.current_reg, false)
+  # This also stores the exemption number so the exemption can be edited in later steps.
+  @world.last_reference = add_submitted_registration(@world.current_reg, false, "random", "random")
 end
 
 Then("I complete a partnerships registration") do
@@ -22,9 +22,9 @@ Then("I complete an in progress registration") do
   find_link("Waste exemptions back office").click
   @world.bo.dashboard_page.unsubmitted_filter.click
   @world.bo.dashboard_page.submit(search_term: "Mr Waste")
+  sleep(10)
 
   # Check first that I can view details for an in progress registration (RUBY-329)
-  # and get the registration number from the heading
   @world.bo.dashboard_page.view_details_links[0].click
   expect(@world.bo.registration_details_page.heading).to have_text("In-progress registration details for")
   @world.bo.registration_details_page.back_link.click
@@ -32,6 +32,7 @@ Then("I complete an in progress registration") do
   # Start the resume process
   @world.bo.dashboard_page.unsubmitted_filter.click
   @world.bo.dashboard_page.submit(search_term: "Mr Waste")
+  sleep(10)
   @world.bo.dashboard_page.resume_links[0].click
   expect(page).to have_content("Who should we contact about this waste exemption operation?")
 
@@ -39,7 +40,7 @@ Then("I complete an in progress registration") do
   @world.reg_to_complete = generate_registration(:individual, "a name that won't be used")
 
   # Complete the registration and store the registration number.
-  @world.completed_reg = continue_unsubmitted_registration(@world.reg_to_complete)
+  @world.completed_reg = continue_unsubmitted_registration(@world.reg_to_complete, "random", "random")
 end
 
 Then("I can find and edit the registration I just submitted") do

@@ -1,47 +1,61 @@
 # frozen_string_literal: true
 
-def add_submitted_registration(registration, load_root_page = true)
-  @world.journey.home_page.load if load_root_page
+def add_submitted_registration(registration, load_root_page = true, address_type = "lookup", site_type = "random")
+  # Generate a registration with:
+  # a given business type (:limited or :partnership)
+  # a given operator name (default nil)
+  # an address type, for the applicant and contact addresses, of:
+  #   lookup - looks up a postcode for the applicant and contact addresses (default)
+  #   manual - enters addresses manually
+  #   random - chooses a method at random
+  # a site type entered as a grid_ref (default) or an address, or random
 
+  @world.journey.home_page.load if load_root_page
   @world.journey.registration_type_page.submit(start_option: :new_registration)
   @world.journey.location_page.submit(location: :england)
 
   complete_applicant_details(registration[:applicant])
-  complete_organisation_details(registration)
-  complete_contact_details(registration[:contact])
+  complete_organisation_details(registration, address_type)
+  complete_contact_details(registration[:contact], address_type)
   complete_farm_questions(registration)
-
-  @world.journey.site_grid_reference_page.submit(
-    grid_ref: registration[:site][:grid_ref],
-    site_details: registration[:site][:site_details]
-  )
+  complete_site_details(registration, address_type, site_type)
 
   @world.journey.choose_exemptions_page.submit(exemptions: registration[:exemptions])
 
   complete_confirmations
 end
 
-def add_unsubmitted_registration(registration, load_root_page = true)
+def choose_random_address_type
+  # Select "lookup" addresses, or manually entering addresses at random.
+  i = rand(0..2)
+  return "lookup" unless i == 2
+
+  "manual"
+end
+
+def choose_random_site_type
+  # Randomly select whether the site is entered as a grid reference or address.
+  i = rand(0..1)
+  return "grid_ref" unless i == 1
+
+  "address"
+end
+
+def add_unsubmitted_registration(registration, load_root_page = true, address_type = "random")
   @world.journey.home_page.load if load_root_page
 
   @world.journey.registration_type_page.submit(start_option: :new_registration)
   @world.journey.location_page.submit(location: :england)
 
   complete_applicant_details(registration[:applicant])
-  complete_organisation_details(registration)
+  complete_organisation_details(registration, address_type)
 end
 
-def continue_unsubmitted_registration(registration)
-  complete_contact_details(registration[:contact])
+def continue_unsubmitted_registration(registration, address_type = "random", site_type = "random")
+  complete_contact_details(registration[:contact], address_type)
   complete_farm_questions(registration)
-
-  @world.journey.site_grid_reference_page.submit(
-    grid_ref: registration[:site][:grid_ref],
-    site_details: registration[:site][:site_details]
-  )
-
+  complete_site_details(registration, address_type, site_type)
   @world.journey.choose_exemptions_page.submit(exemptions: registration[:exemptions])
-
   complete_confirmations
 end
 
@@ -51,7 +65,7 @@ def complete_applicant_details(person)
   @world.journey.applicant_email_page.submit(email: person[:email], confirm_email: person[:email])
 end
 
-def complete_organisation_details(registration)
+def complete_organisation_details(registration, address_type)
   @world.journey.business_type_page.submit(business_type: registration[:business_type])
 
   if registration[:business_type] == :limited
@@ -62,15 +76,32 @@ def complete_organisation_details(registration)
     complete_partner_details(registration)
   end
 
-  complete_operator_name_and_address(registration)
+  complete_operator_name_and_address(registration, address_type)
 end
 
-def complete_operator_name_and_address(registration)
+def complete_address(address_type)
+  # Select a random address type each time - lookup or manual.
+  # Lookup is more common so this happens two out of three times.
+  address_type = choose_random_address_type if address_type == "random"
+  if address_type == "lookup" # get address via postcode lookup
+    @world.journey.address_page.submit(
+      postcode: "BS1 5AH",
+      result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    )
+  else # address is populated manually
+    @world.journey.address_page.submit_manual_address(
+      postcode: "BS1 5AH",
+      house_no: rand(1..99_999).to_s,
+      address_line_one: "Manually entered road",
+      address_line_two: "Manually entered area",
+      city: "Manualton"
+    )
+  end
+end
+
+def complete_operator_name_and_address(registration, address_type)
   @world.journey.operator_name_page.submit(org_name: registration[:operator_name])
-  @world.journey.operator_address_page.submit(
-    postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
-  )
+  complete_address(address_type)
 end
 
 def complete_partner_details(registration)
@@ -84,20 +115,30 @@ def complete_partner_details(registration)
   )
 end
 
-def complete_contact_details(person)
+def complete_contact_details(person, address_type)
   @world.journey.contact_name_page.submit(first_name: person[:first_name], last_name: person[:last_name])
   @world.journey.contact_position_page.submit(position: person[:position])
   @world.journey.contact_telephone_page.submit(tel_no: person[:telephone])
   @world.journey.contact_email_page.submit(email: person[:email], confirm_email: person[:email])
-  @world.journey.contact_address_page.submit(
-    postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
-  )
+  complete_address(address_type)
 end
 
 def complete_farm_questions(registration)
   @world.journey.on_farm_page.submit(on_farm: registration[:on_farm])
   @world.journey.farmer_page.submit(farmer: registration[:farmer])
+end
+
+def complete_site_details(registration, address_type = "lookup", site_type = "grid_ref")
+  site_type = choose_random_site_type if site_type == "random"
+  if site_type == "grid_ref" # the site is at a grid reference
+    @world.journey.site_grid_reference_page.submit(
+      grid_ref: registration[:site][:grid_ref],
+      site_details: registration[:site][:site_details]
+    )
+  else # the site is at an address
+    find_link("use an address instead").click
+    complete_address(address_type)
+  end
 end
 
 def complete_confirmations

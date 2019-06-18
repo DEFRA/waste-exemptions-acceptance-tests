@@ -60,13 +60,17 @@ end
 
 def prepopulate_registrations
   @world.known_reg = generate_registration(:individual, "Mr Waste submitted")
-  @world.known_reg_no = add_submitted_registration(@world.known_reg)
+  @world.known_reg_no = add_submitted_registration(@world.known_reg, true, "random", "random")
 
   unsubmitted_reg = generate_registration(:individual, "Mr Waste unsubmitted")
   add_unsubmitted_registration(unsubmitted_reg)
 
-  # Get the first and last name of the last unsubmitted applicant
+  # Get the first and last name of the last submitted and unsubmitted applicant
+  known_first_name = @world.known_reg[:applicant][:first_name].to_s
+  known_last_name = @world.known_reg[:applicant][:last_name].to_s
+  @world.known_submitted_applicant = known_first_name + " " + known_last_name
+
   new_first_name = unsubmitted_reg[:applicant][:first_name].to_s
   new_last_name = unsubmitted_reg[:applicant][:last_name].to_s
-  @world.known_trans_applicant = new_first_name + " " + new_last_name
+  @world.known_transient_applicant = new_first_name + " " + new_last_name
 end

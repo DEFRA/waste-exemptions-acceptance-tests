@@ -26,7 +26,7 @@ end
 And("refreshing doesn't create new registrations") do
   # Search for the applicant name from the last unsubmitted registration
   @world.bo.dashboard_page.unsubmitted_filter.click
-  @world.bo.dashboard_page.submit(search_term: @world.known_trans_applicant)
+  @world.bo.dashboard_page.submit(search_term: @world.known_transient_applicant)
   @world.bo.dashboard_page.view_details_links[0].click
   expect(@world.bo.registration_details_page.heading).to have_text("In-progress registration details for")
 
@@ -53,7 +53,7 @@ And("refreshing doesn't create new registrations") do
 
 end
 
-And("I can see a confirmation letter for a known registration") do
+Then("I can see a confirmation letter for a known registration") do
   # As we cannot directly read PDFs through web test automation, use a dedicated URL to view the content as HTML:
   # Also, when testing headlessly, the direct link to the PDF (first confirmation letter link) doesn't work.
   # So we need to bypass the PDF link by going directly to the HTML version of the link.
@@ -65,7 +65,7 @@ And("I can see a confirmation letter for a known registration") do
   expect(@world.bo.confirmation_letter_page.heading).to have_text("Confirmation of waste exemption registration")
   expect(@world.bo.confirmation_letter_page.heading_ref).to have_text("Your reference: " + @world.known_reg_no.to_s)
   page_content = @world.bo.confirmation_letter_page.content
-  expect(page_content).to have_text("Grid reference: SE 09287 25320")
+  expect(page_content).to have_text(@world.known_submitted_applicant) # known applicant's full name
   expect(page_content).to have_text("Business or organisation type: Individual or sole trader")
   expect(page_content).to have_text("waste wood and waste plant matter by chipping, shredding, cutting or pulverising")
 end
