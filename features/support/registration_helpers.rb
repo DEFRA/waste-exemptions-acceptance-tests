@@ -146,5 +146,6 @@ def complete_confirmations
   @world.journey.declaration_page.submit
 
   # Return the reference number of the registration that was just completed:
+  puts @world.journey.confirmation_page.ref_no.text + " submitted"
   @world.journey.confirmation_page.ref_no.text
 end

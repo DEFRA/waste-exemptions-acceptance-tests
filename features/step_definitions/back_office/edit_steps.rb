@@ -5,7 +5,7 @@ When("I edit the most recent registration") do
   # Search for the last reference number:
   @world.bo.dashboard_page.submit(search_term: @world.last_reference)
   find_link("Edit").click
-  puts "Registration: " + @world.last_reference
+  puts @world.last_reference + " edited"
   expect(@world.bo.edit_page.heading).to have_text("Edit " + @world.last_reference + " registration")
 
   # Generate data using the functions in data_generator.rb

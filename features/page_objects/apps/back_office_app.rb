@@ -11,6 +11,10 @@ class BackOfficeApp
     @last_page = AcceptPage.new
   end
 
+  def ad_privacy_policy_page
+    @last_page = AdPrivacyPolicyPage.new
+  end
+
   def change_user_role_page
     @last_page = ChangeUserRolePage.new
   end

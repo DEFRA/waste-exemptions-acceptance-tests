@@ -1,4 +1,4 @@
-@frontoffice
+@frontoffice @wip
 Feature: Registering a waste exemption
   As a waste holder
   I want to register a waste activity exemption

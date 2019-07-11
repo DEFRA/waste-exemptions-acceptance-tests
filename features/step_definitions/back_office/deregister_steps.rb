@@ -39,6 +39,7 @@ When("I deregister individual exemptions") do
       reason: "I decided I didn't like this exemption at: " + Time.new.inspect
     )
   end
+  puts @world.last_reference + " partially deregistered"
 end
 
 Then("the exemptions are no longer active") do
@@ -70,6 +71,7 @@ When("I deregister a whole registration") do
   @world.bo.deregister_page.submit(
     reason: "I decided I didn't like this registration at: " + Time.new.inspect
   )
+  puts @world.last_reference + " fully deregistered"
 end
 
 Then("the registration is no longer active") do

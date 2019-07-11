@@ -57,9 +57,9 @@ When("I change a users role to super agent") do
 
   # This currently relies on the previous scenario to have generated a last_email.
   # Consider generating a value for this here to remove the dependency.
-  # These tests will fail if there are more than 10 pages of users.
+  # These tests will fail if there are more than X pages of users where X is in users_page.
   @world.bo.users_page.look_for(@world.last_email)
-
+  puts @world.last_email
   @world.bo.users_page.change_user_role(@world.last_email)
   expect(@world.bo.change_user_role_page).to have_text(@world.last_email)
   @world.bo.change_user_role_page.submit(role: :super)

@@ -2,7 +2,7 @@
 
 Then("I complete a limited companies registration") do
   @world.bo.dashboard_page.create_new_registration.click
-
+  @world.bo.ad_privacy_policy_page.continue_button.click
   @world.current_reg = generate_registration(:limited)
 
   # This also stores the exemption number so the exemption can be edited in later steps.
@@ -11,7 +11,7 @@ end
 
 Then("I complete a partnerships registration") do
   @world.bo.dashboard_page.create_new_registration.click
-
+  @world.bo.ad_privacy_policy_page.continue_button.click
   @world.current_reg = generate_registration(:partnership)
 
   # Stores the exemption number so the exemption can be edited in later steps
@@ -24,8 +24,9 @@ Then("I complete an in progress registration") do
   @world.bo.dashboard_page.submit(search_term: "Mr Waste")
 
   # Check first that I can view details for an in progress registration (RUBY-329)
+
   @world.bo.dashboard_page.view_details_links[0].click
-  expect(@world.bo.registration_details_page.heading).to have_text("In-progress registration details for")
+  expect(@world.bo.registration_details_page.heading).to have_text("In-progress registration details")
   @world.bo.registration_details_page.back_link.click
 
   # Start the resume process
