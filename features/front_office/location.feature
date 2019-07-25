@@ -1,4 +1,4 @@
-@frontoffice @wip
+@frontoffice @location
 Feature: Users outside of England are advised to register with appropriate authority
   As a waste holder
   I want to know where to register a waste activity exemption that is outside of England

@@ -1,4 +1,4 @@
-@backoffice @data
+@backoffice @data @search
 Feature: Back office users need to be able to search for registrations
   As a back office user
   I need to search for submitted and in progress registrations

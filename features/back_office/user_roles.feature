@@ -1,4 +1,4 @@
-@backoffice @data @broken
+@backoffice @data @broken @roles
 Feature: Back office users have different roles with different permissions
   As a back office user
   I need to access only the functions relevant to my role

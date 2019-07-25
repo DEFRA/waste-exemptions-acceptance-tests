@@ -12,7 +12,7 @@ class DashboardPage < SitePrism::Page
   element(:heading, ".heading-large")
   element(:search_term, "#term")
   element(:submitted_filter, "#filter_registrations", visible: false)
-  element(:unsubmitted_filter, "#filter_new_registrations", visible: false)
+  element(:unsubmitted_filter, "#filter_new_registrations")
 
   element(:create_new_registration, "a[href='/ad-privacy-policy']")
 

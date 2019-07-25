@@ -1,4 +1,4 @@
-@backoffice
+@backoffice @regb
 Feature: Back office user completes assisted digital registration for a user
   As an admin agent
   I need to register a waste exemption activity
