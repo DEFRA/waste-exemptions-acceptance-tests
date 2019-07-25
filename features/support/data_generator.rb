@@ -61,7 +61,7 @@ end
 def prepopulate_registrations
   @world.known_reg = generate_registration(:individual, "Mr Waste submitted")
   @world.known_reg_no = add_submitted_registration(@world.known_reg, true, "random", "random")
-  
+
   unsubmitted_reg = generate_registration(:individual, "Mr Waste unsubmitted")
   add_unsubmitted_registration(unsubmitted_reg)
 
