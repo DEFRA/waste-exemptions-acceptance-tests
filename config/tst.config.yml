@@ -26,7 +26,7 @@ headless: false
 # Add a pause (in seconds) between steps so you can visually track how the
 # browser is responding. Only useful if using a non-headless browser. The
 # default is 0
-pause: 2
+pause: 0
 
 # Specify whether Quke should stop all tests once an error occurs. Useful in
 # Continuous Integration (CI) environments where a quick Yes/No is preferable to

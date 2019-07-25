@@ -1,4 +1,4 @@
-@backoffice @data
+@backoffice @data @resume @broken
 Feature: Back office user resumes assisted digital registration for a user
   As a super agent
   I need to complete a user's registration

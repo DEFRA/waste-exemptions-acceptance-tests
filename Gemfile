@@ -8,10 +8,11 @@ gem "quke",
 
 # Rake gives us the ability to create our own commands or 'tasks' for working
 # with quke.
-gem "rake"
 
 # Create random names
 gem "faker"
+gem "pry"
+gem "rake"
 
 # Gem used by the Defra ruby services team to ensure a consistent style across
 # our code base

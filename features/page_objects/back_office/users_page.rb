@@ -35,7 +35,7 @@ class UsersPage < SitePrism::Page
 
   def look_for(user_email)
     # Look for the known email on page. If it's not there, click Next and look again.
-    10.times do
+    30.times do
       break if content.has_text?(user_email)
 
       find_link("Next ›").click

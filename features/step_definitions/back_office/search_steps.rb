@@ -28,12 +28,12 @@ And("refreshing doesn't create new registrations") do
   @world.bo.dashboard_page.unsubmitted_filter.click
   @world.bo.dashboard_page.submit(search_term: @world.known_transient_applicant)
   @world.bo.dashboard_page.view_details_links[0].click
-  expect(@world.bo.registration_details_page.heading).to have_text("In-progress registration details for")
+  expect(@world.bo.registration_details_page.heading).to have_text("In-progress registration details")
 
   # Get the last registration number from the heading:
   last_reg = @world.bo.registration_details_page.heading.text.scan(/\d+/)[0].to_s
   last_reg_number = last_reg.to_i
-  puts "Last known reg = " + last_reg
+  puts last_reg + " is the latest known registration"
 
   # Refresh the start page. This should only generate one new registration.
   find_link("Waste exemptions back office").click

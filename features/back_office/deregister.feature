@@ -1,4 +1,4 @@
-@backoffice @data
+@backoffice @data @deregister
 Feature: Back office user deregisters exemptions
   As an admin agent
   I need to deregister a waste exemption activity

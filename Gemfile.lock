@@ -41,6 +41,7 @@ GEM
       archive-zip (~> 0.10)
       nokogiri (~> 1.8)
     cliver (0.3.2)
+    coderay (1.1.2)
     concurrent-ruby (1.1.4)
     cucumber (3.1.2)
       builder (>= 2.1.2)
@@ -73,6 +74,7 @@ GEM
     jaro_winkler (1.5.2)
     launchy (2.4.3)
       addressable (~> 2.3)
+    method_source (0.9.2)
     mini_mime (1.0.1)
     mini_portile2 (2.4.0)
     multi_json (1.13.1)
@@ -88,6 +90,9 @@ GEM
       capybara (>= 2.1, < 4)
       cliver (~> 0.3.1)
       websocket-driver (>= 0.2.0)
+    pry (0.12.2)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
     public_suffix (3.0.3)
     rack (2.0.6)
     rack-test (1.1.0)
@@ -127,8 +132,9 @@ PLATFORMS
 DEPENDENCIES
   defra_ruby_style
   faker
+  pry
   quke!
   rake
 
 BUNDLED WITH
-   2.0.1
+   2.0.2
