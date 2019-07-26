@@ -1,8 +1,12 @@
-@backoffice @data @search
+@backoffice @data @search @broken
 Feature: Back office users need to be able to search for registrations
   As a back office user
   I need to search for submitted and in progress registrations
   So that I can support both internal and external users and carry out my duties
+
+  # This feature is broken because the @data tag no longer calls the before hook,
+  # if running this test as part of a suite. However, running this test in isolation works.
+  # RUBY-489 has been raised to fix this.
 
   Background:
 	  Given I sign in as an admin agent

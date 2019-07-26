@@ -76,5 +76,10 @@ Then("I can access data exports") do
   expect(@world.bo.dashboard_page.admin_menu).to have_data_exports
 
   @world.bo.dashboard_page.admin_menu.data_exports.click
-  expect(find("h1.heading-large").text).to eq("Data Exports")
+  # The following sleep is required for running headlessly.
+  # If not included, then the next assertion fails because the page title doesn't change straight away.
+  # There are no other unique page objects on the Data Exports page which don't exist
+  # on the previous page, and stay constant.
+  sleep(1)
+  expect(page.title).to eq("Data Exports - Register your waste exemptions - GOV.UK")
 end
