@@ -13,14 +13,13 @@ def add_submitted_registration(registration, load_root_page = true, address_type
   @world.journey.home_page.load if load_root_page
   @world.journey.registration_type_page.submit(start_option: :new_registration)
   @world.journey.location_page.submit(location: :england)
+  @world.journey.choose_exemptions_page.submit(exemptions: registration[:exemptions])
 
   complete_applicant_details(registration[:applicant])
   complete_organisation_details(registration, address_type)
   complete_contact_details(registration[:contact], address_type)
   complete_farm_questions(registration)
   complete_site_details(registration, address_type, site_type)
-
-  @world.journey.choose_exemptions_page.submit(exemptions: registration[:exemptions])
 
   complete_confirmations
 end
@@ -43,9 +42,9 @@ end
 
 def add_unsubmitted_registration(registration, load_root_page = true, address_type = "random")
   @world.journey.home_page.load if load_root_page
-
   @world.journey.registration_type_page.submit(start_option: :new_registration)
   @world.journey.location_page.submit(location: :england)
+  @world.journey.choose_exemptions_page.submit(exemptions: registration[:exemptions])
 
   complete_applicant_details(registration[:applicant])
   complete_organisation_details(registration, address_type)
@@ -55,7 +54,6 @@ def continue_unsubmitted_registration(registration, address_type = "random", sit
   complete_contact_details(registration[:contact], address_type)
   complete_farm_questions(registration)
   complete_site_details(registration, address_type, site_type)
-  @world.journey.choose_exemptions_page.submit(exemptions: registration[:exemptions])
   complete_confirmations
 end
 

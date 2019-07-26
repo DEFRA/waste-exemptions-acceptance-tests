@@ -1,8 +1,12 @@
-@backoffice @data @broken @roles
+@backoffice @data @roles @broken
 Feature: Back office users have different roles with different permissions
   As a back office user
   I need to access only the functions relevant to my role
   So that I can perform my duties
+
+  # This feature is broken because the @data tag no longer calls the before hook,
+  # if running this test as part of a suite. However, running this test in isolation works.
+  # RUBY-489 has been raised to fix this.
 
   Scenario: User is a system_user
     Given I sign in as a system user

@@ -11,8 +11,10 @@ class DashboardPage < SitePrism::Page
   element(:content, "#content")
   element(:heading, ".heading-large")
   element(:search_term, "#term")
-  element(:submitted_filter, "#filter_registrations", visible: false)
-  element(:unsubmitted_filter, "#filter_new_registrations")
+
+  # The + label identifiers below work when the visible:false flags don't:
+  element(:submitted_filter, "#filter_registrations + label")
+  element(:unsubmitted_filter, "#filter_new_registrations + label")
 
   element(:create_new_registration, "a[href='/ad-privacy-policy']")
 

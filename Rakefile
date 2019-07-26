@@ -44,7 +44,7 @@ end
 
 desc "Run tests against the test environment with custom tags"
 task :tsttag do
-  sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke --tags @resume)
+  sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke --tags ~@broken)
 end
 
 desc "Run all @wip tests against the test environment"
