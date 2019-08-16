@@ -2,7 +2,7 @@
 
 def add_submitted_registration(registration, load_root_page = true, address_type = "lookup", site_type = "random")
   # Generate a registration with:
-  # a given business type (:limited or :partnership)
+  # a given business type (:limited_company or :partnership)
   # a given operator name (default nil)
   # an address type, for the applicant and contact addresses, of:
   #   lookup - looks up a postcode for the applicant and contact addresses (default)
@@ -66,7 +66,7 @@ end
 def complete_organisation_details(registration, address_type)
   @world.journey.business_type_page.submit(business_type: registration[:business_type])
 
-  if registration[:business_type] == :limited
+  if registration[:business_type] == :limited_company || registration[:business_type] == :llp
     @world.journey.registration_number_page.submit(
       registration_number: registration[:registration_number]
     )

@@ -63,15 +63,17 @@ When("I deregister a whole registration") do
   # Randomly revoke or cease the whole registration:
   if rand(0..1).zero?
     @world.bo.deregister_page.revoke_radio.click
+    @reg_status = "revoked"
   else
     @world.bo.deregister_page.cease_radio.click
+    @reg_status = "ceased"
   end
 
   # Specify reason for revoking:
   @world.bo.deregister_page.submit(
     reason: "I decided I didn't like this registration at: " + Time.new.inspect
   )
-  puts @world.last_reference + " fully deregistered"
+  puts @world.last_reference + " fully " + @reg_status
 end
 
 Then("the registration is no longer active") do
@@ -79,6 +81,13 @@ Then("the registration is no longer active") do
   expect(@world.bo.registration_details_page).to have_no_deregister_reg_link
   expect(@world.bo.registration_details_page.deregister_ex_links.count.zero?).to eq(true)
   expect(@world.bo.registration_details_page.active_tags.count.zero?).to eq(true)
+  @world.bo.registration_details_page.back_link.click
+  @world.bo.dashboard_page.submit(search_term: @world.last_reference)
+  if @reg_status == "ceased"
+    expect(@world.bo.dashboard_page).to have_ceased_tag
+  else
+    expect(@world.bo.dashboard_page).to have_revoked_tag
+  end
 end
 
 Then("I cannot deregister anything") do

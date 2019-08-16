@@ -5,7 +5,7 @@ Feature: Back office user edits a registration
   So that I can keep it up to date
 
   Background: Register an exemption
-    Given I am a limited company
+    Given my business is a "limited_company"
      When I register an exemption
      Then I will be informed the registration is complete
 

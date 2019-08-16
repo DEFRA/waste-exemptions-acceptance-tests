@@ -3,7 +3,7 @@
 class BusinessTypePage < SitePrism::Page
 
   element(:individual, "#business_type_form_business_type_soletrader + label")
-  element(:limited, "#business_type_form_business_type_limitedcompany + label")
+  element(:limited_company, "#business_type_form_business_type_limitedcompany + label")
   element(:partnership, "#business_type_form_business_type_partnership + label")
   element(:llp, "#business_type_form_business_type_limitedliabilitypartnership + label")
   element(:local_authority, "#business_type_form_business_type_localauthority + label")

@@ -5,12 +5,16 @@ require "faker"
 def generate_registration(business_type, operator_name = nil)
   applicant = generate_person
 
-  contact = if business_type == :limited
+  contact = if business_type == :limited_company
               generate_person
             else
               applicant
             end
-  registration_number = business_type == :limited ? "00445790" : nil
+
+  # Syntax from https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Style/MultipleComparison
+  # If the business type is :limited_company or :llp then set registration number.
+  registration_number = %i[limited_company llp].include?(business_type) ? "00445790" : nil
+
   operator_name ||= generate_operator_name(business_type, "#{contact[:first_name]} #{contact[:last_name]}")
 
   {
@@ -41,7 +45,7 @@ def generate_person
 end
 
 def generate_operator_name(business_type, operator_name)
-  operator_name = "#{Faker::Company.unique.name} Ltd" if business_type == :limited
+  operator_name = "#{Faker::Company.unique.name} Ltd" if business_type == :limited_company
   operator_name
 end
 

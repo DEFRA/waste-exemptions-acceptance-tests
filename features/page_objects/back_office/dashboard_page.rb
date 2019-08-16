@@ -23,6 +23,8 @@ class DashboardPage < SitePrism::Page
 
   elements(:results, ".registration-list")
 
+  element(:revoked_tag, ".status-tag-revoked")
+  element(:ceased_tag, ".status-tag-ceased")
   elements(:view_details_links, "a[href*='new-registrations']")
   elements(:resume_links, "[id^=resume]")
   elements(:confirmation_letter_links, "a[href*='confirmation-letter']")

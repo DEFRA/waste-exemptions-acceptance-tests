@@ -1,12 +1,31 @@
-@backoffice @data @roles @broken
-Feature: Back office users have different roles with different permissions
+@backoffice @data @email @system @broken
+Feature: Carry out system tasks
   As a back office user
-  I need to access only the functions relevant to my role
-  So that I can perform my duties
+  I need to manage other users and perform admin tasks
+  So that the service is used appropriately
 
-  # This feature is broken because the @data tag no longer calls the before hook,
+  # This feature is marked as broken because the @data tag no longer calls the before hook,
   # if running this test as part of a suite. However, running this test in isolation works.
   # RUBY-489 has been raised to fix this.
+
+  @email
+  Scenario: System user adds a new user
+	  Given I sign in as a system user
+     When I invite a new back office user
+      And the invite is accepted
+     Then a password is set
+      And the new back office user can sign in
+      And the new back office user cannot change their password
+
+  Scenario: System user changes a users role
+	  Given I sign in as a system user
+     When I change a users role to super agent
+     Then I see their role has changed
+
+  Scenario: System user deactivates a user
+	  Given I sign in as a system user
+     When I deactivate a user
+     Then I see their status has changed
 
   Scenario: User is a system_user
     Given I sign in as a system user

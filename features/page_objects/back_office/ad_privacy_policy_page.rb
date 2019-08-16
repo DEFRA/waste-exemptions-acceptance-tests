@@ -6,7 +6,9 @@ class AdPrivacyPolicyPage < SitePrism::Page
 
   element(:heading, ".heading-large")
   element(:content, ".column-two-thirds")
-  element(:policy_text_link, "span:contains('Waste Exemptions privacy policy text')")
+  element(:policy_text_link, "span", text: "Waste Exemptions privacy policy text")
+  element(:dpo_details_link, "span", text: "Contact details for the Data Protection Officer")
+  element(:ico_details_link, "span", text: "Contact details for the Information Commissioner's Office")
   element(:continue_button, ".button")
 
 end

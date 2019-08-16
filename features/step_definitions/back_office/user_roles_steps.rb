@@ -80,6 +80,6 @@ Then("I can access data exports") do
   # If not included, then the next assertion fails because the page title doesn't change straight away.
   # There are no other unique page objects on the Data Exports page which don't exist
   # on the previous page, and stay constant.
-  sleep(1)
+  sleep(2)
   expect(page.title).to eq("Data Exports - Register your waste exemptions - GOV.UK")
 end
