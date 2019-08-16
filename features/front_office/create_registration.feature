@@ -6,12 +6,7 @@ Feature: Registering a waste exemption
 
   @smoke
     Scenario: Registration by an individual
-     Given my business is a "individual"
-      When I register an exemption
-      Then I will be informed the registration is complete
-
-    Scenario: Registration by a limited company
-     Given my business is a "limited_company"
+     Given my business is an "individual"
       When I register an exemption
       Then I will be informed the registration is complete
 
@@ -21,7 +16,7 @@ Feature: Registering a waste exemption
       Then I will be informed the registration is complete
 
     Scenario: Registration by an individual
-      Given my business is a "llp"
+      Given my business is an "llp"
        When I register an exemption
        Then I will be informed the registration is complete
 
@@ -34,3 +29,8 @@ Feature: Registering a waste exemption
       Given my business is a "charity"
        When I register an exemption
        Then I will be informed the registration is complete
+
+    Scenario: Registration by a limited company
+     Given my business is a "limited_company"
+      When I register an exemption
+      Then I will be informed the registration is complete

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-Given("my business is a {string}") do |business|
+# Use Ruby regex here rather than Cucumber (eg {string}), as regex types can't be mixed:
+Given(/^my business is (?:a|an) "([^"]*)"$/) do |business|
   @world.current_reg = generate_registration(business.to_sym)
 end
 

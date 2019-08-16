@@ -1,21 +1,17 @@
 # frozen_string_literal: true
 
-Then("I complete a limited companies registration") do
+Then(/^I complete (?:a|an) "([^"]*)" registration$/) do |business|
   @world.bo.dashboard_page.create_new_registration.click
+  # Click through the links on the privacy policy page:
+  @world.bo.ad_privacy_policy_page.policy_text_link.click
+  @world.bo.ad_privacy_policy_page.dpo_details_link.click
+  @world.bo.ad_privacy_policy_page.ico_details_link.click
+  expect(@world.bo.ad_privacy_policy_page.content).to have_text("European Economic Area")
   @world.bo.ad_privacy_policy_page.continue_button.click
-  @world.current_reg = generate_registration(:limited_company)
+  @world.current_reg = generate_registration(business.to_sym)
 
   # This also stores the exemption number so the exemption can be edited in later steps.
   @world.last_reference = add_submitted_registration(@world.current_reg, false, "random", "random")
-end
-
-Then("I complete a partnerships registration") do
-  @world.bo.dashboard_page.create_new_registration.click
-  @world.bo.ad_privacy_policy_page.continue_button.click
-  @world.current_reg = generate_registration(:partnership)
-
-  # Stores the exemption number so the exemption can be edited in later steps
-  @world.last_reference = add_submitted_registration(@world.current_reg, false)
 end
 
 Then("I complete an in progress registration") do
