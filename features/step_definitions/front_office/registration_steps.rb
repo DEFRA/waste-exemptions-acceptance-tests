@@ -1,15 +1,7 @@
 # frozen_string_literal: true
 
-Then("I am an individual") do
-  @world.current_reg = generate_registration(:individual)
-end
-
-Then("I am a partnership") do
-  @world.current_reg = generate_registration(:partnership)
-end
-
-Then("I am a limited company") do
-  @world.current_reg = generate_registration(:limited)
+Given("my business is a {string}") do |business|
+  @world.current_reg = generate_registration(business.to_sym)
 end
 
 Then("I register an exemption") do

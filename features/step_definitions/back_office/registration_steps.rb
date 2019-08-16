@@ -3,7 +3,7 @@
 Then("I complete a limited companies registration") do
   @world.bo.dashboard_page.create_new_registration.click
   @world.bo.ad_privacy_policy_page.continue_button.click
-  @world.current_reg = generate_registration(:limited)
+  @world.current_reg = generate_registration(:limited_company)
 
   # This also stores the exemption number so the exemption can be edited in later steps.
   @world.last_reference = add_submitted_registration(@world.current_reg, false, "random", "random")

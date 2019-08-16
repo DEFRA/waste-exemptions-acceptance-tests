@@ -5,7 +5,7 @@ Feature: Back office user deregisters exemptions
   So that I can correctly mark it as revoked or ceased
 
   Background: Register an exemption
-    Given I am an individual
+    Given my business is a "individual"
      When I register an exemption
      Then I will be informed the registration is complete
 
