@@ -16,6 +16,8 @@ end
 
 Then("I complete an in progress registration") do
   find_link("Waste exemptions back office").click
+  # Add a sleep here, because the automated tests often have a problem with the filter steps:
+  sleep(1)
   @world.bo.dashboard_page.unsubmitted_filter.click
   @world.bo.dashboard_page.submit(search_term: "Mr Waste")
 

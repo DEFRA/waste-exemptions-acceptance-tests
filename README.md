@@ -98,6 +98,8 @@ To have consistency across the project the following tags are defined and should
 |@email|Tests scenarios which include steps that interact with an email client|
 |@data|Steps that rely on pre-existing data being generated|
 
+Each test also has its own unique tag in case it needs to be run in isolation.
+
 It's also common practice to use a custom tag whilst working on a new feature or scenario e.g. `@focus` or `@wip`. That is perfectly acceptable but please ensure they are removed before your change is merged.
 
 ## Project outline
@@ -125,7 +127,7 @@ Next up if the scenario is in a feature with a `Background` defined the steps in
 Last thing to run is any [after hooks](https://docs.cucumber.io/cucumber/api/#after) hooks we have defined. In this project we have 2
 
 - One that always runs, which is used to copy the instance of `@world` into `$world_state` so it can be used in any subsequent scenarios
-- One that if the scenario is tagged `@backoffice` will run. In this case it is to reset the session. Because we first need to login for all back office scenarios, if we didn't reset the session then when the next scenario starts it would fail. This is because it will be expecting to interact with the login page but the app will have already logged them in because it can see a valid session 
+- One that if the scenario is tagged `@backoffice` will run. In this case it is to reset the session. Because we first need to login for all back office scenarios, if we didn't reset the session then when the next scenario starts it would fail. This is because it will be expecting to interact with the login page but the app will have already logged them in because it can see a valid session
 
 ## Tips
 

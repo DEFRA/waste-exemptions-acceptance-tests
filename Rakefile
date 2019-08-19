@@ -64,7 +64,7 @@ end
 
 desc "Run tests against the pre-production environment with custom tags"
 task :pretag do
-  sh %( QUKE_CONFIG=config/pre.config.yml bundle exec quke --tags @system)
+  sh %( QUKE_CONFIG=config/pre.config.yml bundle exec quke --tags @resume)
 end
 
 desc "Run all tests against the production environment"
