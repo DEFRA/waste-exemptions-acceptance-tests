@@ -23,7 +23,7 @@ Then("I complete an in progress registration") do
 
   # Check first that I can view details for an in progress registration (RUBY-329)
 
-  @world.bo.dashboard_page.view_details_links[0].click
+  @world.bo.dashboard_page.view_transient_details_links[0].click
   expect(@world.bo.registration_details_page.heading).to have_text("In-progress registration details")
   @world.bo.registration_details_page.back_link.click
 
