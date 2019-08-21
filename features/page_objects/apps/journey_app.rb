@@ -15,6 +15,10 @@ class JourneyApp
     @last_page = AddressPage.new
   end
 
+  def ad_privacy_policy_page
+    @last_page = AdPrivacyPolicyPage.new
+  end
+
   def applicant_email_page
     @last_page = ApplicantEmailPage.new
   end
@@ -97,6 +101,14 @@ class JourneyApp
 
   def register_in_wales_page
     @last_page = RegisterInWalesPage.new
+  end
+
+  def renew_choice_page
+    @last_page = RenewChoicePage.new
+  end
+
+  def renew_splash_page
+    @last_page = RenewSplashPage.new
   end
 
   def reviewing_partners_page

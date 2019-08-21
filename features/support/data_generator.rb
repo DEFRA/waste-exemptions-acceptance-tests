@@ -3,6 +3,11 @@
 require "faker"
 
 def generate_registration(business_type, operator_name = nil)
+  # Generate data to be used for a registration.
+  # Input parameters:
+  # - business type, defined in features/page_objects/journey/business_type_page
+  # - a given operator name (default nil)
+
   applicant = generate_person
 
   contact = if business_type == :limited_company
@@ -17,6 +22,9 @@ def generate_registration(business_type, operator_name = nil)
 
   operator_name ||= generate_operator_name(business_type, "#{contact[:first_name]} #{contact[:last_name]}")
 
+  # Return a hash containing the following data.
+  # Some of the sub items are also hashes.
+  # Retrieve using
   {
     business_type: business_type,
     applicant: applicant,
@@ -38,6 +46,7 @@ def generate_person
   {
     first_name: first_name,
     last_name: last_name,
+    full_name: first_name + " " + last_name,
     telephone: "0117 9000000",
     email: generate_example_email(first_name, last_name),
     position: Faker::Job.title
@@ -63,18 +72,22 @@ def generate_site
 end
 
 def prepopulate_registrations
+  # This creates a submitted and unsubmitted registration and stores the data in global variables.
+  # It is used before tests where a @data tag exists.
+  # Registrations are also generated in the "I register an exemption" step, which stores data in a different variable.
+  # Consider reorganising tests so as not to duplicate with the above step.
+
+  # This is a hash containing the data:
   @world.known_reg = generate_registration(:individual, "Mr Waste submitted")
+
+  # This completes the registration and stores the registration number:
   @world.known_reg_no = add_submitted_registration(@world.known_reg, true, "random", "random")
 
+  # This does the same steps for an incomplete registration:
   unsubmitted_reg = generate_registration(:individual, "Mr Waste unsubmitted")
   add_unsubmitted_registration(unsubmitted_reg)
 
-  # Get the first and last name of the last submitted and unsubmitted applicant
-  known_first_name = @world.known_reg[:applicant][:first_name].to_s
-  known_last_name = @world.known_reg[:applicant][:last_name].to_s
-  @world.known_submitted_applicant = known_first_name + " " + known_last_name
-
-  new_first_name = unsubmitted_reg[:applicant][:first_name].to_s
-  new_last_name = unsubmitted_reg[:applicant][:last_name].to_s
-  @world.known_transient_applicant = new_first_name + " " + new_last_name
+  # Get the full name of the last submitted and unsubmitted applicant:
+  @world.known_submitted_applicant = @world.known_reg[:applicant_name].to_s
+  @world.known_transient_applicant = unsubmitted_reg[:applicant_name].to_s
 end

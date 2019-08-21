@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 def add_submitted_registration(registration, load_root_page = true, address_type = "lookup", site_type = "random")
-  # Generate a registration with:
-  # a given business type (:limited_company or :partnership)
-  # a given operator name (default nil)
-  # an address type, for the applicant and contact addresses, of:
-  #   lookup - looks up a postcode for the applicant and contact addresses (default)
-  #   manual - enters addresses manually
-  #   random - chooses a method at random
-  # a site type entered as a grid_ref (default) or an address, or random
+  # This function completes a full registration with parameters:
+  # - a full set of `registration` data - generated from the generate_registration function in data_generator
+  # - an option to load the root page or not (default true)
+  # - an address type, for the applicant and contact addresses, of:
+  #     lookup - looks up a postcode for the applicant and contact addresses (default)
+  #     manual - enters addresses manually
+  #     random - chooses a method at random
+  # - a site type entered as a `grid_ref`, an `address`, or a `random` choice of either
 
   @world.journey.home_page.load if load_root_page
   @world.journey.registration_type_page.submit(start_option: :new_registration)
@@ -26,6 +26,7 @@ end
 
 def choose_random_address_type
   # Select "lookup" addresses, or manually entering addresses at random.
+  # Lookup is more common.
   i = rand(0..2)
   return "lookup" unless i == 2
 

@@ -25,10 +25,10 @@ end
 
 And("refreshing doesn't create new registrations") do
   # Search for the applicant name from the last unsubmitted registration
-  last_reg = @world.known_reg_no.to_s.scan(/\d+/)[0].to_s
-  @world.bo.dashboard_page.submit(search_term: last_reg.to_s)
-  last_reg_number = last_reg.to_i
-  puts last_reg + " is the latest known registration"
+  last_reg_no = @world.known_reg_no.to_s.scan(/\d+/)[0].to_s
+  @world.bo.dashboard_page.submit(search_term: last_reg_no.to_s)
+  last_reg_no_number = last_reg_no.to_i
+  puts last_reg_no + " is the latest known registration"
 
   # Refresh the start page. This should generate no more than one new registration.
   # find_link("Waste exemptions back office").click
@@ -39,12 +39,12 @@ And("refreshing doesn't create new registrations") do
 
   # Work out the registration 2 numbers higher than the previous registration
   # by recreating the expected WEX number with 6 digits: regex %06d
-  last_reg_plus = "WEX" + format("%06d", last_reg_number + 2)
+  last_reg_no_plus = "WEX" + format("%06d", last_reg_no_number + 2)
 
   # Search for the higher registration number and check it doesn't exist:
   find_link("Dashboard").click
   @world.bo.dashboard_page.unsubmitted_filter.click
-  @world.bo.dashboard_page.submit(search_term: last_reg_plus)
+  @world.bo.dashboard_page.submit(search_term: last_reg_no_plus)
   expect(@world.bo.dashboard_page).to have_no_results
 
 end
