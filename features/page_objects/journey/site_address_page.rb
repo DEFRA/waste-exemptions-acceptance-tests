@@ -2,6 +2,7 @@
 
 class SiteAddressPage < SitePrism::Page
 
+  element(:heading, ".heading-large")
   element(:postcode, "#site_postcode_form_postcode")
 
   element(:find_address, "input[value='Find address']")

@@ -24,7 +24,6 @@ def generate_registration(business_type, operator_name = nil)
 
   # Return a hash containing the following data.
   # Some of the sub items are also hashes.
-  # Retrieve using
   {
     business_type: business_type,
     applicant: applicant,

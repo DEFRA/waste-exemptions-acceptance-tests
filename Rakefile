@@ -19,7 +19,7 @@ end
 
 desc "Run all tests against the local environment"
 task :loc do
-  sh %( QUKE_CONFIG=config/loc.config.yml bundle exec quke)
+  sh %( QUKE_CONFIG=config/loc.config.yml bundle exec quke --tags ~@renew)
 end
 
 desc "Run tests with custom tags against the local environment"
@@ -59,7 +59,7 @@ end
 
 desc "Run all tests against the pre-production environment"
 task :pre do
-  sh %( QUKE_CONFIG=config/pre.config.yml bundle exec quke)
+  sh %( QUKE_CONFIG=config/pre.config.yml bundle exec quke --tags ~@renew)
 end
 
 desc "Run tests against the pre-production environment with custom tags"
