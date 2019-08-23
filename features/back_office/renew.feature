@@ -1,4 +1,4 @@
-@backoffice @NOrenew
+@backoffice @renew
 Feature: [RUBY-241] Back office user carries out a renewal
   As an admin agent
   I need to renew on behalf of an assisted digital user

@@ -43,11 +43,12 @@ class LastEmailApiPage < SitePrism::Page
     puts("Couldn't find renewal URL")
   end
 
-  def get_confirmation_email(email_address)
+  def get_confirmation_email(email_address, registration_no)
     10.times do
       page.evaluate_script "window.location.reload()"
       parsed_data = JSON.parse(email_content.text)
-      next if expected_email?(parsed_data, email_address, "Waste exemptions registration") == false
+      # Retry if the correct email address and waste exemption number aren't shown:
+      next if expected_email?(parsed_data, email_address, registration_no) == false
 
       return parsed_data["last_email"].to_s
     end

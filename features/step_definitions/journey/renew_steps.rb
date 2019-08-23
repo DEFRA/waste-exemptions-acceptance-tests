@@ -91,8 +91,7 @@ When("I renew the registration {string} changes") do |changes|
 end
 
 Then("I can see the correct renewed details") do
-  # Search for the renewed registration in back office:
-  # DELETE? login_user(@world.super_agent_user) if @renewer == "front office"
+  # Search for the renewed registration in back office.
   # Should already be logged in as a back office user:
   visit(Quke::Quke.config.custom["urls"]["back_office"])
   @world.bo.dashboard_page.submit(search_term: @renewed_reg_no)
@@ -177,10 +176,14 @@ Then("I receive a renewal confirmation email") do
   # We don't know whether the applicant or contact email will be sent first,
   # so we need to check both. If the applicant email doesn't work, try the contact email.
   email_recipient = "applicant"
-  confirmation_email = @world.email.last_email_api_page.get_confirmation_email(@renewed_reg[:applicant][:email].to_s)
+  # rubocop:disable Metrics/LineLength
+  confirmation_email = @world.email.last_email_api_page.get_confirmation_email(@renewed_reg[:applicant][:email].to_s, @renewed_reg_no)
+  # rubocop:enable Metrics/LineLength
   if confirmation_email == "nope"
     email_recipient = "contact"
-    confirmation_email = @world.email.last_email_api_page.get_confirmation_email(@renewed_reg[:contact][:email].to_s)
+    # rubocop:disable Metrics/LineLength
+    confirmation_email = @world.email.last_email_api_page.get_confirmation_email(@renewed_reg[:contact][:email].to_s, @renewed_reg_no)
+    # rubocop:enable Metrics/LineLength
   end
   # Check either the applicant or contact's email address depending on what's been retrieved in the last email:
   expect(confirmation_email).to have_text(@renewed_reg[email_recipient.to_sym][:email].to_s)
