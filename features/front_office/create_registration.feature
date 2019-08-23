@@ -15,17 +15,17 @@ Feature: Registering a waste exemption
       When I register an exemption
       Then I will be informed the registration is complete
 
-    Scenario: Registration by an individual
+    Scenario: Registration by an LLP
       Given my business is an "llp"
        When I register an exemption
        Then I will be informed the registration is complete
 
-    Scenario: Registration by a limited company
+    Scenario: Registration by a local authority
       Given my business is a "local_authority"
        When I register an exemption
        Then I will be informed the registration is complete
 
-    Scenario: Registration by a partnership
+    Scenario: Registration by a charity
       Given my business is a "charity"
        When I register an exemption
        Then I will be informed the registration is complete
