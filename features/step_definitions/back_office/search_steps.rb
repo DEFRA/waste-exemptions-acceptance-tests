@@ -31,7 +31,6 @@ And("refreshing doesn't create new registrations") do
   puts last_reg_no + " is the latest known registration"
 
   # Refresh the start page. This should generate no more than one new registration.
-  # find_link("Waste exemptions back office").click
   find_link("Start a new registration").click
   20.times do
     page.evaluate_script "window.location.reload()"

@@ -17,12 +17,12 @@ class DashboardPage < SitePrism::Page
   element(:unsubmitted_filter, "#filter_new_registrations + label")
 
   element(:create_new_registration, "a[href='/ad-privacy-policy']")
-
   element(:submit_button, "input[name='commit']")
   element(:sign_out_button, ".user-info .button")
 
-  elements(:results, ".registration-list")
+  element(:renewal_email_confirmation, "#message-summary-heading-1")
 
+  elements(:results, ".registration-list")
   element(:revoked_tag, ".status-tag-revoked")
   element(:ceased_tag, ".status-tag-ceased")
   elements(:view_transient_details_links, "a[href*='new-registrations']")

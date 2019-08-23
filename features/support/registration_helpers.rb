@@ -21,7 +21,9 @@ def add_submitted_registration(registration, load_root_page = true, address_type
   complete_farm_questions(registration)
   complete_site_details(registration, address_type, site_type)
 
-  complete_confirmations
+  ref_no = complete_confirmations
+  puts ref_no + " completed"
+  ref_no
 end
 
 def choose_random_address_type
@@ -55,7 +57,9 @@ def continue_unsubmitted_registration(registration, address_type = "random", sit
   complete_contact_details(registration[:contact], address_type)
   complete_farm_questions(registration)
   complete_site_details(registration, address_type, site_type)
-  complete_confirmations
+  ref_no = complete_confirmations
+  puts ref_no + " completed"
+  ref_no
 end
 
 def complete_applicant_details(person)
@@ -145,6 +149,5 @@ def complete_confirmations
   @world.journey.declaration_page.submit
 
   # Return the reference number of the registration that was just completed:
-  puts @world.journey.confirmation_page.ref_no.text + " submitted"
   @world.journey.confirmation_page.ref_no.text
 end
