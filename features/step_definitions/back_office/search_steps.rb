@@ -25,30 +25,26 @@ end
 
 And("refreshing doesn't create new registrations") do
   # Search for the applicant name from the last unsubmitted registration
-  @world.bo.dashboard_page.unsubmitted_filter.click
-  @world.bo.dashboard_page.submit(search_term: @world.known_transient_applicant)
-  @world.bo.dashboard_page.view_details_links[0].click
-  expect(@world.bo.registration_details_page.heading).to have_text("In-progress registration details")
+  last_reg_no = @world.known_reg_no.to_s.scan(/\d+/)[0].to_s
+  @world.bo.dashboard_page.submit(search_term: last_reg_no.to_s)
+  last_reg_no_number = last_reg_no.to_i
+  puts last_reg_no + " is the latest known registration"
 
-  # Get the last registration number from the heading:
-  last_reg = @world.bo.registration_details_page.heading.text.scan(/\d+/)[0].to_s
-  last_reg_number = last_reg.to_i
-  puts last_reg + " is the latest known registration"
-
-  # Refresh the start page. This should only generate one new registration.
-  find_link("Waste exemptions back office").click
+  # Refresh the start page. This should generate no more than one new registration.
+  # find_link("Waste exemptions back office").click
   find_link("Start a new registration").click
   20.times do
     page.evaluate_script "window.location.reload()"
   end
 
-  # Work out the registration 2 numbers higher than the previous registration:
-  last_reg_plus = "WEX" + format("%06d", last_reg_number + 2)
+  # Work out the registration 2 numbers higher than the previous registration
+  # by recreating the expected WEX number with 6 digits: regex %06d
+  last_reg_no_plus = "WEX" + format("%06d", last_reg_no_number + 2)
 
   # Search for the higher registration number and check it doesn't exist:
   find_link("Dashboard").click
   @world.bo.dashboard_page.unsubmitted_filter.click
-  @world.bo.dashboard_page.submit(search_term: last_reg_plus)
+  @world.bo.dashboard_page.submit(search_term: last_reg_no_plus)
   expect(@world.bo.dashboard_page).to have_no_results
 
 end

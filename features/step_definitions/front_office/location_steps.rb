@@ -2,7 +2,7 @@
 
 Then("I start a new waste exemption registration") do
   @world.journey.home_page.load
-  @world.journey.registration_type_page.submit(start_option: :new_registration)
+  @world.journey.registration_type_page.submit(start_option: :new_radio)
 end
 
 Then("I choose Wales") do

@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
 When("I edit the most recent registration") do
-  # Last registration number is stored in @world.last_reference.
+  # Last registration number is stored in @world.last_reg_no.
   # Search for the last reference number:
-  @world.bo.dashboard_page.submit(search_term: @world.last_reference)
+  @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
   find_link("Edit").click
-  puts @world.last_reference + " edited"
-  expect(@world.bo.edit_page.heading).to have_text("Edit " + @world.last_reference + " registration")
+  expect(@world.bo.edit_page.heading).to have_text("Edit " + @world.last_reg_no + " registration")
 
   # Generate data using the functions in data_generator.rb
   @new_details = generate_registration(:limited_company, nil)
@@ -33,7 +32,7 @@ When("I edit the most recent registration") do
 
 end
 
-When("I can see the new details on the registration details page") do
+Then("I can see the new details on the registration details page") do
   @world.bo.registration_details_page.reporting_info_link.click
   expect(@world.bo.registration_details_page.content).to have_text(@new_person[:first_name])
   expect(@world.bo.registration_details_page.content).to have_text(@new_person[:last_name])
@@ -44,7 +43,7 @@ end
 
 When("I cannot edit the most recent registration") do
   find_link("Waste exemptions back office").click
-  @world.bo.dashboard_page.submit(search_term: @world.last_reference)
+  @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
   expect(@world.bo.dashboard_page.content).not_to have_text("Edit")
 end
 
@@ -52,8 +51,9 @@ When("I complete the edit") do
   @world.bo.edit_page.continue_button.click
   @world.journey.declaration_page.submit
   expect(@world.bo.edit_details_page.heading).to have_text("Edit complete")
+  puts @world.last_reg_no + " edited"
   @world.bo.edit_details_page.continue_button.click
-  expect(@world.bo.registration_details_page.heading).to have_text("Registration details for " + @world.last_reference)
+  expect(@world.bo.registration_details_page.heading).to have_text("Registration details for " + @world.last_reg_no)
 end
 
 When("I cancel the edit") do

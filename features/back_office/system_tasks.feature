@@ -1,12 +1,8 @@
-@backoffice @data @email @system @broken
+@backoffice @data @email @system
 Feature: Carry out system tasks
   As a back office user
   I need to manage other users and perform admin tasks
   So that the service is used appropriately
-
-  # This feature is marked as broken because the @data tag no longer calls the before hook,
-  # if running this test as part of a suite. However, running this test in isolation works.
-  # RUBY-489 has been raised to fix this.
 
   @email
   Scenario: System user adds a new user

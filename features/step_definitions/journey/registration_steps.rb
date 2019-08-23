@@ -1,27 +1,45 @@
 # frozen_string_literal: true
 
+# Use Ruby regex here rather than Cucumber (eg {string}), as regex types can't be mixed:
+Given(/^my business is (?:a|an) "([^"]*)"$/) do |business|
+  @world.last_reg = generate_registration(business.to_sym)
+end
+
+Then("I register an exemption") do
+  # Complete the registration. See registration_helpers for an explanation of the parameters.
+  # Registration details are stored as a hash, @world.last_reg.
+  # Registration number is stored as a string, @world.last_reg_no.
+  @world.last_reg_no = add_submitted_registration(@world.last_reg, true, "random", "random")
+end
+
+Then("I will be informed the registration is complete") do
+  expect(page).to have_content "Registration complete"
+end
+
 Then(/^I complete (?:a|an) "([^"]*)" registration$/) do |business|
   @world.bo.dashboard_page.create_new_registration.click
   # Click through the links on the privacy policy page:
-  @world.bo.ad_privacy_policy_page.policy_text_link.click
-  @world.bo.ad_privacy_policy_page.dpo_details_link.click
-  @world.bo.ad_privacy_policy_page.ico_details_link.click
-  expect(@world.bo.ad_privacy_policy_page.content).to have_text("European Economic Area")
-  @world.bo.ad_privacy_policy_page.continue_button.click
-  @world.current_reg = generate_registration(business.to_sym)
+  @world.journey.ad_privacy_policy_page.policy_text_link.click
+  @world.journey.ad_privacy_policy_page.dpo_details_link.click
+  @world.journey.ad_privacy_policy_page.ico_details_link.click
+  expect(@world.journey.ad_privacy_policy_page.content).to have_text("European Economic Area")
+  @world.journey.ad_privacy_policy_page.continue_button.click
+  @world.last_reg = generate_registration(business.to_sym)
 
   # This also stores the exemption number so the exemption can be edited in later steps.
-  @world.last_reference = add_submitted_registration(@world.current_reg, false, "random", "random")
+  @world.last_reg_no = add_submitted_registration(@world.last_reg, false, "random", "random")
 end
 
 Then("I complete an in progress registration") do
   find_link("Waste exemptions back office").click
+  # Add a sleep here, because the automated tests often have a problem with the filter steps:
+  sleep(1)
   @world.bo.dashboard_page.unsubmitted_filter.click
   @world.bo.dashboard_page.submit(search_term: "Mr Waste")
 
   # Check first that I can view details for an in progress registration (RUBY-329)
 
-  @world.bo.dashboard_page.view_details_links[0].click
+  @world.bo.dashboard_page.view_transient_details_links[0].click
   expect(@world.bo.registration_details_page.heading).to have_text("In-progress registration details")
   @world.bo.registration_details_page.back_link.click
 
