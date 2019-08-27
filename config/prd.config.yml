@@ -124,5 +124,3 @@ custom:
   urls:
     front_office: "https://wex-prd.aws.defra.cloud"
     back_office: "https://admin-wex-prd.aws.defra.cloud"
-    back_office_email: "https://admin-wex-prd.aws.defra.cloud/last-email"
-    mail_client: "https://wex-prd.aws.defra.cloud/last-email"

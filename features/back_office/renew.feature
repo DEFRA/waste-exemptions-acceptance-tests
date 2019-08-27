@@ -11,22 +11,19 @@ Feature: [RUBY-241] Back office user carries out a renewal
      When I register an exemption
      Then I will be informed the registration is complete
 
+      And I sign in as a super agent
+      And I search for a registration to renew
+
   Scenario: Renew a registration from back office without changes
-    Given I sign in as an admin agent
-     When I search for a registration to renew
-      And I renew the registration "without" changes
+     When I renew the registration "without" changes
      Then I can see the correct renewed details
       And I can renew it again
 
   Scenario: Renew a registration from back office with changes
-    Given I sign in as a super agent
-     When I search for a registration to renew
-      And I renew the registration "with" changes
+     When I renew the registration "with" changes
      Then I can see the correct renewed details
       And I can renew it again
 
   Scenario: Cancel renewal
-    Given I sign in as an admin agent
-      And I search for a registration to renew
      When I partially renew the registration
      Then I can resume the renewal from where I left off

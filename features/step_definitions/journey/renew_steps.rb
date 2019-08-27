@@ -2,6 +2,7 @@
 
 When("I search for a registration to renew") do
   # Search for the most recent registration and start renewal:
+  @renewer = "back office"
   @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
   find_link("Start renewal").click
   @world.journey.ad_privacy_policy_page.continue_button.click
@@ -81,6 +82,7 @@ When("I renew the registration {string} changes") do |changes|
     end
 
     complete_confirmations
+    expect(@world.journey.confirmation_page.confirmation_box).to have_text("You have renewed your exemptions")
     @renewed_reg_no = @world.journey.confirmation_page.ref_no.text
     puts @world.last_reg_no + " renewed with changes. New registration is " + @renewed_reg_no + "."
 
@@ -89,10 +91,14 @@ When("I renew the registration {string} changes") do |changes|
 end
 
 Then("I can see the correct renewed details") do
-  find_link("Dashboard").click
+  # Search for the renewed registration in back office.
+  # Should already be logged in as a back office user:
+  visit(Quke::Quke.config.custom["urls"]["back_office"])
   @world.bo.dashboard_page.submit(search_term: @renewed_reg_no)
   find_link("View details").click
   @world.bo.registration_details_page.reporting_info_link.click
+
+  # Check that the page contains information from the renewed registration:
   content = @world.bo.registration_details_page.content
   expect(content).to have_text("U12 — Using mulch") if @changes == "without"
   expect(content).to have_text("S3 — Storing sludge") if @changes == "with"
@@ -125,9 +131,67 @@ Then("I can renew it again") do
 end
 
 Then("I can resume the renewal from where I left off") do
-  find_link("Dashboard").click
-  @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
-  find_link("Start renewal").click
-  @world.journey.ad_privacy_policy_page.continue_button.click
+
+  if @renewer == "back office"
+    find_link("Dashboard").click
+    @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
+    find_link("Start renewal").click
+    @world.journey.ad_privacy_policy_page.continue_button.click
+
+  elsif @renewer == "front office"
+    # Use the "last email" API to get the renewal link for the front office user
+    visit(Quke::Quke.config.custom["urls"]["back_office_email"])
+    renewal_url = @world.email.last_email_api_page.get_renewal_url(@renewer_email).to_s
+    expect(renewal_url).to have_text("/renew/")
+    visit(renewal_url)
+  end
+
   expect(@world.journey.applicant_name_page.heading).to have_text("Who is filling in this form?")
+end
+
+# Front office steps:
+
+Given("I receive an invitation to renew") do
+  @renewer = "front office"
+  @renewer_email = @world.last_reg[:contact][:email].to_s
+
+  # Log in initially as a back office user and send the renewal email.
+  # This will only work in the test environment, where renewals are instantly available.
+  login_user(@world.super_agent_user)
+  @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
+  find_link("Resend renewal email").click
+  expect(@world.bo.dashboard_page.renewal_email_confirmation).to have_text("Renewal email sent to " + @renewer_email)
+end
+
+Given("I click the link in the renewal email") do
+  # Use the "last email" API to get the renewal link for the front office user
+  visit(Quke::Quke.config.custom["urls"]["back_office_email"])
+  renewal_url = @world.email.last_email_api_page.get_renewal_url(@renewer_email).to_s
+  expect(renewal_url).to have_text("/renew/")
+  visit(renewal_url)
+end
+
+Then("I receive a renewal confirmation email") do
+  visit(Quke::Quke.config.custom["urls"]["front_office_email"])
+  # We don't know whether the applicant or contact email will be sent first,
+  # so we need to check both. If the applicant email doesn't work, try the contact email.
+  email_recipient = "applicant"
+  # rubocop:disable Metrics/LineLength
+  confirmation_email = @world.email.last_email_api_page.get_confirmation_email(@renewed_reg[:applicant][:email].to_s, @renewed_reg_no)
+  # rubocop:enable Metrics/LineLength
+  if confirmation_email == "nope"
+    email_recipient = "contact"
+    # rubocop:disable Metrics/LineLength
+    confirmation_email = @world.email.last_email_api_page.get_confirmation_email(@renewed_reg[:contact][:email].to_s, @renewed_reg_no)
+    # rubocop:enable Metrics/LineLength
+  end
+  # Check either the applicant or contact's email address depending on what's been retrieved in the last email:
+  expect(confirmation_email).to have_text(@renewed_reg[email_recipient.to_sym][:email].to_s)
+  expect(confirmation_email).to have_text("Waste exemptions registration " + @renewed_reg_no + " completed")
+  expect(confirmation_email).to have_text("Registration complete")
+  expect(confirmation_email).to have_text(@renewed_reg_no)
+end
+
+Then("I cannot renew it again") do
+  expect(@world.journey.renew_choice_page.heading).to have_text("That registration has already been renewed")
 end
