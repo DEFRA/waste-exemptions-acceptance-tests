@@ -9,6 +9,8 @@ class RegistrationDetailsPage < SitePrism::Page
   element(:back_link, ".link-back")
   element(:heading, ".heading-large")
   element(:content, "#content")
+
+  element(:action_box, ".action-boxout")
   element(:deregister_reg_link, ".separated a")
   elements(:active_tags, ".status-tag-active")
   elements(:ceased_tags, ".status-tag-ceased")

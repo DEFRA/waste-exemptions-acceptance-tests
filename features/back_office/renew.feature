@@ -17,12 +17,12 @@ Feature: [RUBY-241] Back office user carries out a renewal
   Scenario: Renew a registration from back office without changes
      When I renew the registration "without" changes
      Then I can see the correct renewed details
-      And I can renew it again
+      And I cannot renew it again from the back office
 
   Scenario: Renew a registration from back office with changes
      When I renew the registration "with" changes
      Then I can see the correct renewed details
-      And I can renew it again
+      And I cannot renew it again from the back office
 
   Scenario: Cancel renewal
      When I partially renew the registration

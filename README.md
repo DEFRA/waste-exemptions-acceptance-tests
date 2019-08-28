@@ -83,7 +83,7 @@ When applied you then have the ability to filter which tests will be used during
 ```bash
 bundle exec quke --tags @frontoffice # Run only things tagged with this
 bundle exec quke --tags @frontoffice,@happypath # Run all things with these tags
-bundle exec quke --tags ~@functional # Don't run anything with this tag (run everything else)
+bundle exec quke --tags "not @functional" # Don't run anything with this tag (run everything else)
 ```
 
 ### In this project
