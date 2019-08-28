@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-task default: :run
+task default: :tst
 
 desc "Run all scenarios (eq to bundle exec quke)"
 task :run do
@@ -12,44 +12,24 @@ task :ci do
   sh %( QUKE_CONFIG=config/ci.config.yml bundle exec quke --tags @ci )
 end
 
-desc "Run @smoke tests against the local environment"
-task :locs do
-  sh %( QUKE_CONFIG=config/loc.config.yml bundle exec quke --tags @smoke)
-end
-
-desc "Run all tests against the local environment"
+desc "Run all tests on local"
 task :loc do
-  sh %( QUKE_CONFIG=config/loc.config.yml bundle exec quke --tags ~@renew)
+  sh %( QUKE_CONFIG=config/loc.config.yml bundle exec quke --tags "not @renew")
 end
 
-desc "Run tests with custom tags against the local environment"
+desc "Run custom tests on local"
 task :loctag do
   sh %( QUKE_CONFIG=config/loc.config.yml bundle exec quke --tags @frontoffice)
 end
 
-desc "Run @smoke tests against the dev environment"
-task :dev do
-  sh %( QUKE_CONFIG=config/dev.config.yml bundle exec quke --tags @smoke)
-end
-
-desc "Run @smoke tests against the test environment"
-task :tsts do
-  sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke --tags @smoke)
-end
-
-desc "Run all tests against the test environment"
+desc "Run all tests on test"
 task :tst do
   sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke)
 end
 
-desc "Run tests against the test environment with custom tags"
+desc "Run custom tests on test"
 task :tsttag do
-  sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke --tags @renew)
-end
-
-desc "Run all @wip tests against the test environment"
-task :tstwip do
-  sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke --tags @wip)
+  sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke --tags "not @renew")
 end
 
 desc "Run @smoke tests against the pre-production environment"
@@ -59,7 +39,7 @@ end
 
 desc "Run all tests against the pre-production environment"
 task :pre do
-  sh %( QUKE_CONFIG=config/pre.config.yml bundle exec quke --tags ~@renew)
+  sh %( QUKE_CONFIG=config/pre.config.yml bundle exec quke --tags "not @renew")
 end
 
 desc "Run tests against the pre-production environment with custom tags"
@@ -67,15 +47,64 @@ task :pretag do
   sh %( QUKE_CONFIG=config/pre.config.yml bundle exec quke --tags @search)
 end
 
-desc "Run all tests against the production environment"
-task :prd do
-  sh %( QUKE_CONFIG=config/prd.config.yml bundle exec quke --tags ~@email)
+# Individual tests on tst:
+
+desc "Run @wip tests on test"
+task :tst_wip do
+  sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke --tags @wip)
 end
 
-desc "Run tests against the prod environment with custom tags"
-task :prdtag do
-  sh %( QUKE_CONFIG=config/prd.config.yml bundle exec quke --tags @wip)
+desc "Run back office registration on test"
+task :tst_regb do
+  sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke --tags @regb)
 end
+
+desc "Run deregistration on test"
+task :tst_deregister do
+  sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke --tags @deregister)
+end
+
+desc "Run edit on test"
+task :tst_edit do
+  sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke --tags @edit)
+end
+
+desc "Run back and front office renewal tests on test"
+task :tst_renew do
+  sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke --tags @renew)
+end
+
+desc "Run resume on test"
+task :tst_resume do
+  sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke --tags @resume)
+end
+
+desc "Run search on test"
+task :tst_search do
+  sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke --tags @search)
+end
+
+desc "Run system admin tests on test"
+task :tst_system do
+  sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke --tags @system)
+end
+
+desc "Run front office registration on test"
+task :tst_reg do
+  sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke --tags @reg)
+end
+
+desc "Run location on test"
+task :tst_regb do
+  sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke --tags @location)
+end
+
+desc "Run front office tests on test"
+task :tst_regb do
+  sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke --tags @frontoffice)
+end
+
+# Cross browser testing
 
 desc "Run all browserstack tests"
 task browserstack: %i[

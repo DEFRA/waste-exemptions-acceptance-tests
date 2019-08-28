@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/DEFRA/quke
-  revision: 9a687e8ca15c93d2a3de4bce5147114ad7b9ba9a
+  revision: 3b7c02c3197f6f3d68cd5aa0dca8b1fb885450ab
   branch: master
   specs:
     quke (0.10.0)
@@ -8,7 +8,6 @@ GIT
       capybara (~> 3.14)
       cucumber (~> 3.1)
       launchy (~> 2.4)
-      parallel_tests (~> 2.28)
       rspec-expectations (~> 3.8)
       selenium-webdriver (~> 3.14)
       site_prism (~> 3.0)
@@ -70,8 +69,6 @@ GEM
     nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
     parallel (1.17.0)
-    parallel_tests (2.29.2)
-      parallel
     parser (2.6.3.0)
       ast (~> 2.4.0)
     pry (0.12.2)

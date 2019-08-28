@@ -192,6 +192,19 @@ Then("I receive a renewal confirmation email") do
   expect(confirmation_email).to have_text(@renewed_reg_no)
 end
 
-Then("I cannot renew it again") do
+Then("I cannot renew it again from the front office") do
   expect(@world.journey.renew_choice_page.heading).to have_text("That registration has already been renewed")
+end
+
+Then("I cannot renew it again from the back office") do
+  # Back office user should already be logged in from previous scenarios. Access back office page
+  visit(Quke::Quke.config.custom["urls"]["back_office"])
+  @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
+  expect(@world.bo.dashboard_page.results[0]).to have_text("Already renewed")
+  expect(@world.bo.dashboard_page.results[0]).to have_no_text("Start renewal")
+  expect(@world.bo.dashboard_page.results[0]).to have_no_text("Resend renewal email")
+  find_link("View details").click
+  expect(@world.bo.registration_details_page.action_box).to have_text("Already renewed")
+  expect(@world.bo.registration_details_page.action_box).to have_no_text("Start renewal")
+  expect(@world.bo.registration_details_page.action_box).to have_no_text("Resend renewal email")
 end
