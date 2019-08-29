@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/DEFRA/quke
-  revision: 3b7c02c3197f6f3d68cd5aa0dca8b1fb885450ab
+  revision: 611c9adc64101e67ae9692f73510339ef40d39dd
   branch: master
   specs:
     quke (0.10.0)
