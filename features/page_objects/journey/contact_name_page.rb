@@ -2,8 +2,8 @@
 
 class ContactNamePage < SitePrism::Page
 
-  element(:first_name, "#contact_name_form_first_name")
-  element(:last_name, "#contact_name_form_last_name")
+  element(:first_name, "#contact_name_form_contact_first_name")
+  element(:last_name, "#contact_name_form_contact_last_name")
 
   element(:submit_button, "input[type='submit']")
 

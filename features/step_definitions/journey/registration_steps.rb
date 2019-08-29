@@ -30,27 +30,34 @@ Then(/^I complete (?:a|an) "([^"]*)" registration$/) do |business|
   @world.last_reg_no = add_submitted_registration(@world.last_reg, false, "random", "random")
 end
 
+When("I carry out a partial registration") do
+  # Generate and submit an incomplete registration and record the applicant's name, for later searching:
+  unsubmitted_reg = generate_registration(:individual)
+  add_unsubmitted_registration(unsubmitted_reg)
+  @last_transient_name = unsubmitted_reg[:applicant][:full_name].to_s
+  puts "Partial registration completed by " + @last_transient_name
+end
+
 Then("I complete an in progress registration") do
   find_link("Waste exemptions back office").click
   # Add a sleep here, because the automated tests often have a problem with the filter steps:
   sleep(1)
   @world.bo.dashboard_page.unsubmitted_filter.click
-  @world.bo.dashboard_page.submit(search_term: "Mr Waste")
+  @world.bo.dashboard_page.submit(search_term: @last_transient_name)
 
   # Check first that I can view details for an in progress registration (RUBY-329)
-
   @world.bo.dashboard_page.view_transient_details_links[0].click
   expect(@world.bo.registration_details_page.heading).to have_text("In-progress registration details")
   @world.bo.registration_details_page.back_link.click
 
   # Start the resume process
   @world.bo.dashboard_page.unsubmitted_filter.click
-  @world.bo.dashboard_page.submit(search_term: "Mr Waste")
+  @world.bo.dashboard_page.submit(search_term: @last_transient_name)
   @world.bo.dashboard_page.resume_links[0].click
   expect(page).to have_content("Who should we contact about this waste exemption operation?")
 
   # Generate the data for the rest of the registration and save it as a world variable:
-  @world.reg_to_complete = generate_registration(:individual, "a name that won't be used")
+  @world.reg_to_complete = generate_registration(:individual)
 
   # Complete the registration and store the registration number.
   @world.completed_reg = continue_unsubmitted_registration(@world.reg_to_complete, "random", "random")

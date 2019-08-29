@@ -4,8 +4,8 @@ class ApplicantNamePage < SitePrism::Page
 
   element(:heading, ".heading-large")
 
-  element(:first_name, "#applicant_name_form_first_name")
-  element(:last_name, "#applicant_name_form_last_name")
+  element(:first_name, "#applicant_name_form_applicant_first_name")
+  element(:last_name, "#applicant_name_form_applicant_last_name")
   element(:submit_button, "input[name='commit']")
 
   def submit(args = {})

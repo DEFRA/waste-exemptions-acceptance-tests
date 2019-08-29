@@ -4,7 +4,7 @@ class World
 
   attr_reader :journey, :bo, :email
   attr_accessor :known_bo_user_email, :known_reg, :known_reg_no, :last_reg
-  attr_accessor :known_submitted_applicant, :known_transient_applicant
+  attr_accessor :known_submitted_applicant
   attr_accessor :reg_to_complete, :completed_reg
   attr_accessor :last_email, :last_reg_no, :last_window
 
