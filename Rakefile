@@ -100,7 +100,7 @@ task :tst_regb do
 end
 
 desc "Run front office tests on test"
-task :tst_regb do
+task :tst_frontoffice do
   sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke --tags @frontoffice)
 end
 
