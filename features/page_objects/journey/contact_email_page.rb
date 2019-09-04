@@ -2,6 +2,8 @@
 
 class ContactEmailPage < SitePrism::Page
 
+  element(:error, ".error-summary")
+
   element(:email, "#contact_email_form_contact_email")
   element(:confirm_email, "#contact_email_form_confirmed_email")
 

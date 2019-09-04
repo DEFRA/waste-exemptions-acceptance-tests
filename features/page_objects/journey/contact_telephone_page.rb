@@ -2,6 +2,7 @@
 
 class ContactTelephonePage < SitePrism::Page
 
+  element(:error, ".error-summary")
   element(:tel_no, "#contact_phone_form_phone_number")
 
   element(:submit_button, "input[type='submit']")

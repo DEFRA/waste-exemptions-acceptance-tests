@@ -31,6 +31,11 @@ Feature: Registering a waste exemption
        Then I will be informed the registration is complete
 
     Scenario: Registration by a limited company
-     Given my business is a "limited_company"
-      When I register an exemption
-      Then I will be informed the registration is complete
+      Given my business is a "limited_company"
+       When I register an exemption
+       Then I will be informed the registration is complete
+
+    Scenario: Generate errors on the front office
+      Given my business is a "limited_company"
+       When I complete a registration badly
+       Then I will be informed the registration is complete
