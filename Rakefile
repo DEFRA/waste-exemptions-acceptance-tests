@@ -19,7 +19,7 @@ end
 
 desc "Run custom tests on local"
 task :loctag do
-  sh %( QUKE_CONFIG=config/loc.config.yml bundle exec quke --tags @renew)
+  sh %( QUKE_CONFIG=config/loc.config.yml bundle exec quke --tags @frontoffice)
 end
 
 desc "Run all tests on test"
