@@ -29,6 +29,7 @@ class DashboardPage < SitePrism::Page
   elements(:view_reg_details_links, "a[href*='/registrations/']")
   elements(:resume_links, "[id^=resume]")
   elements(:confirmation_letter_links, "a[href*='confirmation-letter']")
+  elements(:renewal_letter_links, "a[href*='/renewal-letter/']")
 
   def view_link(registration_number)
     find(:css, "#view_#{registration_number}")
