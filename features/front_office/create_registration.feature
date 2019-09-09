@@ -9,6 +9,7 @@ Feature: Registering a waste exemption
      Given my business is an "individual"
       When I register an exemption
       Then I will be informed the registration is complete
+       And I can access the footer links
 
     Scenario: Registration by a partnership
      Given my business is a "partnership"

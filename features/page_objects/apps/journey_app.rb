@@ -71,6 +71,10 @@ class JourneyApp
     @last_page = FarmerPage.new
   end
 
+  def footer_page
+    @last_page = FooterPage.new
+  end
+
   def location_page
     @last_page = LocationPage.new
   end
