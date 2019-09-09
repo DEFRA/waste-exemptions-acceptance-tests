@@ -2,7 +2,9 @@
 
 class SiteGridReferencePage < SitePrism::Page
 
+  element(:error, ".error-summary")
   element(:heading, ".heading-large")
+
   element(:postcode, "input[id='find_address']")
 
   element(:find_address, "input[value='Find address']")

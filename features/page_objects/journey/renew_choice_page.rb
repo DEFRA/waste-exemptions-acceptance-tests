@@ -2,6 +2,8 @@
 
 class RenewChoicePage < SitePrism::Page
 
+  element(:error, ".error-summary")
+
   element(:content, "#new_renewal_start_form")
   element(:heading, ".heading-large")
 

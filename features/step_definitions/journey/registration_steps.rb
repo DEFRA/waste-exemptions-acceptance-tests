@@ -83,3 +83,21 @@ Then("I can find and edit the registration I just submitted") do
   expect(@world.bo.edit_details_page.heading).to have_text("Edit complete")
   @world.bo.edit_details_page.continue_button.click
 end
+
+Then("I can access the footer links") do
+  new_window = window_opened_by { find_link("Privacy").click }
+  within_window new_window do
+    expect(@world.journey.footer_page.heading).to have_text("Privacy Policy: how we use your personal information")
+    expect(@world.journey.footer_page.content).to have_text("servers within the European Economic Area")
+    new_window = window_opened_by { find_link("Cookies").click }
+    within_window new_window do
+      expect(@world.journey.footer_page.heading).to have_text("Cookies")
+      expect(@world.journey.footer_page.content).to have_text("we store a cookie on your computer")
+      new_window = window_opened_by { find_link("Accessibility").click }
+      within_window new_window do
+        expect(@world.journey.footer_page.heading).to have_text("Accessibility statement")
+        expect(@world.journey.footer_page.content).to have_text("checked for compliance with WCAG 2.1 AA")
+      end
+    end
+  end
+end

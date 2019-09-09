@@ -2,6 +2,8 @@
 
 class OperatorNamePage < SitePrism::Page
 
+  element(:error, ".error-summary")
+
   element(:org_name, "#operator_name_form_operator_name", visible: false)
 
   element(:submit_button, "input[type='submit']")

@@ -2,6 +2,7 @@
 
 class ApplicantNamePage < SitePrism::Page
 
+  element(:error, ".error-summary")
   element(:heading, ".heading-large")
 
   element(:first_name, "#applicant_name_form_applicant_first_name")

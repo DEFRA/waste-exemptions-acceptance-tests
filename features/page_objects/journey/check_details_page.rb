@@ -2,6 +2,8 @@
 
 class CheckDetailsPage < SitePrism::Page
 
+  element(:heading, ".heading-large")
+
   # Contact details
   element(:change_contact_name, "table[id='reviewing-change-yourcontactdetails-yourname']")
   element(:change_tel_no, "table[id='reviewing-change-yourcontactdetails-yourbusinesstelephonenumber']")

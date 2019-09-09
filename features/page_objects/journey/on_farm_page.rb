@@ -2,6 +2,8 @@
 
 class OnFarmPage < SitePrism::Page
 
+  element(:error, ".error-summary")
+
   # Will this waste operation take place on a farm?
   element(:on_farm_yes, "#on_a_farm_form_on_a_farm_true + label")
   element(:on_farm_no, "#on_a_farm_form_on_a_farm_false + label")

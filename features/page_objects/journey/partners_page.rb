@@ -3,6 +3,9 @@
 require "faker"
 
 class PartnersPage < SitePrism::Page
+
+  element(:error, ".error-summary")
+
   element(:first_name, "#main_people_form_first_name")
   element(:last_name, "#main_people_form_last_name")
 

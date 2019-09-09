@@ -59,10 +59,6 @@ class JourneyApp
     @last_page = CheckDetailsPage.new
   end
 
-  def company_name_page
-    @last_page = CompanyNamePage.new
-  end
-
   def confirmation_page
     @last_page = ConfirmationPage.new
   end
@@ -73,6 +69,10 @@ class JourneyApp
 
   def farmer_page
     @last_page = FarmerPage.new
+  end
+
+  def footer_page
+    @last_page = FooterPage.new
   end
 
   def location_page
