@@ -28,6 +28,9 @@ chromedriver.log
 !/log/.keep
 /tmp/
 
+# Ignore all zip files.
+*.zip
+
 # Ruby debugger related files
 .byebug_history
 

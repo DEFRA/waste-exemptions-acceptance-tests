@@ -71,10 +71,6 @@ class JourneyApp
     @last_page = FarmerPage.new
   end
 
-  def footer_page
-    @last_page = FooterPage.new
-  end
-
   def location_page
     @last_page = LocationPage.new
   end
@@ -99,10 +95,6 @@ class JourneyApp
     @last_page = RegistrationNumberPage.new
   end
 
-  def register_in_wales_page
-    @last_page = RegisterInWalesPage.new
-  end
-
   def renew_choice_page
     @last_page = RenewChoicePage.new
   end
@@ -117,6 +109,10 @@ class JourneyApp
 
   def site_grid_reference_page
     @last_page = SiteGridReferencePage.new
+  end
+
+  def standard_page
+    @last_page = StandardPage.new
   end
 
 end
