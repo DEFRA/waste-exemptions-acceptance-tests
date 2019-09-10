@@ -2,6 +2,7 @@
 
 class ApplicantPhonePage < SitePrism::Page
 
+  element(:error, ".error-summary")
   element(:tel_number, "#applicant_phone_form_applicant_phone")
 
   element(:submit_button, "input[type='submit']")

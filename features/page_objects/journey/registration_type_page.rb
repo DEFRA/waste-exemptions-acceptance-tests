@@ -2,6 +2,8 @@
 
 class RegistrationTypePage < SitePrism::Page
 
+  element(:error, ".error-summary")
+
   element(:new_radio, "#start_form_start_option_new + label")
   element(:renew_radio, "#start_form_start_option_reregister + label")
   element(:change_registration, "#start_form_start_option_change + label")

@@ -2,6 +2,11 @@
 
 class ContactNamePage < SitePrism::Page
 
+  # consider merging this with applicant_email
+
+  element(:error, ".error-summary")
+  element(:heading, ".heading-large")
+
   element(:first_name, "#contact_name_form_contact_first_name")
   element(:last_name, "#contact_name_form_contact_last_name")
 
