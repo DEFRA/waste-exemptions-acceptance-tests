@@ -2,6 +2,9 @@
 
 class ChooseExemptionsPage < SitePrism::Page
 
+  element(:error, ".error-summary")
+  element(:heading, ".heading-large")
+
   elements(:exemptions, "input[name='exemptions_form[exemptions][]']", visible: false)
 
   element(:submit_button, "input[name='commit']")

@@ -86,7 +86,6 @@ def prepopulate_registrations
   unsubmitted_reg = generate_registration(:individual, "Mr Waste unsubmitted")
   add_unsubmitted_registration(unsubmitted_reg)
 
-  # Get the full name of the last submitted and unsubmitted applicant:
-  @world.known_submitted_applicant = @world.known_reg[:applicant_name].to_s
-  @world.known_transient_applicant = unsubmitted_reg[:applicant_name].to_s
+  # Get the full name of the last submitted applicant for search tests:
+  @world.known_submitted_applicant = @world.known_reg[:applicant][:full_name].to_s
 end

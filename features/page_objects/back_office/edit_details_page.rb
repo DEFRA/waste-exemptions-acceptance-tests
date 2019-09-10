@@ -7,8 +7,8 @@ class EditDetailsPage < SitePrism::Page
   section(:admin_menu_section, AdminMenuSection, AdminMenuSection::SELECTOR)
 
   element(:heading, ".heading-large")
-  element(:first_name_form, "#applicant_name_form_first_name")
-  element(:last_name_form, "#applicant_name_form_last_name")
+  element(:first_name_form, "#applicant_name_form_applicant_first_name")
+  element(:last_name_form, "#applicant_name_form_applicant_last_name")
   element(:operator_name_form, "#operator_name_form_operator_name")
   element(:contact_email_form_1, "#contact_email_form_contact_email")
   element(:contact_email_form_2, "#contact_email_form_confirmed_email")

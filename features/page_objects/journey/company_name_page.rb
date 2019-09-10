@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class CompanyNamePage < SitePrism::Page
+
+  element(:error, ".error-summary")
+
   element(:company_name, "#name")
   element(:submit_button, "input[name='commit']")
 

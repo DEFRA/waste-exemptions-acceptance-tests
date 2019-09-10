@@ -2,6 +2,8 @@
 
 class ApplicantEmailPage < SitePrism::Page
 
+  element(:error, ".error-summary")
+
   element(:email, "#applicant_email_form_applicant_email")
   element(:confirm_email, "#applicant_email_form_confirmed_email")
 

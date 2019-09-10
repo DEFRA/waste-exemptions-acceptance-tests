@@ -6,7 +6,14 @@ class AddressPage < SitePrism::Page
   # Although the page objects have different identifiers, they follow the same pattern
   # and so each field can be identified through what its id contains.
 
-  element(:postcode, "input[id*='postcode_form_postcode']")
+  element(:error, ".error-summary")
+  element(:heading, ".heading-large")
+
+  # Postcode forms on individual screens are as follows, as from Sep '19:
+  # #operator_postcode_form_temp_operator_postcode
+  # #contact_postcode_form_temp_contact_postcode
+  # #site_postcode_form_temp_site_postcode
+  element(:postcode, "input[id*='postcode_form_temp']")
   element(:find_address, "input[value='Find address']")
 
   # Search results as a dropdown
@@ -21,7 +28,7 @@ class AddressPage < SitePrism::Page
   element(:address_line_two, "input[id*='address_manual_form_locality']")
   element(:city, "input[id*='address_manual_form_city']")
 
-  element(:submit_button, "input[value='Continue']")
+  element(:submit_button, ".button")
 
   def submit(args = {})
     postcode.set(args[:postcode]) if args.key?(:postcode)

@@ -30,27 +30,34 @@ Then(/^I complete (?:a|an) "([^"]*)" registration$/) do |business|
   @world.last_reg_no = add_submitted_registration(@world.last_reg, false, "random", "random")
 end
 
+When("I carry out a partial registration") do
+  # Generate and submit an incomplete registration and record the applicant's name, for later searching:
+  unsubmitted_reg = generate_registration(:individual)
+  add_unsubmitted_registration(unsubmitted_reg)
+  @last_transient_name = unsubmitted_reg[:applicant][:full_name].to_s
+  puts "Partial registration completed by " + @last_transient_name
+end
+
 Then("I complete an in progress registration") do
   find_link("Waste exemptions back office").click
   # Add a sleep here, because the automated tests often have a problem with the filter steps:
   sleep(1)
   @world.bo.dashboard_page.unsubmitted_filter.click
-  @world.bo.dashboard_page.submit(search_term: "Mr Waste")
+  @world.bo.dashboard_page.submit(search_term: @last_transient_name)
 
   # Check first that I can view details for an in progress registration (RUBY-329)
-
   @world.bo.dashboard_page.view_transient_details_links[0].click
   expect(@world.bo.registration_details_page.heading).to have_text("In-progress registration details")
   @world.bo.registration_details_page.back_link.click
 
   # Start the resume process
   @world.bo.dashboard_page.unsubmitted_filter.click
-  @world.bo.dashboard_page.submit(search_term: "Mr Waste")
+  @world.bo.dashboard_page.submit(search_term: @last_transient_name)
   @world.bo.dashboard_page.resume_links[0].click
   expect(page).to have_content("Who should we contact about this waste exemption operation?")
 
   # Generate the data for the rest of the registration and save it as a world variable:
-  @world.reg_to_complete = generate_registration(:individual, "a name that won't be used")
+  @world.reg_to_complete = generate_registration(:individual)
 
   # Complete the registration and store the registration number.
   @world.completed_reg = continue_unsubmitted_registration(@world.reg_to_complete, "random", "random")
@@ -75,4 +82,35 @@ Then("I can find and edit the registration I just submitted") do
   @world.journey.declaration_page.submit
   expect(@world.bo.edit_details_page.heading).to have_text("Edit complete")
   @world.bo.edit_details_page.continue_button.click
+end
+
+Then("I can access the footer links") do
+  new_window = window_opened_by { find_link("Privacy").click }
+  within_window new_window do
+    expect(@world.journey.standard_page.heading).to have_text("Privacy Policy: how we use your personal information")
+    expect(@world.journey.standard_page.content).to have_text("servers within the European Economic Area")
+    new_window = window_opened_by { find_link("Cookies").click }
+    within_window new_window do
+      expect(@world.journey.standard_page.heading).to have_text("Cookies")
+      expect(@world.journey.standard_page.content).to have_text("we store a cookie on your computer")
+      new_window = window_opened_by { find_link("Accessibility").click }
+      within_window new_window do
+        expect(@world.journey.standard_page.heading).to have_text("Accessibility statement")
+        expect(@world.journey.standard_page.content).to have_text("checked for compliance with WCAG 2.1 AA")
+      end
+    end
+  end
+end
+
+Given("I am on the service") do
+  @world.journey.home_page.load
+end
+
+When("I select the option to change details") do
+  @world.journey.registration_type_page.submit(start_option: :change_registration)
+end
+
+Then("I will be advised to contact the EA") do
+  expect(@world.journey.standard_page.heading).to have_text("Contact the Environment Agency")
+  expect(@world.journey.standard_page.content).to have_text("You'll need to contact the Environment Agency")
 end

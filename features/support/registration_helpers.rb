@@ -22,7 +22,7 @@ def add_submitted_registration(registration, load_root_page = true, address_type
   complete_site_details(registration, address_type, site_type)
 
   ref_no = complete_confirmations
-  puts ref_no + " completed"
+  puts ref_no + " completed by " + registration[:applicant][:full_name].to_s
   ref_no
 end
 
