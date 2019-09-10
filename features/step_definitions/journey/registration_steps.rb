@@ -87,17 +87,30 @@ end
 Then("I can access the footer links") do
   new_window = window_opened_by { find_link("Privacy").click }
   within_window new_window do
-    expect(@world.journey.footer_page.heading).to have_text("Privacy Policy: how we use your personal information")
-    expect(@world.journey.footer_page.content).to have_text("servers within the European Economic Area")
+    expect(@world.journey.standard_page.heading).to have_text("Privacy Policy: how we use your personal information")
+    expect(@world.journey.standard_page.content).to have_text("servers within the European Economic Area")
     new_window = window_opened_by { find_link("Cookies").click }
     within_window new_window do
-      expect(@world.journey.footer_page.heading).to have_text("Cookies")
-      expect(@world.journey.footer_page.content).to have_text("we store a cookie on your computer")
+      expect(@world.journey.standard_page.heading).to have_text("Cookies")
+      expect(@world.journey.standard_page.content).to have_text("we store a cookie on your computer")
       new_window = window_opened_by { find_link("Accessibility").click }
       within_window new_window do
-        expect(@world.journey.footer_page.heading).to have_text("Accessibility statement")
-        expect(@world.journey.footer_page.content).to have_text("checked for compliance with WCAG 2.1 AA")
+        expect(@world.journey.standard_page.heading).to have_text("Accessibility statement")
+        expect(@world.journey.standard_page.content).to have_text("checked for compliance with WCAG 2.1 AA")
       end
     end
   end
+end
+
+Given("I am on the service") do
+  @world.journey.home_page.load
+end
+
+When("I select the option to change details") do
+  @world.journey.registration_type_page.submit(start_option: :change_registration)
+end
+
+Then("I will be advised to contact the EA") do
+  expect(@world.journey.standard_page.heading).to have_text("Contact the Environment Agency")
+  expect(@world.journey.standard_page.content).to have_text("You'll need to contact the Environment Agency")
 end
