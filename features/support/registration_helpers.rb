@@ -109,6 +109,49 @@ def complete_operator_name_and_address(registration, address_type)
   complete_address(address_type)
 end
 
+def generate_address_errors(postcode_text)
+  # This function generates errors in each address field for lookup and manual addresses.
+  # It is repeated 3 times through the registration flow.
+  # It is split into smaller functions so as to make Rubocop happy.
+
+  enter_invalid_postcodes(postcode_text)
+
+  # Go to manual address pages:
+  @world.journey.address_lookup_page.choose_manual_address(
+    postcode: "BS1 5AH"
+  )
+  generate_manual_address_errors
+end
+
+def enter_invalid_postcodes(postcode_text)
+  # Wait statement required to handle redirect:
+  @world.journey.address_lookup_page.wait_until_find_address_visible
+
+  # Leave postcode field blank:
+  @world.journey.address_lookup_page.find_address.click
+  expect(@world.journey.address_lookup_page.error).to have_text("Enter a postcode")
+
+  # Enter an invalid postcode:
+  @world.journey.address_lookup_page.postcode.set(postcode_text)
+  @world.journey.address_lookup_page.find_address.click
+  expect(@world.journey.address_lookup_page.error).to have_text("Enter a valid UK postcode")
+end
+
+def generate_manual_address_errors
+  # Wait statement required to handle redirect:
+  @world.journey.address_manual_page.wait_until_house_no_visible
+  @world.journey.address_manual_page.submit_button.click
+  expect(@world.journey.address_manual_page.error).to have_text("Enter the building name or number")
+  expect(@world.journey.address_manual_page.error).to have_text("Enter an address line 1")
+  expect(@world.journey.address_manual_page.error).to have_text("Enter a town or city")
+  @world.journey.address_manual_page.submit_manual_address(
+    house_no: rand(1..99_999).to_s,
+    address_line_one: "Manually entered road",
+    address_line_two: "Manually entered area",
+    city: "Manualton"
+  )
+end
+
 def complete_partner_details(registration)
   @world.journey.partners_page.add_main_person(
     first_name: registration[:partners][0][:first_name],

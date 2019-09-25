@@ -64,18 +64,11 @@ Given "I complete a registration badly" do
 
   # Operator address page
   expect(@world.journey.address_lookup_page.heading).to have_text("What's the company address?")
-  @world.journey.address_lookup_page.submit_button.click
-  expect(@world.journey.address_lookup_page.error).to have_text("Enter a postcode")
-  @world.journey.address_lookup_page.postcode.set("ROSS KEMP")
-  @world.journey.address_lookup_page.submit_button.click
-  expect(@world.journey.address_lookup_page.error).to have_text("Enter a valid UK postcode")
-  @world.journey.address_lookup_page.submit(
-    postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
-  )
+  # Generate errors on the address pages with the given text in the postcode field:
+  generate_address_errors("ROSS KEMP")
 
   # Contact name page
-  # The conatct pages use the same logic as the applicant pages. Consider merging the page objects.
+  # The contact pages use the same logic as the applicant pages. Consider merging the page objects.
   @world.journey.contact_name_page.submit_button.click
   expect(@world.journey.contact_name_page.error).to have_text("You must enter a first name")
   expect(@world.journey.contact_name_page.error).to have_text("You must enter a last name")
@@ -108,13 +101,7 @@ Given "I complete a registration badly" do
 
   # Contact address page
   expect(@world.journey.address_lookup_page.heading).to have_text("What's their postcode?")
-  @world.journey.address_lookup_page.postcode.set("STEVE MCFADDEN")
-  @world.journey.address_lookup_page.submit_button.click
-  expect(@world.journey.address_lookup_page.error).to have_text("Enter a valid UK postcode")
-  @world.journey.address_lookup_page.submit(
-    postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
-  )
+  generate_address_errors("STEVE MCFADDEN")
 
   # On a farm page
   @world.journey.on_farm_page.submit_button.click
@@ -130,10 +117,8 @@ Given "I complete a registration badly" do
   @world.journey.site_grid_reference_page.submit_button.click
   expect(@world.journey.site_grid_reference_page.error).to have_text("Enter a grid reference")
   expect(@world.journey.site_grid_reference_page.error).to have_text("Enter a site description")
-  @world.journey.site_grid_reference_page.submit(
-    grid_ref: reg[:site][:grid_ref],
-    site_details: reg[:site][:site_details]
-  )
+  find_link("use an address instead").click
+  generate_address_errors("JUNE BROWN")
 
   # Check your answer page doesn't have validation:
   expect(@world.journey.check_details_page.heading).to have_text("Check your answers")
