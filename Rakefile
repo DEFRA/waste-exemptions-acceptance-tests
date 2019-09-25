@@ -19,7 +19,7 @@ end
 
 desc "Run custom tests on local"
 task :loctag do
-  sh %( QUKE_CONFIG=config/loc.config.yml bundle exec quke --tags @frontoffice)
+  sh %( QUKE_CONFIG=config/loc.config.yml bundle exec quke --tags @regb)
 end
 
 desc "Run all tests on test"
@@ -102,6 +102,63 @@ end
 desc "Run front office tests on test"
 task :tst_frontoffice do
   sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke --tags @frontoffice)
+end
+
+# Individual tests on local:
+
+desc "Run @wip tests on local"
+task :loc_wip do
+  sh %( QUKE_CONFIG=config/loc.config.yml bundle exec quke --tags @wip)
+end
+
+desc "Run back office registration on local"
+task :loc_regb do
+  sh %( QUKE_CONFIG=config/loc.config.yml bundle exec quke --tags @regb)
+end
+
+desc "Run deregistration on local"
+task :loc_deregister do
+  sh %( QUKE_CONFIG=config/loc.config.yml bundle exec quke --tags @deregister)
+end
+
+desc "Run edit on local"
+task :loc_edit do
+  sh %( QUKE_CONFIG=config/loc.config.yml bundle exec quke --tags @edit)
+end
+
+desc "Run back and front office renewal tests on local"
+task :loc_renew do
+  sh %( QUKE_CONFIG=config/loc.config.yml bundle exec quke --tags @renew)
+end
+
+desc "Run resume on local"
+task :loc_resume do
+  sh %( QUKE_CONFIG=config/loc.config.yml bundle exec quke --tags @resume)
+end
+
+desc "Run search on local"
+task :loc_search do
+  sh %( QUKE_CONFIG=config/loc.config.yml bundle exec quke --tags @search)
+end
+
+desc "Run system admin tests on local"
+task :loc_system do
+  sh %( QUKE_CONFIG=config/loc.config.yml bundle exec quke --tags @system)
+end
+
+desc "Run front office registration on local"
+task :loc_reg do
+  sh %( QUKE_CONFIG=config/loc.config.yml bundle exec quke --tags @reg)
+end
+
+desc "Run location on local"
+task :loc_regb do
+  sh %( QUKE_CONFIG=config/loc.config.yml bundle exec quke --tags @location)
+end
+
+desc "Run front office tests on local"
+task :loc_frontoffice do
+  sh %( QUKE_CONFIG=config/loc.config.yml bundle exec quke --tags @frontoffice)
 end
 
 # Cross browser testing

@@ -87,13 +87,15 @@ def complete_address(address_type)
   # Lookup is more common so this happens two out of three times.
   address_type = choose_random_address_type if address_type == "random"
   if address_type == "lookup" # get address via postcode lookup
-    @world.journey.address_page.submit(
+    @world.journey.address_lookup_page.submit(
       postcode: "BS1 5AH",
       result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
     )
   else # address is populated manually
-    @world.journey.address_page.submit_manual_address(
-      postcode: "BS1 5AH",
+    @world.journey.address_lookup_page.choose_manual_address(
+      postcode: "BS1 5AH"
+    )
+    @world.journey.address_manual_page.submit_manual_address(
       house_no: rand(1..99_999).to_s,
       address_line_one: "Manually entered road",
       address_line_two: "Manually entered area",
@@ -105,6 +107,51 @@ end
 def complete_operator_name_and_address(registration, address_type)
   @world.journey.operator_name_page.submit(org_name: registration[:operator_name])
   complete_address(address_type)
+end
+
+def test_address_validations(postcode_text)
+  # This function, and its sub-functions, generates and tests errors in each address field.
+  # It is repeated 3 times through the registration flow.
+  # The lookup and manual tests are separate functions to keep Rubocop happy regarding ABC complexity.
+
+  test_address_lookup_validation(postcode_text)
+  @world.journey.address_lookup_page.choose_manual_address(
+    postcode: "BS1 5AH"
+  )
+  test_address_manual_validation
+end
+
+def test_address_lookup_validation(postcode_text)
+  # Wait statement required to handle redirect:
+  @world.journey.address_lookup_page.wait_until_find_address_visible
+
+  # Leave postcode field blank:
+  @world.journey.address_lookup_page.find_address.click
+  expect(@world.journey.address_lookup_page.error).to have_text("Enter a postcode")
+
+  # Enter an invalid postcode:
+  @world.journey.address_lookup_page.postcode.set(postcode_text)
+  @world.journey.address_lookup_page.find_address.click
+  expect(@world.journey.address_lookup_page.error).to have_text("Enter a valid UK postcode")
+end
+
+def test_address_manual_validation
+  # Wait statement required to handle redirect:
+  @world.journey.address_manual_page.wait_until_house_no_visible
+
+  # Enter an empty address:
+  @world.journey.address_manual_page.submit_button.click
+  expect(@world.journey.address_manual_page.error).to have_text("Enter the building name or number")
+  expect(@world.journey.address_manual_page.error).to have_text("Enter an address line 1")
+  expect(@world.journey.address_manual_page.error).to have_text("Enter a town or city")
+
+  # Enter valid details:
+  @world.journey.address_manual_page.submit_manual_address(
+    house_no: rand(1..99_999).to_s,
+    address_line_one: "Manually entered road",
+    address_line_two: "Manually entered area",
+    city: "Manualton"
+  )
 end
 
 def complete_partner_details(registration)
