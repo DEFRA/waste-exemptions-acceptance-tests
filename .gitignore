@@ -41,7 +41,7 @@ output.html
 # Ignore bundler config.
 /.bundle/
 
-bowerstack_local_log.txt
+browserstack_local_log.txt
 
 # Ignore your project specific .config.yml config file
 .config.yml

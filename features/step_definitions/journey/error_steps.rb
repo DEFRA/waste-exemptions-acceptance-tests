@@ -63,13 +63,13 @@ Given "I complete a registration badly" do
   @world.journey.operator_name_page.submit(org_name: reg[:operator_name])
 
   # Operator address page
-  expect(@world.journey.address_page.heading).to have_text("What's the company address?")
-  @world.journey.address_page.submit_button.click
-  expect(@world.journey.address_page.error).to have_text("Enter a postcode")
-  @world.journey.address_page.postcode.set("ROSS KEMP")
-  @world.journey.address_page.submit_button.click
-  expect(@world.journey.address_page.error).to have_text("Enter a valid UK postcode")
-  @world.journey.address_page.submit(
+  expect(@world.journey.address_lookup_page.heading).to have_text("What's the company address?")
+  @world.journey.address_lookup_page.submit_button.click
+  expect(@world.journey.address_lookup_page.error).to have_text("Enter a postcode")
+  @world.journey.address_lookup_page.postcode.set("ROSS KEMP")
+  @world.journey.address_lookup_page.submit_button.click
+  expect(@world.journey.address_lookup_page.error).to have_text("Enter a valid UK postcode")
+  @world.journey.address_lookup_page.submit(
     postcode: "BS1 5AH",
     result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
@@ -107,11 +107,11 @@ Given "I complete a registration badly" do
   )
 
   # Contact address page
-  expect(@world.journey.address_page.heading).to have_text("What's their postcode?")
-  @world.journey.address_page.postcode.set("STEVE MCFADDEN")
-  @world.journey.address_page.submit_button.click
-  expect(@world.journey.address_page.error).to have_text("Enter a valid UK postcode")
-  @world.journey.address_page.submit(
+  expect(@world.journey.address_lookup_page.heading).to have_text("What's their postcode?")
+  @world.journey.address_lookup_page.postcode.set("STEVE MCFADDEN")
+  @world.journey.address_lookup_page.submit_button.click
+  expect(@world.journey.address_lookup_page.error).to have_text("Enter a valid UK postcode")
+  @world.journey.address_lookup_page.submit(
     postcode: "BS1 5AH",
     result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )

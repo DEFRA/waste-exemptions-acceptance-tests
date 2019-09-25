@@ -41,11 +41,6 @@ Feature: Registering a waste exemption
        When I complete a registration badly
        Then I will be informed the registration is complete
 
-    Scenario: Generate errors on the front office
-     Given my business is a "limited_company"
-      When I complete a registration badly
-      Then I will be informed the registration is complete
-
     Scenario: Choose locations outside England
       Given I start a new waste exemption registration
        When I choose locations outside England

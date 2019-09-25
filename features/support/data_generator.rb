@@ -34,7 +34,7 @@ def generate_registration(business_type, operator_name = nil)
     site: generate_site,
     on_farm: true,
     farmer: true,
-    exemptions: %w[U2 U12 T6 T19 T25 T31 S1]
+    exemptions: %w[U2 U12 T6 T31 S1]
   }
 end
 

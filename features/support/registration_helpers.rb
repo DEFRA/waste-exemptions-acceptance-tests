@@ -87,13 +87,15 @@ def complete_address(address_type)
   # Lookup is more common so this happens two out of three times.
   address_type = choose_random_address_type if address_type == "random"
   if address_type == "lookup" # get address via postcode lookup
-    @world.journey.address_page.submit(
+    @world.journey.address_lookup_page.submit(
       postcode: "BS1 5AH",
       result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
     )
   else # address is populated manually
-    @world.journey.address_page.submit_manual_address(
-      postcode: "BS1 5AH",
+    @world.journey.address_lookup_page.choose_manual_address(
+      postcode: "BS1 5AH"
+    )
+    @world.journey.address_manual_page.submit_manual_address(
       house_no: rand(1..99_999).to_s,
       address_line_one: "Manually entered road",
       address_line_two: "Manually entered area",
