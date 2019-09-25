@@ -11,8 +11,12 @@ class JourneyApp
     @last_page = HomePage.new
   end
 
-  def address_page
-    @last_page = AddressPage.new
+  def address_lookup_page
+    @last_page = AddressLookupPage.new
+  end
+
+  def address_manual_page
+    @last_page = AddressManualPage.new
   end
 
   def ad_privacy_policy_page

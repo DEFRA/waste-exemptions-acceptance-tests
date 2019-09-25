@@ -34,9 +34,9 @@ Then("I will have the option to create a new registration") do
 end
 
 Then("I can access create a new registration") do
-  visit(back_office_root_url("/start/new"))
+  visit(back_office_root_url("/start.new"))
   expect(page).to have_content("What do you want to do?")
-  expect(page).to have_current_path("/start/new")
+  expect(page).to have_current_path("/start.new")
 end
 
 Then("I will not have the option to create a new registration") do
