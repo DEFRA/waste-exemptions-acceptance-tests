@@ -4,7 +4,8 @@ Feature: [RUBY-241] Back office user carries out a renewal
   I need to renew on behalf of an assisted digital user
   So that our data is up to date
 
-  # This feature will only work on the test environment, where renewals can be done instantly.
+  # This feature will only work on test, or environments where renewals can be done instantly.
+  # Immediate renewals require the environment variable RENEWAL_WINDOW_BEFORE_EXPIRY_IN_DAYS=1096
 
   Background: Register an exemption
     Given my business is a "limited_company"

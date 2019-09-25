@@ -109,21 +109,19 @@ def complete_operator_name_and_address(registration, address_type)
   complete_address(address_type)
 end
 
-def generate_address_errors(postcode_text)
-  # This function generates errors in each address field for lookup and manual addresses.
+def test_address_validations(postcode_text)
+  # This function, and its sub-functions, generates and tests errors in each address field.
   # It is repeated 3 times through the registration flow.
-  # It is split into smaller functions so as to make Rubocop happy.
+  # The lookup and manual tests are separate functions to keep Rubocop happy regarding ABC complexity.
 
-  enter_invalid_postcodes(postcode_text)
-
-  # Go to manual address pages:
+  test_address_lookup_validation(postcode_text)
   @world.journey.address_lookup_page.choose_manual_address(
     postcode: "BS1 5AH"
   )
-  generate_manual_address_errors
+  test_address_manual_validation
 end
 
-def enter_invalid_postcodes(postcode_text)
+def test_address_lookup_validation(postcode_text)
   # Wait statement required to handle redirect:
   @world.journey.address_lookup_page.wait_until_find_address_visible
 
@@ -137,10 +135,14 @@ def enter_invalid_postcodes(postcode_text)
   expect(@world.journey.address_lookup_page.error).to have_text("Enter a valid UK postcode")
 end
 
-def generate_manual_address_errors
+def test_address_manual_validation
   # Wait statement required to handle redirect:
   @world.journey.address_manual_page.wait_until_house_no_visible
+
+  # Enter an empty address:
   @world.journey.address_manual_page.submit_button.click
+
+  # Enter correct details:
   expect(@world.journey.address_manual_page.error).to have_text("Enter the building name or number")
   expect(@world.journey.address_manual_page.error).to have_text("Enter an address line 1")
   expect(@world.journey.address_manual_page.error).to have_text("Enter a town or city")

@@ -65,7 +65,7 @@ Given "I complete a registration badly" do
   # Operator address page
   expect(@world.journey.address_lookup_page.heading).to have_text("What's the company address?")
   # Generate errors on the address pages with the given text in the postcode field:
-  generate_address_errors("ROSS KEMP")
+  test_address_validations("ROSS KEMP")
 
   # Contact name page
   # The contact pages use the same logic as the applicant pages. Consider merging the page objects.
@@ -101,7 +101,7 @@ Given "I complete a registration badly" do
 
   # Contact address page
   expect(@world.journey.address_lookup_page.heading).to have_text("What's their postcode?")
-  generate_address_errors("STEVE MCFADDEN")
+  test_address_validations("STEVE MCFADDEN")
 
   # On a farm page
   @world.journey.on_farm_page.submit_button.click
@@ -118,7 +118,7 @@ Given "I complete a registration badly" do
   expect(@world.journey.site_grid_reference_page.error).to have_text("Enter a grid reference")
   expect(@world.journey.site_grid_reference_page.error).to have_text("Enter a site description")
   find_link("use an address instead").click
-  generate_address_errors("JUNE BROWN")
+  test_address_validations("JUNE BROWN")
 
   # Check your answer page doesn't have validation:
   expect(@world.journey.check_details_page.heading).to have_text("Check your answers")
