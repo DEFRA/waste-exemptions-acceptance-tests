@@ -141,11 +141,11 @@ def test_address_manual_validation
 
   # Enter an empty address:
   @world.journey.address_manual_page.submit_button.click
-
-  # Enter correct details:
   expect(@world.journey.address_manual_page.error).to have_text("Enter the building name or number")
   expect(@world.journey.address_manual_page.error).to have_text("Enter an address line 1")
   expect(@world.journey.address_manual_page.error).to have_text("Enter a town or city")
+
+  # Enter valid details:
   @world.journey.address_manual_page.submit_manual_address(
     house_no: rand(1..99_999).to_s,
     address_line_one: "Manually entered road",
