@@ -4,7 +4,8 @@ Feature: [RUBY-241] Front office user renews a registration via email
   I need to renew my waste exemption
   So that I can continue my waste activities
 
-  # This feature will only work on the test environment, where renewals can be done instantly.
+  # This feature will only work on environments which allow instant renewals.
+  # This requires the environment variable RENEWAL_WINDOW_BEFORE_EXPIRY_IN_DAYS=1096
 
   Background: Register an exemption and get renewal email
     Given my business is a "limited_company"
