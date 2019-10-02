@@ -95,6 +95,8 @@ def complete_address(address_type)
     @world.journey.address_lookup_page.choose_manual_address(
       postcode: "BS1 5AH"
     )
+    @world.journey.address_manual_page.wait_until_house_no_visible
+    expect(@world.journey.address_manual_page.heading).to have_no_text("{")
     @world.journey.address_manual_page.submit_manual_address(
       house_no: rand(1..99_999).to_s,
       address_line_one: "Manually entered road",

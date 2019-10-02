@@ -45,7 +45,7 @@ Then("I will not have the option to create a new registration") do
 end
 
 Then("I cannot access create a new registration") do
-  visit(back_office_root_url("/start/new"))
+  visit(back_office_root_url("/start.new"))
   expect(page).to have_content("Your account does not have permission")
   expect(page).to have_current_path("/pages/permission")
 end

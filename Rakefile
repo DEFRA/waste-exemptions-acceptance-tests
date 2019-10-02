@@ -2,24 +2,11 @@
 
 task default: :tst
 
-desc "Run all scenarios (eq to bundle exec quke)"
-task :run do
-  sh %( bundle exec quke )
-end
-
-desc "Runs the tests used by continuous integration to check the project"
-task :ci do
-  sh %( QUKE_CONFIG=config/ci.config.yml bundle exec quke --tags @ci )
-end
+# General test tasks
 
 desc "Run all tests on local"
 task :loc do
-  sh %( QUKE_CONFIG=config/loc.config.yml bundle exec quke --tags "not @renew")
-end
-
-desc "Run custom tests on local"
-task :loctag do
-  sh %( QUKE_CONFIG=config/loc.config.yml bundle exec quke --tags @regb)
+  sh %( QUKE_CONFIG=config/loc.config.yml bundle exec quke)
 end
 
 desc "Run all tests on test"
@@ -27,23 +14,30 @@ task :tst do
   sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke)
 end
 
-desc "Run custom tests on test"
-task :tsttag do
-  sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke --tags "not @renew")
-end
-
-desc "Run @smoke tests against the pre-production environment"
-task :presmo do
-  sh %( QUKE_CONFIG=config/pre.config.yml bundle exec quke --tags @smoke)
-end
-
-desc "Run all tests against the pre-production environment"
+desc "Run all tests against the pre-production environment except renewal"
 task :pre do
   sh %( QUKE_CONFIG=config/pre.config.yml bundle exec quke --tags "not @renew")
 end
 
-desc "Run tests against the pre-production environment with custom tags"
-task :pretag do
+desc "Run @smoke tests against the pre-production environment"
+task :pre_smo do
+  sh %( QUKE_CONFIG=config/pre.config.yml bundle exec quke --tags @smoke)
+end
+
+# If you need to specify custom tags, then update the tags below and run these jobs:
+
+desc "Run custom tests on local"
+task :loc_tag do
+  sh %( QUKE_CONFIG=config/loc.config.yml bundle exec quke --tags @regb)
+end
+
+desc "Run custom tests on test"
+task :tst_tag do
+  sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke --tags "not @renew")
+end
+
+desc "Run custom tests on pre-production"
+task :pre_tag do
   sh %( QUKE_CONFIG=config/pre.config.yml bundle exec quke --tags @search)
 end
 
@@ -159,6 +153,18 @@ end
 desc "Run front office tests on local"
 task :loc_frontoffice do
   sh %( QUKE_CONFIG=config/loc.config.yml bundle exec quke --tags @frontoffice)
+end
+
+# Less-used tasks
+
+desc "Run all scenarios (eq to bundle exec quke)"
+task :run do
+  sh %( bundle exec quke )
+end
+
+desc "Runs the tests used by continuous integration to check the project"
+task :ci do
+  sh %( QUKE_CONFIG=config/ci.config.yml bundle exec quke --tags @ci )
 end
 
 # Cross browser testing
