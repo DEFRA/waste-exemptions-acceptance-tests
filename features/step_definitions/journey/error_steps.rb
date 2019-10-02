@@ -15,6 +15,11 @@ Given "I complete a registration badly" do
   expect(@world.journey.location_page.error).to have_text("You must answer this question")
   @world.journey.location_page.submit(location: :england)
 
+  # Extra check that going back doesn't trigger a 404 error, based on RUBY-562
+  page.evaluate_script("window.history.back()")
+  expect(@world.journey.location_page.heading).to have_text("In which country will you use the exemptions?")
+  @world.journey.location_page.submit(location: :england)
+
   # Exemptions page
   @world.journey.choose_exemptions_page.submit_button.click
   expect(@world.journey.choose_exemptions_page.error).to have_text("You must select at least one exemption")
