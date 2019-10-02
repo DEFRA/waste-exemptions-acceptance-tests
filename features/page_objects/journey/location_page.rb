@@ -3,6 +3,7 @@
 class LocationPage < SitePrism::Page
 
   element(:error, ".error-summary")
+  element(:heading, ".heading-large")
 
   element(:england, "#location_form_location_england + label")
   element(:wales, "#location_form_location_wales + label")
