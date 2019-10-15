@@ -18,21 +18,25 @@ class AddressLookupPage < SitePrism::Page
 
   # Search results as a dropdown
   element(:show_list, "input[id='address_match_selection']")
-  element(:results_dropdown, "select[id*='address_lookup_form_temp_address']")
+  element(:results_dropdown, "select[id*='address_uprn']")
   element(:cannot_find_address, "a[href*='address-lookup/skip']")
 
   element(:submit_button, ".button")
 
   def submit(args = {})
-    postcode.set(args[:postcode]) if args.key?(:postcode)
-    find_address.click
+    enter_postcode(args[:postcode]) if args.key?(:postcode)
     results_dropdown.select(args[:result]) if args.key?(:result)
     submit_button.click
   end
 
-  def choose_manual_address(args = {})
-    postcode.set(args[:postcode]) if args.key?(:postcode)
+  def enter_postcode(postcode_entry)
+    postcode.set(postcode_entry)
     find_address.click
+  end
+
+  def choose_manual_address(args = {})
+    enter_postcode(args[:postcode]) if args.key?(:postcode)
+    # This is currently broken when running automated tests, due to refactoring.
     cannot_find_address.click
   end
 

@@ -38,7 +38,7 @@ And("refreshing doesn't create new registrations") do
 
   # Work out the registration 2 numbers higher than the previous registration
   # by recreating the expected WEX number with 6 digits: regex %06d
-  last_reg_no_plus = "WEX" + format("%06d", last_reg_no_number + 2)
+  last_reg_no_plus = "WEX" + format("%<number>06d", number: last_reg_no_number + 2)
 
   # Search for the higher registration number and check it doesn't exist:
   find_link("Dashboard").click

@@ -63,9 +63,9 @@ def continue_unsubmitted_registration(registration, address_type = "random", sit
 end
 
 def complete_applicant_details(person)
-  @world.journey.applicant_name_page.submit(first_name: person[:first_name], last_name: person[:last_name])
-  @world.journey.applicant_phone_page.submit(tel_number: person[:telephone])
-  @world.journey.applicant_email_page.submit(email: person[:email], confirm_email: person[:email])
+  @world.journey.name_page.submit(first_name: person[:first_name], last_name: person[:last_name])
+  @world.journey.phone_page.submit(tel_no: person[:telephone])
+  @world.journey.email_page.submit(email: person[:email], confirm_email: person[:email])
 end
 
 def complete_organisation_details(registration, address_type)
@@ -111,51 +111,6 @@ def complete_operator_name_and_address(registration, address_type)
   complete_address(address_type)
 end
 
-def test_address_validations(postcode_text)
-  # This function, and its sub-functions, generates and tests errors in each address field.
-  # It is repeated 3 times through the registration flow.
-  # The lookup and manual tests are separate functions to keep Rubocop happy regarding ABC complexity.
-
-  test_address_lookup_validation(postcode_text)
-  @world.journey.address_lookup_page.choose_manual_address(
-    postcode: "BS1 5AH"
-  )
-  test_address_manual_validation
-end
-
-def test_address_lookup_validation(postcode_text)
-  # Wait statement required to handle redirect:
-  @world.journey.address_lookup_page.wait_until_find_address_visible
-
-  # Leave postcode field blank:
-  @world.journey.address_lookup_page.find_address.click
-  expect(@world.journey.address_lookup_page.error).to have_text("Enter a postcode")
-
-  # Enter an invalid postcode:
-  @world.journey.address_lookup_page.postcode.set(postcode_text)
-  @world.journey.address_lookup_page.find_address.click
-  expect(@world.journey.address_lookup_page.error).to have_text("Enter a valid UK postcode")
-end
-
-def test_address_manual_validation
-  # Wait statement required to handle redirect:
-  @world.journey.address_manual_page.wait_until_house_no_visible
-
-  # Enter an empty address:
-  @world.journey.address_manual_page.submit_button.click
-  expect(@world.journey.address_manual_page.error).to have_text("Enter the building name or number")
-  expect(@world.journey.address_manual_page.error).to have_text("Enter an address line 1")
-  expect(@world.journey.address_manual_page.error).to have_text("Enter a town or city")
-
-  # Enter valid details:
-  @world.journey.address_manual_page.submit_manual_address(
-    house_no: rand(1..99_999).to_s,
-    address_line_one: "Manually entered road",
-    address_line_two: "Manually entered area",
-    city: "Manualton"
-  )
-end
-
 def complete_partner_details(registration)
   @world.journey.partners_page.add_main_person(
     first_name: registration[:partners][0][:first_name],
@@ -168,10 +123,10 @@ def complete_partner_details(registration)
 end
 
 def complete_contact_details(person, address_type)
-  @world.journey.contact_name_page.submit(first_name: person[:first_name], last_name: person[:last_name])
+  @world.journey.name_page.submit(first_name: person[:first_name], last_name: person[:last_name])
   @world.journey.contact_position_page.submit(position: person[:position])
-  @world.journey.contact_telephone_page.submit(tel_no: person[:telephone])
-  @world.journey.contact_email_page.submit(email: person[:email], confirm_email: person[:email])
+  @world.journey.phone_page.submit(tel_no: person[:telephone])
+  @world.journey.email_page.submit(email: person[:email], confirm_email: person[:email])
   complete_address(address_type)
 end
 

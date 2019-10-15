@@ -24,6 +24,7 @@ def generate_registration(business_type, operator_name = nil)
 
   # Return a hash containing the following data.
   # Some of the sub items are also hashes.
+  # The farm questions are randomly set as yes or no.
   {
     business_type: business_type,
     applicant: applicant,
@@ -32,8 +33,8 @@ def generate_registration(business_type, operator_name = nil)
     registration_number: registration_number,
     partners: generate_partners(business_type),
     site: generate_site,
-    on_farm: true,
-    farmer: true,
+    on_farm: rand(0..1) == 1,
+    farmer: rand(0..1) == 1,
     exemptions: %w[U2 U12 T6 T31 S1]
   }
 end

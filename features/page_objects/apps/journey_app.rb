@@ -23,36 +23,16 @@ class JourneyApp
     @last_page = AdPrivacyPolicyPage.new
   end
 
-  def applicant_email_page
-    @last_page = ApplicantEmailPage.new
-  end
-
-  def applicant_phone_page
-    @last_page = ApplicantPhonePage.new
-  end
-
-  def applicant_name_page
-    @last_page = ApplicantNamePage.new
-  end
-
   def business_type_page
     @last_page = BusinessTypePage.new
   end
 
-  def contact_email_page
-    @last_page = ContactEmailPage.new
-  end
-
-  def contact_name_page
-    @last_page = ContactNamePage.new
+  def email_page
+    @last_page = EmailPage.new
   end
 
   def contact_position_page
     @last_page = ContactPositionPage.new
-  end
-
-  def contact_telephone_page
-    @last_page = ContactTelephonePage.new
   end
 
   def choose_exemptions_page
@@ -79,8 +59,16 @@ class JourneyApp
     @last_page = LocationPage.new
   end
 
+  def name_page
+    @last_page = NamePage.new
+  end
+
   def partners_page
     @last_page = PartnersPage.new
+  end
+
+  def phone_page
+    @last_page = PhonePage.new
   end
 
   def operator_name_page
