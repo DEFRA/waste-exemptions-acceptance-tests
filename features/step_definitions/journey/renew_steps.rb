@@ -55,15 +55,15 @@ When("I renew the registration {string} changes") do |changes|
     @renewed_reg[:exemptions] = %w[U2 T6 T19 T25 T31 S1 S3]
 
     # Check applicant's name is prepopulated from the ORIGINAL registration, then complete new applicant details:
-    expect(@world.journey.applicant_name_page.first_name.value).to eq(@world.last_reg[:applicant][:first_name])
-    expect(@world.journey.applicant_name_page.last_name.value).to eq(@world.last_reg[:applicant][:last_name])
+    expect(@world.journey.name_page.first_name.value).to eq(@world.last_reg[:applicant][:first_name])
+    expect(@world.journey.name_page.last_name.value).to eq(@world.last_reg[:applicant][:last_name])
     complete_applicant_details(@renewed_reg[:applicant])
 
     complete_organisation_details(@renewed_reg, "random")
 
     # Check applicant's name is prepopulated from the ORIGINAL registration, then complete new applicant details:
-    expect(@world.journey.contact_name_page.first_name.value).to eq(@world.last_reg[:contact][:first_name])
-    expect(@world.journey.contact_name_page.last_name.value).to eq(@world.last_reg[:contact][:last_name])
+    expect(@world.journey.name_page.first_name.value).to eq(@world.last_reg[:contact][:first_name])
+    expect(@world.journey.name_page.last_name.value).to eq(@world.last_reg[:contact][:last_name])
     complete_contact_details(@renewed_reg[:contact], "random")
 
     complete_farm_questions(@renewed_reg)
@@ -146,7 +146,7 @@ Then("I can resume the renewal from where I left off") do
     visit(renewal_url)
   end
 
-  expect(@world.journey.applicant_name_page.heading).to have_text("Who is filling in this form?")
+  expect(@world.journey.name_page.heading).to have_text("Who is filling in this form?")
 end
 
 # Front office steps:

@@ -33,7 +33,7 @@ end
 
 desc "Run custom tests on test"
 task :tst_tag do
-  sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke --tags "not @renew")
+  sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke --tags @renewf)
 end
 
 desc "Run custom tests on pre-production"
@@ -68,6 +68,11 @@ task :tst_renew do
   sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke --tags @renew)
 end
 
+desc "Run back office renewal tests on test"
+task :tst_renewb do
+  sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke --tags @renewb)
+end
+
 desc "Run resume on test"
 task :tst_resume do
   sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke --tags @resume)
@@ -83,19 +88,19 @@ task :tst_system do
   sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke --tags @system)
 end
 
+desc "Run front office tests on test"
+task :tst_frontoffice do
+  sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke --tags @frontoffice)
+end
+
 desc "Run front office registration on test"
 task :tst_reg do
   sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke --tags @reg)
 end
 
-desc "Run location on test"
-task :tst_regb do
-  sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke --tags @location)
-end
-
-desc "Run front office tests on test"
-task :tst_frontoffice do
-  sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke --tags @frontoffice)
+desc "Run frontoffice renewal tests on test"
+task :tst_renewf do
+  sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke --tags @renewf)
 end
 
 # Individual tests on local:
