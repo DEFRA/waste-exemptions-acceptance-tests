@@ -33,8 +33,8 @@ def generate_registration(business_type, operator_name = nil)
     registration_number: registration_number,
     partners: generate_partners(business_type),
     site: generate_site,
-    on_farm: rand(0..1) == 1,
-    farmer: rand(0..1) == 1,
+    on_farm: [true, false].sample,
+    farmer: [true, false].sample,
     exemptions: %w[U2 U12 T6 T31 S1]
   }
 end
