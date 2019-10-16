@@ -20,120 +20,48 @@ Given "I complete a registration badly" do
   expect(@world.journey.location_page.heading).to have_text("In which country will you use the exemptions?")
   @world.journey.location_page.submit(location: :england)
 
-  # Exemptions page
-  @world.journey.choose_exemptions_page.submit_button.click
-  expect(@world.journey.choose_exemptions_page.error).to have_text("You must select at least one exemption")
-  @world.journey.choose_exemptions_page.submit(exemptions: reg[:exemptions])
+  test_journey_validations(reg, "new")
 
-  # Applicant name page
-  @world.journey.applicant_name_page.submit_button.click
-  expect(@world.journey.applicant_name_page.error).to have_text("You must enter a first name")
-  expect(@world.journey.applicant_name_page.error).to have_text("You must enter a last name")
-  @world.journey.applicant_name_page.submit(
-    first_name: reg[:applicant][:first_name],
-    last_name: reg[:applicant][:last_name]
-  )
+end
 
-  # Applicant phone page
-  @world.journey.applicant_phone_page.submit_button.click
-  expect(@world.journey.applicant_phone_page.error).to have_text("Enter a telephone number")
-  @world.journey.applicant_phone_page.submit(tel_number: reg[:applicant][:telephone])
+Given "I renew the registration badly" do
 
-  # Applicant email page
-  @world.journey.applicant_email_page.submit_button.click
-  expect(@world.journey.applicant_email_page.error).to have_text("Enter an email address")
-  @world.journey.applicant_email_page.submit(
-    email: "a@example.com",
-    confirm_email: "b@example.com"
-  )
-  expect(@world.journey.applicant_email_page.error).to have_text("The email addresses you’ve entered don’t match")
-  @world.journey.applicant_email_page.submit(
-    email: reg[:applicant][:email],
-    confirm_email: reg[:applicant][:email]
-  )
+  # Renew with or without changes screen:
+  expect(@world.journey.renew_choice_page.heading).to have_text("Do you want to renew with these details?")
 
-  # Business type page
-  @world.journey.business_type_page.submit_button.click
-  expect(@world.journey.business_type_page.error).to have_text("You must answer this question")
-  @world.journey.business_type_page.submit(business_type: reg[:business_type])
+  expect(@world.journey.renew_choice_page.content).to have_text("U12 - Using mulch")
+  @world.journey.renew_choice_page.continue_button.click
+  expect(@world.journey.renew_choice_page.error).to have_text("Select if you want to renew with these details")
 
-  # Company registration number page
-  @world.journey.registration_number_page.submit_button.click
-  expect(@world.journey.registration_number_page.error).to have_text("Enter a company registration number")
-  @world.journey.registration_number_page.submit(registration_number: reg[:registration_number])
+  # Firstly, select 'no changes':
+  @world.journey.renew_choice_page.renew_without_changes_radio.click
+  @world.journey.renew_choice_page.continue_button.click
+  expect(@world.journey.renew_splash_page.heading).to have_text("You are about to renew for 3 years")
 
-  # Operator name page
-  @world.journey.operator_name_page.submit_button.click
-  expect(@world.journey.operator_name_page.error).to have_text("You must enter a name")
-  @world.journey.operator_name_page.submit(org_name: reg[:operator_name])
+  # Go back and select 'with changes'
+  @world.journey.renew_splash_page.back_link.click
+  @world.journey.renew_choice_page.renew_with_changes_radio.click
+  @world.journey.renew_choice_page.continue_button.click
 
-  # Operator address page
-  expect(@world.journey.address_lookup_page.heading).to have_text("What's the company address?")
-  # Generate errors on the address pages with the given text in the postcode field:
-  test_address_validations("ROSS KEMP")
+  # Generate data for the renewed registration:
+  @renewed_reg = generate_registration(:limited_company, nil)
+  @changes = "with"
 
-  # Contact name page
-  # The contact pages use the same logic as the applicant pages. Consider merging the page objects.
-  @world.journey.contact_name_page.submit_button.click
-  expect(@world.journey.contact_name_page.error).to have_text("You must enter a first name")
-  expect(@world.journey.contact_name_page.error).to have_text("You must enter a last name")
-  @world.journey.contact_name_page.submit(
-    first_name: reg[:contact][:first_name],
-    last_name: reg[:contact][:last_name]
-  )
+  expect(@world.journey.renew_splash_page.heading).to have_text("We'll fill in the form")
+  @world.journey.renew_splash_page.continue_button.click
 
-  # Contact position page has no 'empty field' validation
-  expect(@world.journey.contact_position_page.heading).to have_text("What's their position?")
-  @world.journey.contact_position_page.submit_button.click
+  # Location page. Can't generate an error here because a value is prepropulated.
+  @world.journey.location_page.submit(location: :england)
 
-  # Contact phone page
-  @world.journey.contact_telephone_page.submit_button.click
-  expect(@world.journey.contact_telephone_page.error).to have_text("Enter a telephone number")
-  @world.journey.contact_telephone_page.submit(tel_no: reg[:contact][:telephone])
+  # This function tests the rest of the journey, where the functionality is shared with new registrations:
+  test_journey_validations(@renewed_reg, "renew")
 
-  # Contact email page
-  @world.journey.contact_email_page.submit_button.click
-  expect(@world.journey.contact_email_page.error).to have_text("Enter an email address")
-  @world.journey.contact_email_page.submit(
-    email: "a@example.com",
-    confirm_email: "b@example.com"
-  )
-  expect(@world.journey.contact_email_page.error).to have_text("The email addresses you’ve entered don’t match")
-  @world.journey.contact_email_page.submit(
-    email: reg[:contact][:email],
-    confirm_email: reg[:contact][:email]
-  )
+end
 
-  # Contact address page
-  expect(@world.journey.address_lookup_page.heading).to have_text("What's their postcode?")
-  test_address_validations("STEVE MCFADDEN")
+Then "I see the renewal confirmation screen" do
 
-  # On a farm page
-  @world.journey.on_farm_page.submit_button.click
-  expect(@world.journey.on_farm_page.error).to have_text("You must answer this question")
-  @world.journey.on_farm_page.submit(on_farm: reg[:on_farm])
-
-  # Is a farmer page
-  @world.journey.farmer_page.submit_button.click
-  expect(@world.journey.farmer_page.error).to have_text("You must answer this question")
-  @world.journey.farmer_page.submit(farmer: reg[:farmer])
-
-  # Site grid reference
-  @world.journey.site_grid_reference_page.submit_button.click
-  expect(@world.journey.site_grid_reference_page.error).to have_text("Enter a grid reference")
-  expect(@world.journey.site_grid_reference_page.error).to have_text("Enter a site description")
-  find_link("use an address instead").click
-  test_address_validations("JUNE BROWN")
-
-  # Check your answer page doesn't have validation:
-  expect(@world.journey.check_details_page.heading).to have_text("Check your answers")
-  @world.journey.check_details_page.submit_button.click
-
-  # Declaration page
-  @world.journey.declaration_page.submit_button.click
-  # rubocop:disable Metrics/LineLength
-  expect(@world.journey.declaration_page.error).to have_text("You cannot register if you do not understand and agree with the declaration")
-  # rubocop:enable Metrics/LineLength
-  @world.journey.declaration_page.submit
+  expect(@world.journey.confirmation_page.confirmation_box).to have_text("You have renewed your exemptions")
+  @renewed_reg_no = @world.journey.confirmation_page.ref_no.text
+  puts @world.last_reg_no + " renewed with changes. New registration is " + @renewed_reg_no + "."
 
 end
