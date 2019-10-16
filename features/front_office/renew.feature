@@ -1,4 +1,4 @@
-@frontoffice @renew
+@frontoffice @renew @renewf
 Feature: [RUBY-241] Front office user renews a registration via email
   As a waste operator
   I need to renew my waste exemption
@@ -34,3 +34,7 @@ Feature: [RUBY-241] Front office user renews a registration via email
   Scenario: Cancel renewal
      When I partially renew the registration
      Then I can resume the renewal from where I left off
+
+  Scenario: Renewal errors
+     When I renew the registration badly
+     Then I see the renewal confirmation screen
