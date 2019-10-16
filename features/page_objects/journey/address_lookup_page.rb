@@ -9,10 +9,7 @@ class AddressLookupPage < SitePrism::Page
   element(:error, ".error-summary")
   element(:heading, ".heading-large")
 
-  # Postcode forms on individual screens are as follows, as from Sep '19:
-  # #operator_postcode_form_temp_operator_postcode
-  # #contact_postcode_form_temp_contact_postcode
-  # #site_postcode_form_temp_site_postcode
+  # The following is common to operator, contact and site postcode forms:
   element(:postcode, "input[id*='postcode_form_temp']")
   element(:find_address, "input[value='Find address']")
 
@@ -36,7 +33,6 @@ class AddressLookupPage < SitePrism::Page
 
   def choose_manual_address(args = {})
     enter_postcode(args[:postcode]) if args.key?(:postcode)
-    # This is currently broken when running automated tests, due to refactoring.
     cannot_find_address.click
   end
 

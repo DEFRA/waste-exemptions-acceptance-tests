@@ -52,6 +52,7 @@ Given "I renew the registration badly" do
 
   # Location page. Can't generate an error here because a value is prepropulated.
   @world.journey.location_page.submit(location: :england)
+
   # This function tests the rest of the journey, where the functionality is shared with new registrations:
   test_journey_validations(@renewed_reg, "renew")
 

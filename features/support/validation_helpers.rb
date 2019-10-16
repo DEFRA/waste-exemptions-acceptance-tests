@@ -6,6 +6,7 @@ def test_journey_validations(reg, reg_type)
   # It runs from the applicant details to the end of the journey.
   # reg_type is "new" or "renew". For renewals, most fields are prepopulated.
   # If those prepopulated fields are radio buttons, a user can't generate an error.
+  # It is split into small functions to help reuse and keep Rubocop happy.
 
   test_exemption_validations(reg, reg_type)
   test_applicant_validations(reg[:applicant])
@@ -98,11 +99,8 @@ end
 
 def test_address_validations(postcode_text, reg_type)
   # This function, and its sub-functions, generates and tests errors in each address field.
-  # It is repeated 3 times through the registration flow.
-  # The lookup and manual tests are separate functions to keep Rubocop happy regarding ABC complexity.
-
+  # It is run 3 times through the registration flow.
   test_address_lookup_validation(postcode_text, reg_type)
-
   @world.journey.address_lookup_page.choose_manual_address(
     postcode: "BS1 5AH"
   )
@@ -123,7 +121,7 @@ def leave_postcode_blank
 end
 
 def dont_select_address_from_dropdown
-  # Bug fixed in RUBY-721.
+  # Relates to a bug fixed in RUBY-721.
   # This only works on new registrations. If it's a renewal, the address is auto-populated.
   @world.journey.address_lookup_page.enter_postcode("BS1 5AH")
   @world.journey.address_lookup_page.submit_button.click

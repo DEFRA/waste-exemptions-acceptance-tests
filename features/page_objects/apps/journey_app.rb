@@ -27,10 +27,6 @@ class JourneyApp
     @last_page = BusinessTypePage.new
   end
 
-  def email_page
-    @last_page = EmailPage.new
-  end
-
   def contact_position_page
     @last_page = ContactPositionPage.new
   end
@@ -51,6 +47,10 @@ class JourneyApp
     @last_page = DeclarationPage.new
   end
 
+  def email_page
+    @last_page = EmailPage.new
+  end
+
   def farmer_page
     @last_page = FarmerPage.new
   end
@@ -63,20 +63,20 @@ class JourneyApp
     @last_page = NamePage.new
   end
 
-  def partners_page
-    @last_page = PartnersPage.new
-  end
-
-  def phone_page
-    @last_page = PhonePage.new
-  end
-
   def operator_name_page
     @last_page = OperatorNamePage.new
   end
 
   def on_farm_page
     @last_page = OnFarmPage.new
+  end
+
+  def partners_page
+    @last_page = PartnersPage.new
+  end
+
+  def phone_page
+    @last_page = PhonePage.new
   end
 
   def registration_type_page
