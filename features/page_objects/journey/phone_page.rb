@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-class ContactTelephonePage < SitePrism::Page
+class PhonePage < SitePrism::Page
 
   element(:error, ".error-summary")
-  element(:tel_no, "#contact_phone_form_phone_number")
+  element(:tel_no, "input[id*='phone']")
 
   element(:submit_button, "input[type='submit']")
 

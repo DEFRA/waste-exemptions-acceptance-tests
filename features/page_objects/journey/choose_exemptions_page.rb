@@ -5,7 +5,7 @@ class ChooseExemptionsPage < SitePrism::Page
   element(:error, ".error-summary")
   element(:heading, ".heading-large")
 
-  elements(:exemptions, "input[name='exemptions_form[exemptions][]']", visible: false)
+  elements(:exemptions, "input[name='exemptions_form[exemption_ids][]']", visible: false)
 
   element(:submit_button, "input[name='commit']")
 
@@ -17,12 +17,6 @@ class ChooseExemptionsPage < SitePrism::Page
       end
     end
 
-    submit_button.click
-  end
-
-  def choose_exemption(exemption)
-    element = "#exemptions_form_checkbox-#{exemption}+ label"
-    find(:css, element).click
     submit_button.click
   end
 

@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-class ContactNamePage < SitePrism::Page
+class NamePage < SitePrism::Page
 
-  # consider merging this with applicant_email
+  # This is a generic page object file for applicant and contact names, as the page objects use the same structure.
 
   element(:error, ".error-summary")
   element(:heading, ".heading-large")
 
-  element(:first_name, "#contact_name_form_contact_first_name")
-  element(:last_name, "#contact_name_form_contact_last_name")
+  element(:first_name, "input[id*='first_name']")
+  element(:last_name, "input[id*='last_name']")
 
   element(:submit_button, "input[type='submit']")
 
