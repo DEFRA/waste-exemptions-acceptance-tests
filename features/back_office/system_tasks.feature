@@ -32,6 +32,7 @@ Feature: Carry out system tasks
       And I can view their details
       And I can continue an in progress registration
       And I can access data exports
+      And I can download letters
 
   Scenario: User is a super_agent
     Given I sign in as a super agent
@@ -43,6 +44,7 @@ Feature: Carry out system tasks
       And I can view their details
       And I can continue an in progress registration
       And I can access data exports
+      And I can download letters
 
   Scenario: User is an admin_agent
     Given I sign in as an admin agent
@@ -54,6 +56,7 @@ Feature: Carry out system tasks
       And I can view their details
       And I can continue an in progress registration
       And I can access data exports
+      And I can download letters
       But I cannot edit the most recent registration
 
   Scenario: User is a data_agent
@@ -67,3 +70,4 @@ Feature: Carry out system tasks
       But I cannot continue an in progress registration
       But I can access data exports
       But I cannot edit the most recent registration
+      But I cannot download letters
