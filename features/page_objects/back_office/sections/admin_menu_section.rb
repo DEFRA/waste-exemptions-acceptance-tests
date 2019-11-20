@@ -9,6 +9,7 @@ class AdminMenuSection < SitePrism::Section
   element(:home_page, "#proposition-name")
   element(:user_management, "a[href='/users']")
   element(:dashboard_link, "li:nth-child(1) a")
+  element(:download_letters_link, "a[href*='/letters']")
   element(:data_exports, "a[href*='/data-exports']")
 
 end
