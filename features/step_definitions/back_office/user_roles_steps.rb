@@ -83,3 +83,14 @@ Then("I can access data exports") do
   sleep(2)
   expect(page.title).to eq("Data Exports - Register your waste exemptions - GOV.UK")
 end
+
+Then("I can download letters") do
+  @world.bo.dashboard_page.admin_menu.download_letters_link.click
+  find_link("Renewal letters").click
+  expect(@world.journey.standard_page.heading).to have_text("Renewal letters for assisted digital")
+  expect(@world.journey.standard_page.content).to have_text("Number of letters")
+end
+
+Then("I cannot download letters") do
+  expect(@world.bo.dashboard_page.admin_menu).to have_no_download_letters_link
+end

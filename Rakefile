@@ -19,6 +19,11 @@ task :pre do
   sh %( QUKE_CONFIG=config/pre.config.yml bundle exec quke --tags "not @renew")
 end
 
+desc "Run @smoke tests against the local environment"
+task :loc_smo do
+  sh %( QUKE_CONFIG=config/loc.config.yml bundle exec quke --tags @smoke)
+end
+
 desc "Run @smoke tests against the pre-production environment"
 task :pre_smo do
   sh %( QUKE_CONFIG=config/pre.config.yml bundle exec quke --tags @smoke)
@@ -38,7 +43,7 @@ end
 
 desc "Run custom tests on pre-production"
 task :pre_tag do
-  sh %( QUKE_CONFIG=config/pre.config.yml bundle exec quke --tags @search)
+  sh %( QUKE_CONFIG=config/pre.config.yml bundle exec quke --tags @reg)
 end
 
 # Individual tests on tst:
