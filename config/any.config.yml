@@ -137,12 +137,12 @@ custom:
     dev:
       front_office: "https://wex-dev.aws.defra.cloud"
       back_office: "https://admin-wex-dev.aws.defra.cloud"
-      mail_client: "https://admin-wex-dev.aws.defra.cloud/last-email"
+      mail_client: "https://admin-wex-dev.aws.defra.cloud/email/last-email"
     tst:
       front_office: "https://wex-tst.aws.defra.cloud"
       back_office: "https://admin-wex-tst.aws.defra.cloud"
-      mail_client: "https://admin-wex-tst.aws.defra.cloud/last-email"
+      mail_client: "https://admin-wex-tst.aws.defra.cloud/email/last-email"
     pre:
       front_office: "https://wex-pre.aws.defra.cloud"
       back_office: "https://admin-wex-pre.aws.defra.cloud"
-      mail_client: "https://admin-wex-pre.aws.defra.cloud/last-email"
+      mail_client: "https://admin-wex-pre.aws.defra.cloud/email/last-email"

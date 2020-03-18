@@ -123,7 +123,7 @@ custom:
       username: system_user@wex.gov.uk
   urls:
     front_office: "https://wex-dev.aws.defra.cloud"
-    front_office_email: "https://wex-dev.aws.defra.cloud/last-email"
+    front_office_email: "https://wex-dev.aws.defra.cloud/email/last-email"
     back_office: "https://admin-wex-dev.aws.defra.cloud"
-    back_office_email: "https://admin-wex-dev.aws.defra.cloud/last-email"
-    mail_client: "https://wex-dev.aws.defra.cloud/last-email"
+    back_office_email: "https://admin-wex-dev.aws.defra.cloud/email/last-email"
+    mail_client: "https://wex-dev.aws.defra.cloud/email/last-email"
