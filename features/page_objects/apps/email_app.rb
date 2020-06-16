@@ -11,16 +11,4 @@ class EmailApp
     @last_page = LastEmailApiPage.new
   end
 
-  def mailcatcher_main_page
-    @last_page = MailcatcherMainPage.new
-  end
-
-  def mailcatcher_messages_page
-    @last_page = MailcatcherMessagesPage.new
-  end
-
-  def local?
-    (Quke::Quke.config.custom["urls"]["mail_client"]).include? "local"
-  end
-
 end

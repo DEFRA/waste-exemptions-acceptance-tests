@@ -73,4 +73,3 @@ custom:
     front_office_email: "https://wex-tst.aws.defra.cloud/email/last-email"
     back_office: "https://admin-wex-tst.aws.defra.cloud"
     back_office_email: "https://admin-wex-tst.aws.defra.cloud/email/last-email"
-    mail_client: "https://wex-tst.aws.defra.cloud/email/last-email"
