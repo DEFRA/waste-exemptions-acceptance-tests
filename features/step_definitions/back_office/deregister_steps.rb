@@ -56,9 +56,9 @@ When("I deregister a whole registration") do
   find_link("View details").click
   expect(@world.bo.registration_details_page.heading).to have_text("Registration details for " + @world.last_reg_no)
   @world.bo.registration_details_page.deregister_reg_link.click
-  # rubocop:disable Metrics/LineLength
+  # rubocop:disable Layout/LineLength
   expect(@world.bo.deregister_page.heading).to have_text("Deregister all active Exemptions for Registration " + @world.last_reg_no)
-  # rubocop:enable Metrics/LineLength
+  # rubocop:enable Layout/LineLength
 
   # Randomly revoke or cease the whole registration:
   if rand(0..1).zero?

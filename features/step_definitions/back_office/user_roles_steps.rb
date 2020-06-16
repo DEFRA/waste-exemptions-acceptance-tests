@@ -53,7 +53,7 @@ end
 Then("I can view their details") do
   @world.bo.dashboard_page.view_link(@world.known_reg_no).click
   expect(page).to have_content("Registration details for")
-  expect(page).to have_current_path(%r{^\/registrations\/WEX})
+  expect(page).to have_current_path(%r{^/registrations/WEX})
 end
 
 Then("I can continue an in progress registration") do

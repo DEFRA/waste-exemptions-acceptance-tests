@@ -209,8 +209,8 @@ def test_confirmation_validations
 
   # Declaration page
   @world.journey.declaration_page.submit_button.click
-  # rubocop:disable Metrics/LineLength
+  # rubocop:disable Layout/LineLength
   expect(@world.journey.declaration_page.error).to have_text("You cannot register if you do not understand and agree with the declaration")
-  # rubocop:enable Metrics/LineLength
+  # rubocop:enable Layout/LineLength
   @world.journey.declaration_page.submit
 end
