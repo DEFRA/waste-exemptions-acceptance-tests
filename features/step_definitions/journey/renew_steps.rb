@@ -23,14 +23,14 @@ When("I renew the registration {string} changes") do |changes|
   if @changes == "without"
     @world.journey.renew_choice_page.renew_without_changes_radio.click
     @world.journey.renew_choice_page.continue_button.click
-    # rubocop:disable Metrics/LineLength
+    # rubocop:disable Layout/LineLength
     expect(@world.journey.renew_splash_page.heading).to have_text("You are about to renew for 3 years with the current details")
-    # rubocop:enable Metrics/LineLength
+    # rubocop:enable Layout/LineLength
     @world.journey.renew_splash_page.continue_button.click
     @world.journey.declaration_page.submit
-    # rubocop:disable Metrics/LineLength
+    # rubocop:disable Layout/LineLength
     expect(@world.journey.confirmation_page.confirmation_box).to have_text("You have renewed your exemptions for 3 years")
-    # rubocop:enable Metrics/LineLength
+    # rubocop:enable Layout/LineLength
 
     @renewed_reg = @world.last_reg # renewed registration has same details as before
     @renewed_reg_no = @world.journey.confirmation_page.ref_no.text
@@ -44,9 +44,9 @@ When("I renew the registration {string} changes") do |changes|
     @world.journey.renew_choice_page.renew_with_changes_radio.click
     @world.journey.renew_choice_page.continue_button.click
 
-    # rubocop:disable Metrics/LineLength
+    # rubocop:disable Layout/LineLength
     expect(@world.journey.renew_splash_page.heading).to have_text("We'll fill in the form with your current registration details")
-    # rubocop:enable Metrics/LineLength
+    # rubocop:enable Layout/LineLength
     @world.journey.renew_splash_page.continue_button.click
     @world.journey.location_page.submit(location: :england)
 
@@ -176,14 +176,14 @@ Then("I receive a renewal confirmation email") do
   # We don't know whether the applicant or contact email will be sent first,
   # so we need to check both. If the applicant email doesn't work, try the contact email.
   email_recipient = "applicant"
-  # rubocop:disable Metrics/LineLength
+  # rubocop:disable Layout/LineLength
   confirmation_email = @world.email.last_email_api_page.get_confirmation_email(@renewed_reg[:applicant][:email].to_s, @renewed_reg_no)
-  # rubocop:enable Metrics/LineLength
+  # rubocop:enable Layout/LineLength
   if confirmation_email == "nope"
     email_recipient = "contact"
-    # rubocop:disable Metrics/LineLength
+    # rubocop:disable Layout/LineLength
     confirmation_email = @world.email.last_email_api_page.get_confirmation_email(@renewed_reg[:contact][:email].to_s, @renewed_reg_no)
-    # rubocop:enable Metrics/LineLength
+    # rubocop:enable Layout/LineLength
   end
   # Check either the applicant or contact's email address depending on what's been retrieved in the last email:
   expect(confirmation_email).to have_text(@renewed_reg[email_recipient.to_sym][:email].to_s)
@@ -222,9 +222,9 @@ end
 Given("the renewal letter has the correct details") do
   # Check confirmation letter with what's been generated in features/support/data_generator.rb :
   expect(@world.bo.renewal_letter_page.heading).to have_text("Renew your waste exemptions by")
-  # rubocop:disable Metrics/LineLength
+  # rubocop:disable Layout/LineLength
   expect(@world.bo.renewal_letter_page.heading_ref).to have_text("Registration details for registration number " + @world.last_reg_no.to_s)
-  # rubocop:enable Metrics/LineLength
+  # rubocop:enable Layout/LineLength
   page_content = @world.bo.renewal_letter_page.content
   expect(page_content).to have_text(@world.last_reg[:contact][:full_name]) # known applicant's full name
   expect(page_content).to have_text("Type of business: Limited company")

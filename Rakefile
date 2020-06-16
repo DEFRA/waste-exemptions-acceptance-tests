@@ -9,6 +9,11 @@ task :loc do
   sh %( QUKE_CONFIG=config/loc.config.yml bundle exec quke)
 end
 
+desc "Run all tests on dev"
+task :dev do
+  sh %( QUKE_CONFIG=config/dev.config.yml bundle exec quke)
+end
+
 desc "Run all tests on test"
 task :tst do
   sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke)
@@ -22,6 +27,16 @@ end
 desc "Run @smoke tests against the local environment"
 task :loc_smo do
   sh %( QUKE_CONFIG=config/loc.config.yml bundle exec quke --tags @smoke)
+end
+
+desc "Run @smoke tests against the dev environment"
+task :dev_smo do
+  sh %( QUKE_CONFIG=config/dev.config.yml bundle exec quke --tags @smoke)
+end
+
+desc "Run @smoke tests against the test environment"
+task :tst_smo do
+  sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke --tags @smoke)
 end
 
 desc "Run @smoke tests against the pre-production environment"
@@ -43,7 +58,7 @@ end
 
 desc "Run custom tests on pre-production"
 task :pre_tag do
-  sh %( QUKE_CONFIG=config/pre.config.yml bundle exec quke --tags @reg)
+  sh %( QUKE_CONFIG=config/pre.config.yml bundle exec quke --tags @wip)
 end
 
 # Individual tests on tst:
@@ -163,6 +178,13 @@ end
 desc "Run front office tests on local"
 task :loc_frontoffice do
   sh %( QUKE_CONFIG=config/loc.config.yml bundle exec quke --tags @frontoffice)
+end
+
+# Individual tests on dev:
+
+desc "Run @wip tests on dev"
+task :dev_wip do
+  sh %( QUKE_CONFIG=config/dev.config.yml bundle exec quke --tags @wip)
 end
 
 # Less-used tasks
