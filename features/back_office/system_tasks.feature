@@ -4,7 +4,7 @@ Feature: Carry out system tasks
   I need to manage other users and perform admin tasks
   So that the service is used appropriately
 
-  @email @wip
+  @email
   Scenario: System user adds a new user
 	  Given I sign in as a system user
      When I invite a new back office user
