@@ -11,20 +11,13 @@ When(/^I invite a new back office user$/) do
 end
 
 When(/^the invite is accepted$/) do
-  if @world.email.local?
-    Capybara.reset_session!
-    @world.email.mailcatcher_main_page.load
-    @world.email.mailcatcher_main_page.open_email(1)
-    @world.email.mailcatcher_messages_page.accept_invite.click
-  else
-    # Use the built-in email API to access the link and accept the invite.
-    # Need to be logged in for these steps to work.
-    visit(Quke::Quke.config.custom["urls"]["back_office_email"])
-    accept_url = @world.email.last_email_api_page.get_accept_url(@world.last_email).to_s
-    # Reset the session, otherwise you stay logged in as a system user.
-    Capybara.reset_session!
-    visit(accept_url)
-  end
+  # Use the built-in email API to access the link and accept the invite.
+  # Need to be logged in for these steps to work.
+  visit(Quke::Quke.config.custom["urls"]["back_office_email"])
+  accept_url = @world.email.last_email_api_page.get_accept_url(@world.last_email).to_s
+  # Reset the session, otherwise you stay logged in as a system user.
+  Capybara.reset_session!
+  visit(accept_url)
 end
 
 When(/^a password is set$/) do

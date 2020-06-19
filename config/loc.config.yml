@@ -70,5 +70,6 @@ custom:
       username: system_user@wex.gov.uk
   urls:
     front_office: "http://localhost:3000"
+    front_office_email: "http://localhost:3000/email/last-email"
     back_office: "http://localhost:8000"
-    mail_client: "http://localhost:1080"
+    back_office_email: "http://localhost:8000/email/last-email"
