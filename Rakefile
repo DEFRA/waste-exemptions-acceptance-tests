@@ -43,7 +43,7 @@ end
 
 desc "Run custom tests on test"
 task :tst_tag do
-  sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke --tags @renewf)
+  sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke --tags @smoke)
 end
 
 desc "Run custom tests on pre-production"
