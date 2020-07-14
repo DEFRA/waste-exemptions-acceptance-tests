@@ -71,11 +71,16 @@ end
 def complete_organisation_details(registration, address_type)
   @world.journey.business_type_page.submit(business_type: registration[:business_type])
 
-  if registration[:business_type] == :limited_company || registration[:business_type] == :llp
+  case registration[:business_type]
+  when :limited_company
     @world.journey.registration_number_page.submit(
       registration_number: registration[:registration_number]
     )
-  elsif registration[:business_type] == :partnership
+  when :llp
+    @world.journey.registration_number_page.submit(
+      registration_number: registration[:registration_number]
+    )
+  when :partnership
     complete_partner_details(registration)
   end
 
