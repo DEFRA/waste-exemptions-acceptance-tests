@@ -69,13 +69,13 @@ When("I renew the registration {string} changes") do |changes|
     complete_farm_questions(@renewed_reg)
 
     # Populate grid reference or address, based on the original site type:
-    heading = @world.journey.site_grid_reference_page.heading.text
-    if heading == "Where will this waste operation take place?"
+    case @world.journey.site_grid_reference_page.heading.text
+    when "Where will this waste operation take place?"
       @world.journey.site_grid_reference_page.submit(
         grid_ref: @renewed_reg[:site][:grid_ref],
         site_details: @renewed_reg[:site][:site_details]
       )
-    elsif heading == "What's the postcode of the waste operation?"
+    when "What's the postcode of the waste operation?"
       complete_address("lookup")
     else
       puts "Error - can't work out what type of address the original registration is"
@@ -131,14 +131,13 @@ Then("I can renew it again") do
 end
 
 Then("I can resume the renewal from where I left off") do
-
-  if @renewer == "back office"
+  case @renewer
+  when "back office"
     find_link("Dashboard").click
     @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
     find_link("Start renewal").click
     @world.journey.ad_privacy_policy_page.continue_button.click
-
-  elsif @renewer == "front office"
+  when "front office"
     # Use the "last email" API to get the renewal link for the front office user
     visit(Quke::Quke.config.custom["urls"]["back_office_email"])
     renewal_url = @world.email.last_email_api_page.get_renewal_url(@renewer_email).to_s
