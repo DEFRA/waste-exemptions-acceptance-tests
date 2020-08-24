@@ -68,6 +68,8 @@ custom:
       username: super_agent@wex.gov.uk
     SystemUser:
       username: system_user@wex.gov.uk
+    DeveloperUser:
+      username: developer@wex.gov.uk
   urls:
     front_office: "https://wex-tst.aws.defra.cloud"
     front_office_email: "https://wex-tst.aws.defra.cloud/email/last-email"

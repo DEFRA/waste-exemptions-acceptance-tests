@@ -96,3 +96,12 @@ end
 Then("I cannot download letters") do
   expect(@world.bo.dashboard_page.admin_menu).to have_no_download_letters_link
 end
+
+Then("I can toggle features") do
+  @world.bo.dashboard_page.admin_menu.toggle_features_link.click
+  expect(@world.journey.standard_page.heading).to have_text("Feature Toggles")
+end
+
+Then("I cannot toggle features") do
+  expect(@world.bo.dashboard_page.admin_menu).to have_no_toggle_features_link
+end

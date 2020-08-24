@@ -12,6 +12,10 @@ Given(/^I sign in as (?:a|an) admin agent$/) do
   login_user(@world.admin_agent_user)
 end
 
-Given(/^I sign in as (?:a|an) data agent$/) do
+Given(/^I sign in as a data agent$/) do
   login_user(@world.data_agent_user)
+end
+
+Given(/^I sign in as a developer$/) do
+  login_user(@world.developer_user)
 end
