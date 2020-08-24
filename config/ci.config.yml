@@ -13,6 +13,8 @@ custom:
       username: super_agent@wex.gov.uk
     SystemUser:
       username: system_user@wex.gov.uk
+    DeveloperUser:
+      username: developer@wex.gov.uk
   urls:
     front_office: "http://example.com"
     back_office: "http://example.com"

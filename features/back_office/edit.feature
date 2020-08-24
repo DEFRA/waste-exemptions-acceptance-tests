@@ -1,4 +1,4 @@
-@backoffice @edit
+@backoffice @edit @smoke
 Feature: Back office user edits a registration
   As an super admin agent
   I need to edit a waste exemption registration

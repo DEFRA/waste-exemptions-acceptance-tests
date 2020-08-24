@@ -30,6 +30,10 @@ class World
     Quke::Quke.config.custom["accounts"]["SystemUser"]["username"]
   end
 
+  def developer_user
+    Quke::Quke.config.custom["accounts"]["DeveloperUser"]["username"]
+  end
+
   def default_password
     ENV["WEX_DEFAULT_PASSWORD"]
   end

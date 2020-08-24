@@ -68,6 +68,8 @@ custom:
       username: super_agent@wex.gov.uk
     SystemUser:
       username: system_user@wex.gov.uk
+    DeveloperUser:
+      username: developer@wex.gov.uk
   urls:
     front_office: "http://localhost:3000"
     front_office_email: "http://localhost:3000/email/last-email"
