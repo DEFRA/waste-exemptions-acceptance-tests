@@ -13,6 +13,9 @@ gem "quke",
 gem "faker"
 gem "pry"
 gem "rake"
+gem "axe-core-capybara"
+gem "axe-core-rspec"
+gem "axe-core-cucumber"
 
 # Gem used by the Defra ruby services team to ensure a consistent style across
 # our code base

@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+require "axe-cucumber-steps"
+require "axe-capybara"
+require "axe-rspec"
+
 class World
 
   attr_reader :journey, :bo, :email
