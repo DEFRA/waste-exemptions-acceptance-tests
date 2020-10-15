@@ -36,6 +36,9 @@ GEM
       axe-core-api
       dumb_delegator
       virtus
+    axe-core-selenium (4.0.0)
+      axe-core-api
+      dumb_delegator
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
@@ -159,6 +162,7 @@ DEPENDENCIES
   axe-core-capybara
   axe-core-cucumber
   axe-core-rspec
+  axe-core-selenium
   defra_ruby_style
   faker
   pry

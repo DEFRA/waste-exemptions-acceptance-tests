@@ -15,6 +15,7 @@ gem "pry"
 gem "rake"
 gem "axe-core-capybara"
 gem "axe-core-rspec"
+gem "axe-core-selenium"
 gem "axe-core-cucumber"
 gem "rspec-core"
 
