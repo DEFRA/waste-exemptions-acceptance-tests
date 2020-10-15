@@ -16,6 +16,7 @@ gem "rake"
 gem "axe-core-capybara"
 gem "axe-core-rspec"
 gem "axe-core-cucumber"
+gem "rspec-core"
 
 # Gem used by the Defra ruby services team to ensure a consistent style across
 # our code base
