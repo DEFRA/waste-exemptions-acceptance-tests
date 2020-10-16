@@ -4,17 +4,17 @@ Feature: Registering a waste exemption
   I want to register a waste activity exemption
   So that know that I am complying with regulations
 
-  @smoke
     Scenario: Registration by an individual
       Given my business is an "individual"
       When I register an exemption
       Then I will be informed the registration is complete
-      And I can access the footer links
 
+  @smoke
     Scenario: Registration by a limited company with error validation
       Given my business is a "limited_company"
       When I register and test validation and accessibility
       Then I will be informed the registration is complete
+      And I can access the footer links
 
     Scenario: Registration by a local authority
       Given my business is a "local_authority"
