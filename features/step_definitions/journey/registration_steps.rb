@@ -14,6 +14,7 @@ end
 
 Then("I will be informed the registration is complete") do
   expect(page).to have_content "Registration complete"
+  # Also recommend adding an email check here
 end
 
 Then(/^I complete (?:a|an) "([^"]*)" registration$/) do |business|

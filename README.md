@@ -97,6 +97,7 @@ To have consistency across the project the following tags are defined and should
 |@ci|A feature that is intended to be run only on our continuous integration service (you should never need to use this tag).|
 |@email|Tests scenarios which include steps that interact with an email client|
 |@data|Steps that rely on pre-existing data being generated|
+|@smoke|Core tests to check that registrations and renewals on the front and back office are working|
 
 Each test also has its own unique tag in case it needs to be run in isolation.
 
@@ -108,7 +109,7 @@ This hopefully will help new starters to the project and Cucumber understand the
 
 ### Before hooks
 
-Before the scenario runs any [before hooks](https://docs.cucumber.io/cucumber/api/#before) defined in the project will be run. In this project we currently have 3
+Before the scenario runs any [before hooks](https://docs.cucumber.io/cucumber/api/#before) defined in the project will be run. In this project we currently have 3:
 
 - One that always runs, which is used to copy the global `$world_state` to an instance used for the current run
 - One that if the scenario is tagged `@data` will generate some registrations and a user. Logic in the hook ensures this is only run once, and is used as a handy way of having known data that can be used across multiple scenarios
@@ -121,6 +122,29 @@ However when the scenario finishes `@my_var` will no longer hold anything. So to
 ### Background
 
 Next up if the scenario is in a feature with a `Background` defined the steps in it will be run first. Only then will the scenario itself be run.
+
+### Accessibility
+
+This repository includes the ability to check the currently loaded page for accessibility violations. It uses [axe-core-capybara](https://github.com/dequelabs/axe-core-gems/blob/develop/packages/axe-core-capybara/) and [axe-core-cucumber](https://github.com/dequelabs/axe-core-gems/blob/develop/packages/axe-core-cucumber).
+
+To call it, use the following step:
+
+```gherkin
+Then the page should be axe clean
+
+# or call this within another step using
+step("the page should be axe clean")
+```
+
+This calls all of Axe's accessibility rules and is useful to find best practice. However, our minimum standard is to focus on Web Content Accessibility Guidelines v2.1 to levels A and AA, so we want the tests to pass if so. Use this step to reduce the scope:
+
+```gherkin
+Then the page should be axe clean according to: wcag21a, wcag21aa
+```
+
+Also refer to [Axe API documentation](https://github.com/dequelabs/axe-core/blob/develop/doc/API.md) for more detail.
+
+Finally, remember that automated testing is not a substitute for manual testing.
 
 ### After hooks
 
@@ -142,7 +166,6 @@ You can also test them using the Chrome developer tools. Open them up, select th
 If you have an idea you'd like to contribute please log an issue.
 
 All contributions should be submitted via a pull request.
-
 
 ## License
 
