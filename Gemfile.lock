@@ -32,13 +32,6 @@ GEM
       axe-core-api
       dumb_delegator
       virtus
-    axe-core-rspec (4.0.0)
-      axe-core-api
-      dumb_delegator
-      virtus
-    axe-core-selenium (4.0.0)
-      axe-core-api
-      dumb_delegator
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
@@ -111,8 +104,6 @@ GEM
     rake (13.0.1)
     regexp_parser (1.7.1)
     rexml (3.2.4)
-    rspec-core (3.9.3)
-      rspec-support (~> 3.9.3)
     rspec-expectations (3.9.2)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.9.0)
@@ -161,14 +152,11 @@ PLATFORMS
 DEPENDENCIES
   axe-core-capybara
   axe-core-cucumber
-  axe-core-rspec
-  axe-core-selenium
   defra_ruby_style
   faker
   pry
   quke!
   rake
-  rspec-core
 
 BUNDLED WITH
    2.1.4

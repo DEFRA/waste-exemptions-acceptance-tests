@@ -11,9 +11,9 @@ Feature: Registering a waste exemption
       Then I will be informed the registration is complete
       And I can access the footer links
 
-    Scenario: Registration by a limited company with errors
+    Scenario: Registration by a limited company with error validation
       Given my business is a "limited_company"
-      When I complete a registration badly
+      When I register and test validation and accessibility
       Then I will be informed the registration is complete
 
     Scenario: Registration by a local authority

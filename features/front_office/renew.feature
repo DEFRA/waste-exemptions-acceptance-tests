@@ -11,7 +11,6 @@ Feature: [RUBY-241] Front office user renews a registration via email
     Given my business is a "limited_company"
      When I register an exemption
      Then I will be informed the registration is complete
-
       And I receive an invitation to renew
       And I click the link in the renewal email
 
@@ -36,5 +35,5 @@ Feature: [RUBY-241] Front office user renews a registration via email
      Then I can resume the renewal from where I left off
 
   Scenario: Renewal errors
-     When I renew the registration badly
+     When I renew and test validation and accessibility
      Then I see the renewal confirmation screen

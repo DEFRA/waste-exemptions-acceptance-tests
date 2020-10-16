@@ -127,14 +127,13 @@ Next up if the scenario is in a feature with a `Background` defined the steps in
 
 This repository includes the ability to check the currently loaded page for accessibility violations. It uses [axe-core-capybara](https://github.com/dequelabs/axe-core-gems/blob/develop/packages/axe-core-capybara/) and [axe-core-cucumber](https://github.com/dequelabs/axe-core-gems/blob/develop/packages/axe-core-cucumber).
 
-To call it, use:
+To call it, use the following step:
 
-```
-# as an entire step - this works:
+```gherkin
 Then the page should be axe clean
 
-# within a step - this doesn't work yet:
-expect(page).to be_axe_clean
+# or call this within another step using
+step("the page should be axe clean")
 ```
 
 This calls all of Axe's accessibility rules and is useful to find best practice. However, our minimum standard is to focus on Web Content Accessibility Guidelines v2.1 to levels A and AA, so we want the tests to pass if so. Use this step to reduce the scope:

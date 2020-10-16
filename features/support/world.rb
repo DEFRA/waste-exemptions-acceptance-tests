@@ -2,8 +2,6 @@
 
 require "axe-cucumber-steps"
 require "axe-capybara"
-require "axe-rspec"
-require "axe-selenium"
 
 class World
 
