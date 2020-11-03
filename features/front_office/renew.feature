@@ -18,7 +18,6 @@ Feature: [RUBY-241] Front office user renews a registration via email
      When I renew the registration "without" changes
      Then I can see the correct renewed details
       And I receive a renewal confirmation email
-      And I click the link in the renewal email
       And I cannot renew it again from the front office
       And I cannot renew it again from the back office
 
@@ -26,7 +25,6 @@ Feature: [RUBY-241] Front office user renews a registration via email
      When I renew the registration "with" changes
      Then I can see the correct renewed details
       And I receive a renewal confirmation email
-      And I click the link in the renewal email
       And I cannot renew it again from the front office
       And I cannot renew it again from the back office
 

@@ -4,14 +4,17 @@ Feature: Carry out system tasks
   I need to manage other users and perform admin tasks
   So that the service is used appropriately
 
-  @email
-  Scenario: System user adds a new user
-    Given I sign in as a system user
-    When I invite a new back office user
-    And the invite is accepted
-    Then a password is set
-    And the new back office user can sign in
-    And the new back office user cannot change their password
+  The commented test is broken as it requires a new, random email address to be set up.
+  Notify trial mode can only accept 5 specified email addresses.
+  Uncomment this test when we move out of trial mode.
+  # @email
+  # Scenario: System user adds a new user
+  #   Given I sign in as a system user
+  #   When I invite a new back office user
+  #   And the invite is accepted
+  #   Then a password is set
+  #   And the new back office user can sign in
+  #   And the new back office user cannot change their password
 
   Scenario: System user changes a user's role
     Given I sign in as a system user

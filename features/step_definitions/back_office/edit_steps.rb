@@ -68,6 +68,5 @@ When("I cannot see the new details on the registration details page") do
   @world.bo.registration_details_page.reporting_info_link.click
   expect(@world.bo.registration_details_page.content).not_to have_text(@new_person[:first_name])
   expect(@world.bo.registration_details_page.content).not_to have_text(@new_person[:last_name])
-  expect(@world.bo.registration_details_page.content).not_to have_text(@new_person[:email])
   expect(@world.bo.registration_details_page.content).not_to have_text(@new_details[:operator_name])
 end
