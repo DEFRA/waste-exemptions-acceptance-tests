@@ -72,6 +72,6 @@ custom:
       username: developer@wex.gov.uk
   urls:
     front_office: "https://wex-pre.aws.defra.cloud"
-    front_office_email: "https://wex-pre.aws.defra.cloud/email/last-email"
+    front_office_email: "https://wex-pre.aws.defra.cloud/email/last-notify-message"
     back_office: "https://admin-wex-pre.aws.defra.cloud"
-    back_office_email: "https://admin-wex-pre.aws.defra.cloud/email/last-email"
+    back_office_email: "https://admin-wex-pre.aws.defra.cloud/email/last-notify-message"
