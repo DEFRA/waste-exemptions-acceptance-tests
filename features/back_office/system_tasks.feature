@@ -6,7 +6,7 @@ Feature: Carry out system tasks
 
   The commented test is broken as it requires a new, random email address to be set up.
   Notify trial mode can only accept 5 specified email addresses.
-  Uncomment this test when we move out of guest mode.
+  Uncomment this test when we move out of trial mode.
   # @email
   # Scenario: System user adds a new user
   #   Given I sign in as a system user
