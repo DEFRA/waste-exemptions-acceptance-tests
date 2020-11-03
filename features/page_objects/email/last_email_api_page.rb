@@ -12,7 +12,7 @@ class LastEmailApiPage < SitePrism::Page
   element(:email_content, "pre")
 
   def get_accept_url(email_address)
-    10.times do
+    2.times do
       page.evaluate_script "window.location.reload()"
       parsed_data = JSON.parse(email_content.text)
 
@@ -31,7 +31,7 @@ class LastEmailApiPage < SitePrism::Page
 
   def get_renewal_url(email_address)
     # Uses the same logic as get_accept_url
-    10.times do
+    2.times do
       page.evaluate_script "window.location.reload()"
       parsed_data = JSON.parse(email_content.text)
       next if expected_email?(parsed_data, email_address, "renew online now") == false
@@ -44,7 +44,7 @@ class LastEmailApiPage < SitePrism::Page
   end
 
   def get_confirmation_email(email_address, registration_no)
-    10.times do
+    2.times do
       page.evaluate_script "window.location.reload()"
       parsed_data = JSON.parse(email_content.text)
       # Retry if the correct email address and waste exemption number aren't shown:

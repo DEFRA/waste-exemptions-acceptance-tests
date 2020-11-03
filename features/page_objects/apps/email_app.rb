@@ -11,4 +11,8 @@ class EmailApp
     @last_page = LastEmailApiPage.new
   end
 
+  def last_notify_msg_page
+    @last_page = LastNotifyMsgPage.new
+  end
+
 end

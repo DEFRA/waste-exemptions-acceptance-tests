@@ -140,9 +140,9 @@ Then("I can resume the renewal from where I left off") do
   when "front office"
     # Use the "last email" API to get the renewal link for the front office user
     visit(Quke::Quke.config.custom["urls"]["back_office_email"])
-    renewal_url = @world.email.last_email_api_page.get_renewal_url(@renewer_email).to_s
-    expect(renewal_url).to have_text("/renew/")
-    visit(renewal_url)
+    @renewal_url = @world.email.last_notify_msg_page.get_renewal_url(@renewer_email).to_s
+    expect(@renewal_url).to have_text("/renew/")
+    visit(@renewal_url)
   end
 
   expect(@world.journey.name_page.heading).to have_text("Who is filling in this form?")
@@ -165,9 +165,9 @@ end
 Given("I click the link in the renewal email") do
   # Use the "last email" API to get the renewal link for the front office user
   visit(Quke::Quke.config.custom["urls"]["back_office_email"])
-  renewal_url = @world.email.last_email_api_page.get_renewal_url(@renewer_email).to_s
-  expect(renewal_url).to have_text("/renew/")
-  visit(renewal_url)
+  @renewal_url = @world.email.last_notify_msg_page.get_renewal_url(@renewer_email).to_s
+  expect(@renewal_url).to have_text("/renew/")
+  visit(@renewal_url)
 end
 
 Then("I receive a renewal confirmation email") do
@@ -176,12 +176,12 @@ Then("I receive a renewal confirmation email") do
   # so we need to check both. If the applicant email doesn't work, try the contact email.
   email_recipient = "applicant"
   # rubocop:disable Layout/LineLength
-  confirmation_email = @world.email.last_email_api_page.get_confirmation_email(@renewed_reg[:applicant][:email].to_s, @renewed_reg_no)
+  confirmation_email = @world.email.last_notify_msg_page.get_confirmation_email(@renewed_reg[:applicant][:email].to_s, @renewed_reg_no)
   # rubocop:enable Layout/LineLength
-  if confirmation_email == "nope"
+  if confirmation_email == "Email not found"
     email_recipient = "contact"
     # rubocop:disable Layout/LineLength
-    confirmation_email = @world.email.last_email_api_page.get_confirmation_email(@renewed_reg[:contact][:email].to_s, @renewed_reg_no)
+    confirmation_email = @world.email.last_notify_msg_page.get_confirmation_email(@renewed_reg[:contact][:email].to_s, @renewed_reg_no)
     # rubocop:enable Layout/LineLength
   end
   # Check either the applicant or contact's email address depending on what's been retrieved in the last email:
@@ -192,6 +192,7 @@ Then("I receive a renewal confirmation email") do
 end
 
 Then("I cannot renew it again from the front office") do
+  visit(@renewal_url)
   expect(@world.journey.renew_choice_page.heading).to have_text("That registration has already been renewed")
 end
 

@@ -48,7 +48,8 @@ def generate_person
     last_name: last_name,
     full_name: first_name + " " + last_name,
     telephone: "0117 9000000",
-    email: generate_example_email(first_name, last_name),
+    email: "wex@example.com",
+    # email: generate_example_email(first_name, last_name),
     position: Faker::Job.title
   }
 end
