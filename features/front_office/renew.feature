@@ -21,6 +21,7 @@ Feature: [RUBY-241] Front office user renews a registration via email
       And I cannot renew it again from the front office
       And I cannot renew it again from the back office
 
+@smoke @email
   Scenario: Renew a registration from email with changes
      When I renew the registration "with" changes
      Then I can see the correct renewed details

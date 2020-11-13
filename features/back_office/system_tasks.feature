@@ -1,30 +1,27 @@
-@backoffice @data @email @system
+@backoffice @data @system
 Feature: Carry out system tasks
   As a back office user
   I need to manage other users and perform admin tasks
   So that the service is used appropriately
 
-  The commented tests are broken as the user management steps still use the existing Sendgrid method without Notify.
-  It requires the previous email mechanism to still be included in the suite for the time being.
-  To be addressed in an upcoming pull request.
-  # @email
-  # Scenario: System user adds a new user
-  #   Given I sign in as a system user
-  #   When I invite a new back office user
-  #   And the invite is accepted
-  #   Then a password is set
-  #   And the new back office user can sign in
-  #   And the new back office user cannot change their password
+  @email
+  Scenario: System user adds a new user
+    Given I sign in as a system user
+    When I invite a new back office user
+    And the invite is accepted
+    Then a password is set
+    And the new back office user can sign in
+    And the new back office user cannot change their password
 
-  # Scenario: System user changes a user's role
-  #   Given I sign in as a system user
-  #   When I change a users role to super agent
-  #   Then I see their role has changed
+  Scenario: System user changes a user's role
+    Given I sign in as a system user
+    When I change a users role to super agent
+    Then I see their role has changed
 
-  # Scenario: System user deactivates a user
-  #   Given I sign in as a system user
-  #   When I deactivate a user
-  #   Then I see their status has changed
+  Scenario: System user deactivates a user
+    Given I sign in as a system user
+    When I deactivate a user
+    Then I see their status has changed
 
   Scenario: User is a system_user
     Given I sign in as a system user

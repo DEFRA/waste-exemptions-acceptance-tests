@@ -95,7 +95,7 @@ To have consistency across the project the following tags are defined and should
 |@frontoffice|Any feature or scenario expected to be run against the front office application|
 |@backoffice|Any feature or scenario expected to be run against the back office application|
 |@ci|A feature that is intended to be run only on our continuous integration service (you should never need to use this tag).|
-|@email|Tests scenarios which include steps that interact with an email client|
+|@email|Regression tests some scenarios that interact with an email client|
 |@data|Steps that rely on pre-existing data being generated|
 |@smoke|Core tests to check that registrations and renewals on the front and back office are working|
 
