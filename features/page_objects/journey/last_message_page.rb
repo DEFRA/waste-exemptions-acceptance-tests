@@ -4,7 +4,7 @@ require "json"
 
 class LastMessagePage < SitePrism::Page
   # Page which shows last message sent in JSON format.
-  # This file works for both the last Notify message and last email sent through Sendgrid, as the elements are very similar.
+  # This file works for both the last Notify message and last email sent through Sendgrid - the elements are similar.
   # Sendgrid messages are on /email/last-email.
   # Notify messages are on /email/last-notify-message.
 
