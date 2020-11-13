@@ -14,7 +14,6 @@ Feature: Registering a waste exemption
       Given my business is a "limited_company"
       When I register and test validation and accessibility
       Then I will be informed the registration is complete
-      And I can access the footer links
 
     Scenario: Registration by a local authority
       Given my business is a "local_authority"

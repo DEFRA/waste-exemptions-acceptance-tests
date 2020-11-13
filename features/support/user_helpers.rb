@@ -7,6 +7,8 @@ def create_user(type, email, load_root_page = true)
 end
 
 def login_user(user_email)
+  # Set app to back office, to determine which email service to call later:
+  @app = :bo
   @world.bo.login_page.load
   # Back office login page
   @world.bo.login_page.submit(

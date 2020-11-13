@@ -15,7 +15,6 @@ class World
   def initialize
     @journey = JourneyApp.new
     @bo = BackOfficeApp.new
-    @email = EmailApp.new
   end
 
   def data_agent_user
