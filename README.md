@@ -1,6 +1,6 @@
 # Waste exemptions acceptance tests
 
-[![Build Status](https://travis-ci.com/DEFRA/waste-exemptions-acceptance-tests.svg?branch=main)](https://travis-ci.com/DEFRA/waste-exemptions-acceptance-tests)
+![Build Status](https://github.com/DEFRA/waste-exemptions-acceptance-tests/workflows/CI/badge.svg?branch=main)
 [![security](https://hakiri.io/github/DEFRA/waste-exemptions-acceptance-tests/main.svg)](https://hakiri.io/github/DEFRA/waste-exemptions-acceptance-tests/main)
 
 If your business produces waste or emissions that pollute you may require an environmental permit. However you may also be able to get an exemption if your business activities are considered to be easily controlled and only create low risks of pollution.
