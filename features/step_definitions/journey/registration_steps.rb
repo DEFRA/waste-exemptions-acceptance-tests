@@ -6,6 +6,8 @@ Given(/^my business is (?:a|an) "([^"]*)"$/) do |business|
 end
 
 Then("I register an exemption") do
+  # Set app to front office, to determine which email service to call later
+  @app = :fo
   # Complete the registration. See registration_helpers for an explanation of the parameters.
   # Registration details are stored as a hash, @world.last_reg.
   # Registration number is stored as a string, @world.last_reg_no.
@@ -14,7 +16,13 @@ end
 
 Then("I will be informed the registration is complete") do
   expect(page).to have_content "Registration complete"
-  # Also recommend adding an email check here
+  reg_no = @world.journey.confirmation_page.ref_no.text
+  expected_text = [
+    "Waste exemptions registration " + reg_no + " completed",
+    "Download your confirmation",
+    "causing a nuisance through noise and odours"
+  ]
+  expect(email_exists?(@app, @world.last_reg, expected_text)).to be true
 end
 
 Then(/^I complete (?:a|an) "([^"]*)" registration$/) do |business|

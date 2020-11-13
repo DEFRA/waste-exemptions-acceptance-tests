@@ -8,14 +8,13 @@ class LastNotifyMsgPage < SitePrism::Page
   element(:message_content, "pre")
 
   def get_accept_url(email_address)
-    parsed_data = JSON.parse(message_content.text)
-
-    # Fail if parsed data doesn't contain the correct email address and subject line text:
-    if expected_email?(parsed_data, email_address, "Create a Waste Exemptions back office account") == false
+    # Fail if email doesn't contain the correct email address and subject line text:
+    if email_has_text?([email_address, "Create a Waste Exemptions back office account"]) == false
       puts("Couldn't find invite email")
       return "Email not found"
     end
 
+    parsed_data = JSON.parse(message_content.text)
     # Find the text in the API JSON between the following two strings:
     #     link below.\n\n
     #     \n\n  This invitation
@@ -26,35 +25,39 @@ class LastNotifyMsgPage < SitePrism::Page
 
   def get_renewal_url(email_address)
     # Uses the same logic as get_accept_url
-    parsed_data = JSON.parse(message_content.text)
-    if expected_email?(parsed_data, email_address, "renew online now") == false
+    if email_has_text?([email_address, "renew online now"]) == false
       puts("Couldn't find renewal email")
       return "Email not found"
     end
 
+    parsed_data = JSON.parse(message_content.text)
     # Find the string that matches:
     # https://, then any 15-24 characters, then /renew/, then any 24 characters
     parsed_data["last_notify_message"]["body"].match %r/https:\/\/.{15,24}\/renew\/.{24}/
   end
 
-  def get_confirmation_email(email_address, registration_no)
-    page.evaluate_script "window.location.reload()"
-    parsed_data = JSON.parse(message_content.text)
-    # Fail if the correct email address and waste exemption number aren't shown:
-    if expected_email?(parsed_data, email_address, registration_no) == false
-      puts("Couldn't find email and WEX number")
-      return("Email not found")
+  def email_has_text?(expected_text)
+    # Look for an email containing all the strings in the given array
+    # and returns true if all the expected text is present.
+    # Adapted from Waste Carriers.
+
+    page_text = message_content.text
+    return false if page_text.include?("Error")
+
+    # Assume email contains all expected text unless proven otherwise:
+    email_contains_all_text = true
+
+    expected_text.each do |element|
+      unless page_text.include?(element)
+        email_contains_all_text = false
+        break
+      end
     end
-    parsed_data["last_notify_message"].to_s
-  end
 
-  def expected_email?(parsed_data, email_address, subject_text)
-    # Check the parsed data to see whether it contains the expected email address and subject line text.
-    return false if parsed_data.key?("error")
-    return false unless parsed_data["last_notify_message"]["to"].include?(email_address)
-    return false unless parsed_data["last_notify_message"]["subject"].include?(subject_text)
+    return true if email_contains_all_text
 
-    true
+    puts "Couldn't find email containing all text: " + expected_text.to_s
+    false
   end
 
 end

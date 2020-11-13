@@ -55,6 +55,10 @@ class JourneyApp
     @last_page = FarmerPage.new
   end
 
+  def last_notify_msg_page
+    @last_page = LastNotifyMsgPage.new
+  end
+
   def location_page
     @last_page = LocationPage.new
   end

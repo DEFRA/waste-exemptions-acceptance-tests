@@ -14,7 +14,7 @@ When(/^the invite is accepted$/) do
   # Use the built-in email API to access the link and accept the invite.
   # Need to be logged in for these steps to work.
   visit(Quke::Quke.config.custom["urls"]["back_office_email"])
-  accept_url = @world.email.last_notify_msg_page.get_accept_url(@world.last_email).to_s
+  accept_url = @world.journey.last_notify_msg_page.get_accept_url(@world.last_email).to_s
   # Reset the session, otherwise you stay logged in as a system user.
   Capybara.reset_session!
   visit(accept_url)
