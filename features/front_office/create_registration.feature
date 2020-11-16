@@ -9,7 +9,7 @@ Feature: Registering a waste exemption
       When I register an exemption
       Then I will be informed the registration is complete
 
-  @smoke
+  @smoke @email
     Scenario: Registration by a limited company with error validation
       Given my business is a "limited_company"
       When I register and test validation and accessibility

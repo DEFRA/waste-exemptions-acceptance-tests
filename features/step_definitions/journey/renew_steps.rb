@@ -139,8 +139,8 @@ Then("I can resume the renewal from where I left off") do
     @world.journey.ad_privacy_policy_page.continue_button.click
   when "front office"
     # Use the "last email" API to get the renewal link for the front office user
-    visit(Quke::Quke.config.custom["urls"]["back_office_email"])
-    @renewal_url = @world.journey.last_notify_msg_page.get_renewal_url(@renewer_email).to_s
+    visit(Quke::Quke.config.custom["urls"]["back_office_notify"])
+    @renewal_url = @world.journey.last_message_page.get_renewal_url(@renewer_email).to_s
     expect(@renewal_url).to have_text("/renew/")
     visit(@renewal_url)
   end
@@ -164,8 +164,8 @@ end
 
 Given("I click the link in the renewal email") do
   # Use the "last email" API to get the renewal link for the front office user
-  visit(Quke::Quke.config.custom["urls"]["back_office_email"])
-  @renewal_url = @world.journey.last_notify_msg_page.get_renewal_url(@renewer_email).to_s
+  visit(Quke::Quke.config.custom["urls"]["back_office_notify"])
+  @renewal_url = @world.journey.last_message_page.get_renewal_url(@renewer_email).to_s
   expect(@renewal_url).to have_text("/renew/")
   visit(@renewal_url)
 end
