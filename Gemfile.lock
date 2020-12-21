@@ -75,7 +75,7 @@ GEM
     diff-lcs (1.4.4)
     dumb_delegator (1.0.0)
     equalizer (0.0.11)
-    faker (2.14.0)
+    faker (2.15.1)
       i18n (>= 1.6, < 2)
     gherkin (5.1.0)
     i18n (1.8.5)
