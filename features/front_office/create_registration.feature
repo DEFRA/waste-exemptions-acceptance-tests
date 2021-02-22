@@ -8,22 +8,26 @@ Feature: Registering a waste exemption
       Given my business is an "individual"
       When I register an exemption
       Then I will be informed the registration is complete
+      And I will receive a registration confirmation email
 
   @smoke @email
     Scenario: Registration by a limited company with error validation
       Given my business is a "limited_company"
       When I register and test validation and accessibility
       Then I will be informed the registration is complete
+      And I will receive a registration confirmation email
 
     Scenario: Registration by a local authority
       Given my business is a "local_authority"
       When I register an exemption
       Then I will be informed the registration is complete
+      And I will receive a registration confirmation email
 
     Scenario: Registration by a charity
       Given my business is a "charity"
       When I register an exemption
       Then I will be informed the registration is complete
+      And I will receive a registration confirmation email
 
     Scenario: Choose locations outside England
       Given I start a new waste exemption registration

@@ -9,16 +9,19 @@ Feature: Back office user completes assisted digital registration for a user
   	Given I sign in as an admin agent
      When I complete a "limited_company" registration
      Then I will be informed the registration is complete
+     And I will receive a registration confirmation email
 
   Scenario: Registration of a partnership by a back office user
     Given I sign in as an admin agent
      When I complete a "partnership" registration
      Then I will be informed the registration is complete
+     And I will receive a registration confirmation email
 
   Scenario: Registration of an LLP by a back office user
     Given I sign in as an admin agent
      When I complete an "llp" registration
      Then I will be informed the registration is complete
+     And I will receive a registration confirmation email
 
   Scenario: Complete a registration on behalf of an external user
     Given I carry out a partial registration

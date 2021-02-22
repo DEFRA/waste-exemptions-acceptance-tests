@@ -16,9 +16,12 @@ end
 
 Then("I will be informed the registration is complete") do
   expect(page).to have_content "Registration complete"
-  reg_no = @world.journey.confirmation_page.ref_no.text
+end
+
+Then("I will receive a registration confirmation email") do
+  puts @world.journey.confirmation_page.ref_no.text
   expected_text = [
-    "Waste exemptions registration " + reg_no + " completed",
+    "Waste exemptions registration " + @world.journey.confirmation_page.ref_no.text + " completed",
     "Download your confirmation",
     "causing a nuisance through noise and odours"
   ]
