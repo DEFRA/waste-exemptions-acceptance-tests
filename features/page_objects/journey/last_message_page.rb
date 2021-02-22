@@ -71,4 +71,24 @@ class LastMessagePage < SitePrism::Page
     false
   end
 
+  def letter_has_text?(expected_text)
+    page_text = message_content.text
+    return false if page_text.include?("Error")
+
+    # Assume email contains all expected text unless proven otherwise:
+    letter_contains_all_text = true
+
+    expected_text.each do |element|
+      unless page_text.include?(element)
+        letter_contains_all_text = false
+        break
+      end
+    end
+
+    return true if letter_contains_all_text
+
+    puts "Couldn't find letter containing all text: " + expected_text.to_s
+    false
+  end
+
 end

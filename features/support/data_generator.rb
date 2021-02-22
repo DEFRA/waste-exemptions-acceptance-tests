@@ -39,6 +39,43 @@ def generate_registration(business_type, operator_name = nil)
   }
 end
 
+def generate_ad_registration(business_type, operator_name = nil)
+  # Generate data to be used for a registration.
+  # Input parameters:
+  # - business type, defined in features/page_objects/journey/business_type_page
+  # - a given operator name (default nil)
+
+  applicant = generate_ad_person
+
+  contact = if business_type == :limited_company
+              generate_ad_person
+            else
+              applicant
+            end
+
+  # Syntax from https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Style/MultipleComparison
+  # If the business type is :limited_company or :llp then set registration number.
+  registration_number = %i[limited_company llp].include?(business_type) ? "00445790" : nil
+
+  operator_name ||= generate_operator_name(business_type, "#{contact[:first_name]} #{contact[:last_name]}")
+
+  # Return a hash containing the following data.
+  # Some of the sub items are also hashes.
+  # The farm questions are randomly set as yes or no.
+  {
+    business_type: business_type,
+    applicant: applicant,
+    contact: contact,
+    operator_name: operator_name,
+    registration_number: registration_number,
+    partners: generate_partners(business_type),
+    site: generate_site,
+    on_farm: [true, false].sample,
+    farmer: [true, false].sample,
+    exemptions: %w[U2 U12 T6 T31 S1]
+  }
+end
+
 def generate_person
   first_name ||= Faker::Name.unique.first_name
   last_name ||= Faker::Name.unique.last_name
@@ -49,6 +86,20 @@ def generate_person
     full_name: first_name + " " + last_name,
     telephone: "0117 9000000",
     email: "wex@example.com",
+    position: Faker::Job.title
+  }
+end
+
+def generate_ad_person
+  first_name ||= Faker::Name.unique.first_name
+  last_name ||= Faker::Name.unique.last_name
+
+  {
+    first_name: first_name,
+    last_name: last_name,
+    full_name: first_name + " " + last_name,
+    telephone: "0117 9000000",
+    email: "waste-exemptions@environment-agency.gov.uk",
     position: Faker::Job.title
   }
 end
