@@ -60,7 +60,7 @@ end
 
 When("I carry out a partial registration") do
   # Generate and submit an incomplete registration and record the applicant's name, for later searching:
-  unsubmitted_reg = (:individual)
+  unsubmitted_reg = generate_registration(:individual)
   add_unsubmitted_registration(unsubmitted_reg)
   @last_transient_name = unsubmitted_reg[:applicant][:full_name].to_s
   puts "Partial registration completed by " + @last_transient_name
