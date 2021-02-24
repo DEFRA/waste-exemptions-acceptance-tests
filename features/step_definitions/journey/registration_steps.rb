@@ -31,9 +31,8 @@ Then("a registration confirmation letter has been sent") do
   expected_text = [
     "Your reference: " + @world.journey.confirmation_page.ref_no.text
   ]
-  expect(letter_exists?(@world.last_reg, expected_text)).to be true
+  expect(letter_exists?(expected_text)).to be true
 end
-
 
 Then(/^I complete (?:a|an) "([^"]*)" registration$/) do |business|
   @world.bo.dashboard_page.create_new_registration.click
@@ -52,7 +51,7 @@ end
 Then(/^I complete (?:a|an) assisted digital "([^"]*)" registration$/) do |business|
   @world.bo.dashboard_page.create_new_registration.click
   @world.journey.ad_privacy_policy_page.continue_button.click
-  @world.last_reg = generate_ad_registration(business.to_sym)
+  @world.last_reg = generate_registration(business.to_sym, email: "waste-exemptions@environment-agency.gov.uk")
 
   # This also stores the exemption number so the exemption can be edited in later steps.
   @world.last_reg_no = add_submitted_registration(@world.last_reg, false, "random", "random")

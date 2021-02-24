@@ -34,7 +34,7 @@ def email_exists?(app, registration, expected_text)
   false
 end
 
-def letter_exists?(registration, expected_text)
+def letter_exists?(expected_text)
   visit(Quke::Quke.config.custom["urls"]["back_office_notify"])
   return true if @world.journey.last_message_page.message_has_text?(expected_text)
 
