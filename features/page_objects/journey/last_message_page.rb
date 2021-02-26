@@ -48,7 +48,7 @@ class LastMessagePage < SitePrism::Page
   end
 
   def message_has_text?(expected_text)
-    # Look for an email containing all the strings in the given array
+    # Look for an message containing all the strings in the given array
     # and returns true if all the expected text is present.
     # Adapted from Waste Carriers.
 
