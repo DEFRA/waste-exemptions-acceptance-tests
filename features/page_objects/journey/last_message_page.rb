@@ -21,7 +21,7 @@ class LastMessagePage < SitePrism::Page
       page.evaluate_script "window.location.reload()"
 
       # Retry if parsed data doesn't contain the correct email address and subject line text:
-      next if email_has_text?([email_address, "Create a Waste Exemptions back office account"]) == false
+      next if message_has_text?([email_address, "Create a Waste Exemptions back office account"]) == false
 
       parsed_data = JSON.parse(message_content.text)
       # Find the text in the API JSON between the following two strings:
@@ -36,7 +36,7 @@ class LastMessagePage < SitePrism::Page
 
   def get_renewal_url(email_address)
     # This email is generated through Notify.
-    if email_has_text?([email_address, "renew online now"]) == false
+    if message_has_text?([email_address, "renew online now"]) == false
       puts("Couldn't find renewal email")
       return "Email not found"
     end
@@ -47,27 +47,27 @@ class LastMessagePage < SitePrism::Page
     parsed_data["last_notify_message"]["body"].match %r/https:\/\/.{15,24}\/renew\/.{24}/
   end
 
-  def email_has_text?(expected_text)
-    # Look for an email containing all the strings in the given array
+  def message_has_text?(expected_text)
+    # Look for an message containing all the strings in the given array
     # and returns true if all the expected text is present.
     # Adapted from Waste Carriers.
 
     page_text = message_content.text
     return false if page_text.include?("Error")
 
-    # Assume email contains all expected text unless proven otherwise:
-    email_contains_all_text = true
+    # Assume message contains all expected text unless proven otherwise:
+    message_contains_all_text = true
 
     expected_text.each do |element|
       unless page_text.include?(element)
-        email_contains_all_text = false
+        message_contains_all_text = false
         break
       end
     end
 
-    return true if email_contains_all_text
+    return true if message_contains_all_text
 
-    puts "Couldn't find email containing all text: " + expected_text.to_s
+    puts "Couldn't find message containing all text: " + expected_text.to_s
     false
   end
 

@@ -2,16 +2,17 @@
 
 require "faker"
 
-def generate_registration(business_type, operator_name = nil)
+def generate_registration(business_type, operator_name = nil, email: "wex@example.com")
   # Generate data to be used for a registration.
   # Input parameters:
   # - business type, defined in features/page_objects/journey/business_type_page
   # - a given operator name (default nil)
+  # - email - allows testing of Assisted digital registration which will generate a letter (default "wex@example.com")
 
-  applicant = generate_person
+  applicant = generate_person(email)
 
   contact = if business_type == :limited_company
-              generate_person
+              generate_person(email)
             else
               applicant
             end
@@ -39,7 +40,7 @@ def generate_registration(business_type, operator_name = nil)
   }
 end
 
-def generate_person
+def generate_person(email)
   first_name ||= Faker::Name.unique.first_name
   last_name ||= Faker::Name.unique.last_name
 
@@ -48,7 +49,7 @@ def generate_person
     last_name: last_name,
     full_name: first_name + " " + last_name,
     telephone: "0117 9000000",
-    email: "wex@example.com",
+    email: email,
     position: Faker::Job.title
   }
 end
@@ -59,7 +60,7 @@ def generate_operator_name(business_type, operator_name)
 end
 
 def generate_partners(business_type)
-  return [generate_person, generate_person] if business_type == :partnership
+  return [generate_person("wex@example.com"), generate_person("wex@example.com")] if business_type == :partnership
 
   []
 end

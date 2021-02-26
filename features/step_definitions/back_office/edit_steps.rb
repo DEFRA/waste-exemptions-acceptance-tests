@@ -9,7 +9,7 @@ When("I edit the most recent registration") do
 
   # Generate data using the functions in data_generator.rb
   @new_details = generate_registration(:limited_company, nil)
-  @new_person = generate_person
+  @new_person = generate_person("wex@example.com")
 
   # Edit the applicant's name to something random
   @world.bo.edit_page.change_applicant_link.click

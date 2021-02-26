@@ -16,13 +16,22 @@ end
 
 Then("I will be informed the registration is complete") do
   expect(page).to have_content "Registration complete"
-  reg_no = @world.journey.confirmation_page.ref_no.text
+end
+
+Then("I will receive a registration confirmation email") do
   expected_text = [
-    "Waste exemptions registration " + reg_no + " completed",
+    "Waste exemptions registration " + @world.journey.confirmation_page.ref_no.text + " completed",
     "Download your confirmation",
     "causing a nuisance through noise and odours"
   ]
   expect(email_exists?(@app, @world.last_reg, expected_text)).to be true
+end
+
+Then("a registration confirmation letter has been sent") do
+  expected_text = [
+    "Your reference: " + @world.journey.confirmation_page.ref_no.text
+  ]
+  expect(letter_exists?(expected_text)).to be true
 end
 
 Then(/^I complete (?:a|an) "([^"]*)" registration$/) do |business|
@@ -34,6 +43,15 @@ Then(/^I complete (?:a|an) "([^"]*)" registration$/) do |business|
   expect(@world.journey.ad_privacy_policy_page.content).to have_text("European Economic Area")
   @world.journey.ad_privacy_policy_page.continue_button.click
   @world.last_reg = generate_registration(business.to_sym)
+
+  # This also stores the exemption number so the exemption can be edited in later steps.
+  @world.last_reg_no = add_submitted_registration(@world.last_reg, false, "random", "random")
+end
+
+Then(/^I complete (?:a|an) assisted digital "([^"]*)" registration$/) do |business|
+  @world.bo.dashboard_page.create_new_registration.click
+  @world.journey.ad_privacy_policy_page.continue_button.click
+  @world.last_reg = generate_registration(business.to_sym, email: "waste-exemptions@environment-agency.gov.uk")
 
   # This also stores the exemption number so the exemption can be edited in later steps.
   @world.last_reg_no = add_submitted_registration(@world.last_reg, false, "random", "random")
