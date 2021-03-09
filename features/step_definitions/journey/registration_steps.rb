@@ -24,7 +24,7 @@ Then("I will receive a registration confirmation email") do
     "Download your confirmation",
     "causing a nuisance through noise and odours"
   ]
-  expect(email_exists?(@app, @world.last_reg, expected_text)).to be true
+  expect(email_exists?(@world.last_reg, expected_text)).to be true
 end
 
 Then("a registration confirmation letter has been sent") do

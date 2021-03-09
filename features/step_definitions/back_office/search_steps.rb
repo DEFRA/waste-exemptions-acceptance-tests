@@ -11,6 +11,11 @@ When("I search for {string}") do |term|
   @world.bo.dashboard_page.submit(search_term: term)
 end
 
+When("I search for the registration") do
+  registration = @world.last_reg_no
+  @world.bo.dashboard_page.submit(search_term: registration)
+end
+
 Then("I see {string} in the results") do |expected_name|
   expect(page).to have_content(expected_name)
 end

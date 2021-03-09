@@ -18,4 +18,8 @@ class RegistrationDetailsPage < SitePrism::Page
   elements(:deregister_ex_links, ".deregister-exemption-button")
   element(:reporting_info_link, ".govuk-details__summary-text")
 
+  def resend_renewal_letter(registration_number)
+    find(:css, "[href='/resend-renewal-letter/#{registration_number}']")
+  end
+
 end

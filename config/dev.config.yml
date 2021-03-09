@@ -72,9 +72,8 @@ custom:
       username: developer@wex.gov.uk
   urls:
     front_office: "https://wex-dev.aws.defra.cloud"
-    front_office_notify: "https://wex-dev.aws.defra.cloud/email/last-notify-message"
     back_office: "https://admin-wex-dev.aws.defra.cloud"
     # Use this for user management tests, which use Sendgrid:
     back_office_email: "https://admin-wex-dev.aws.defra.cloud/email/last-email" 
     # Use this for confirmation and renewal emails, which use Notify:
-    back_office_notify: "https://admin-wex-dev.aws.defra.cloud/email/last-notify-message"
+    notify_link: "/email/last-notify-message"
