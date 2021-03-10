@@ -139,7 +139,7 @@ Then("I can resume the renewal from where I left off") do
     @world.journey.ad_privacy_policy_page.continue_button.click
   when "front office"
     # Use the "last email" API to get the renewal link for the front office user
-    visit(Quke::Quke.config.custom["urls"]["back_office_notify"])
+    visit(Quke::Quke.config.custom["urls"]["notify_link"])
     @renewal_url = @world.journey.last_message_page.get_renewal_url(@renewer_email).to_s
     expect(@renewal_url).to have_text("/renew/")
     visit(@renewal_url)
@@ -159,12 +159,12 @@ Given("I receive an invitation to renew") do
   login_user(@world.super_agent_user)
   @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
   find_link("Resend renewal email").click
-  expect(@world.bo.dashboard_page.renewal_email_confirmation).to have_text("Renewal email sent to " + @renewer_email)
+  expect(@world.bo.dashboard_page.dashboard_message).to have_text("Renewal email sent to " + @renewer_email)
 end
 
 Given("I click the link in the renewal email") do
   # Use the "last email" API to get the renewal link for the front office user
-  visit(Quke::Quke.config.custom["urls"]["back_office_notify"])
+  visit(Quke::Quke.config.custom["urls"]["notify_link"])
   @renewal_url = @world.journey.last_message_page.get_renewal_url(@renewer_email).to_s
   expect(@renewal_url).to have_text("/renew/")
   visit(@renewal_url)
@@ -176,7 +176,7 @@ Then("I receive a renewal confirmation email") do
     "Waste exemptions registration " + @renewed_reg_no + " completed",
     "Registration complete"
   ]
-  expect(email_exists?(@app, @renewed_reg, expected_text)).to be true
+  expect(email_exists?(@renewed_reg, expected_text)).to be true
 end
 
 Then("I cannot renew it again from the front office") do
@@ -217,4 +217,12 @@ Given("the renewal letter has the correct details") do
   expect(page_content).to have_text(@world.last_reg[:contact][:full_name]) # known applicant's full name
   expect(page_content).to have_text("Type of business: Limited company")
   expect(page_content).to have_text("aircraft antifreeze fluids")
+end
+
+Then("a renewal reminder letter has been sent") do
+  expected_text = [
+    "Renew your waste exemptions",
+    "Registration details for registration number " + @world.last_reg_no.to_s
+  ]
+  expect(letter_exists?(expected_text)).to be true
 end

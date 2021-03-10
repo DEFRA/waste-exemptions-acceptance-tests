@@ -20,7 +20,7 @@ class DashboardPage < SitePrism::Page
   element(:submit_button, "input[name='commit']")
   element(:sign_out_button, ".user-info .button")
 
-  element(:renewal_email_confirmation, "#message-summary-heading-1")
+  element(:dashboard_message, "#message-summary-heading-1")
 
   elements(:results, ".registration-list")
   element(:revoked_tag, ".status-tag-revoked")

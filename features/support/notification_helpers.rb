@@ -9,17 +9,11 @@ def generate_example_email(first_name, last_name)
   "#{first_name.downcase}.#{last_name.downcase}#{rand(1..999)}@example.com".delete("'")
 end
 
-def email_exists?(app, registration, expected_text)
-  # app is :fo or :bo
+def email_exists?(registration, expected_text)
   # registration is the full hash containing all registration details
   # expected_text is an array containing all the text you want to search for
 
-  # Load the appropriate front or back office Notify page:
-  if app == :bo
-    visit(Quke::Quke.config.custom["urls"]["back_office_notify"])
-  else
-    visit(Quke::Quke.config.custom["urls"]["front_office_notify"])
-  end
+  visit(Quke::Quke.config.custom["urls"]["notify_link"])
 
   # We don't know whether the applicant or contact email will be sent first, so try both.
   # Try the applicant email:
@@ -35,7 +29,7 @@ def email_exists?(app, registration, expected_text)
 end
 
 def letter_exists?(expected_text)
-  visit(Quke::Quke.config.custom["urls"]["back_office_notify"])
+  visit(Quke::Quke.config.custom["urls"]["notify_link"])
   return true if @world.journey.last_message_page.message_has_text?(expected_text)
 
   puts "Letter not found"
