@@ -34,10 +34,3 @@ Feature: [RUBY-241] Back office user carries out a renewal
       When I search for a registration to renew
       And I partially renew the registration
       Then I can resume the renewal from where I left off
-
-   Scenario: Renewal reminder letter can be resent from registration details page
-      When I search for the registration
-      And I view the registration details
-      And I resend the renewal reminder letter  
-      Then I will see a confirmation the renewal reminder letter has been sent
-      And a renewal reminder letter has been sent

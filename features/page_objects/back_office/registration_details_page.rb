@@ -22,4 +22,8 @@ class RegistrationDetailsPage < SitePrism::Page
     find(:css, "[href='/resend-renewal-letter/#{registration_number}']")
   end
 
+  def resend_confirmation_letter(registration_number)
+    find(:css, "[href='/resend-confirmation-letter/#{registration_number}']")
+  end
+
 end

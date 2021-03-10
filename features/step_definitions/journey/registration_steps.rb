@@ -14,6 +14,11 @@ Then("I register an exemption") do
   @world.last_reg_no = add_submitted_registration(@world.last_reg, true, "random", "random")
 end
 
+Given("a registration has been created") do
+  @world.last_reg = generate_registration(:limited_company)
+  @world.last_reg_no = add_submitted_registration(@world.last_reg, true, "random", "random")
+end
+
 Then("I will be informed the registration is complete") do
   expect(page).to have_content "Registration complete"
 end
@@ -29,7 +34,7 @@ end
 
 Then("a registration confirmation letter has been sent") do
   expected_text = [
-    "Your reference: " + @world.journey.confirmation_page.ref_no.text
+    "Your reference: " + @world.last_reg_no
   ]
   expect(letter_exists?(expected_text)).to be true
 end
