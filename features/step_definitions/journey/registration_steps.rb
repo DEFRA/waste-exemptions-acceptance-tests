@@ -26,6 +26,7 @@ end
 Then("I will receive a registration confirmation email") do
   expected_text = [
     "Waste exemptions registration " + @world.journey.confirmation_page.ref_no.text + " completed",
+    "Download your confirmation",
     "causing a nuisance through noise and odours"
   ]
   expect(email_exists?(@world.last_reg, expected_text)).to be true
