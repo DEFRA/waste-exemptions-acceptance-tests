@@ -28,8 +28,6 @@ class DashboardPage < SitePrism::Page
   elements(:view_transient_details_links, "a[href*='new-registrations']")
   elements(:view_reg_details_links, "a[href*='/registrations/']")
   elements(:resume_links, "[id^=resume]")
-  elements(:confirmation_letter_links, "a[href*='confirmation-letter']")
-  elements(:renewal_letter_links, "a[href*='/renewal-letter/']")
 
   def view_link(registration_number)
     find(:css, "#view_#{registration_number}")
@@ -45,10 +43,6 @@ class DashboardPage < SitePrism::Page
 
   def resume_link(registration_number)
     find(:css, "#resume_#{registration_number}")
-  end
-
-  def confirmation_letter_link(registration_number)
-    find(:css, "#confirmation_letter_#{registration_number}")
   end
 
   def submit(args = {})

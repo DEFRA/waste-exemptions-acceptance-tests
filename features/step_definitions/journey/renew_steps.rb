@@ -197,28 +197,6 @@ Then("I cannot renew it again from the back office") do
   expect(@world.bo.registration_details_page.action_box).to have_no_text("Resend renewal email")
 end
 
-Given("I view the renewal letter") do
-  @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
-  # As we cannot directly read PDFs through web test automation, use a dedicated URL to view the content as HTML.
-  # Also, when testing headlessly, the direct link to the PDF (first renewal letter link) doesn't work.
-  # So we need to bypass the PDF link by going directly to the HTML version of the link.
-  # Get target URL from first confirmation letter link and use this to go to the HTML version:
-  letter_html_url = @world.bo.dashboard_page.renewal_letter_links.first[:href].to_s + "?show_as_html=true"
-  visit(letter_html_url)
-end
-
-Given("the renewal letter has the correct details") do
-  # Check confirmation letter with what's been generated in features/support/data_generator.rb :
-  expect(@world.bo.renewal_letter_page.heading).to have_text("Renew your waste exemptions by")
-  # rubocop:disable Layout/LineLength
-  expect(@world.bo.renewal_letter_page.heading_ref).to have_text("Registration details for registration number " + @world.last_reg_no.to_s)
-  # rubocop:enable Layout/LineLength
-  page_content = @world.bo.renewal_letter_page.content
-  expect(page_content).to have_text(@world.last_reg[:contact][:full_name]) # known applicant's full name
-  expect(page_content).to have_text("Type of business: Limited company")
-  expect(page_content).to have_text("aircraft antifreeze fluids")
-end
-
 Then("a renewal reminder letter has been sent") do
   expected_text = [
     "Renew your waste exemptions",
