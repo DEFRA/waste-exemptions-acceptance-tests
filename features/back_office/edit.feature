@@ -1,4 +1,4 @@
-@backoffice @edit @smoke
+@backoffice @edit 
 Feature: Back office user edits a registration
   As an super admin agent
   I need to edit a waste exemption registration
@@ -8,7 +8,7 @@ Feature: Back office user edits a registration
     Given my business is a "limited_company"
      When I register an exemption
      Then I will be informed the registration is complete
-
+@smoke
   Scenario: [RUBY-62] Edit a registration
     Given I sign in as a super agent
      When I edit the most recent registration

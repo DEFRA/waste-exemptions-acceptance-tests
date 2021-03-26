@@ -55,10 +55,6 @@ class BackOfficeApp
     @last_page = RegistrationDetailsPage.new
   end
 
-  def renewal_letter_page
-    @last_page = RenewalLetterPage.new
-  end
-
   def resend_letter_page
     @last_page = ResendLetterPage.new
   end

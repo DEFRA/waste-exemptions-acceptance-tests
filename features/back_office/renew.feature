@@ -1,4 +1,4 @@
-@backoffice @renew @renewb @smoke
+@backoffice @renew @renewb
 Feature: [RUBY-241] Back office user carries out a renewal
    As an admin agent
    I need to renew on behalf of an assisted digital user
@@ -13,7 +13,7 @@ Feature: [RUBY-241] Back office user carries out a renewal
       Then I will be informed the registration is complete
 
       Given I sign in as a super agent
-
+@smoke
    Scenario: Renew a registration from back office without changes
       When I search for a registration to renew
       And I renew the registration "without" changes
@@ -25,10 +25,6 @@ Feature: [RUBY-241] Back office user carries out a renewal
       And I renew the registration "with" changes
       Then I can see the correct renewed details
       And I cannot renew it again from the back office
-
-   Scenario: Check the renewal letter for assisted digital users
-      When I view the renewal letter
-      Then the renewal letter has the correct details
 
    Scenario: Cancel renewal
       When I search for a registration to renew
