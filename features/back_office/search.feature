@@ -11,19 +11,15 @@ Feature: Back office users need to be able to search for registrations
      When The "submitted" search filter is selected
       And I search for "Mr Waste"
      Then I see "Mr Waste submitted" in the results
-      And I can see confirmation letter links
-
       But I don't see "Mr Waste unsubmitted"
       And refreshing doesn't create new registrations
 
   Scenario: [RUBY-66] Confirmation letter and refresh
      When The "submitted" search filter is selected
       And I search for "a known registration"
-     Then I can see a confirmation letter for a known registration
 
   Scenario: Unsubmitted registrations
      When The "unsubmitted" search filter is selected
       And I search for "Mr Waste"
      Then I see "Mr Waste unsubmitted" in the results
       But I don't see "Mr Waste submitted"
-      And I cannot see a confirmation letter
