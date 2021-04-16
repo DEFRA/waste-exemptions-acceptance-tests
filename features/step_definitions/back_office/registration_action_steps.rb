@@ -31,5 +31,8 @@ Then("I will see the registration confirmation letter has been sent") do
 end
 
 Then("I will see the registration confirmation email has been sent") do
+  # rubocop:disable Layout/LineLength
   expect(@world.bo.dashboard_page.dashboard_message).to have_text("Confirmation email sent to " + @world.last_reg[:contact][:email].to_s)
+  # rubocop:enable Layout/LineLength
+
 end
