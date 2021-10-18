@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-class LoginPage < SitePrism::Page
+require_relative "base_page"
+
+class LoginPage < BasePage
 
   set_url(Quke::Quke.config.custom["urls"]["back_office"])
 
@@ -8,8 +10,6 @@ class LoginPage < SitePrism::Page
 
   element(:email, "#user_email")
   element(:password, "#user_password")
-
-  element(:submit_button, "input[name='commit']")
 
   def submit(args = {})
     email.set(args[:email]) if args.key?(:email)

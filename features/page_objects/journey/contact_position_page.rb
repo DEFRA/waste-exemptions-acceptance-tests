@@ -1,13 +1,8 @@
 # frozen_string_literal: true
 
-class ContactPositionPage < SitePrism::Page
+class ContactPositionPage < BasePage
 
-  element(:error, ".error-summary")
-  element(:heading, ".heading-large")
-
-  element(:position, "#contact_position_form_contact_position")
-
-  element(:submit_button, "input[type='submit']")
+  element(:position, "#contact-position-form-contact-position-field")
 
   def submit(args = {})
     position.set(args[:position]) if args.key?(:position)

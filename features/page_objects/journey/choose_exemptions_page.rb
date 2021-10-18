@@ -1,13 +1,8 @@
 # frozen_string_literal: true
 
-class ChooseExemptionsPage < SitePrism::Page
-
-  element(:error, ".error-summary")
-  element(:heading, ".heading-large")
+class ChooseExemptionsPage < BasePage
 
   elements(:exemptions, "input[name='exemptions_form[exemption_ids][]']", visible: false)
-
-  element(:submit_button, "input[name='commit']")
 
   def submit(args = {})
     if args.key?(:exemptions)

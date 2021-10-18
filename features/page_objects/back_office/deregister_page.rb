@@ -2,11 +2,10 @@
 
 require_relative "sections/admin_menu_section"
 
-class DeregisterPage < SitePrism::Page
+class DeregisterPage < BasePage
 
   section(:admin_menu_section, AdminMenuSection, AdminMenuSection::SELECTOR)
 
-  element(:heading, ".heading-large")
   element(:revoke_radio, "#deregister_exemptions_form_state_transition_revoke", visible: false)
   element(:cease_radio, "#deregister_exemptions_form_state_transition_cease", visible: false)
   element(:dereg_reason, "#deregister_exemptions_form_message")

@@ -36,4 +36,4 @@ Feature: [RUBY-241] Front office user renews a registration via email
   Scenario: Renewal errors
      When I renew and test validation and accessibility
      Then I see the renewal confirmation screen
-      And I can access the footer links
+      # And I can access the footer links

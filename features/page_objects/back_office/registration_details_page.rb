@@ -2,13 +2,9 @@
 
 require_relative "sections/admin_menu_section"
 
-class RegistrationDetailsPage < SitePrism::Page
+class RegistrationDetailsPage < BasePage
 
   section(:admin_menu_section, AdminMenuSection, AdminMenuSection::SELECTOR)
-
-  element(:back_link, ".link-back")
-  element(:heading, ".heading-large")
-  element(:content, "#content")
 
   element(:action_box, ".action-boxout")
   element(:deregister_reg_link, ".separated a")

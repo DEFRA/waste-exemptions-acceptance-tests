@@ -2,7 +2,7 @@
 
 require_relative "sections/admin_menu_section"
 
-class RegistrationCompletePage < SitePrism::Page
+class RegistrationCompletePage < BasePage
 
   section(:admin_menu_section, AdminMenuSection, AdminMenuSection::SELECTOR)
 

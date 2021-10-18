@@ -2,10 +2,9 @@
 
 require_relative "sections/admin_menu_section"
 
-class ConfirmationLetterPage < SitePrism::Page
+class ConfirmationLetterPage < BasePage
 
   element(:content, ".wel_letter")
-  element(:heading, "h1")
   element(:heading_ref, "h1+ h2")
 
 end

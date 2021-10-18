@@ -2,13 +2,12 @@
 
 require_relative "sections/admin_menu_section"
 
-class DashboardPage < SitePrism::Page
+class DashboardPage < BasePage
 
   set_url(Quke::Quke.config.custom["urls"]["back_office"])
 
   section(:admin_menu, AdminMenuSection, AdminMenuSection::SELECTOR)
 
-  element(:content, "#content")
   element(:heading, ".heading-large")
   element(:search_term, "#term")
 
@@ -17,7 +16,6 @@ class DashboardPage < SitePrism::Page
   element(:unsubmitted_filter, "#filter_new_registrations + label")
 
   element(:create_new_registration, "a[href='/ad-privacy-policy']")
-  element(:submit_button, "input[name='commit']")
   element(:sign_out_button, ".user-info .button")
 
   element(:dashboard_message, "#message-summary-heading-1")

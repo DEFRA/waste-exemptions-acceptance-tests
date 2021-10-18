@@ -48,20 +48,20 @@ When("I cannot edit the most recent registration") do
 end
 
 When("I complete the edit") do
-  @world.bo.edit_page.continue_button.click
+  @world.bo.edit_page.submit_button.click
   @world.journey.declaration_page.submit
   expect(@world.bo.edit_details_page.heading).to have_text("Edit complete")
   puts @world.last_reg_no + " edited"
-  @world.bo.edit_details_page.continue_button.click
+  @world.bo.edit_details_page.submit_button.click
   expect(@world.bo.registration_details_page.heading).to have_text("Registration details for " + @world.last_reg_no)
 end
 
 When("I cancel the edit") do
   @world.bo.edit_page.cancel_link.click
   expect(@world.bo.edit_details_page.heading).to have_text("Do you want to cancel this edit?")
-  @world.bo.edit_details_page.continue_button.click
+  @world.bo.edit_details_page.submit_button.click
   expect(@world.bo.edit_details_page.heading).to have_text("Edit cancelled")
-  @world.bo.edit_details_page.continue_button.click
+  @world.bo.edit_details_page.submit_button.click
 end
 
 When("I cannot see the new details on the registration details page") do

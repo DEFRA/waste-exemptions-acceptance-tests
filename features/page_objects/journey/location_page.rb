@@ -1,16 +1,11 @@
 # frozen_string_literal: true
 
-class LocationPage < SitePrism::Page
+class LocationPage < BasePage
 
-  element(:error, ".error-summary")
-  element(:heading, ".heading-large")
-
-  element(:england, "#location_form_location_england + label")
-  element(:wales, "#location_form_location_wales + label")
-  element(:scotland, "#location_form_location_scotland + label")
-  element(:northern_ireland, "#location_form_location_northern_ireland + label")
-
-  element(:submit_button, "input[type='submit']")
+  element(:england, "input[value='england'] + label")
+  element(:wales, "input[value='wales'] + label")
+  element(:scotland, "input[value='scotland'] + label")
+  element(:northern_ireland, "input[value='northern_ireland'] + label")
 
   def submit(args = {})
     case args[:location]

@@ -1,14 +1,10 @@
 # frozen_string_literal: true
 
-class FarmerPage < SitePrism::Page
-
-  element(:error, ".error-summary")
+class FarmerPage < BasePage
 
   # Is the person carrying out the waste operation a farmer?
-  element(:farmer_yes, "#is_a_farmer_form_is_a_farmer_true + label")
-  element(:farmer_no, "#is_a_farmer_form_is_a_farmer_false + label")
-
-  element(:submit_button, "input[type='submit']")
+  element(:farmer_yes, "input[value='true'] + label")
+  element(:farmer_no, "input[value='false'] + label")
 
   def submit(args = {})
     if args[:farmer]

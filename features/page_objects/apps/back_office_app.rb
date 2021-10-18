@@ -5,7 +5,7 @@
 # https://github.com/natritmeyer/site_prism#epilogue
 class BackOfficeApp
   # Using an attr_reader automatically gives us a my_app.last_page method
-  attr_reader :last_page
+  attr_reader :last_page, :base_page
 
   def accept_page
     @last_page = AcceptPage.new
@@ -62,4 +62,5 @@ class BackOfficeApp
   def users_page
     @last_page = UsersPage.new
   end
+
 end

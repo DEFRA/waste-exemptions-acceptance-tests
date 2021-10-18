@@ -2,13 +2,12 @@
 
 require_relative "sections/admin_menu_section"
 
-class UsersPage < SitePrism::Page
+class UsersPage < BasePage
 
   set_url(File.join(Quke::Quke.config.custom["urls"]["back_office"], "/users"))
 
   section(:admin_menu, AdminMenuSection, AdminMenuSection::SELECTOR)
 
-  element(:content, "#content")
   element(:invite_user, "a[href='/users/invitation/new']")
 
   sections :users, "table tbody tr" do

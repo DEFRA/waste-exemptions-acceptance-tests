@@ -88,7 +88,7 @@ end
 
 Then("I can toggle features") do
   @world.bo.dashboard_page.admin_menu.toggle_features_link.click
-  expect(@world.journey.standard_page.heading).to have_text("Feature Toggles")
+  expect(page).to have_text("Feature Toggles")
 end
 
 Then("I cannot toggle features") do

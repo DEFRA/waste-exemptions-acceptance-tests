@@ -47,7 +47,7 @@ Then(/^I complete (?:a|an) "([^"]*)" registration$/) do |business|
   @world.journey.ad_privacy_policy_page.dpo_details_link.click
   @world.journey.ad_privacy_policy_page.ico_details_link.click
   expect(@world.journey.ad_privacy_policy_page.content).to have_text("European Economic Area")
-  @world.journey.ad_privacy_policy_page.continue_button.click
+  @world.journey.ad_privacy_policy_page.submit_button.click
   @world.last_reg = generate_registration(business.to_sym)
 
   # This also stores the exemption number so the exemption can be edited in later steps.
@@ -56,7 +56,7 @@ end
 
 Then(/^I complete (?:a|an) assisted digital "([^"]*)" registration$/) do |business|
   @world.bo.dashboard_page.create_new_registration.click
-  @world.journey.ad_privacy_policy_page.continue_button.click
+  @world.journey.ad_privacy_policy_page.submit_button.click
   @world.last_reg = generate_registration(business.to_sym, email: "waste-exemptions@environment-agency.gov.uk")
 
   # This also stores the exemption number so the exemption can be edited in later steps.
@@ -111,25 +111,22 @@ Then("I can find and edit the registration I just submitted") do
   @world.bo.edit_details_page.submit(
     operator_name: "Miss Waste Completed"
   )
-  @world.bo.edit_page.continue_button.click
+  @world.bo.edit_page.submit_button.click
   @world.journey.declaration_page.submit
   expect(@world.bo.edit_details_page.heading).to have_text("Edit complete")
-  @world.bo.edit_details_page.continue_button.click
+  @world.bo.edit_details_page.submit_button.click
 end
 
 Then("I can access the footer links") do
   new_window = window_opened_by { find_link("Privacy").click }
   within_window new_window do
-    expect(@world.journey.standard_page.heading).to have_text("Privacy Policy: how we use your personal information")
-    expect(@world.journey.standard_page.content).to have_text("servers within the European Economic Area")
+    expect(page).to have_text("Privacy Policy: how we use your personal information")
     new_window = window_opened_by { find_link("Cookies").click }
     within_window new_window do
-      expect(@world.journey.standard_page.heading).to have_text("Cookies")
-      expect(@world.journey.standard_page.content).to have_text("we store a cookie on your computer")
+      expect(page).to have_text("Cookies")
       new_window = window_opened_by { find_link("Accessibility").click }
       within_window new_window do
-        expect(@world.journey.standard_page.heading).to have_text("Accessibility statement")
-        expect(@world.journey.standard_page.content).to have_text("checked for compliance with WCAG 2.1 AA")
+        expect(page).to have_text("Accessibility statement")
       end
     end
   end
@@ -144,6 +141,6 @@ When("I select the option to change details") do
 end
 
 Then("I will be advised to contact the EA") do
-  expect(@world.journey.standard_page.heading).to have_text("Contact the Environment Agency")
-  expect(@world.journey.standard_page.content).to have_text("You'll need to contact the Environment Agency")
+  expect(page).to have_text("Contact the Environment Agency")
+  expect(page).to have_text("You'll need to contact the Environment Agency")
 end

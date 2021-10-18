@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ConfirmationPage < SitePrism::Page
+class ConfirmationPage < BasePage
 
   # .text method exposes reference number
   # @exemption_number = @app.confirmation_page.ref_no.text
