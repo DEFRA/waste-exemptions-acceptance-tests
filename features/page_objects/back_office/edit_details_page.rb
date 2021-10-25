@@ -11,6 +11,7 @@ class EditDetailsPage < BasePage
   element(:operator_name_form, "#operator_name_form_operator_name")
   element(:contact_email_form_1, "#contact_email_form_contact_email")
   element(:contact_email_form_2, "#contact_email_form_confirmed_email")
+  element(:submit_button, ".button")
 
   def submit(args = {})
     first_name_form.set(args[:first_name]) if args.key?(:first_name)

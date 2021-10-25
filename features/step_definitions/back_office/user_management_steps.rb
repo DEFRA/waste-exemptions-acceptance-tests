@@ -33,7 +33,7 @@ end
 
 Then("the new back office user cannot change their password") do
   # Not yet implemented. Make this into a positive test when RUBY-416 is delivered.
-  expect(@world.bo.dashboard_page.content).to have_no_text("Change password")
+  expect(@world.bo.dashboard_page).to have_no_text("Change password")
 
   # To add once RUBY-416 is implemented:
   # find_link("Change password").click

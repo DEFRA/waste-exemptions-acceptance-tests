@@ -10,6 +10,7 @@ class LoginPage < BasePage
 
   element(:email, "#user_email")
   element(:password, "#user_password")
+  element(:submit_button, "input[type='submit']")
 
   def submit(args = {})
     email.set(args[:email]) if args.key?(:email)

@@ -5,7 +5,7 @@ When("I search for a registration to renew") do
   @renewer = "back office"
   @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
   find_link("Start renewal").click
-  @world.journey.ad_privacy_policy_page.submit_button.click
+  @world.journey.ad_privacy_policy_page.submit
 end
 
 When("I renew the registration {string} changes") do |changes|
@@ -14,18 +14,19 @@ When("I renew the registration {string} changes") do |changes|
 
   # Check some details at the start of the renewal journey:
   expect(@world.journey.renew_choice_page.heading).to have_text("Do you want to renew with these details?")
-  expect(page).to have_text("U12 - Using mulch")
-  expect(page).to have_text("the company name is " + @world.last_reg[:operator_name])
-  expect(page).to have_text("the Companies House number is " + @world.last_reg[:registration_number])
-  expect(page).to have_text("your name is " + @world.last_reg[:applicant][:full_name].to_s)
+  # TODO: check exemption description removal e.g. U12 - Using mulch
+  expect(page).to have_text("U12")
+  expect(page).to have_text(@world.last_reg[:operator_name])
+  expect(page).to have_text(@world.last_reg[:registration_number])
+  expect(page).to have_text(@world.last_reg[:applicant][:full_name].to_s)
 
   if @changes == "without"
     @world.journey.renew_choice_page.renew_without_changes_radio.click
-    @world.journey.renew_choice_page.submit_button.click
+    @world.journey.renew_choice_page.submit
     # rubocop:disable Layout/LineLength
     expect(@world.journey.renew_splash_page.heading).to have_text("You are about to renew for 3 years with the current details")
     # rubocop:enable Layout/LineLength
-    @world.journey.renew_splash_page.submit_button.click
+    @world.journey.renew_splash_page.submit
     @world.journey.declaration_page.submit
     # rubocop:disable Layout/LineLength
     expect(@world.journey.confirmation_page.confirmation_box).to have_text("You have renewed your exemptions for 3 years")
@@ -41,12 +42,12 @@ When("I renew the registration {string} changes") do |changes|
     @renewed_reg = generate_registration(:individual, nil)
 
     @world.journey.renew_choice_page.renew_with_changes_radio.click
-    @world.journey.renew_choice_page.submit_button.click
+    @world.journey.renew_choice_page.submit
 
     # rubocop:disable Layout/LineLength
     expect(@world.journey.renew_splash_page.heading).to have_text("We'll fill in the form with your current registration details")
     # rubocop:enable Layout/LineLength
-    @world.journey.renew_splash_page.submit_button.click
+    @world.journey.renew_splash_page.submit
     @world.journey.location_page.submit(location: :england)
 
     # Replace the U12 exemption with an S3 by clicking both:
@@ -111,8 +112,8 @@ end
 
 When("I partially renew the registration") do
   @world.journey.renew_choice_page.renew_with_changes_radio.click
-  @world.journey.renew_choice_page.submit_button.click
-  @world.journey.renew_splash_page.submit_button.click
+  @world.journey.renew_choice_page.submit
+  @world.journey.renew_splash_page.submit
   @world.journey.location_page.submit(location: :england)
   # Add an S3 exemption
   @world.journey.choose_exemptions_page.submit(exemptions: %w[S3])
@@ -124,7 +125,7 @@ Then("I can renew it again") do
   find_link("Dashboard").click
   @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
   find_link("Start renewal").click
-  @world.journey.ad_privacy_policy_page.submit_button.click
+  @world.journey.ad_privacy_policy_page.submit
   expect(@world.journey.renew_choice_page.heading).to have_text("Do you want to renew with these details?")
 end
 
@@ -134,7 +135,7 @@ Then("I can resume the renewal from where I left off") do
     find_link("Dashboard").click
     @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
     find_link("Start renewal").click
-    @world.journey.ad_privacy_policy_page.submit_button.click
+    @world.journey.ad_privacy_policy_page.submit
   when "front office"
     # Use the "last email" API to get the renewal link for the front office user
     visit(Quke::Quke.config.custom["urls"]["notify_link"])

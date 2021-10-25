@@ -22,7 +22,7 @@ Feature: Back office user completes assisted digital registration for a user
      When I complete an "llp" registration
      Then I will be informed the registration is complete
      And I will receive a registration confirmation email
-
+@broken
   Scenario: Complete a registration on behalf of an external user
     Given I carry out a partial registration
       And I sign in as a super agent

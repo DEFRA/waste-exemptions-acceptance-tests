@@ -8,4 +8,8 @@ class BasePage < SitePrism::Page
   element(:error, ".error-summary")
   element(:submit_button, "button[type='submit']")
 
+  def submit(_args = {})
+    submit_button.click
+  end
+
 end

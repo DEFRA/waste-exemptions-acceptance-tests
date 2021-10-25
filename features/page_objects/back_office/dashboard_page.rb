@@ -20,12 +20,13 @@ class DashboardPage < BasePage
 
   element(:dashboard_message, "#message-summary-heading-1")
 
-  elements(:results, ".registration-list")
+  elements(:results, "#search-results")
   element(:revoked_tag, ".status-tag-revoked")
   element(:ceased_tag, ".status-tag-ceased")
   elements(:view_transient_details_links, "a[href*='new-registrations']")
   elements(:view_reg_details_links, "a[href*='/registrations/']")
   elements(:resume_links, "[id^=resume]")
+  element(:submit_button, "input[type='submit']")
 
   def view_link(registration_number)
     find(:css, "#view_#{registration_number}")

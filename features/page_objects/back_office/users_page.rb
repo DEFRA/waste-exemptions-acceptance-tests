@@ -35,7 +35,7 @@ class UsersPage < BasePage
   def look_for(user_email)
     # Look for the known email on page. If it's not there, click Next and look again.
     30.times do
-      break if content.has_text?(user_email)
+      break if page.has_text?(user_email)
 
       find_link("Next ›").click
     end

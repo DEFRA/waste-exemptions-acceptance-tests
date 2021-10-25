@@ -13,7 +13,7 @@ class ChangeUserRolePage < BasePage
   element(:admin, "#user_role_admin_agent + label")
   element(:data, "#user_role_data_agent + label")
 
-  element(:submit_button, "button[type='submit']")
+  element(:submit_button, "input[type='submit']")
 
   def submit(args = {})
     # As long as the arg passed in matches the name of an element we can simply

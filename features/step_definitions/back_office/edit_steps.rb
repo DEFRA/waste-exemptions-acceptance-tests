@@ -13,20 +13,20 @@ When("I edit the most recent registration") do
 
   # Edit the applicant's name to something random
   @world.bo.edit_page.change_applicant_link.click
-  @world.bo.edit_details_page.submit(
+  @world.journey.name_page.submit(
     first_name: @new_person[:first_name],
     last_name: @new_person[:last_name]
   )
 
   # Edit the operator name
   @world.bo.edit_page.change_operator_link.click
-  @world.bo.edit_details_page.submit(
-    operator_name: @new_details[:operator_name]
+  @world.journey.operator_name_page.submit(
+    org_name: @new_details[:operator_name]
   )
-
+  puts operator_name: @new_details[:operator_name]
   # Edit the contact email
   @world.bo.edit_page.change_contact_email_link.click
-  @world.bo.edit_details_page.submit(
+  @world.journey.email_page.submit(
     contact_email: @new_person[:email]
   )
 
@@ -34,39 +34,39 @@ end
 
 Then("I can see the new details on the registration details page") do
   @world.bo.registration_details_page.reporting_info_link.click
-  expect(@world.bo.registration_details_page.content).to have_text(@new_person[:first_name])
-  expect(@world.bo.registration_details_page.content).to have_text(@new_person[:last_name])
-  expect(@world.bo.registration_details_page.content).to have_text(@new_person[:email])
-  expect(@world.bo.registration_details_page.content).to have_text(@new_details[:operator_name])
-  expect(@world.bo.registration_details_page.content).to have_text(@new_person[:first_name])
+  expect(@world.bo.registration_details_page).to have_text(@new_person[:first_name])
+  expect(@world.bo.registration_details_page).to have_text(@new_person[:last_name])
+  expect(@world.bo.registration_details_page).to have_text(@new_person[:email])
+  expect(@world.bo.registration_details_page).to have_text(@new_details[:operator_name])
+  expect(@world.bo.registration_details_page).to have_text(@new_person[:first_name])
 end
 
 When("I cannot edit the most recent registration") do
-  find_link("Waste exemptions back office").click
+  @world.bo.dashboard_page.admin_menu.home_page.click
   @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
   expect(@world.bo.dashboard_page.content).not_to have_text("Edit")
 end
 
 When("I complete the edit") do
-  @world.bo.edit_page.submit_button.click
+  @world.bo.edit_page.submit
   @world.journey.declaration_page.submit
   expect(@world.bo.edit_details_page.heading).to have_text("Edit complete")
   puts @world.last_reg_no + " edited"
-  @world.bo.edit_details_page.submit_button.click
+  @world.bo.edit_details_page.submit
   expect(@world.bo.registration_details_page.heading).to have_text("Registration details for " + @world.last_reg_no)
 end
 
 When("I cancel the edit") do
   @world.bo.edit_page.cancel_link.click
   expect(@world.bo.edit_details_page.heading).to have_text("Do you want to cancel this edit?")
-  @world.bo.edit_details_page.submit_button.click
+  @world.bo.edit_details_page.submit
   expect(@world.bo.edit_details_page.heading).to have_text("Edit cancelled")
-  @world.bo.edit_details_page.submit_button.click
+  @world.bo.edit_details_page.submit
 end
 
 When("I cannot see the new details on the registration details page") do
   @world.bo.registration_details_page.reporting_info_link.click
-  expect(@world.bo.registration_details_page.content).not_to have_text(@new_person[:first_name])
-  expect(@world.bo.registration_details_page.content).not_to have_text(@new_person[:last_name])
-  expect(@world.bo.registration_details_page.content).not_to have_text(@new_details[:operator_name])
+  expect(@world.bo.registration_details_page).not_to have_text(@new_person[:first_name])
+  expect(@world.bo.registration_details_page).not_to have_text(@new_person[:last_name])
+  expect(@world.bo.registration_details_page).not_to have_text(@new_details[:operator_name])
 end

@@ -6,6 +6,7 @@ class AcceptPage < BasePage
 
   element(:password, "#user_password")
   element(:confirm_password, "#user_password_confirmation")
+  element(:submit_button, "input[type='submit']")
 
   def submit(args = {})
     password.set(args[:password]) if args.key?(:password)

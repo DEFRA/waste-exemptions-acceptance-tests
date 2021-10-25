@@ -20,7 +20,7 @@ Given("a registration has been created") do
 end
 
 Then("I will be informed the registration is complete") do
-  expect(page).to have_content "Registration complete"
+  expect(page).to have_content "You have registered your exemptions for 3 years"
   @world.last_reg_no = @world.journey.confirmation_page.ref_no.text
 end
 
@@ -47,7 +47,7 @@ Then(/^I complete (?:a|an) "([^"]*)" registration$/) do |business|
   @world.journey.ad_privacy_policy_page.dpo_details_link.click
   @world.journey.ad_privacy_policy_page.ico_details_link.click
   expect(@world.journey.ad_privacy_policy_page.content).to have_text("European Economic Area")
-  @world.journey.ad_privacy_policy_page.submit_button.click
+  @world.journey.ad_privacy_policy_page.submit
   @world.last_reg = generate_registration(business.to_sym)
 
   # This also stores the exemption number so the exemption can be edited in later steps.
@@ -56,7 +56,7 @@ end
 
 Then(/^I complete (?:a|an) assisted digital "([^"]*)" registration$/) do |business|
   @world.bo.dashboard_page.create_new_registration.click
-  @world.journey.ad_privacy_policy_page.submit_button.click
+  @world.journey.ad_privacy_policy_page.submit
   @world.last_reg = generate_registration(business.to_sym, email: "waste-exemptions@environment-agency.gov.uk")
 
   # This also stores the exemption number so the exemption can be edited in later steps.
@@ -72,10 +72,11 @@ When("I carry out a partial registration") do
 end
 
 Then("I complete an in progress registration") do
-  find_link("Waste exemptions back office").click
+  @world.bo.dashboard_page.admin_menu.home_page.click
   # Add a sleep here, because the automated tests often have a problem with the filter steps:
   sleep(1)
   @world.bo.dashboard_page.unsubmitted_filter.click
+  sleep(5)
   @world.bo.dashboard_page.submit(search_term: @last_transient_name)
 
   # Check first that I can view details for an in progress registration (RUBY-329)
@@ -111,10 +112,10 @@ Then("I can find and edit the registration I just submitted") do
   @world.bo.edit_details_page.submit(
     operator_name: "Miss Waste Completed"
   )
-  @world.bo.edit_page.submit_button.click
+  @world.bo.edit_page.submit
   @world.journey.declaration_page.submit
   expect(@world.bo.edit_details_page.heading).to have_text("Edit complete")
-  @world.bo.edit_details_page.submit_button.click
+  @world.bo.edit_details_page.submit
 end
 
 Then("I can access the footer links") do

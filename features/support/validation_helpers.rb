@@ -131,7 +131,7 @@ def dont_select_address_from_dropdown
   # Relates to a bug fixed in RUBY-721.
   # This only works on new registrations. If it's a renewal, the address is auto-populated.
   @world.journey.address_lookup_page.enter_postcode("BS1 5AH")
-  @world.journey.address_lookup_page.submit_button.click
+  @world.journey.address_lookup_page.submit
   expect(@world.journey.address_lookup_page.error).to have_text(/Select an address/i)
   check_for_accessibility
   find_link("Change postcode").click
@@ -139,7 +139,7 @@ end
 
 def enter_invalid_postcode(postcode_text)
   @world.journey.address_lookup_page.enter_postcode(postcode_text)
-  @world.journey.address_lookup_page.submit_button.click
+  @world.journey.address_lookup_page.submit
   expect(@world.journey.address_lookup_page.error).to have_text("Enter a valid UK postcode")
   check_for_accessibility
 end
@@ -175,7 +175,7 @@ def test_contact_validations(contact, reg_type)
 
   # Contact position page has no 'empty field' validation
   expect(@world.journey.contact_position_page.heading).to have_text("What's their position?")
-  @world.journey.contact_position_page.submit_button.click
+  @world.journey.contact_position_page.submit
 
   test_phone_validations(contact[:telephone])
   test_email_validations(contact[:email])
@@ -218,7 +218,7 @@ end
 def test_confirmation_validations
   # Check your answer page doesn't have validation:
   expect(@world.journey.check_details_page.heading).to have_text("Check your answers")
-  @world.journey.check_details_page.submit_button.click
+  @world.journey.check_details_page.submit
 
   # Declaration page
   @world.journey.declaration_page.submit_button.click
