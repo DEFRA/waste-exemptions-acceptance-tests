@@ -8,10 +8,9 @@ class EditDetailsPage < BasePage
 
   element(:first_name_form, "#applicant_name_form_applicant_first_name")
   element(:last_name_form, "#applicant_name_form_applicant_last_name")
-  element(:operator_name_form, "#operator_name_form_operator_name")
+  element(:operator_name_form, "#operator-name-form-operator-name-field")
   element(:contact_email_form_1, "#contact_email_form_contact_email")
   element(:contact_email_form_2, "#contact_email_form_confirmed_email")
-  element(:submit_button, ".button")
 
   def submit(args = {})
     first_name_form.set(args[:first_name]) if args.key?(:first_name)

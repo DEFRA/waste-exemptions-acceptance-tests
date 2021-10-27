@@ -76,9 +76,8 @@ Then("I complete an in progress registration") do
   # Add a sleep here, because the automated tests often have a problem with the filter steps:
   sleep(1)
   @world.bo.dashboard_page.unsubmitted_filter.click
-  sleep(5)
-  @world.bo.dashboard_page.submit(search_term: @last_transient_name)
 
+  @world.bo.dashboard_page.submit(search_term: @last_transient_name)
   # Check first that I can view details for an in progress registration (RUBY-329)
   @world.bo.dashboard_page.view_transient_details_links[0].click
   expect(@world.bo.registration_details_page.heading).to have_text("In-progress registration details")
@@ -115,7 +114,7 @@ Then("I can find and edit the registration I just submitted") do
   @world.bo.edit_page.submit
   @world.journey.declaration_page.submit
   expect(@world.bo.edit_details_page.heading).to have_text("Edit complete")
-  @world.bo.edit_details_page.submit
+  find_link("View registration").click
 end
 
 Then("I can access the footer links") do

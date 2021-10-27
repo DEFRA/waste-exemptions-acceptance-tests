@@ -23,7 +23,6 @@ When("I edit the most recent registration") do
   @world.journey.operator_name_page.submit(
     org_name: @new_details[:operator_name]
   )
-  puts operator_name: @new_details[:operator_name]
   # Edit the contact email
   @world.bo.edit_page.change_contact_email_link.click
   @world.journey.email_page.submit(
@@ -44,7 +43,7 @@ end
 When("I cannot edit the most recent registration") do
   @world.bo.dashboard_page.admin_menu.home_page.click
   @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
-  expect(@world.bo.dashboard_page.content).not_to have_text("Edit")
+  expect(@world.bo.dashboard_page).not_to have_text("Edit")
 end
 
 When("I complete the edit") do
@@ -52,16 +51,16 @@ When("I complete the edit") do
   @world.journey.declaration_page.submit
   expect(@world.bo.edit_details_page.heading).to have_text("Edit complete")
   puts @world.last_reg_no + " edited"
-  @world.bo.edit_details_page.submit
+  find_link("View registration").click
   expect(@world.bo.registration_details_page.heading).to have_text("Registration details for " + @world.last_reg_no)
 end
 
 When("I cancel the edit") do
   @world.bo.edit_page.cancel_link.click
   expect(@world.bo.edit_details_page.heading).to have_text("Do you want to cancel this edit?")
-  @world.bo.edit_details_page.submit
+  @world.bo.edit_page.submit_button.click
   expect(@world.bo.edit_details_page.heading).to have_text("Edit cancelled")
-  @world.bo.edit_details_page.submit
+  find_link("View registration").click
 end
 
 When("I cannot see the new details on the registration details page") do

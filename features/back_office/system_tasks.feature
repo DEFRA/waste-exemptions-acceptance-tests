@@ -1,4 +1,4 @@
-@backoffice @data @system @broken
+@backoffice @data @system 
 Feature: Carry out system tasks
   As a back office user
   I need to manage other users and perform admin tasks

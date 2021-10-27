@@ -6,8 +6,8 @@ class RegistrationDetailsPage < BasePage
 
   section(:admin_menu_section, AdminMenuSection, AdminMenuSection::SELECTOR)
 
-  element(:action_box, ".action-boxout")
-  element(:deregister_reg_link, ".separated a")
+  element(:action_box, ".action-panel")
+  element(:deregister_reg_link, ".action-panel a[href*='deregister']")
   elements(:active_tags, ".status-tag-active")
   elements(:ceased_tags, ".status-tag-ceased")
   elements(:revoked_tags, ".status-tag-revoked")

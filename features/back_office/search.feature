@@ -17,7 +17,7 @@ Feature: Back office users need to be able to search for registrations
   Scenario: [RUBY-66] Confirmation letter and refresh
      When The "submitted" search filter is selected
       And I search for "a known registration"
-@broken
+
   Scenario: Unsubmitted registrations
      When The "unsubmitted" search filter is selected
       And I search for "Mr Waste"

@@ -10,6 +10,6 @@ class EditPage < BasePage
   element(:change_operator_link, "a[href*='/edit/operator_name']")
   element(:change_contact_email_link, "a[href*='/edit/contact_email']")
 
-  element(:cancel_link, ".edit_linker a")
-  element(:submit_button, "input[type='submit']")
+  element(:cancel_link, "a[href*='/cancel']")
+
 end
