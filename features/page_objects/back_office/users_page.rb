@@ -10,6 +10,10 @@ class UsersPage < BasePage
 
   element(:invite_user, "a[href='/users/invitation/new']")
 
+  element(:show_all_users, "a[href='/users/all']")
+
+  element(:next_page, "a[aria-label='Next page']")
+
   sections :users, "table tbody tr" do
     element(:email, "td:nth-child(1)")
     element(:role, "td:nth-child(2)")
@@ -37,7 +41,7 @@ class UsersPage < BasePage
     30.times do
       break if page.has_text?(user_email)
 
-      find_link("Next ›").click
+      next_page.click
     end
   end
 

@@ -12,7 +12,6 @@ class InvitationPage < BasePage
   element(:sa, "#user_role_super_agent+ label")
   element(:admin, "#user_role_admin_agent+ label")
   element(:data, "#user_role_data_agent+ label")
-  element(:submit_button, "input[type='submit']")
 
   def submit(args = {})
     user_email.set(args[:user_email]) if args.key?(:user_email)

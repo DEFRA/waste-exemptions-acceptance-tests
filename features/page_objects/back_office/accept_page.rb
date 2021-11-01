@@ -4,9 +4,8 @@ require_relative "base_page"
 
 class AcceptPage < BasePage
 
-  element(:password, "#user_password")
-  element(:confirm_password, "#user_password_confirmation")
-  element(:submit_button, "input[type='submit']")
+  element(:password, "#user-password-field")
+  element(:confirm_password, "#user-password-confirmation-field")
 
   def submit(args = {})
     password.set(args[:password]) if args.key?(:password)

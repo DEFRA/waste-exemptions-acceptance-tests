@@ -52,7 +52,6 @@ When("I change a users role to super agent") do
   # Consider generating a value for this here to remove the dependency.
   # These tests will fail if there are more than X pages of users where X is in users_page.
   @world.bo.users_page.look_for(@world.last_email)
-  puts @world.last_email
   @world.bo.users_page.change_user_role(@world.last_email)
   expect(@world.bo.change_user_role_page).to have_text(@world.last_email)
   @world.bo.change_user_role_page.submit(role: :super)
@@ -73,6 +72,7 @@ When("I deactivate a user") do
 end
 
 Then("I see their status has changed") do
+  @world.bo.users_page.show_all_users.click
   @world.bo.users_page.look_for(@world.last_email)
   user = @world.bo.users_page.user_details(@world.last_email)
   expect(user.status).to have_text("deactivated")

@@ -1,4 +1,4 @@
-@backoffice @data @system 
+@backoffice @data @system
 Feature: Carry out system tasks
   As a back office user
   I need to manage other users and perform admin tasks
@@ -12,7 +12,7 @@ Feature: Carry out system tasks
     Then a password is set
     And the new back office user can sign in
     And the new back office user cannot change their password
-
+  
   Scenario: System user changes a user's role
     Given I sign in as a system user
     When I change a users role to super agent

@@ -18,7 +18,7 @@ class DashboardPage < BasePage
   element(:create_new_registration, "a[href='/ad-privacy-policy']")
   element(:sign_out_button, ".user-info .button")
 
-  element(:dashboard_message, "#message-summary-heading-1")
+  element(:dashboard_message, ".govuk-notification-banner__heading")
 
   elements(:results, "#search-results")
   element(:revoked_tag, ".status-tag-revoked")
