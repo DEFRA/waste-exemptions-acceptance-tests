@@ -6,10 +6,8 @@ class LoginPage < BasePage
 
   set_url(Quke::Quke.config.custom["urls"]["back_office"])
 
-  element(:alert_invalid, "div.alert-danger[role='alert']", text: "Invalid email or password")
-
-  element(:email, "#user_email")
-  element(:password, "#user_password")
+  element(:email, "#user-email-field")
+  element(:password, "#user-password-field")
   element(:submit_button, "input[type='submit']")
 
   def submit(args = {})

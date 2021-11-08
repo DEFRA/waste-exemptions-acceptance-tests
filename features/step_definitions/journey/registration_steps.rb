@@ -42,11 +42,6 @@ end
 
 Then(/^I complete (?:a|an) "([^"]*)" registration$/) do |business|
   @world.bo.dashboard_page.create_new_registration.click
-  # Click through the links on the privacy policy page:
-  @world.journey.ad_privacy_policy_page.policy_text_link.click
-  @world.journey.ad_privacy_policy_page.dpo_details_link.click
-  @world.journey.ad_privacy_policy_page.ico_details_link.click
-  expect(@world.journey.ad_privacy_policy_page.content).to have_text("European Economic Area")
   @world.journey.ad_privacy_policy_page.submit
   @world.last_reg = generate_registration(business.to_sym)
 
