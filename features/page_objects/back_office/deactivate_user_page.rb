@@ -2,10 +2,9 @@
 
 require_relative "sections/admin_menu_section"
 
-class DeactivateUserPage < SitePrism::Page
+class DeactivateUserPage < BasePage
 
   section(:admin_menu, AdminMenuSection, AdminMenuSection::SELECTOR)
-
   element(:submit_button, "input[type='submit']")
 
   def submit

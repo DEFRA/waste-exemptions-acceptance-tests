@@ -12,7 +12,7 @@ Then(/^I will not have the option to manage users$/) do
 end
 
 Then("I can search for registrations") do
-  find_link("Waste exemptions back office").click
+  @world.bo.dashboard_page.admin_menu.home_page.click
   @world.bo.dashboard_page.submit(search_term: @world.known_reg_no)
   expect(page).to have_content("Waste exemptions dashboard")
   # We know results should exist because of the registrations created in our
@@ -29,7 +29,7 @@ Then("I cannot access the user management screen") do
 end
 
 Then("I will have the option to create a new registration") do
-  find_link("Waste exemptions back office").click
+  @world.bo.dashboard_page.admin_menu.home_page.click
   expect(@world.bo.dashboard_page).to have_create_new_registration
 end
 
@@ -40,7 +40,7 @@ Then("I can access create a new registration") do
 end
 
 Then("I will not have the option to create a new registration") do
-  find_link("Waste exemptions back office").click
+  @world.bo.dashboard_page.admin_menu.home_page.click
   expect(@world.bo.dashboard_page).to have_no_create_new_registration
 end
 
@@ -59,7 +59,7 @@ Then("I can view their details") do
 end
 
 Then("I can continue an in progress registration") do
-  find_link("Waste exemptions back office").click
+  @world.bo.dashboard_page.admin_menu.home_page.click
   @world.bo.dashboard_page.unsubmitted_filter.click
   @world.bo.dashboard_page.submit(search_term: "Mr Waste")
   @world.bo.dashboard_page.resume_links[0].click
@@ -67,14 +67,14 @@ Then("I can continue an in progress registration") do
 end
 
 Then("I cannot continue an in progress registration") do
-  find_link("Waste exemptions back office").click
+  @world.bo.dashboard_page.admin_menu.home_page.click
   @world.bo.dashboard_page.unsubmitted_filter.click
   @world.bo.dashboard_page.submit(search_term: "Mr Waste")
   expect(@world.bo.dashboard_page.resume_links.count).to eq(0)
 end
 
 Then("I can access data exports") do
-  find_link("Waste exemptions back office").click
+  @world.bo.dashboard_page.admin_menu.home_page.click
   expect(@world.bo.dashboard_page.admin_menu).to have_data_exports
 
   @world.bo.dashboard_page.admin_menu.data_exports.click
@@ -88,7 +88,7 @@ end
 
 Then("I can toggle features") do
   @world.bo.dashboard_page.admin_menu.toggle_features_link.click
-  expect(@world.journey.standard_page.heading).to have_text("Feature Toggles")
+  expect(page).to have_text("Feature Toggles")
 end
 
 Then("I cannot toggle features") do

@@ -2,18 +2,15 @@
 
 require_relative "sections/admin_menu_section"
 
-class EditDetailsPage < SitePrism::Page
+class EditDetailsPage < BasePage
 
   section(:admin_menu_section, AdminMenuSection, AdminMenuSection::SELECTOR)
 
-  element(:heading, ".heading-large")
   element(:first_name_form, "#applicant_name_form_applicant_first_name")
   element(:last_name_form, "#applicant_name_form_applicant_last_name")
-  element(:operator_name_form, "#operator_name_form_operator_name")
+  element(:operator_name_form, "#operator-name-form-operator-name-field")
   element(:contact_email_form_1, "#contact_email_form_contact_email")
   element(:contact_email_form_2, "#contact_email_form_confirmed_email")
-
-  element(:continue_button, ".button")
 
   def submit(args = {})
     first_name_form.set(args[:first_name]) if args.key?(:first_name)
@@ -21,7 +18,7 @@ class EditDetailsPage < SitePrism::Page
     operator_name_form.set(args[:operator_name]) if args.key?(:operator_name)
     contact_email_form_1.set(args[:contact_email]) if args.key?(:contact_email)
     contact_email_form_2.set(args[:contact_email]) if args.key?(:contact_email)
-    continue_button.click
+    submit_button.click
   end
 
 end

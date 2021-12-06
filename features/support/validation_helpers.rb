@@ -43,8 +43,8 @@ end
 def test_name_validations(person)
   # Tests validations on the applicant and contact name pages.
   @world.journey.name_page.submit(first_name: "", last_name: "")
-  expect(@world.journey.name_page.error).to have_text("You must enter a first name")
-  expect(@world.journey.name_page.error).to have_text("You must enter a last name")
+  expect(@world.journey.name_page.error).to have_text("first name")
+  expect(@world.journey.name_page.error).to have_text("last name")
   check_for_accessibility
   @world.journey.name_page.submit(
     first_name: person[:first_name],
@@ -79,7 +79,7 @@ def test_operator_type_validations(reg, reg_type)
   # Business type page
   @world.journey.business_type_page.submit_button.click
   if reg_type == "new"
-    expect(@world.journey.business_type_page.error).to have_text("You must answer this question")
+    expect(@world.journey.business_type_page.error).to have_text("Select a business type or organisation")
     @world.journey.business_type_page.submit(business_type: reg[:business_type])
   end
 
@@ -115,7 +115,7 @@ end
 
 def test_address_lookup_validation(postcode_text, reg_type)
   # Wait statement required to handle redirect:
-  @world.journey.address_lookup_page.wait_until_find_address_visible
+  @world.journey.address_lookup_page.wait_until_submit_button_visible
   leave_postcode_blank
   dont_select_address_from_dropdown if reg_type == "new"
   enter_invalid_postcode(postcode_text)
@@ -131,15 +131,15 @@ def dont_select_address_from_dropdown
   # Relates to a bug fixed in RUBY-721.
   # This only works on new registrations. If it's a renewal, the address is auto-populated.
   @world.journey.address_lookup_page.enter_postcode("BS1 5AH")
-  @world.journey.address_lookup_page.submit_button.click
-  expect(@world.journey.address_lookup_page.error).to have_text("You must select an address")
+  @world.journey.address_lookup_page.submit
+  expect(@world.journey.address_lookup_page.error).to have_text(/Select an address/i)
   check_for_accessibility
   find_link("Change postcode").click
 end
 
 def enter_invalid_postcode(postcode_text)
   @world.journey.address_lookup_page.enter_postcode(postcode_text)
-  @world.journey.address_lookup_page.find_address.click
+  @world.journey.address_lookup_page.submit
   expect(@world.journey.address_lookup_page.error).to have_text("Enter a valid UK postcode")
   check_for_accessibility
 end
@@ -175,7 +175,7 @@ def test_contact_validations(contact, reg_type)
 
   # Contact position page has no 'empty field' validation
   expect(@world.journey.contact_position_page.heading).to have_text("What's their position?")
-  @world.journey.contact_position_page.submit_button.click
+  @world.journey.contact_position_page.submit
 
   test_phone_validations(contact[:telephone])
   test_email_validations(contact[:email])
@@ -188,7 +188,7 @@ def test_farm_validations(reg, reg_type)
   # On a farm page
   @world.journey.on_farm_page.submit_button.click
   if reg_type == "new"
-    expect(@world.journey.on_farm_page.error).to have_text("You must answer this question")
+    expect(@world.journey.on_farm_page.error).to have_text("Select yes or no")
     @world.journey.on_farm_page.submit(on_farm: reg[:on_farm])
   end
 
@@ -196,7 +196,7 @@ def test_farm_validations(reg, reg_type)
   @world.journey.farmer_page.submit_button.click
   return unless reg_type == "new"
 
-  expect(@world.journey.farmer_page.error).to have_text("You must answer this question")
+  expect(@world.journey.farmer_page.error).to have_text("Select yes or no")
   check_for_accessibility
   @world.journey.farmer_page.submit(farmer: reg[:farmer])
 end
@@ -206,7 +206,7 @@ def test_site_validations(reg_type)
   if reg_type == "new" || heading == "Where will this waste operation take place?"
     # Site grid reference page
     @world.journey.site_grid_reference_page.submit(grid_ref: "", site_details: "")
-    expect(@world.journey.site_grid_reference_page.error).to have_text("Enter a grid reference")
+    expect(@world.journey.site_grid_reference_page.error).to have_text("Enter a National Grid reference")
     expect(@world.journey.site_grid_reference_page.error).to have_text("Enter a site description")
     check_for_accessibility
     find_link("use an address instead").click
@@ -218,12 +218,12 @@ end
 def test_confirmation_validations
   # Check your answer page doesn't have validation:
   expect(@world.journey.check_details_page.heading).to have_text("Check your answers")
-  @world.journey.check_details_page.submit_button.click
+  @world.journey.check_details_page.submit
 
   # Declaration page
   @world.journey.declaration_page.submit_button.click
   # rubocop:disable Layout/LineLength
-  expect(@world.journey.declaration_page.error).to have_text("You cannot register if you do not understand and agree with the declaration")
+  expect(@world.journey.declaration_page.error).to have_text("You must agree with the declaration before you can continue")
   # rubocop:enable Layout/LineLength
   check_for_accessibility
   @world.journey.declaration_page.submit

@@ -1,13 +1,10 @@
 # frozen_string_literal: true
 
-class EmailPage < SitePrism::Page
-
-  element(:error, ".error-summary")
-
-  element(:email, "#applicant_email_form_applicant_email,#contact_email_form_contact_email")
-  element(:confirm_email, "input[id*='confirmed_email']")
-
-  element(:submit_button, "input[type='submit']")
+class EmailPage < BasePage
+  # rubocop:disable Layout/LineLength
+  element(:email, "input[id^='applicant-email-form-applicant-email-field'],input[id^='contact-email-form-contact-email-field']")
+  # rubocop:enable Layout/LineLength
+  element(:confirm_email, "input[id*='confirmed-email']")
 
   def submit(args = {})
     email.set(args[:email]) if args.key?(:email)
