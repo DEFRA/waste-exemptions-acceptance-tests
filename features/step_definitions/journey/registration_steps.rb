@@ -113,18 +113,13 @@ Then("I can find and edit the registration I just submitted") do
 end
 
 Then("I can access the footer links") do
-  new_window = window_opened_by { find_link("Privacy").click }
-  within_window new_window do
-    expect(page).to have_text("Privacy Policy: how we use your personal information")
-    new_window = window_opened_by { find_link("Cookies").click }
-    within_window new_window do
-      expect(page).to have_text("Cookies")
-      new_window = window_opened_by { find_link("Accessibility").click }
-      within_window new_window do
-        expect(page).to have_text("Accessibility statement")
-      end
-    end
-  end
+  @world.journey.home_page.privacy_footer.click
+  expect(page).to have_text("Privacy Notice: how we use your personal data")
+  @world.journey.home_page.cookies_footer.click
+  expect(page).to have_text("Cookie settings")
+  @world.journey.home_page.accessibility_footer.click
+  expect(page).to have_text("Accessibility statement")
+
 end
 
 Given("I am on the service") do
