@@ -1,12 +1,8 @@
 # frozen_string_literal: true
 
-class RegistrationNumberPage < SitePrism::Page
+class RegistrationNumberPage < BasePage
 
-  element(:error, ".error-summary")
-
-  element(:registration_number, "#registration_number_form_company_no")
-
-  element(:submit_button, "input[type='submit']")
+  element(:registration_number, "input[id^='registration-number-form-company-no-field']")
 
   def submit(args = {})
     registration_number.set(args[:registration_number]) if args.key?(:registration_number)

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/AbcSize
 def add_submitted_registration(registration, load_root_page = true, address_type = "lookup", site_type = "random")
   # This function completes a full registration with parameters:
   # - a full set of `registration` data - generated from the generate_registration function in data_generator
@@ -11,6 +12,7 @@ def add_submitted_registration(registration, load_root_page = true, address_type
   # - a site type entered as a `grid_ref`, an `address`, or a `random` choice of either
 
   @world.journey.home_page.load if load_root_page
+  @world.journey.home_page.accept_cookies
   @world.journey.registration_type_page.submit(start_option: :new_radio)
   @world.journey.location_page.submit(location: :england)
   @world.journey.choose_exemptions_page.submit(exemptions: registration[:exemptions])
@@ -25,6 +27,7 @@ def add_submitted_registration(registration, load_root_page = true, address_type
   puts ref_no + " completed by " + registration[:applicant][:full_name].to_s
   ref_no
 end
+# rubocop:enable Metrics/AbcSize
 
 def choose_random_address_type
   # Select "lookup" addresses, or manually entering addresses at random.

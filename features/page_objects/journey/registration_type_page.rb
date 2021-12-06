@@ -1,14 +1,12 @@
 # frozen_string_literal: true
 
-class RegistrationTypePage < SitePrism::Page
+class RegistrationTypePage < BasePage
 
-  element(:error, ".error-summary")
+  element(:new_radio, "input[value='new']+ .govuk-radios__label")
+  element(:renew_radio, "input[value='reregister']+ .govuk-radios__label")
+  element(:change_registration, "input[value='change']+ .govuk-radios__label")
 
-  element(:new_radio, "#start_form_start_option_new + label")
-  element(:renew_radio, "#start_form_start_option_reregister + label")
-  element(:change_registration, "#start_form_start_option_change + label")
-
-  element(:submit_button, "input")
+  element(:submit_button, "button[type='submit']")
 
   def submit(args = {})
     # As long as the arg passed in matches the name of an element we can simply

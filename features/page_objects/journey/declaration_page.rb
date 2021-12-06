@@ -1,11 +1,8 @@
 # frozen_string_literal: true
 
-class DeclarationPage < SitePrism::Page
+class DeclarationPage < BasePage
 
-  element(:error, ".error-summary")
-
-  element(:declaration_checkbox, "#declaration_form_declaration+ label")
-  element(:submit_button, "input[type='submit']")
+  element(:declaration_checkbox, "input[id^='declaration-form-declaration']+ label")
 
   def submit(_args = {})
     declaration_checkbox.click

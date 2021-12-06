@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-class AcceptPage < SitePrism::Page
+require_relative "base_page"
 
-  element(:password, "#user_password")
-  element(:confirm_password, "#user_password_confirmation")
+class AcceptPage < BasePage
 
-  element(:submit_button, "input[name='commit']")
+  element(:password, "#user-password-field")
+  element(:confirm_password, "#user-password-confirmation-field")
 
   def submit(args = {})
     password.set(args[:password]) if args.key?(:password)

@@ -1,17 +1,13 @@
 # frozen_string_literal: true
 
-class BusinessTypePage < SitePrism::Page
+class BusinessTypePage < BasePage
 
-  element(:error, ".error-summary")
-
-  element(:individual, "#business_type_form_business_type_soletrader + label")
-  element(:limited_company, "#business_type_form_business_type_limitedcompany + label")
-  element(:partnership, "#business_type_form_business_type_partnership + label")
-  element(:llp, "#business_type_form_business_type_limitedliabilitypartnership + label")
-  element(:local_authority, "#business_type_form_business_type_localauthority + label")
-  element(:charity, "#business_type_form_business_type_charity + label")
-
-  element(:submit_button, "input[name='commit']")
+  element(:individual, "#business-type-form-business-type-soletrader-field + label")
+  element(:limited_company, "#business-type-form-business-type-limitedcompany-field + label")
+  element(:partnership, "#business-type-form-business-type-partnership-field + label")
+  element(:llp, "#business-type-form-business-type-limitedliabilitypartnership-field + label")
+  element(:local_authority, "#business-type-form-business-type-localauthority-field + label")
+  element(:charity, "#business-type-form-business-type-charity-field + label")
 
   def submit(args = {})
     # As long as the arg passed in matches the name of an element we can simply

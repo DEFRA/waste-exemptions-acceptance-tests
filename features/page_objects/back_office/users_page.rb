@@ -2,14 +2,17 @@
 
 require_relative "sections/admin_menu_section"
 
-class UsersPage < SitePrism::Page
+class UsersPage < BasePage
 
   set_url(File.join(Quke::Quke.config.custom["urls"]["back_office"], "/users"))
 
   section(:admin_menu, AdminMenuSection, AdminMenuSection::SELECTOR)
 
-  element(:content, "#content")
   element(:invite_user, "a[href='/users/invitation/new']")
+
+  element(:show_all_users, "a[href='/users/all']")
+
+  element(:next_page, "a[aria-label='Next page']")
 
   sections :users, "table tbody tr" do
     element(:email, "td:nth-child(1)")
@@ -36,9 +39,9 @@ class UsersPage < SitePrism::Page
   def look_for(user_email)
     # Look for the known email on page. If it's not there, click Next and look again.
     30.times do
-      break if content.has_text?(user_email)
+      break if page.has_text?(user_email)
 
-      find_link("Next ›").click
+      next_page.click
     end
   end
 

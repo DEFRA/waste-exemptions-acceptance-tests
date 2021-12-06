@@ -2,7 +2,7 @@
 
 require_relative "sections/admin_menu_section"
 
-class InvitationPage < SitePrism::Page
+class InvitationPage < BasePage
 
   section(:admin_menu, AdminMenuSection, AdminMenuSection::SELECTOR)
 
@@ -12,8 +12,6 @@ class InvitationPage < SitePrism::Page
   element(:sa, "#user_role_super_agent+ label")
   element(:admin, "#user_role_admin_agent+ label")
   element(:data, "#user_role_data_agent+ label")
-
-  element(:submit_button, "input[name='commit']")
 
   def submit(args = {})
     user_email.set(args[:user_email]) if args.key?(:user_email)

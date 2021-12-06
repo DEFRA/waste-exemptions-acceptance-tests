@@ -5,7 +5,7 @@
 # https://github.com/natritmeyer/site_prism#epilogue
 class JourneyApp
   # Using an attr_reader automatically gives us a my_app.last_page method
-  attr_reader :last_page
+  attr_reader :last_page, :base_page
 
   def home_page
     @last_page = HomePage.new
@@ -105,10 +105,6 @@ class JourneyApp
 
   def site_grid_reference_page
     @last_page = SiteGridReferencePage.new
-  end
-
-  def standard_page
-    @last_page = StandardPage.new
   end
 
 end

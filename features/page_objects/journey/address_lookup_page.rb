@@ -1,24 +1,18 @@
 # frozen_string_literal: true
 
-class AddressLookupPage < SitePrism::Page
+class AddressLookupPage < BasePage
 
   # This is a generic page object file for contact and operator address, to prevent repetition.
   # Although the page objects have different identifiers, they follow the same pattern
   # and so each field can be identified through what its id contains.
 
-  element(:error, ".error-summary")
-  element(:heading, ".heading-large")
-
   # The following is common to operator, contact and site postcode forms:
-  element(:postcode, "input[id*='postcode_form_temp']")
-  element(:find_address, "input[value='Find address']")
+  element(:postcode, "input[id*='postcode-field']")
 
   # Search results as a dropdown
   element(:show_list, "input[id='address_match_selection']")
   element(:results_dropdown, "select[id*='address_uprn']")
   element(:cannot_find_address, "a[href*='address-lookup/skip']")
-
-  element(:submit_button, ".button")
 
   def submit(args = {})
     enter_postcode(args[:postcode]) if args.key?(:postcode)
@@ -28,7 +22,7 @@ class AddressLookupPage < SitePrism::Page
 
   def enter_postcode(postcode_entry)
     postcode.set(postcode_entry)
-    find_address.click
+    submit_button.click
   end
 
   def choose_manual_address(args = {})
