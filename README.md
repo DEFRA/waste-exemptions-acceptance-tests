@@ -1,7 +1,6 @@
 # Waste exemptions acceptance tests
 
 ![Build Status](https://github.com/DEFRA/waste-exemptions-acceptance-tests/workflows/CI/badge.svg?branch=main)
-[![security](https://hakiri.io/github/DEFRA/waste-exemptions-acceptance-tests/main.svg)](https://hakiri.io/github/DEFRA/waste-exemptions-acceptance-tests/main)
 
 If your business produces waste or emissions that pollute you may require an environmental permit. However you may also be able to get an exemption if your business activities are considered to be easily controlled and only create low risks of pollution.
 
@@ -171,7 +170,7 @@ All contributions should be submitted via a pull request.
 
 THIS INFORMATION IS LICENSED UNDER THE CONDITIONS OF THE OPEN GOVERNMENT LICENCE found at:
 
-http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3
+<http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3>
 
 The following attribution statement MUST be cited in your products and applications when using this information.
 
