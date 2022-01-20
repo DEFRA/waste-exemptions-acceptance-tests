@@ -97,7 +97,7 @@ def test_operator_name_address_validation(operator_name, reg_type)
   @world.journey.operator_name_page.submit(org_name: operator_name)
 
   # Operator address page
-  expect(@world.journey.address_lookup_page.heading).to have_text("What’s the company address?")
+  expect(@world.journey.address_lookup_page.heading).to have_text("What's the company address?")
   check_for_accessibility
   # Generate errors on the address pages with the given text in the postcode field:
   test_address_validations("ROSS KEMP", reg_type)
