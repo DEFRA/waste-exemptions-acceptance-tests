@@ -2,36 +2,21 @@
 
 class CheckDetailsPage < BasePage
 
-  # Contact details
-  element(:change_contact_name, "table[id='reviewing-change-yourcontactdetails-yourname']")
-  element(:change_tel_no, "table[id='reviewing-change-yourcontactdetails-yourbusinesstelephonenumber']")
-  element(:change_email, "table[id='reviewing-change-yourcontactdetails-yourbusinessemail']")
-
-  # Business details
-  element(
-    :change_person_responsible,
-    "table[id='reviewing-change-businessdetails-personresponsibleforthewasteoperation']"
-  )
-  element(
-    :change_person_responsible_address,
-    "table[id='reviewing-change-businessdetails-addressofthepersonresponsible']"
-  )
-
-  # Waste operation contact details
-  element(:change_waste_contact_name, "table[id='reviewing-change-wasteoperationcontact-name']")
-  element(:change_waste_contact_tel_no, "table[id='reviewing-change-wasteoperationcontact-telephonenumber']")
-  element(:change_waste_contact_address, "table[id='reviewing-change-wasteoperationcontact-address']")
-  element(:change_waste_contact_email, "table[id='reviewing-change-wasteoperationcontact-email']")
-
-  # Waste operation details
-  element(:change_grid_ref, "table[id='reviewing-change-wasteoperationdetails-gridreference']")
-  element(:change_site_details, "table[id='reviewing-change-wasteoperationdetails-sitedetails']")
-  element(:change_site_details, "table[id='reviewing-change-wasteoperationdetails-sitedetails']")
-
-  def submit(args = {})
-    exemptions.find { |chk| chk["value"] == args[:exemption] }.click if args.key?(:exemption)
-
-    submit_button.click
-  end
+  element(:business_type, "#change_site_details")
+  element(:operator_name, "#company_operator_name")
+  element(:companies_house_number, "#company_companies_house_number")
+  element(:place_of_business, "#company_place_of_business")
+  element(:company_address, "#company_address")
+  element(:contact_name, "#company_contact_name")
+  element(:contact_address, "#company_contact_address")
+  element(:contact_details, "#company_contact_details")
+  element(:exemptions, "#registration_exemptions")
+  element(:on_farm, "#registration_will_this_waste_operation_take_place_on_a_farm")
+  element(:farmer, "#registration_are_the_waste_exemptions_used_by_a_farmer_or_farming_business")
+  element(:applicant_name, "#registration_form_completed_by")
+  element(:applicant_tel, "#registration_telephone_number")
+  element(:applicant_email, "#registration_email_address")
+  element(:grid_ref, "#registration_grid_reference")
+  element(:site_desc, "#registration_site_description")
 
 end

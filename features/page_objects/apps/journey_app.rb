@@ -43,6 +43,10 @@ class JourneyApp
     @last_page = CheckContactEmailPage.new
   end
 
+  def check_contact_address_page
+    @last_page = CheckContactAddressPage.new
+  end
+
   def check_details_page
     @last_page = CheckDetailsPage.new
   end

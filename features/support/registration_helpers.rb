@@ -95,10 +95,9 @@ def complete_address(address_type)
   # Lookup is more common so this happens two out of three times.
   address_type = choose_random_address_type if address_type == :random
   if address_type == :lookup # get address via postcode lookup
-    @world.journey.address_lookup_page.submit(
-      postcode: "BS1 5AH",
-      result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
-    )
+    @postcode = "BS1 5AH"
+    @address = "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    @world.journey.address_lookup_page.submit(postcode: @postcode, result: @address)
   else # address is populated manually
     @world.journey.address_lookup_page.choose_manual_address(
       postcode: "BS1 5AH"
@@ -133,10 +132,11 @@ end
 def complete_contact_details(person, address_type)
   @world.journey.name_page.submit(first_name: person[:first_name], last_name: person[:last_name])
   @world.journey.contact_position_page.submit(position: person[:position])
-  @world.journey.check_contact_phone_page.submit(reuse: :reject) if @changes != :with
+  @world.journey.check_contact_phone_page.submit(reuse: :reject) unless @changes == :with
   @world.journey.phone_page.submit(tel_no: person[:telephone])
-  @world.journey.check_contact_email_page.submit(reuse: :reject) if @changes != :with
+  @world.journey.check_contact_email_page.submit(reuse: :reject) unless @changes == :with
   @world.journey.email_page.submit(email: person[:email], confirm_email: person[:email])
+  @world.journey.check_contact_address_page.submit(reuse: :reject) if @changes != :with
   complete_address(address_type)
 end
 

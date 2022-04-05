@@ -24,7 +24,7 @@ Given("a registration has been created") do
   @world.last_reg_no = add_submitted_registration(@world.last_reg, true, :random, :random)
 end
 
-Given("I am on the check contact phone page") do
+Given("I register choosing to reuse my contact details") do
   @world.journey.location_page.submit(location: :england)
   # Add an S3 exemption
   @world.journey.choose_exemptions_page.submit(exemptions: %w[S3])
@@ -34,23 +34,16 @@ Given("I am on the check contact phone page") do
   @world.journey.operator_name_page.submit(org_name: "Soul trader")
   complete_address(:lookup)
   @world.journey.name_page.submit(first_name: @applicant[:first_name], last_name: @applicant[:last_name])
-  @world.journey.contact_position_page.submit
-  expect(@world.journey.check_contact_phone_page.phone_number.text).to eq @applicant[:telephone]
-end
-
-Given("I am on the check contact email page") do
-  @world.journey.location_page.submit(location: :england)
-  # Add an S3 exemption
-  @world.journey.choose_exemptions_page.submit(exemptions: %w[S3])
-  @applicant = generate_person("applicant@example.com")
-  complete_applicant_details(@applicant)
-  @world.journey.business_type_page.submit(business_type: :individual)
-  @world.journey.operator_name_page.submit(org_name: "Soul trader")
-  complete_address(:lookup)
-  @world.journey.name_page.submit(first_name: @applicant[:first_name], last_name: @applicant[:last_name])
-  @world.journey.contact_position_page.submit
+  @world.journey.contact_position_page.submit(position: @applicant[:position])
   @world.journey.check_contact_phone_page.submit(reuse: :accept)
-  expect(@world.journey.check_contact_email_page.email.text).to eq @applicant[:email]
+  @world.journey.check_contact_email_page.submit(reuse: :accept)
+  @world.journey.check_contact_address_page.submit(reuse: :accept)
+  @world.journey.on_farm_page.submit(on_farm: :on_farm)
+  @world.journey.farmer_page.submit(farmer: :farmer)
+  @world.journey.site_grid_reference_page.submit(
+    grid_ref: "ST 58132 72695",
+    site_details: "Over there"
+  )
 end
 
 Then("I will be informed the registration is complete") do
@@ -68,6 +61,10 @@ Then("I will receive a registration confirmation email") do
   expect(email_exists?(@world.last_reg, expected_text)).to be true
 end
 
+Then("I am on the check your answers page") do
+  expect(@world.journey.check_details_page.title).to have_text("Check your answers")
+end
+
 Then("a registration confirmation letter has been sent") do
   expected_text = [
     "Your reference: " + @world.last_reg_no
@@ -83,23 +80,6 @@ When("I carry out a partial registration") do
   puts "Partial registration completed by " + @last_transient_name
 end
 
-When("I choose to use this telephone number as a contact number") do
-  @world.journey.check_contact_phone_page.submit(reuse: :accept)
-end
-
-When("I choose to use this email address as a contact email address") do
-  @world.journey.check_contact_email_page.submit(reuse: :accept)
-end
-
-Then("I will be on the contact check email page") do
-  expect(@world.journey.check_contact_email_page.title).to have_text("Do you want to use this email")
-end
-
-Then("I will be on the contact check address page") do
-  # expect(@world.journey.check_contact_email_page.title).to have_text("Do you want to use this address")
-  expect(@world.journey.check_contact_email_page.title).to have_text("What's their postcode?")
-end
-
 Then("I can access the footer links") do
   @world.journey.home_page.privacy_footer.click
   expect(page).to have_text("Privacy Notice: how we use your personal data")
@@ -107,7 +87,6 @@ Then("I can access the footer links") do
   expect(page).to have_text("Cookie settings")
   @world.journey.home_page.accessibility_footer.click
   expect(page).to have_text("Accessibility statement")
-
 end
 
 Given("I am on the service") do
@@ -121,4 +100,21 @@ end
 Then("I will be advised to contact the EA") do
   expect(page).to have_text("Contact the Environment Agency")
   expect(page).to have_text("You'll need to contact the Environment Agency")
+end
+
+Then("my phone number is used for the contact phone number") do
+  expect(@world.journey.check_details_page.applicant_tel.text).to eq(@applicant[:telephone])
+  expect(@world.journey.check_details_page.contact_details.text).to have_text(@applicant[:telephone])
+end
+
+Then("my email address is used for the contact email address") do
+  expect(@world.journey.check_details_page.applicant_tel.text).to eq(@applicant[:telephone])
+  expect(@world.journey.check_details_page.contact_details.text).to have_text(@applicant[:email])
+end
+
+Then("my business address is used for the contact address") do
+  @contact_address = remove_new_lines_from_address(@world.journey.check_details_page.contact_address.text)
+  @business_address = remove_new_lines_from_address(@world.journey.check_details_page.company_address.text)
+  expect(@contact_address).to eq(@address)
+  expect(@business_address).to eq(@address)
 end

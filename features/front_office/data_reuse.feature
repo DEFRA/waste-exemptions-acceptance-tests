@@ -1,17 +1,14 @@
-@frontoffice @reg
+@frontoffice @regi
 Feature: Registering a waste exemption
   As a waste holder
   I want to be able to opt to use previously entered data
   So that I don't have to repeat myself
 
-  Scenario: Applicants phone number can be reused for contact phone number
+  Scenario: Applicants details can be used for later in registration
       Given I start a new waste exemption registration
-      And I am on the check contact phone page
-      When I choose to use this telephone number as a contact number
-      Then I will be on the contact check email page
+      When I register choosing to reuse my contact details
+      Then I am on the check your answers page
+      And my phone number is used for the contact phone number
+      And my email address is used for the contact email address
+      And my business address is used for the contact address
 
-  Scenario: Applicants phone number can be reused for contact phone number
-      Given I start a new waste exemption registration
-      And I am on the check contact email page
-      When I choose to use this email address as a contact email address
-      Then I will be on the contact check address page
