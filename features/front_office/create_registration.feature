@@ -10,12 +10,6 @@ Feature: Registering a waste exemption
       Then I will be informed the registration is complete
       And I will receive a registration confirmation email
 
-  @email
-    Scenario: Registration by a limited company with error validation
-      Given my business is a "limited_company"
-      When I register and test validation and accessibility
-      Then I will be informed the registration is complete
-      And I will receive a registration confirmation email
   @smoke
     Scenario: Registration by a local authority
       Given my business is a "local_authority"

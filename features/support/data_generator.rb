@@ -82,7 +82,7 @@ def prepopulate_registrations
   @world.known_reg = generate_registration(:individual, "Mr Waste submitted")
 
   # This completes the registration and stores the registration number:
-  @world.known_reg_no = add_submitted_registration(@world.known_reg, true, "random", "random")
+  @world.known_reg_no = add_submitted_registration(@world.known_reg, true, :random, :random)
 
   # This does the same steps for an incomplete registration:
   unsubmitted_reg = generate_registration(:individual, "Mr Waste unsubmitted")

@@ -5,23 +5,51 @@ Given(/^my business is (?:a|an) "([^"]*)"$/) do |business|
   @world.last_reg = generate_registration(business.to_sym)
 end
 
+Then("I start a new waste exemption registration") do
+  @world.journey.home_page.load
+  @world.journey.registration_type_page.submit(start_option: :new_radio)
+end
+
 Then("I register an exemption") do
   # Set app to front office, to determine which email service to call later
   @app = :fo
   # Complete the registration. See registration_helpers for an explanation of the parameters.
   # Registration details are stored as a hash, @world.last_reg.
   # Registration number is stored as a string, @world.last_reg_no.
-  @world.last_reg_no = add_submitted_registration(@world.last_reg, true, "random", "random")
+  @world.last_reg_no = add_submitted_registration(@world.last_reg, true, :random, :random)
 end
 
 Given("a registration has been created") do
   @world.last_reg = generate_registration(:limited_company)
-  @world.last_reg_no = add_submitted_registration(@world.last_reg, true, "random", "random")
+  @world.last_reg_no = add_submitted_registration(@world.last_reg, true, :random, :random)
+end
+
+Given("I register choosing to reuse my contact details") do
+  @world.journey.location_page.submit(location: :england)
+  # Add an S3 exemption
+  @world.journey.choose_exemptions_page.submit(exemptions: %w[S3])
+  @applicant = generate_person("applicant@example.com")
+  complete_applicant_details(@applicant)
+  @world.journey.business_type_page.submit(business_type: :individual)
+  @world.journey.operator_name_page.submit(org_name: "Soul trader")
+  complete_address(:lookup)
+  @world.journey.name_page.submit(first_name: @applicant[:first_name], last_name: @applicant[:last_name])
+  @world.journey.contact_position_page.submit(position: @applicant[:position])
+  @world.journey.check_contact_phone_page.submit(reuse: :accept)
+  @world.journey.check_contact_email_page.submit(reuse: :accept)
+  @world.journey.check_contact_address_page.submit(reuse: :accept)
+  @world.journey.on_farm_page.submit(on_farm: :on_farm)
+  @world.journey.farmer_page.submit(farmer: :farmer)
+  @world.journey.site_grid_reference_page.submit(
+    grid_ref: "ST 58132 72695",
+    site_details: "Over there"
+  )
 end
 
 Then("I will be informed the registration is complete") do
   expect(page).to have_content "You have registered your exemptions for 3 years"
   @world.last_reg_no = @world.journey.confirmation_page.ref_no.text
+  puts "Registration #{@world.last_reg_no} completed"
 end
 
 Then("I will receive a registration confirmation email") do
@@ -33,29 +61,15 @@ Then("I will receive a registration confirmation email") do
   expect(email_exists?(@world.last_reg, expected_text)).to be true
 end
 
+Then("I am on the check your answers page") do
+  expect(@world.journey.check_details_page.title).to have_text("Check your answers")
+end
+
 Then("a registration confirmation letter has been sent") do
   expected_text = [
     "Your reference: " + @world.last_reg_no
   ]
   expect(letter_exists?(expected_text)).to be true
-end
-
-Then(/^I complete (?:a|an) "([^"]*)" registration$/) do |business|
-  @world.bo.dashboard_page.create_new_registration.click
-  @world.journey.ad_privacy_policy_page.submit
-  @world.last_reg = generate_registration(business.to_sym)
-
-  # This also stores the exemption number so the exemption can be edited in later steps.
-  @world.last_reg_no = add_submitted_registration(@world.last_reg, false, "random", "random")
-end
-
-Then(/^I complete (?:a|an) assisted digital "([^"]*)" registration$/) do |business|
-  @world.bo.dashboard_page.create_new_registration.click
-  @world.journey.ad_privacy_policy_page.submit
-  @world.last_reg = generate_registration(business.to_sym, email: "waste-exemptions@environment-agency.gov.uk")
-
-  # This also stores the exemption number so the exemption can be edited in later steps.
-  @world.last_reg_no = add_submitted_registration(@world.last_reg, false, "random", "random")
 end
 
 When("I carry out a partial registration") do
@@ -66,52 +80,6 @@ When("I carry out a partial registration") do
   puts "Partial registration completed by " + @last_transient_name
 end
 
-Then("I complete an in progress registration") do
-  @world.bo.dashboard_page.admin_menu.home_page.click
-  # Add a sleep here, because the automated tests often have a problem with the filter steps:
-  sleep(1)
-  @world.bo.dashboard_page.unsubmitted_filter.click
-
-  @world.bo.dashboard_page.submit(search_term: @last_transient_name)
-  # Check first that I can view details for an in progress registration (RUBY-329)
-  @world.bo.dashboard_page.view_transient_details_links[0].click
-  expect(@world.bo.registration_details_page.heading).to have_text("In-progress registration details")
-  @world.bo.registration_details_page.back_link.click
-
-  # Start the resume process
-  @world.bo.dashboard_page.unsubmitted_filter.click
-  @world.bo.dashboard_page.submit(search_term: @last_transient_name)
-  @world.bo.dashboard_page.resume_links[0].click
-  expect(page).to have_content("Who should we contact about this waste exemption operation?")
-
-  # Generate the data for the rest of the registration and save it as a world variable:
-  @world.reg_to_complete = generate_registration(:individual)
-
-  # Complete the registration and store the registration number.
-  @world.completed_reg = continue_unsubmitted_registration(@world.reg_to_complete, "random", "random")
-end
-
-Then("I can find and edit the registration I just submitted") do
-  # Search for the registration I just completed:
-  @world.bo.registration_complete_page.home_link.click
-  @world.bo.dashboard_page.submitted_filter.click
-  @world.bo.dashboard_page.submit(search_term: @world.completed_reg)
-  expect(@world.bo.dashboard_page).to have_results
-  expect(page).to have_content(@world.reg_to_complete[:applicant][:first_name].to_s)
-
-  # Edit the applicant's name so that it doesn't appear in the submitted search results
-  find_link("Edit").click
-  expect(@world.bo.edit_page.heading).to have_text("Edit " + @world.completed_reg + " registration")
-  @world.bo.edit_page.change_operator_link.click
-  @world.bo.edit_details_page.submit(
-    operator_name: "Miss Waste Completed"
-  )
-  @world.bo.edit_page.submit
-  @world.journey.declaration_page.submit
-  expect(@world.bo.edit_details_page.heading).to have_text("Edit complete")
-  find_link("View registration").click
-end
-
 Then("I can access the footer links") do
   @world.journey.home_page.privacy_footer.click
   expect(page).to have_text("Privacy Notice: how we use your personal data")
@@ -119,7 +87,6 @@ Then("I can access the footer links") do
   expect(page).to have_text("Cookie settings")
   @world.journey.home_page.accessibility_footer.click
   expect(page).to have_text("Accessibility statement")
-
 end
 
 Given("I am on the service") do
@@ -133,4 +100,21 @@ end
 Then("I will be advised to contact the EA") do
   expect(page).to have_text("Contact the Environment Agency")
   expect(page).to have_text("You'll need to contact the Environment Agency")
+end
+
+Then("my phone number is used for the contact phone number") do
+  expect(@world.journey.check_details_page.applicant_tel.text).to eq(@applicant[:telephone])
+  expect(@world.journey.check_details_page.contact_details.text).to have_text(@applicant[:telephone])
+end
+
+Then("my email address is used for the contact email address") do
+  expect(@world.journey.check_details_page.applicant_tel.text).to eq(@applicant[:telephone])
+  expect(@world.journey.check_details_page.contact_details.text).to have_text(@applicant[:email])
+end
+
+Then("my business address is used for the contact address") do
+  @contact_address = remove_new_lines_from_address(@world.journey.check_details_page.contact_address.text)
+  @business_address = remove_new_lines_from_address(@world.journey.check_details_page.company_address.text)
+  expect(@contact_address).to eq(@address)
+  expect(@business_address).to eq(@address)
 end
