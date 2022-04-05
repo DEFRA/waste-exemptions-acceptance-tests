@@ -133,7 +133,9 @@ end
 def complete_contact_details(person, address_type)
   @world.journey.name_page.submit(first_name: person[:first_name], last_name: person[:last_name])
   @world.journey.contact_position_page.submit(position: person[:position])
+  @world.journey.check_contact_phone_page.submit(reuse: :reject) if @changes != "with"
   @world.journey.phone_page.submit(tel_no: person[:telephone])
+  @world.journey.check_contact_email_page.submit(reuse: :reject) if @changes != "with"
   @world.journey.email_page.submit(email: person[:email], confirm_email: person[:email])
   complete_address(address_type)
 end

@@ -32,8 +32,3 @@ Feature: [RUBY-241] Front office user renews a registration via email
   Scenario: Cancel renewal
      When I partially renew the registration
      Then I can resume the renewal from where I left off
-
-  Scenario: Renewal errors
-     When I renew and test validation and accessibility
-     Then I see the renewal confirmation screen
-      And I can access the footer links

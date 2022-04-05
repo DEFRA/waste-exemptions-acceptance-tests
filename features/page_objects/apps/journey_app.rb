@@ -35,6 +35,14 @@ class JourneyApp
     @last_page = ChooseExemptionsPage.new
   end
 
+  def check_contact_phone_page
+    @last_page = CheckContactPhonePage.new
+  end
+
+  def check_contact_email_page
+    @last_page = CheckContactEmailPage.new
+  end
+
   def check_details_page
     @last_page = CheckDetailsPage.new
   end
