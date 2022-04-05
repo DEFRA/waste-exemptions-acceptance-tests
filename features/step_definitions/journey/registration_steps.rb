@@ -16,12 +16,12 @@ Then("I register an exemption") do
   # Complete the registration. See registration_helpers for an explanation of the parameters.
   # Registration details are stored as a hash, @world.last_reg.
   # Registration number is stored as a string, @world.last_reg_no.
-  @world.last_reg_no = add_submitted_registration(@world.last_reg, true, "random", "random")
+  @world.last_reg_no = add_submitted_registration(@world.last_reg, true, :random, :random)
 end
 
 Given("a registration has been created") do
   @world.last_reg = generate_registration(:limited_company)
-  @world.last_reg_no = add_submitted_registration(@world.last_reg, true, "random", "random")
+  @world.last_reg_no = add_submitted_registration(@world.last_reg, true, :random, :random)
 end
 
 Given("I am on the check contact phone page") do
@@ -32,7 +32,7 @@ Given("I am on the check contact phone page") do
   complete_applicant_details(@applicant)
   @world.journey.business_type_page.submit(business_type: :individual)
   @world.journey.operator_name_page.submit(org_name: "Soul trader")
-  complete_address("lookup")
+  complete_address(:lookup)
   @world.journey.name_page.submit(first_name: @applicant[:first_name], last_name: @applicant[:last_name])
   @world.journey.contact_position_page.submit
   expect(@world.journey.check_contact_phone_page.phone_number.text).to eq @applicant[:telephone]
@@ -46,7 +46,7 @@ Given("I am on the check contact email page") do
   complete_applicant_details(@applicant)
   @world.journey.business_type_page.submit(business_type: :individual)
   @world.journey.operator_name_page.submit(org_name: "Soul trader")
-  complete_address("lookup")
+  complete_address(:lookup)
   @world.journey.name_page.submit(first_name: @applicant[:first_name], last_name: @applicant[:last_name])
   @world.journey.contact_position_page.submit
   @world.journey.check_contact_phone_page.submit(reuse: :accept)

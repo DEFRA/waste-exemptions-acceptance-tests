@@ -22,7 +22,7 @@ Then("I complete an in progress registration") do
   @world.reg_to_complete = generate_registration(:individual)
 
   # Complete the registration and store the registration number.
-  @world.completed_reg = continue_unsubmitted_registration(@world.reg_to_complete, "random", "random")
+  @world.completed_reg = continue_unsubmitted_registration(@world.reg_to_complete, :random, :random)
 end
 
 Then("I can find and edit the registration I just submitted") do
@@ -52,7 +52,7 @@ Then(/^I complete (?:a|an) "([^"]*)" registration$/) do |business|
   @world.last_reg = generate_registration(business.to_sym)
 
   # This also stores the exemption number so the exemption can be edited in later steps.
-  @world.last_reg_no = add_submitted_registration(@world.last_reg, false, "random", "random")
+  @world.last_reg_no = add_submitted_registration(@world.last_reg, false, :random, :random)
 end
 
 Then(/^I complete (?:a|an) assisted digital "([^"]*)" registration$/) do |business|
@@ -61,5 +61,5 @@ Then(/^I complete (?:a|an) assisted digital "([^"]*)" registration$/) do |busine
   @world.last_reg = generate_registration(business.to_sym, email: "waste-exemptions@environment-agency.gov.uk")
 
   # This also stores the exemption number so the exemption can be edited in later steps.
-  @world.last_reg_no = add_submitted_registration(@world.last_reg, false, "random", "random")
+  @world.last_reg_no = add_submitted_registration(@world.last_reg, false, :random, :random)
 end
