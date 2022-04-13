@@ -18,5 +18,6 @@ class CheckDetailsPage < BasePage
   element(:applicant_email, "#registration_email_address")
   element(:grid_ref, "#registration_grid_reference")
   element(:site_desc, "#registration_site_description")
+  element(:site_address, "#registration_site_address")
 
 end
