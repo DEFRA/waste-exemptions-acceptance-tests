@@ -24,7 +24,7 @@ Given("a registration has been created") do
   @world.last_reg_no = add_submitted_registration(@world.last_reg, true, :random, :random)
 end
 
-Given("I register choosing to reuse my contact details") do
+Given("I register choosing to reuse my business information previously entered") do
   @world.journey.location_page.submit(location: :england)
   # Add an S3 exemption
   @world.journey.choose_exemptions_page.submit(exemptions: %w[S3])
@@ -40,10 +40,8 @@ Given("I register choosing to reuse my contact details") do
   @world.journey.check_contact_address_page.submit(reuse: :accept)
   @world.journey.on_farm_page.submit(on_farm: :on_farm)
   @world.journey.farmer_page.submit(farmer: :farmer)
-  @world.journey.site_grid_reference_page.submit(
-    grid_ref: "ST 58132 72695",
-    site_details: "Over there"
-  )
+  @world.journey.site_grid_reference_page.choose_address.click
+  @world.journey.check_site_address_page.submit(choice: :operator_address_reuse)
 end
 
 Then("I will be informed the registration is complete") do
@@ -116,5 +114,12 @@ Then("my business address is used for the contact address") do
   @contact_address = remove_new_lines_from_address(@world.journey.check_details_page.contact_address.text)
   @business_address = remove_new_lines_from_address(@world.journey.check_details_page.company_address.text)
   expect(@contact_address).to eq(@address)
+  expect(@business_address).to eq(@address)
+end
+
+Then("my business address is used for the site address") do
+  @site_address = remove_new_lines_from_address(@world.journey.check_details_page.site_address.text)
+  @business_address = remove_new_lines_from_address(@world.journey.check_details_page.company_address.text)
+  expect(@site_address).to eq(@address)
   expect(@business_address).to eq(@address)
 end

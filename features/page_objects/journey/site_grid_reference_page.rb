@@ -10,7 +10,7 @@ class SiteGridReferencePage < BasePage
   element(:results_dropdown, "select#address_match_selection")
   element(:last_result, "select#address_match_selection option:last-of-type")
 
-  element(:choose_address, "a[href^='/site-grid-reference/skip_to_address']")
+  element(:choose_address, "a[href*='/site-grid-reference/skip_to_address']")
 
   element(:grid_ref_helper, ".govuk-details__summary-text")
 
