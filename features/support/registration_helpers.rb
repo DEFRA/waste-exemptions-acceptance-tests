@@ -154,6 +154,7 @@ def complete_site_details(registration, address_type = :lookup, site_type = :gri
     )
   else # the site is at an address
     find_link("use an address instead").click
+    @world.journey.check_site_address_page.submit(choice: :use_different_address)
     complete_address(address_type)
   end
 end
