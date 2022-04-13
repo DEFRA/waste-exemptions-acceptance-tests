@@ -9,8 +9,8 @@ When("I search for a registration to renew") do
 end
 
 When("I renew the registration {string} changes") do |changes|
-  # Set a global @changes variable based on whether the renewal is "with" or "without" changes:
-  @changes = changes
+  # Set a global @changes variable based on whether the renewal is with or without changes:
+  @changes = changes.to_sym
 
   # Check some details at the start of the renewal journey:
   expect(@world.journey.renew_choice_page.heading).to have_text("Do you want to renew with these details?")
@@ -20,7 +20,7 @@ When("I renew the registration {string} changes") do |changes|
   expect(page).to have_text(@world.last_reg[:registration_number])
   expect(page).to have_text(@world.last_reg[:applicant][:full_name].to_s)
 
-  if @changes == "without"
+  if @changes == :without
     @world.journey.renew_choice_page.renew_without_changes_radio.click
     @world.journey.renew_choice_page.submit
     # rubocop:disable Layout/LineLength
@@ -59,12 +59,12 @@ When("I renew the registration {string} changes") do |changes|
     expect(@world.journey.name_page.last_name.value).to eq(@world.last_reg[:applicant][:last_name])
     complete_applicant_details(@renewed_reg[:applicant])
 
-    complete_organisation_details(@renewed_reg, "random")
+    complete_organisation_details(@renewed_reg, :random)
 
     # Check applicant's name is prepopulated from the ORIGINAL registration, then complete new applicant details:
     expect(@world.journey.name_page.first_name.value).to eq(@world.last_reg[:contact][:first_name])
     expect(@world.journey.name_page.last_name.value).to eq(@world.last_reg[:contact][:last_name])
-    complete_contact_details(@renewed_reg[:contact], "random")
+    complete_contact_details(@renewed_reg[:contact], :random)
 
     complete_farm_questions(@renewed_reg)
 
@@ -76,7 +76,7 @@ When("I renew the registration {string} changes") do |changes|
         site_details: @renewed_reg[:site][:site_details]
       )
     when "What's the postcode of the waste operation?"
-      complete_address("lookup")
+      complete_address(:lookup)
     else
       puts "Error - can't work out what type of address the original registration is"
     end
@@ -99,11 +99,11 @@ Then("I can see the correct renewed details") do
   @world.bo.registration_details_page.reporting_info_link.click
 
   # Check that the page contains information from the renewed registration:
-  expect(page).to have_text("U12 — Using mulch") if @changes == "without"
-  expect(page).to have_text("S3 — Storing sludge") if @changes == "with"
+  expect(page).to have_text("U12 — Using mulch") if @changes == :without
+  expect(page).to have_text("S3 — Storing sludge") if @changes == :with
   expect(page).to have_text(@renewed_reg[:operator_name])
-  expect(page).to have_text(@renewed_reg[:registration_number]) if @changes == "without"
-  expect(page).to have_no_text(@world.last_reg[:registration_number]) if @changes == "with"
+  expect(page).to have_text(@renewed_reg[:registration_number]) if @changes == :without
+  expect(page).to have_no_text(@world.last_reg[:registration_number]) if @changes == :with
   expect(page).to have_text(@renewed_reg[:applicant][:last_name].to_s)
   expect(page).to have_text(@renewed_reg[:applicant][:email].to_s)
   expect(page).to have_text(@renewed_reg[:contact][:last_name].to_s)
