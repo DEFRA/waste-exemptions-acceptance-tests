@@ -44,6 +44,30 @@ Given("I register choosing to reuse my business information previously entered")
   @world.journey.check_site_address_page.submit(choice: :operator_address_reuse)
 end
 
+Given("I register choosing different business and contact addresses") do
+  @world.journey.location_page.submit(location: :england)
+  # Add an S3 exemption
+  @world.journey.choose_exemptions_page.submit(exemptions: %w[S3])
+  @applicant = generate_person("applicant@example.com")
+  complete_applicant_details(@applicant)
+  @world.journey.business_type_page.submit(business_type: :individual)
+  @world.journey.operator_name_page.submit(org_name: "Soul trader")
+  @postcode = "BS1 5AH"
+  @business_address = "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+  @world.journey.address_lookup_page.submit(postcode: @postcode, result: @business_address)
+  @world.journey.name_page.submit(first_name: @applicant[:first_name], last_name: @applicant[:last_name])
+  @world.journey.contact_position_page.submit(position: @applicant[:position])
+  @world.journey.check_contact_phone_page.submit(reuse: :accept)
+  @world.journey.check_contact_email_page.submit(reuse: :accept)
+  @world.journey.check_contact_address_page.submit(reuse: :reject)
+  @postcode = "S9 4WF"
+  @contact_address = "ENVIRONMENT AGENCY, QUADRANT 2, 99, PARKWAY AVENUE, SHEFFIELD, S9 4WF"
+  @world.journey.address_lookup_page.submit(postcode: @postcode, result: @contact_address)
+  @world.journey.on_farm_page.submit(on_farm: :on_farm)
+  @world.journey.farmer_page.submit(farmer: :farmer)
+  @world.journey.site_grid_reference_page.choose_address.click
+end
+
 Then("I will be informed the registration is complete") do
   expect(page).to have_content "You have registered your exemptions for 3 years"
   @world.last_reg_no = @world.journey.confirmation_page.ref_no.text
@@ -61,6 +85,10 @@ end
 
 Then("I am on the check your answers page") do
   expect(@world.journey.check_details_page.title).to have_text("Check your answers")
+end
+
+Then("I am on the check site address page") do
+  expect(@world.journey.check_details_page.title).to have_text("What is the address of the site location?")
 end
 
 Then("a registration confirmation letter has been sent") do
@@ -122,4 +150,10 @@ Then("my business address is used for the site address") do
   @business_address = remove_new_lines_from_address(@world.journey.check_details_page.company_address.text)
   expect(@site_address).to eq(@address)
   expect(@business_address).to eq(@address)
+end
+
+Then("I have the option to choose business, contact address or choose another address") do
+  expect(@business_address).to eq(@world.journey.check_site_address_page.operator_address.text)
+  expect(@contact_address).to eq(@world.journey.check_site_address_page.contact_address.text)
+  expect(@world.journey.check_site_address_page).to have_different_address
 end

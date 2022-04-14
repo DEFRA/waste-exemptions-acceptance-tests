@@ -13,4 +13,8 @@ Feature: Registering a waste exemption
       And my business address is used for the contact address
       And my business address is used for the site address
 
-  
+  Scenario: Site location address can be chosen from business and contact addresses
+    Given I start a new waste exemption registration
+    When I register choosing different business and contact addresses
+    Then I am on the check site address page
+    And I have the option to choose business, contact address or choose another address
