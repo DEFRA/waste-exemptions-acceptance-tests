@@ -88,7 +88,7 @@ Then("I am on the check your answers page") do
 end
 
 Then("I am on the check site address page") do
-  expect(@world.journey.check_details_page.title).to have_text("What is the address of the site location?")
+  expect(@world.journey.check_details_page.title).to have_text("Where will the waste operation take place?")
 end
 
 Then("a registration confirmation letter has been sent") do
