@@ -117,11 +117,6 @@ def complete_address(address_type)
   end
 end
 
-# def complete_operator_name_and_address(registration, address_type)
-#   @world.journey.operator_name_page.submit(org_name: registration[:operator_name])
-#   complete_address(address_type)
-# end
-
 def complete_partner_details(registration)
   @world.journey.partners_page.add_main_person(
     first_name: registration[:partners][0][:first_name],
