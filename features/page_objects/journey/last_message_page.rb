@@ -44,7 +44,7 @@ class LastMessagePage < BasePage
     parsed_data = JSON.parse(message_content.text)
     # Find the string that matches:
     # https://, then any 15-24 characters, then /renew/, then any 24 characters
-    parsed_data["last_notify_message"]["body"].match %r/https:\/\/.{15,24}\/renew\/.{24}/
+    parsed_data["last_notify_message"]["body"].match %r/http(s?):\/\/.{14,24}\/renew\/.{24}/
   end
 
   def message_has_text?(expected_text)

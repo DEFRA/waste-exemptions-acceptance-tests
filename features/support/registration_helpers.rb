@@ -79,15 +79,19 @@ def complete_organisation_details(registration, address_type)
     @world.journey.registration_number_page.submit(
       registration_number: registration[:registration_number]
     )
+    @world.journey.check_registered_company_name_page.submit(choice: :confirm)
   when :llp
     @world.journey.registration_number_page.submit(
       registration_number: registration[:registration_number]
     )
+    @world.journey.check_registered_company_name_page.submit(choice: :confirm)
   when :partnership
     complete_partner_details(registration)
+    @world.journey.operator_name_page.submit(org_name: registration[:operator_name])
+  else
+    @world.journey.operator_name_page.submit(org_name: registration[:operator_name])
   end
-
-  complete_operator_name_and_address(registration, address_type)
+  complete_address(address_type)
 end
 
 def complete_address(address_type)
@@ -113,10 +117,10 @@ def complete_address(address_type)
   end
 end
 
-def complete_operator_name_and_address(registration, address_type)
-  @world.journey.operator_name_page.submit(org_name: registration[:operator_name])
-  complete_address(address_type)
-end
+# def complete_operator_name_and_address(registration, address_type)
+#   @world.journey.operator_name_page.submit(org_name: registration[:operator_name])
+#   complete_address(address_type)
+# end
 
 def complete_partner_details(registration)
   @world.journey.partners_page.add_main_person(
