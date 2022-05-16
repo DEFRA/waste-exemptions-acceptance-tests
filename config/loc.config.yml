@@ -76,5 +76,3 @@ custom:
     back_office: "http://localhost:8000"
     # Use this for user management tests, which use Sendgrid:
     back_office_email: "http://localhost:8000/email/last-email" 
-    # Use this for confirmation and renewal emails, which use Notify:
-    notify_link: "http://localhost:8000/email/last-notify-message"

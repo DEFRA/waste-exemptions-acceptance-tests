@@ -55,7 +55,7 @@ def generate_person(email)
 end
 
 def generate_operator_name(business_type, operator_name)
-  operator_name = "#{Faker::Company.unique.name} Ltd" if business_type == :limited_company
+  operator_name = "TESCO PLC" if business_type == :limited_company
   operator_name
 end
 
