@@ -128,7 +128,9 @@ def complete_partner_details(registration)
   )
 end
 
+# rubocop:disable Metrics/AbcSize
 def complete_contact_details(person, address_type)
+  @world.journey.check_contact_name_page.submit(reuse: :reject) unless @changes == :with
   @world.journey.name_page.submit(first_name: person[:first_name], last_name: person[:last_name])
   @world.journey.contact_position_page.submit(position: person[:position])
   @world.journey.check_contact_phone_page.submit(reuse: :reject) unless @changes == :with
@@ -139,6 +141,7 @@ def complete_contact_details(person, address_type)
   complete_address(address_type)
 end
 
+# rubocop:enable Metrics/AbcSize
 def complete_farm_questions(registration)
   @world.journey.on_farm_page.submit(on_farm: registration[:on_farm])
   @world.journey.farmer_page.submit(farmer: registration[:farmer])

@@ -19,14 +19,10 @@ Feature: [RUBY-241] Back office user carries out a renewal
       And I renew the registration "without" changes
       Then I can see the correct renewed details
       And I cannot renew it again from the back office
-
+ 
    Scenario: Renew a registration from back office with changes
       When I search for a registration to renew
       And I renew the registration "with" changes
       Then I can see the correct renewed details
       And I cannot renew it again from the back office
 
-   Scenario: Cancel renewal
-      When I search for a registration to renew
-      And I partially renew the registration
-      Then I can resume the renewal from where I left off

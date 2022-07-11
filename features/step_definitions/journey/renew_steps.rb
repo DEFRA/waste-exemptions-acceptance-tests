@@ -12,12 +12,12 @@ When("I renew the registration {string} changes") do |changes|
   # Set a global @changes variable based on whether the renewal is with or without changes:
   @changes = changes.to_sym
 
+  @world.journey.check_registered_company_name_page.submit(choice: :confirm) if company?
   # Check some details at the start of the renewal journey:
   expect(@world.journey.renew_choice_page.heading).to have_text("Do you want to renew with these details?")
   # TODO: check exemption description removal e.g. U12 - Using mulch
   expect(page).to have_text("U12")
   expect(page).to have_text(@world.last_reg[:operator_name])
-  expect(page).to have_text(@world.last_reg[:registration_number])
   expect(page).to have_text(@world.last_reg[:applicant][:full_name].to_s)
 
   if @changes == :without
@@ -102,21 +102,11 @@ Then("I can see the correct renewed details") do
   expect(page).to have_text("U12 — Using mulch") if @changes == :without
   expect(page).to have_text("S3 — Storing sludge") if @changes == :with
   expect(page).to have_text(@renewed_reg[:operator_name])
-  expect(page).to have_text(@renewed_reg[:registration_number]) if @changes == :without
-  expect(page).to have_no_text(@world.last_reg[:registration_number]) if @changes == :with
+  expect(page).to have_text(@world.last_reg_no)
   expect(page).to have_text(@renewed_reg[:applicant][:last_name].to_s)
   expect(page).to have_text(@renewed_reg[:applicant][:email].to_s)
   expect(page).to have_text(@renewed_reg[:contact][:last_name].to_s)
   expect(page).to have_text(@renewed_reg[:contact][:email].to_s)
-end
-
-When("I partially renew the registration") do
-  @world.journey.renew_choice_page.renew_with_changes_radio.click
-  @world.journey.renew_choice_page.submit
-  @world.journey.renew_splash_page.submit
-  @world.journey.location_page.submit(location: :england)
-  # Add an S3 exemption
-  @world.journey.choose_exemptions_page.submit(exemptions: %w[S3])
 end
 
 Then("I can renew it again") do
@@ -127,24 +117,6 @@ Then("I can renew it again") do
   find_link("Start renewal").click
   @world.journey.ad_privacy_policy_page.submit
   expect(@world.journey.renew_choice_page.heading).to have_text("Do you want to renew with these details?")
-end
-
-Then("I can resume the renewal from where I left off") do
-  case @renewer
-  when "back office"
-    find_link("Dashboard").click
-    @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
-    find_link("Start renewal").click
-    @world.journey.ad_privacy_policy_page.submit
-  when "front office"
-    # Use the "last email" API to get the renewal link for the front office user
-    visit(Quke::Quke.config.custom["urls"]["notify_link"])
-    @renewal_url = @world.journey.last_message_page.get_renewal_url(@renewer_email).to_s
-    expect(@renewal_url).to have_text("/renew/")
-    visit(@renewal_url)
-  end
-
-  expect(@world.journey.name_page.heading).to have_text("Who is filling in this form?")
 end
 
 # Front office steps:
@@ -167,6 +139,7 @@ Given("I click the link in the renewal email") do
   visit(Quke::Quke.config.custom["urls"]["notify_link"])
   @renewal_url = @world.journey.last_message_page.get_renewal_url(@renewer_email).to_s
   expect(@renewal_url).to have_text("/renew/")
+  puts @renewal_url
   visit(@renewal_url)
 end
 
