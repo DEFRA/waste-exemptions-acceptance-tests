@@ -15,3 +15,7 @@ end
 def remove_new_lines_from_address(address)
   address.split(/\n+/).join(", ")
 end
+
+def company?
+  %i[limited_company llp].include?(@business_type)
+end

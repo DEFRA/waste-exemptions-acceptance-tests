@@ -33,7 +33,7 @@ Given("I register choosing to reuse my business information previously entered")
   @world.journey.business_type_page.submit(business_type: :individual)
   @world.journey.operator_name_page.submit(org_name: "Soul trader")
   complete_address(:lookup)
-  @world.journey.name_page.submit(first_name: @applicant[:first_name], last_name: @applicant[:last_name])
+  @world.journey.check_contact_name_page.submit(reuse: :accept)
   @world.journey.contact_position_page.submit(position: @applicant[:position])
   @world.journey.check_contact_phone_page.submit(reuse: :accept)
   @world.journey.check_contact_email_page.submit(reuse: :accept)
@@ -55,6 +55,7 @@ Given("I register choosing different business and contact addresses") do
   @postcode = "BS1 5AH"
   @business_address = "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   @world.journey.address_lookup_page.submit(postcode: @postcode, result: @business_address)
+  @world.journey.check_contact_name_page.submit(reuse: :reject)
   @world.journey.name_page.submit(first_name: @applicant[:first_name], last_name: @applicant[:last_name])
   @world.journey.contact_position_page.submit(position: @applicant[:position])
   @world.journey.check_contact_phone_page.submit(reuse: :accept)

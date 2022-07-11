@@ -16,7 +16,7 @@ Then("I complete an in progress registration") do
   @world.bo.dashboard_page.unsubmitted_filter.click
   @world.bo.dashboard_page.submit(search_term: @last_transient_name)
   @world.bo.dashboard_page.resume_links[0].click
-  expect(page).to have_content("Who should we contact about this waste exemption operation?")
+  expect(page).to have_content("Do you want to use this as the contact name?")
 
   # Generate the data for the rest of the registration and save it as a world variable:
   @world.reg_to_complete = generate_registration(:individual)
