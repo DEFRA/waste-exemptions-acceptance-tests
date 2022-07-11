@@ -47,12 +47,20 @@ class JourneyApp
     @last_page = CheckContactAddressPage.new
   end
 
+  def check_contact_name_page
+    @last_page = CheckContactNamePage.new
+  end
+
   def check_site_address_page
     @last_page = CheckSiteAddressPage.new
   end
 
   def check_details_page
     @last_page = CheckDetailsPage.new
+  end
+
+  def check_registered_company_name_page
+    @last_page = CheckRegisteredCompanyNamePage.new
   end
 
   def confirmation_page

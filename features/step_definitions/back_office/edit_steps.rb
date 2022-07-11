@@ -8,7 +8,7 @@ When("I edit the most recent registration") do
   expect(@world.bo.edit_page.heading).to have_text("Edit " + @world.last_reg_no + " registration")
 
   # Generate data using the functions in data_generator.rb
-  @new_details = generate_registration(:limited_company, nil)
+  @new_details = generate_registration(:individual, "Mr Waste")
   @new_person = generate_person("wex@example.com")
 
   # Edit the applicant's name to something random
