@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 require "faker"
-
+# rubocop:disable Metrics/MethodLength
 def generate_registration(business_type, operator_name = nil, email: "wex@example.com")
   # Generate data to be used for a registration.
   # Input parameters:
   # - business type, defined in features/page_objects/journey/business_type_page
   # - a given operator name (default nil)
   # - email - allows testing of Assisted digital registration which will generate a letter (default "wex@example.com")
-
+  @business_type = business_type
   applicant = generate_person(email)
 
   contact = if business_type == :limited_company
@@ -19,7 +19,7 @@ def generate_registration(business_type, operator_name = nil, email: "wex@exampl
 
   # Syntax from https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Style/MultipleComparison
   # If the business type is :limited_company or :llp then set registration number.
-  registration_number = %i[limited_company llp].include?(business_type) ? "00445790" : nil
+  registration_number = company? ? "00445790" : nil
 
   operator_name ||= generate_operator_name(business_type, "#{contact[:first_name]} #{contact[:last_name]}")
 
@@ -40,6 +40,7 @@ def generate_registration(business_type, operator_name = nil, email: "wex@exampl
   }
 end
 
+# rubocop:enable Metrics/MethodLength
 def generate_person(email)
   first_name ||= Faker::Name.unique.first_name
   last_name ||= Faker::Name.unique.last_name
