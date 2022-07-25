@@ -11,7 +11,7 @@ end
 When("I renew the registration {string} changes") do |changes|
   # Set a global @changes variable based on whether the renewal is with or without changes:
   @changes = changes.to_sym
-
+  @renewal = true
   @world.journey.check_registered_company_name_page.submit(choice: :confirm) if company?
   # Check some details at the start of the renewal journey:
   expect(@world.journey.renew_choice_page.heading).to have_text("Do you want to renew with these details?")
