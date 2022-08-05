@@ -25,4 +25,3 @@ Feature: [RUBY-241] Back office user carries out a renewal
       And I renew the registration "with" changes
       Then I can see the correct renewed details
       And I cannot renew it again from the back office
-

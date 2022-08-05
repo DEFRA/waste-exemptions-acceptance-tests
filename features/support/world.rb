@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "axe-cucumber-steps"
-require "axe-capybara"
 require "pry"
 
 class World
