@@ -70,7 +70,7 @@ Given("I register choosing different business and contact addresses") do
 end
 
 Then("I will be informed the registration is complete") do
-  expect(page).to have_content "You have registered your exemptions for 3 years"
+  expect(page).to have_content "your exemptions for 3 years"
   @world.last_reg_no = @world.journey.confirmation_page.ref_no.text
   puts "Registration #{@world.last_reg_no} completed"
 end

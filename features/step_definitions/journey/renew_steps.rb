@@ -3,6 +3,7 @@
 When("I search for a registration to renew") do
   # Search for the most recent registration and start renewal:
   @renewer = "back office"
+  @world.bo.dashboard_page.admin_menu.home_page.click
   @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
   find_link("Start renewal").click
   @world.journey.ad_privacy_policy_page.submit
