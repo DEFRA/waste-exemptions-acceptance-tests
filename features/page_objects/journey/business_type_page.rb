@@ -14,7 +14,7 @@ class BusinessTypePage < BasePage
     # invoke the element using ruby's send() method. In this way we can avoid
     # overly long case/switch statements that check the value of the arg to
     # determine which element to select
-    send(args[:business_type]).select_option
+    send(args[:business_type]).select_option if args.key?(:business_type)
 
     submit_button.click
   end
