@@ -40,7 +40,7 @@ When("I renew the registration {string} changes") do |changes|
   else # make changes for the renewed registration
 
     # Generate data to use for the new registration:
-    @renewed_reg = generate_registration(:individual, nil)
+    @renewed_reg = generate_registration(@business_type, nil)
 
     @world.journey.renew_choice_page.renew_with_changes_radio.click
     @world.journey.renew_choice_page.submit
@@ -60,7 +60,9 @@ When("I renew the registration {string} changes") do |changes|
     expect(@world.journey.name_page.last_name.value).to eq(@world.last_reg[:applicant][:last_name])
     complete_applicant_details(@renewed_reg[:applicant])
 
-    complete_organisation_details(@renewed_reg, :random)
+    # complete_organisation_details(@renewed_reg, :random)
+    @world.journey.business_type_page.submit
+    complete_address(:lookup)
 
     # Check applicant's name is prepopulated from the ORIGINAL registration, then complete new applicant details:
     expect(@world.journey.name_page.first_name.value).to eq(@world.last_reg[:contact][:first_name])

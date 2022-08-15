@@ -2,6 +2,7 @@
 
 # Use Ruby regex here rather than Cucumber (eg {string}), as regex types can't be mixed:
 Given(/^my business is (?:a|an) "([^"]*)"$/) do |business|
+  @business_type = business.to_sym
   @world.last_reg = generate_registration(business.to_sym)
 end
 
