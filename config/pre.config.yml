@@ -29,7 +29,7 @@ stop_on_error: false
 # A copy of the html is saved and Quke will display it in your default browser.
 # This can be useful to diagnose why something has failed, but there are times
 # you may not want Quke to do this.
-display_failures: false
+display_failures: true
 
 # Capybara will attempt to find an element for a period of time, rather than
 # immediately failing because the element cannot be found. This defaults to 2
