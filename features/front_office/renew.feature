@@ -8,7 +8,7 @@ Feature: [RUBY-241] Front office user renews a registration via email
   # This requires the environment variable RENEWAL_WINDOW_BEFORE_EXPIRY_IN_DAYS=1096
 
   Background: Register an exemption and get renewal email
-    Given my business is a "individual"
+    Given my business is a "limited_company"
      When I register an exemption
      Then I will be informed the registration is complete
       And I receive an invitation to renew

@@ -61,6 +61,7 @@ When("I renew the registration {string} changes") do |changes|
     complete_applicant_details(@renewed_reg[:applicant])
 
     @world.journey.business_type_page.submit
+    @world.journey.operator_name_page.submit(org_name: @renewed_reg[:operator_name]) unless company?
     complete_address(:lookup)
 
     # Check applicant's name is prepopulated from the ORIGINAL registration, then complete new applicant details:
