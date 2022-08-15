@@ -60,7 +60,6 @@ When("I renew the registration {string} changes") do |changes|
     expect(@world.journey.name_page.last_name.value).to eq(@world.last_reg[:applicant][:last_name])
     complete_applicant_details(@renewed_reg[:applicant])
 
-    # complete_organisation_details(@renewed_reg, :random)
     @world.journey.business_type_page.submit
     complete_address(:lookup)
 
