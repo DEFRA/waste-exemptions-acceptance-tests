@@ -131,4 +131,8 @@ class JourneyApp
     @last_page = SiteGridReferencePage.new
   end
 
+  def can_not_renew_type_page
+    @last_page = CanNotRenewTypePage.new
+  end
+
 end

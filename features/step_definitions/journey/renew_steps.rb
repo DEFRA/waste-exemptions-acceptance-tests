@@ -93,6 +93,24 @@ When("I renew the registration {string} changes") do |changes|
 
 end
 
+When("I renew changing my organisation type") do
+  @world.journey.check_registered_company_name_page.submit(choice: :confirm) if company?
+  @renewed_reg = generate_registration(@business_type, nil)
+
+  @world.journey.renew_choice_page.renew_with_changes_radio.click
+  @world.journey.renew_choice_page.submit
+
+  # rubocop:disable Layout/LineLength
+  expect(@world.journey.renew_splash_page.heading).to have_text("We'll fill in the form with your current registration details")
+  # rubocop:enable Layout/LineLength
+  @world.journey.renew_splash_page.submit
+  @world.journey.location_page.submit(location: :england)
+  @world.journey.choose_exemptions_page.submit
+  complete_applicant_details(@renewed_reg[:applicant])
+
+  @world.journey.business_type_page.submit(business_type: :individual)
+end
+
 Then("I can see the correct renewed details") do
   # Search for the renewed registration in back office.
   # Should already be logged in as a back office user:
@@ -179,4 +197,9 @@ Then("a renewal reminder letter has been sent") do
     "Registration details for registration number " + @world.last_reg_no.to_s
   ]
   expect(letter_exists?(expected_text)).to be true
+end
+
+Then("I am informed I will need a new registration") do
+  expect(@world.journey.can_not_renew_type_page.heading).to have_text("You need a new registration")
+  expect(@world.journey.can_not_renew_type_page).to have_new_registration_option
 end

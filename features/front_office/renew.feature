@@ -28,3 +28,7 @@ Feature: [RUBY-241] Front office user renews a registration via email
       And I receive a renewal confirmation email
       And I cannot renew it again from the front office
       And I cannot renew it again from the back office
+
+  Scenario: Changing organisation type during renewal prompts user to create a new registration
+    When I renew changing my organisation type
+    Then I am informed I will need a new registration
