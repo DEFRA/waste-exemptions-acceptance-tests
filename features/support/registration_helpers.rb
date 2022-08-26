@@ -129,13 +129,14 @@ def complete_partner_details(registration)
   )
 end
 
+# rubocop:disable Metrics/AbcSize
 def complete_contact_details(person, address_type)
   @world.journey.check_contact_name_page.submit(reuse: :reject) unless @changes == :with
   @world.journey.name_page.submit(first_name: person[:first_name], last_name: person[:last_name])
   @world.journey.contact_position_page.submit(position: person[:position])
   @world.journey.check_contact_phone_page.submit(reuse: :reject) unless @changes == :with
   @world.journey.phone_page.submit(tel_no: person[:telephone])
- 
+
   reuse_email(person) unless @renewal
   @world.journey.email_page.submit(email: person[:email], confirm_email: person[:email]) if @renewal
   # No email reuse page if it's for a back office registration without a contact email
@@ -144,7 +145,8 @@ def complete_contact_details(person, address_type)
   complete_address(address_type)
 end
 
-def reuse_email(person)
+# rubocop:enable Metrics/AbcSize
+def reuse_email
   @world.journey.check_contact_email_page.submit(reuse: :accept) unless @no_email
 end
 
