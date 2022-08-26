@@ -26,7 +26,8 @@ When("I edit the most recent registration") do
   # Edit the contact email
   @world.bo.edit_page.change_contact_email_link.click
   @world.journey.email_page.submit(
-    contact_email: @new_person[:email]
+    contact_email: @new_person[:email],
+    confirm_email: @new_person[:email]
   )
 
 end
