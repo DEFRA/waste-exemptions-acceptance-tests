@@ -135,15 +135,17 @@ def complete_contact_details(person, address_type)
   @world.journey.contact_position_page.submit(position: person[:position])
   @world.journey.check_contact_phone_page.submit(reuse: :reject) unless @changes == :with
   @world.journey.phone_page.submit(tel_no: person[:telephone])
-  # No email reuse page if it's for a back office registration without a contact email
+ 
   reuse_email(person) unless @renewal
-  @world.journey.email_page.submit if @renewal
+  @world.journey.email_page.submit(email: person[:email], confirm_email: person[:email]) if @renewal
+  # No email reuse page if it's for a back office registration without a contact email
+  @world.journey.email_page.submit(no_email: true) if @no_email
   @world.journey.check_contact_address_page.submit(reuse: :reject) if @changes != :with
   complete_address(address_type)
 end
 
 def reuse_email(person)
-  @world.journey.check_contact_email_page.submit(reuse: :accept) unless person.nil?
+  @world.journey.check_contact_email_page.submit(reuse: :accept) unless @no_email
 end
 
 def complete_farm_questions(registration)
