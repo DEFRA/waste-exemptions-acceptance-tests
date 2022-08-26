@@ -137,7 +137,7 @@ def complete_contact_details(person, address_type)
   @world.journey.check_contact_phone_page.submit(reuse: :reject) unless @changes == :with
   @world.journey.phone_page.submit(tel_no: person[:telephone])
 
-  reuse_email(person) unless @renewal
+  reuse_email unless @renewal
   @world.journey.email_page.submit(email: person[:email], confirm_email: person[:email]) if @renewal
   # No email reuse page if it's for a back office registration without a contact email
   @world.journey.email_page.submit(no_email: true) if @no_email
