@@ -4,7 +4,7 @@ class AdminMenuSection < SitePrism::Section
 
   # GOV.UK black banner and menu items
 
-  SELECTOR ||= ".govuk-header"
+  SELECTOR = ".govuk-header"
 
   element(:home_page, ".govuk-header__link--service-name")
   element(:user_management, "a[href='/users']")

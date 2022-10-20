@@ -199,7 +199,7 @@ task browserstack: %i[
   edge17_w10
   firefox63_osx
   firefox63_w10
-  galaxy_note_8
+  galaxy_note8
   google_pixel
   ie11_w10
   iphone_8_plus
@@ -238,8 +238,8 @@ task :firefox63_w10 do
 end
 
 desc "Run @smoke tests against Samsung Galaxy Note 8"
-task :galaxy_note_8 do
-  sh %( QUKE_CONFIG=config/browserstack/galaxy_note_8.config.yml bundle exec quke --tags @smoke)
+task :galaxy_note8 do
+  sh %( QUKE_CONFIG=config/browserstack/galaxy_note8.config.yml bundle exec quke --tags @smoke)
 end
 
 desc "Run @smoke tests against Google Pixel 2"

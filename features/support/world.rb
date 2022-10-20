@@ -36,7 +36,7 @@ class World
   end
 
   def default_password
-    ENV["WEX_DEFAULT_PASSWORD"]
+    ENV.fetch("WEX_DEFAULT_PASSWORD", nil)
   end
 
   def front_office_url

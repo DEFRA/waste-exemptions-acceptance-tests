@@ -5,7 +5,7 @@ When("I deregister individual exemptions") do
   # Search for the last reference number:
   @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
   find_link("View details").click
-  expect(@world.bo.registration_details_page.heading).to have_text("Registration details for " + @world.last_reg_no)
+  expect(@world.bo.registration_details_page.heading).to have_text("Registration details for #{@world.last_reg_no}")
 
   # Count the number of deregister links and active, ceased and revoked items
   @no_of_dereg_links = @world.bo.registration_details_page.deregister_ex_links.count
@@ -23,7 +23,7 @@ When("I deregister individual exemptions") do
     # Click the first 'deregister exemption' link. There should be at least 3 from the background:
     @world.bo.registration_details_page.deregister_ex_links.first.click
     expect(@world.bo.deregister_page.heading).to have_text("Deregister Exemption")
-    expect(@world.bo.deregister_page.heading).to have_text("for Registration " + @world.last_reg_no)
+    expect(@world.bo.deregister_page.heading).to have_text("for Registration #{@world.last_reg_no}")
 
     # Randomly decide whether to revoke or cease:
     if rand(0..1).zero?
@@ -36,10 +36,10 @@ When("I deregister individual exemptions") do
 
     # Specify a reason for revoking:
     @world.bo.deregister_page.submit(
-      reason: "I decided I didn't like this exemption at: " + Time.new.inspect
+      reason: "I decided I didn't like this exemption at: #{Time.new.inspect}"
     )
   end
-  puts @world.last_reg_no + " partially deregistered"
+  puts "#{@world.last_reg_no} partially deregistered"
 end
 
 Then("the exemptions are no longer active") do
@@ -54,10 +54,10 @@ When("I deregister a whole registration") do
   # Search for the last reference number
   @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
   find_link("View details").click
-  expect(@world.bo.registration_details_page.heading).to have_text("Registration details for " + @world.last_reg_no)
+  expect(@world.bo.registration_details_page.heading).to have_text("Registration details for #{@world.last_reg_no}")
   @world.bo.registration_details_page.deregister_reg_link.click
   # rubocop:disable Layout/LineLength
-  expect(@world.bo.deregister_page.heading).to have_text("Deregister all active Exemptions for Registration " + @world.last_reg_no)
+  expect(@world.bo.deregister_page.heading).to have_text("Deregister all active Exemptions for Registration #{@world.last_reg_no}")
   # rubocop:enable Layout/LineLength
 
   # Randomly revoke or cease the whole registration:
@@ -71,9 +71,9 @@ When("I deregister a whole registration") do
 
   # Specify reason for revoking:
   @world.bo.deregister_page.submit(
-    reason: "I decided I didn't like this registration at: " + Time.new.inspect
+    reason: "I decided I didn't like this registration at: #{Time.new.inspect}"
   )
-  puts @world.last_reg_no + " fully " + @reg_status
+  puts "#{@world.last_reg_no} fully #{@reg_status}"
 end
 
 Then("the registration is no longer active") do
@@ -95,7 +95,7 @@ Then("I cannot deregister anything") do
   find_link("View details").click
 
   # Check that there are no deregister links and at least one active tag:
-  expect(@world.bo.registration_details_page.heading).to have_text("Registration details for " + @world.last_reg_no)
+  expect(@world.bo.registration_details_page.heading).to have_text("Registration details for #{@world.last_reg_no}")
   expect(@world.bo.registration_details_page).to have_no_deregister_reg_link
   expect(@world.bo.registration_details_page.deregister_ex_links.count.zero?).to eq(true)
   expect(@world.bo.registration_details_page.active_tags.count.positive?).to eq(true)

@@ -67,7 +67,7 @@ class LastMessagePage < BasePage
 
     return true if message_contains_all_text
 
-    puts "Couldn't find message containing all text: " + expected_text.to_s
+    puts "Couldn't find message containing all text: #{expected_text}"
     false
   end
 

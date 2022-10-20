@@ -17,12 +17,12 @@ Then("I register an exemption") do
   # Complete the registration. See registration_helpers for an explanation of the parameters.
   # Registration details are stored as a hash, @world.last_reg.
   # Registration number is stored as a string, @world.last_reg_no.
-  @world.last_reg_no = add_submitted_registration(@world.last_reg, true, :random, :random)
+  @world.last_reg_no = add_submitted_registration(@world.last_reg, :random, :random)
 end
 
 Given("a registration has been created") do
   @world.last_reg = generate_registration(:limited_company)
-  @world.last_reg_no = add_submitted_registration(@world.last_reg, true, :random, :random)
+  @world.last_reg_no = add_submitted_registration(@world.last_reg, :random, :random)
 end
 
 Given("I register choosing to reuse my business information previously entered") do
@@ -78,7 +78,7 @@ end
 
 Then("I will receive a registration confirmation email") do
   expected_text = [
-    "Waste exemptions registration " + @world.last_reg_no + " completed",
+    "Waste exemptions registration #{@world.last_reg_no} completed",
     "Download your confirmation",
     "causing a nuisance through noise and odours"
   ]
@@ -95,7 +95,7 @@ end
 
 Then("a registration confirmation letter has been sent") do
   expected_text = [
-    "Your reference: " + @world.last_reg_no
+    "Your reference: #{@world.last_reg_no}"
   ]
   expect(letter_exists?(expected_text)).to be true
 end
@@ -105,7 +105,7 @@ When("I carry out a partial registration") do
   unsubmitted_reg = generate_registration(:individual)
   add_unsubmitted_registration(unsubmitted_reg)
   @last_transient_name = unsubmitted_reg[:applicant][:full_name].to_s
-  puts "Partial registration completed by " + @last_transient_name
+  puts "Partial registration completed by #{@last_transient_name}"
 end
 
 Then("I can access the footer links") do

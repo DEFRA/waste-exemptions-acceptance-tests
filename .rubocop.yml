@@ -28,3 +28,6 @@ Metrics/BlockLength:
 # we have to disable this cop.
 Style/MixinUsage:
   Enabled: false
+
+AllCops:
+    SuggestExtensions: false

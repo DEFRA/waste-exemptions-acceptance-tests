@@ -5,7 +5,7 @@ When("I edit the most recent registration") do
   # Search for the last reference number:
   @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
   find_link("Edit").click
-  expect(@world.bo.edit_page.heading).to have_text("Edit " + @world.last_reg_no + " registration")
+  expect(@world.bo.edit_page.heading).to have_text("Edit #{@world.last_reg_no} registration")
 
   # Generate data using the functions in data_generator.rb
   @new_details = generate_registration(:individual, "Mr Waste")
@@ -51,9 +51,9 @@ When("I complete the edit") do
   @world.bo.edit_page.submit
   @world.journey.declaration_page.submit
   expect(@world.bo.edit_details_page.heading).to have_text("Edit complete")
-  puts @world.last_reg_no + " edited"
+  puts "#{@world.last_reg_no} edited"
   find_link("View registration").click
-  expect(@world.bo.registration_details_page.heading).to have_text("Registration details for " + @world.last_reg_no)
+  expect(@world.bo.registration_details_page.heading).to have_text("Registration details for #{@world.last_reg_no}")
 end
 
 When("I cancel the edit") do

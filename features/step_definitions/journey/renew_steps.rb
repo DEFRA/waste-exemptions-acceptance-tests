@@ -35,7 +35,7 @@ When("I renew the registration {string} changes") do |changes|
 
     @renewed_reg = @world.last_reg # renewed registration has same details as before
     @renewed_reg_no = @world.journey.confirmation_page.ref_no.text
-    puts @world.last_reg_no + " renewed with no changes. New registration is " + @renewed_reg_no + "."
+    puts "#{@world.last_reg_no} renewed with no changes. New registration is #{@renewed_reg_no}."
 
   else # make changes for the renewed registration
 
@@ -87,7 +87,7 @@ When("I renew the registration {string} changes") do |changes|
     complete_confirmations
     expect(@world.journey.confirmation_page.confirmation_box).to have_text("You have renewed your exemptions")
     @renewed_reg_no = @world.journey.confirmation_page.ref_no.text
-    puts @world.last_reg_no + " renewed with changes. New registration is " + @renewed_reg_no + "."
+    puts "#{@world.last_reg_no} renewed with changes. New registration is #{@renewed_reg_no}."
 
   end
 
@@ -152,7 +152,7 @@ Given("I receive an invitation to renew") do
   @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
   @world.bo.dashboard_page.view_link(@world.last_reg_no)
   find_link("Resend renewal email").click
-  expect(@world.bo.dashboard_page.dashboard_message).to have_text("Renewal email sent to " + @renewer_email)
+  expect(@world.bo.dashboard_page.dashboard_message).to have_text("Renewal email sent to #{@renewer_email}")
 end
 
 Given("I click the link in the renewal email") do
@@ -167,7 +167,7 @@ end
 Then("I receive a renewal confirmation email") do
   expected_text = [
     @renewed_reg_no,
-    "Waste exemptions registration " + @renewed_reg_no + " completed",
+    "Waste exemptions registration #{@renewed_reg_no} completed",
     "Registration complete"
   ]
   expect(email_exists?(@renewed_reg, expected_text)).to be true
@@ -194,7 +194,7 @@ end
 Then("a renewal reminder letter has been sent") do
   expected_text = [
     "Renew your waste exemptions",
-    "Registration details for registration number " + @world.last_reg_no.to_s
+    "Registration details for registration number #{@world.last_reg_no}"
   ]
   expect(letter_exists?(expected_text)).to be true
 end

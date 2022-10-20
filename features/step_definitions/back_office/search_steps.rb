@@ -29,7 +29,7 @@ And("refreshing doesn't create new registrations") do
   last_reg_no = @world.known_reg_no.to_s.scan(/\d+/)[0].to_s
   @world.bo.dashboard_page.submit(search_term: last_reg_no.to_s)
   last_reg_no_number = last_reg_no.to_i
-  puts last_reg_no + " is the latest known registration"
+  puts "#{last_reg_no} is the latest known registration"
 
   # Refresh the start page. This should generate no more than one new registration.
   find_link("Start a new registration").click
@@ -39,7 +39,7 @@ And("refreshing doesn't create new registrations") do
 
   # Work out the registration 2 numbers higher than the previous registration
   # by recreating the expected WEX number with 6 digits: regex %06d
-  last_reg_no_plus = "WEX" + format("%<number>06d", number: last_reg_no_number + 2)
+  last_reg_no_plus = "WEX#{format('%<number>06d', number: last_reg_no_number + 2)}"
 
   # Search for the higher registration number and check it doesn't exist:
   find_link("Dashboard").click

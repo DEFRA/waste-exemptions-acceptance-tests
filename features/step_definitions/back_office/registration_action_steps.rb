@@ -23,16 +23,16 @@ When("I resend the confirmation email") do
 end
 
 Then("I will see a confirmation the renewal reminder letter has been sent") do
-  expect(@world.bo.dashboard_page.dashboard_message).to have_text("Renewal letter sent to " + @world.last_reg_no)
+  expect(@world.bo.dashboard_page.dashboard_message).to have_text("Renewal letter sent to #{@world.last_reg_no}")
 end
 
 Then("I will see the registration confirmation letter has been sent") do
-  expect(@world.bo.dashboard_page.dashboard_message).to have_text("Confirmation letter sent to " + @world.last_reg_no)
+  expect(@world.bo.dashboard_page.dashboard_message).to have_text("Confirmation letter sent to #{@world.last_reg_no}")
 end
 
 Then("I will see the registration confirmation email has been sent") do
   # rubocop:disable Layout/LineLength
-  expect(@world.bo.dashboard_page.dashboard_message).to have_text("Confirmation email sent to " + @world.last_reg[:contact][:email].to_s)
+  expect(@world.bo.dashboard_page.dashboard_message).to have_text("Confirmation email sent to #{@world.last_reg[:contact][:email]}")
   # rubocop:enable Layout/LineLength
 
 end
