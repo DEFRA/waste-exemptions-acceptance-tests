@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/AbcSize
-def add_submitted_registration(registration, load_root_page = true, address_type = :lookup, site_type = :random)
+def add_submitted_registration(registration, address_type = :lookup, site_type = :random, load_root_page: true)
   # This function completes a full registration with parameters:
   # - a full set of `registration` data - generated from the generate_registration function in data_generator
   # - an option to load the root page or not (default true)
@@ -24,10 +23,9 @@ def add_submitted_registration(registration, load_root_page = true, address_type
   complete_site_details(registration, address_type, site_type)
 
   ref_no = complete_confirmations
-  puts ref_no + " completed by " + registration[:applicant][:full_name].to_s
+  puts "#{ref_no} completed by #{registration[:applicant][:full_name]}"
   ref_no
 end
-# rubocop:enable Metrics/AbcSize
 
 def choose_random_address_type
   # Select :lookup addresses, or manually entering addresses at random.
@@ -46,7 +44,7 @@ def choose_random_site_type
   "address"
 end
 
-def add_unsubmitted_registration(registration, load_root_page = true, address_type = :random)
+def add_unsubmitted_registration(registration, address_type = :random, load_root_page: true)
   @world.journey.home_page.load if load_root_page
   @world.journey.registration_type_page.submit(start_option: :new_radio)
   @world.journey.location_page.submit(location: :england)
@@ -61,7 +59,7 @@ def continue_unsubmitted_registration(registration, address_type = :random, site
   complete_farm_questions(registration)
   complete_site_details(registration, address_type, site_type)
   ref_no = complete_confirmations
-  puts ref_no + " completed"
+  puts "#{ref_no} completed"
   ref_no
 end
 
@@ -76,16 +74,16 @@ def complete_organisation_details(registration, address_type)
   @world.journey.business_type_page.submit(business_type: registration[:business_type])
 
   case registration[:business_type]
-  when :limited_company
+  when :limited_company, :llp
     @world.journey.registration_number_page.submit(
       registration_number: registration[:registration_number]
     )
     @world.journey.check_registered_company_name_page.submit(choice: :confirm)
-  when :llp
-    @world.journey.registration_number_page.submit(
-      registration_number: registration[:registration_number]
-    )
-    @world.journey.check_registered_company_name_page.submit(choice: :confirm)
+  # when :llp
+  #   @world.journey.registration_number_page.submit(
+  #     registration_number: registration[:registration_number]
+  #   )
+  #   @world.journey.check_registered_company_name_page.submit(choice: :confirm)
   when :partnership
     complete_partner_details(registration)
     @world.journey.operator_name_page.submit(org_name: registration[:operator_name])

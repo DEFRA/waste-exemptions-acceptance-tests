@@ -35,7 +35,7 @@ Then("I can find and edit the registration I just submitted") do
 
   # Edit the applicant's name so that it doesn't appear in the submitted search results
   find_link("Edit").click
-  expect(@world.bo.edit_page.heading).to have_text("Edit " + @world.completed_reg + " registration")
+  expect(@world.bo.edit_page.heading).to have_text("Edit #{@world.completed_reg} registration")
   @world.bo.edit_page.change_operator_link.click
   @world.bo.edit_details_page.submit(
     operator_name: "Miss Waste Completed"
@@ -52,7 +52,7 @@ Then(/^I complete (?:a|an) "([^"]*)" registration$/) do |business|
   @world.last_reg = generate_registration(business.to_sym)
 
   # This also stores the exemption number so the exemption can be edited in later steps.
-  @world.last_reg_no = add_submitted_registration(@world.last_reg, false, :random, :random)
+  @world.last_reg_no = add_submitted_registration(@world.last_reg, :random, :random)
 end
 
 Then(/^I complete (?:a|an) assisted digital "([^"]*)" registration without an email address$/) do |business|
@@ -61,5 +61,5 @@ Then(/^I complete (?:a|an) assisted digital "([^"]*)" registration without an em
   @world.last_reg = generate_registration(business.to_sym, email: nil)
   @no_email = true
   # This also stores the exemption number so the exemption can be edited in later steps.
-  @world.last_reg_no = add_submitted_registration(@world.last_reg, false, :random, :random)
+  @world.last_reg_no = add_submitted_registration(@world.last_reg, :random, :random, load_root_page: false)
 end

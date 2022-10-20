@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-def create_user(type, email, load_root_page = true)
+def create_user(type, email, load_root_page: true)
   @world.bo.users_page.load if load_root_page
   @world.bo.users_page.invite_user.click
   @world.bo.invitation_page.submit(user_email: email, type: type)

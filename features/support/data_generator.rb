@@ -48,7 +48,7 @@ def generate_person(email)
   {
     first_name: first_name,
     last_name: last_name,
-    full_name: first_name + " " + last_name,
+    full_name: "#{first_name} #{last_name}",
     telephone: "0117 9000000",
     email: email,
     position: Faker::Job.title
@@ -83,7 +83,7 @@ def prepopulate_registrations
   @world.known_reg = generate_registration(:individual, "Mr Waste submitted")
 
   # This completes the registration and stores the registration number:
-  @world.known_reg_no = add_submitted_registration(@world.known_reg, true, :random, :random)
+  @world.known_reg_no = add_submitted_registration(@world.known_reg, :random, :random)
 
   # This does the same steps for an incomplete registration:
   unsubmitted_reg = generate_registration(:individual, "Mr Waste unsubmitted")
