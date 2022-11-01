@@ -153,7 +153,7 @@ def complete_farm_questions(registration)
   @world.journey.farmer_page.submit(farmer: registration[:farmer])
 end
 
-def complete_site_details(registration, address_type = :lookup, site_type = :grid_ref)
+def complete_site_details(registration, _address_type = :lookup, site_type = :grid_ref)
   site_type = choose_random_site_type if site_type == :random
   if site_type == :grid_ref # the site is at a grid reference
     @world.journey.site_grid_reference_page.submit(
@@ -163,7 +163,8 @@ def complete_site_details(registration, address_type = :lookup, site_type = :gri
   else # the site is at an address
     find_link("postcode").click
     @world.journey.check_site_address_page.submit(choice: :use_different_address)
-    complete_address(address_type)
+    # No manual address entry possible
+    complete_address(:lookup)
   end
 end
 
