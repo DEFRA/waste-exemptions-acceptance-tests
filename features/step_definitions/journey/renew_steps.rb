@@ -51,7 +51,7 @@ When("I renew the registration {string} changes") do |changes|
     @world.journey.renew_splash_page.submit
     @world.journey.location_page.submit(location: :england)
 
-    @world.journey.choose_exemptions_page.renew(exemptions: %w[U12])
+    @world.journey.choose_exemptions_page.submit(exemptions: %w[U12], renewal: true)
     @renewed_reg[:exemptions] = %w[U2 T6 T19 T25 T31 S1]
 
     # Check applicant's name is prepopulated from the ORIGINAL registration, then complete new applicant details:
