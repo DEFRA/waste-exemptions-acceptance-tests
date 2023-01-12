@@ -13,24 +13,12 @@ class ChooseExemptionsPage < BasePage
                      else
                        "exemptions_form_checkbox-#{ex}"
                      end
-                     puts search_val
         exemptions.find { |chk| chk["id"] == search_val }.click
       end
     end
 
     submit_button.click
   end
-
-  # def renew(args = {})
-  #   if args.key?(:exemptions)
-  #     args[:exemptions].each do |ex|
-  #       search_val = "renew_exemptions_form_checkbox-#{ex}"
-  #       exemptions.find { |chk| chk["id"] == search_val }.click
-  #     end
-  #   end
-
-  #   submit_button.click
-  # end
 
   def uncheck_all_exemptions_and_submit
     exemptions.each do |ex|
