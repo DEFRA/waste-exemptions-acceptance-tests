@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-When("I search for a registration to renew") do
+When("I choose to renew a registration") do
   # Search for the most recent registration and start renewal:
   @renewer = "back office"
   @world.bo.dashboard_page.admin_menu.home_page.click
@@ -51,9 +51,8 @@ When("I renew the registration {string} changes") do |changes|
     @world.journey.renew_splash_page.submit
     @world.journey.location_page.submit(location: :england)
 
-    # Replace the U12 exemption with an S3 by clicking both:
-    @world.journey.choose_exemptions_page.submit(exemptions: %w[U12 S3])
-    @renewed_reg[:exemptions] = %w[U2 T6 T19 T25 T31 S1 S3]
+    @world.journey.choose_exemptions_page.submit(exemptions: %w[U12], renewal: true)
+    @renewed_reg[:exemptions] = %w[U2 T6 T19 T25 T31 S1]
 
     # Check applicant's name is prepopulated from the ORIGINAL registration, then complete new applicant details:
     expect(@world.journey.name_page.first_name.value).to eq(@world.last_reg[:applicant][:first_name])
@@ -111,6 +110,20 @@ When("I renew changing my organisation type") do
   @world.journey.business_type_page.submit(business_type: :individual)
 end
 
+When("I am asked to confirm the exemptions I still require during renewal") do
+  @world.journey.check_registered_company_name_page.submit(choice: :confirm) if company?
+  @renewed_reg = generate_registration(@business_type, nil)
+
+  @world.journey.renew_choice_page.renew_with_changes_radio.click
+  @world.journey.renew_choice_page.submit
+
+  # rubocop:disable Layout/LineLength
+  expect(@world.journey.renew_splash_page.heading).to have_text("We'll fill in the form with your current registration details")
+  # rubocop:enable Layout/LineLength
+  @world.journey.renew_splash_page.submit
+  @world.journey.location_page.submit(location: :england)
+end
+
 Then("I can see the correct renewed details") do
   # Search for the renewed registration in back office.
   # Should already be logged in as a back office user:
@@ -121,7 +134,7 @@ Then("I can see the correct renewed details") do
 
   # Check that the page contains information from the renewed registration:
   expect(page).to have_text("U12 — Using mulch") if @changes == :without
-  expect(page).to have_text("S3 — Storing sludge") if @changes == :with
+  expect(page).to have_no_text("U12 — Using mulch") if @changes == :with
   expect(page).to have_text(@renewed_reg[:operator_name])
   expect(page).to have_text(@world.last_reg_no)
   expect(page).to have_text(@renewed_reg[:applicant][:last_name].to_s)
@@ -202,4 +215,12 @@ end
 Then("I am informed I will need a new registration") do
   expect(@world.journey.can_not_renew_type_page.heading).to have_text("You need a new registration")
   expect(@world.journey.can_not_renew_type_page).to have_new_registration_option
+end
+
+When("I choose to remove all my exemptions") do
+  @world.journey.choose_exemptions_page.uncheck_all_exemptions_and_submit
+end
+
+When("I will be informed I do not need to renew") do
+  expect(@world.journey.renew_no_exemptions_page.heading).to have_text("You are about to remove all exemptions")
 end
