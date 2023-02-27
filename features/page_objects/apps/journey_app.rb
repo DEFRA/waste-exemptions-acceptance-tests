@@ -28,6 +28,10 @@ class JourneyApp
     @last_page = BusinessTypePage.new
   end
 
+  def confirm_edit_exemptions_page
+    @last_page = ConfirmEditExemptionsPage.new
+  end
+
   def contact_position_page
     @last_page = ContactPositionPage.new
   end

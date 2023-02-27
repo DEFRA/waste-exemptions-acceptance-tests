@@ -92,3 +92,7 @@ def prepopulate_registrations
   # Get the full name of the last submitted applicant for search tests:
   @world.known_submitted_applicant = @world.known_reg[:applicant][:full_name].to_s
 end
+
+def create_registration(date)
+  visit(back_office_root_url("/testing/create_registration/#{date}"))
+end
