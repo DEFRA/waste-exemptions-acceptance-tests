@@ -8,3 +8,12 @@ Given("I have a registration outside of the renewal window") do
   @registration = @world.bo.dashboard_page.created_registration.text[/(WEX\d+)/, 1]
   puts "#{@registration} generated"
 end
+
+Given("I have a registration inside of the renewal window") do
+  login_user(@world.developer_user)
+  #   Expiry window in test environment is set to three years so expiry date needs to be longer
+  @two_years = DateTime.now.next_year(2).strftime("%Y-%m-%d")
+  create_registration(@two_years)
+  @registration = @world.bo.dashboard_page.created_registration.text[/(WEX\d+)/, 1]
+  puts "#{@registration} generated"
+end

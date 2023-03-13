@@ -1,13 +1,15 @@
 # frozen_string_literal: true
 
 When("I choose to deregister exemptions from the email invite") do
-  visit("http://localhost:3000/renew/6TmTQXbH3KmsUQbFx1ak13gn")
-  #   visit(Quke::Quke.config.custom["urls"]["notify_link"])
-  #   @renewal_url = @world.journey.last_message_page.get_renewal_url(@renewer_email).to_s
-  #   expect(@renewal_url).to have_text("/renew/")
-  #   puts @renewal_url
-  #   visit(@renewal_url)
-
+  @world.bo.dashboard_page.admin_menu.home_page.click
+  @world.bo.dashboard_page.submit(search_term: @registration)
+  @world.bo.dashboard_page.view_reg_details_links.first.click
+  @world.bo.registration_details_page.deregister_invite_action.click
+  visit(Quke::Quke.config.custom["urls"]["notify_link"])
+  @dereg_url = @world.journey.last_message_page.dereg_url.to_s
+  expect(@dereg_url).to have_text("/renew/")
+  puts @dereg_url
+  visit(@dereg_url)
 end
 
 When("I choose to deregister all current exemptions") do
@@ -56,4 +58,11 @@ Then("I will receive a registration edit confirmation email") do
     "Registration edit complete"
   ]
   expect(email_exists?(@world.last_reg, expected_text)).to be true
+end
+
+Then("I can not send a deregistration invite email") do
+  @world.bo.dashboard_page.admin_menu.home_page.click
+  @world.bo.dashboard_page.submit(search_term: @registration)
+  @world.bo.dashboard_page.view_reg_details_links.first.click
+  expect(@world.bo.registration_details_page).to have_no_deregister_invite_action
 end

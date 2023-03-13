@@ -20,3 +20,7 @@ Scenario: Waste exemption holder can deregister an exemption
    And I confirm to deregister an exemption
   Then I will see confirmation that my exemption has be deregistered
    And I will receive a registration edit confirmation email
+
+Scenario: Waste exemption holder can not be sent a deregistration invite when registration is in the renewal window
+  Given I have a registration inside of the renewal window
+  Then I can not send a deregistration invite email
