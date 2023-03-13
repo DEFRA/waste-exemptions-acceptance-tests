@@ -92,6 +92,17 @@ When("I renew the registration {string} changes") do |changes|
 
 end
 
+When("I renew the registration") do
+  @world.journey.check_registered_company_name_page.submit(choice: :confirm) if company?
+  @world.journey.renew_choice_page.renew_without_changes_radio.click
+  @world.journey.renew_choice_page.submit
+  # rubocop:disable Layout/LineLength
+  expect(@world.journey.renew_splash_page.heading).to have_text("You are about to renew for 3 years with the current details")
+  # rubocop:enable Layout/LineLength
+  @world.journey.renew_splash_page.submit
+  @world.journey.declaration_page.submit
+end
+
 When("I renew changing my organisation type") do
   @world.journey.check_registered_company_name_page.submit(choice: :confirm) if company?
   @renewed_reg = generate_registration(@business_type, nil)

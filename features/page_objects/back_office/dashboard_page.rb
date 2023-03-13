@@ -26,6 +26,8 @@ class DashboardPage < BasePage
   elements(:view_transient_details_links, "a[href*='new-registrations']")
   elements(:view_reg_details_links, "a[href*='/registrations/']")
   elements(:resume_links, "[id^=resume]")
+  element(:created_registration, "#main-content")
+
   element(:submit_button, "input[type='submit']")
 
   def view_link(registration_number)

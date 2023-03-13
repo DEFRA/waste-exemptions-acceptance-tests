@@ -13,6 +13,7 @@ class RegistrationDetailsPage < BasePage
   elements(:revoked_tags, ".status-tag-revoked")
   elements(:deregister_ex_links, ".deregister-exemption-button")
   element(:reporting_info_link, ".govuk-details__summary-text")
+  element(:deregister_invite_action, "a[href^='/resend-deregistration-emails']")
 
   def resend_renewal_letter(registration_number)
     find(:css, "[href='/resend-renewal-letter/#{registration_number}']")

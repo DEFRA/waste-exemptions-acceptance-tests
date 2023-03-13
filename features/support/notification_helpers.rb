@@ -15,15 +15,20 @@ def email_exists?(registration, expected_text)
 
   visit(Quke::Quke.config.custom["urls"]["notify_link"])
 
-  # We don't know whether the applicant or contact email will be sent first, so try both.
-  # Try the applicant email:
-  expected_text_for_applicant = expected_text + [registration[:applicant][:email]]
-  return true if @world.journey.last_message_page.message_has_text?(expected_text_for_applicant)
+  # if using original `generate_registration` data creation method
+  if registration
+    # We don't know whether the applicant or contact email will be sent first, so try both.
+    # Try the applicant email:
+    expected_text_for_applicant = expected_text + [registration[:applicant][:email]]
+    return true if @world.journey.last_message_page.message_has_text?(expected_text_for_applicant)
 
-  # If that doesn't work, try the contact email:
-  expected_text_for_contact = expected_text + [registration[:contact][:email]]
-  return true if @world.journey.last_message_page.message_has_text?(expected_text_for_contact)
-
+    # If that doesn't work, try the contact email:
+    expected_text_for_contact = expected_text + [registration[:contact][:email]]
+    return true if @world.journey.last_message_page.message_has_text?(expected_text_for_contact)
+  elsif @world.journey.last_message_page.message_has_text?(expected_text)
+    return true
+  end
+  # if using `create_registration(date)` method
   puts "Email not found"
   false
 end
