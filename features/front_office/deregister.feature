@@ -1,4 +1,4 @@
-@email
+@email @dereg
 Feature: Deregistration self-serve
 
 As a waste exemption holder
