@@ -79,7 +79,6 @@ class JourneyApp
   def edit_page
     @last_page = EditPage.new
   end
-  
 
   def email_page
     @last_page = EmailPage.new

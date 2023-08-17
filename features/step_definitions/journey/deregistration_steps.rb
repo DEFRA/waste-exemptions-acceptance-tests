@@ -88,7 +88,6 @@ Then("I edit my registration using the self serve option") do
   visit(@edit_url)
 end
 
-
 Then("I enter my registration number") do
   @world.journey.waste_exemption_number_page.submit(registration_number: @registration)
 end
