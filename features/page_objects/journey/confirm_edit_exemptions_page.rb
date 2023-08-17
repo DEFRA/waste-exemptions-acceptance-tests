@@ -2,9 +2,8 @@
 
 class ConfirmEditExemptionsPage < BasePage
 
-  element(:accept,
-          "#confirm-edit-exemptions-form-workflow-state-edit-exemptions-declaration-form-field+ .govuk-radios__label")
-  element(:reject, "#confirm-edit-exemptions-form-workflow-state-edit-exemptions-form-field+ .govuk-radios__label")
+  element(:accept,"input[value='edit_exemptions_declaration_form']+ .govuk-radios__label")
+  element(:reject, "input[value='edit_exemptions_form']+ .govuk-radios__label")
 
   def submit(args = {})
     case args[:deregister]

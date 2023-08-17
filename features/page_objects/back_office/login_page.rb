@@ -9,6 +9,7 @@ class LoginPage < BasePage
   element(:email, "#user-email-field")
   element(:password, "#user-password-field")
   element(:submit_button, "input[type='submit']")
+  element(:sign_out, "a[href='/users/sign_out']")
 
   def submit(args = {})
     email.set(args[:email]) if args.key?(:email)

@@ -16,7 +16,7 @@ class DashboardPage < BasePage
   element(:unsubmitted_filter, "#filter_new_registrations + label")
 
   element(:create_new_registration, "a[href='/ad-privacy-policy']")
-  element(:sign_out_button, ".user-info .button")
+  element(:sign_out_button, "a[href='/users/sign_out']")
 
   element(:dashboard_message, ".govuk-notification-banner__heading")
 

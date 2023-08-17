@@ -8,7 +8,7 @@ class LastMessagePage < BasePage
   # Sendgrid messages are on /email/last-email.
   # Notify messages are on /email/last-notify-message.
 
-  element(:message_content, "pre")
+  element(:message_content, "body")
 
   def get_accept_url(email_address)
     # This URL is generated through Sendgrid.
@@ -18,6 +18,7 @@ class LastMessagePage < BasePage
     # (a 1 in 1024 chance of the email not showing).
     # This is not necessary for Notify messages.
     10.times do
+      sleep(1)
       page.evaluate_script "window.location.reload()"
 
       # Retry if parsed data doesn't contain the correct email address and subject line text:
@@ -58,6 +59,19 @@ class LastMessagePage < BasePage
     # Find the string that matches:
     # https://, then any 15-24 characters, then /renew/, then any 24 characters
     parsed_data["last_notify_message"]["body"].match %r/http(s?):\/\/.{14,24}\/renew\/.{24}/
+  end
+
+  def edit_url
+    # This email is generated through Notify.
+    if message_has_text?(["Update your contact details and deregister your waste exemptions"]) == false
+      puts("Couldn't find edit email")
+      return "Email not found"
+    end
+
+    parsed_data = JSON.parse(message_content.text)
+    # Find the string that matches:
+    # https://, then any 15-24 characters, then /renew/, then any 24 characters
+    parsed_data["last_notify_message"]["body"].match %r/http(s?):\/\/.{14,24}\/edit\_registration\/.{24}/
   end
 
   def message_has_text?(expected_text)

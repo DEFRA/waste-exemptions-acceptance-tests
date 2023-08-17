@@ -76,6 +76,11 @@ class JourneyApp
     @last_page = DeclarationPage.new
   end
 
+  def edit_page
+    @last_page = EditPage.new
+  end
+  
+
   def email_page
     @last_page = EmailPage.new
   end
@@ -142,6 +147,14 @@ class JourneyApp
 
   def renew_no_exemptions_page
     @last_page = RenewNoExemptionsPage.new
+  end
+
+  def waste_exemption_email_address_page
+    @last_page = WasteExemptionEmailAddressPage.new
+  end
+
+  def waste_exemption_number_page
+    @last_page = WasteExemptionNumberPage.new
   end
 
 end

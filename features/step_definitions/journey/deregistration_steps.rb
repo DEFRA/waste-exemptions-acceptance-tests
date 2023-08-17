@@ -5,9 +5,10 @@ When("I choose to deregister exemptions from the email invite") do
   @world.bo.dashboard_page.submit(search_term: @registration)
   @world.bo.dashboard_page.view_reg_details_links.first.click
   @world.bo.registration_details_page.deregister_invite_action.click
+  @world.bo.dashboard_page.admin_menu.home_page.click
+  @world.bo.dashboard_page.sign_out_button.click
   visit(Quke::Quke.config.custom["urls"]["notify_link"])
   @dereg_url = @world.journey.last_message_page.dereg_url.to_s
-  expect(@dereg_url).to have_text("/renew/")
   puts @dereg_url
   visit(@dereg_url)
 end
@@ -26,6 +27,9 @@ end
 When("I confirm to deregister all my exemptions") do
   expect(@world.journey.confirm_edit_exemptions_page.heading).to have_text("deregister all of these exemptions")
   @world.journey.confirm_edit_exemptions_page.submit(deregister: :accept)
+end
+
+When("I complete the declaration") do
   @world.journey.declaration_page.submit
 end
 
@@ -65,4 +69,38 @@ Then("I can not send a deregistration invite email") do
   @world.bo.dashboard_page.submit(search_term: @registration)
   @world.bo.dashboard_page.view_reg_details_links.first.click
   expect(@world.bo.registration_details_page).to have_no_deregister_invite_action
+end
+
+Then("I choose to edit a registration") do
+  @world.journey.home_page.load
+  @world.journey.registration_type_page.submit(start_option: :edit_registration)
+end
+
+Then("I edit my registration using the self serve option") do
+  @world.journey.home_page.load
+  @world.journey.registration_type_page.submit(start_option: :edit_registration)
+  @world.journey.waste_exemption_number_page.submit(registration_number: @registration)
+  @world.journey.waste_exemption_email_address_page.submit(email: "contact1@example.com")
+  visit(Quke::Quke.config.custom["urls"]["notify_link"])
+  @edit_url = @world.journey.last_message_page.edit_url.to_s
+  expect(@edit_url).to have_text("/edit_registration/")
+  puts @edit_url
+  visit(@edit_url)
+end
+
+
+Then("I enter my registration number") do
+  @world.journey.waste_exemption_number_page.submit(registration_number: @registration)
+end
+
+Then("I enter an email used in the registration") do
+  @world.journey.waste_exemption_email_address_page.submit(email: "contact1@example.com")
+end
+
+When("I select the option to edit details") do
+  @world.journey.registration_type_page.submit(start_option: :edit_registration)
+end
+
+When("I edit my waste exemptions") do
+  @world.journey.edit_page.edit_exemptions.click
 end

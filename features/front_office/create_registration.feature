@@ -32,7 +32,3 @@ Feature: Registering a waste exemption
       When I choose locations outside England
       Then I will be advised to register with another authority
 
-    Scenario: Select option to change details
-      Given I am on the service
-      When I select the option to change details
-      Then I will be advised to contact the EA
