@@ -4,7 +4,7 @@ class RegistrationTypePage < BasePage
 
   element(:new_radio, "input[value='new']+ .govuk-radios__label")
   element(:renew_radio, "input[value='reregister']+ .govuk-radios__label")
-  element(:edit_registration, "input[value='change']+ .govuk-radios__label")
+  element(:edit_registration, "input[value='edit']+ .govuk-radios__label")
 
   element(:submit_button, "button[type='submit']")
 

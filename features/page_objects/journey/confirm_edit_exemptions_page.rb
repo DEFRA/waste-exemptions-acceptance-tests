@@ -2,8 +2,8 @@
 
 class ConfirmEditExemptionsPage < BasePage
 
-  element(:accept, "input[value='edit_exemptions_declaration_form']+ .govuk-radios__label")
-  element(:reject, "input[value='edit_exemptions_form']+ .govuk-radios__label")
+  element(:accept, "input[value='true']+ .govuk-radios__label")
+  element(:reject, "input[value='false']+ .govuk-radios__label")
 
   def submit(args = {})
     case args[:deregister]
