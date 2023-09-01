@@ -125,6 +125,14 @@ When("I select the option to change details") do
   @world.journey.registration_type_page.submit(start_option: :change_registration)
 end
 
+When("I select the option to deregister/update details") do
+  @world.journey.registration_type_page.submit(start_option: :edit_registration)
+end
+
+Then("I will be asked to enter my waste registration number") do
+  expect(page).to have_text("Enter your waste exemption registration number")
+end
+
 Then("I will be advised to contact the EA") do
   expect(page).to have_text("Contact the Environment Agency")
   expect(page).to have_text("You'll need to contact the Environment Agency")
