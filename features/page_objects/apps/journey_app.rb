@@ -144,5 +144,12 @@ class JourneyApp
     @last_page = RenewNoExemptionsPage.new
   end
 
+  def capture_reference_page
+    @last_page = CaptureReferencePage.new
+  end
+
+  def capture_email_page
+    @last_page = CaptureEmailPage.new
+  end
 end
 # rubocop:enable  Metrics/ClassLength
