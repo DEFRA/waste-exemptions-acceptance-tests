@@ -5,7 +5,7 @@ require_relative "sections/admin_menu_section"
 class CommunicationHistoryPage < BasePage
 
   section(:admin_menu_section, AdminMenuSection, AdminMenuSection::SELECTOR)
-  
+
   element(:heading, "h1.govuk-heading-l")
 
   sections :communication_logs, "table tbody tr" do
