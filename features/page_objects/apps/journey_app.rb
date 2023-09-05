@@ -68,10 +68,6 @@ class JourneyApp
     @last_page = ConfirmEditExemptionsPage.new
   end
 
-  def confirm_edit_exemptions_front_office_edit_flow_page
-    @last_page = ConfirmEditExemptionsFrontOfficeEditFlowPage.new
-  end
-
   def contact_email_page
     @last_page = ContactEmailPage.new
   end

@@ -57,7 +57,7 @@ Scenario: Waste exemption holder deregisters some exemptions
     And I click on a valid edit link
     And I choose to edit my exemptions
    When I choose to deregister an exemption
-    And I confirm deregistration of an exemption in the front-office edit flow
+    And I confirm my exemption changes
    Then I will see the main edit page with the updated list of exemptions
    When I click to continue
    Then I will see the declaration page
@@ -70,7 +70,7 @@ Scenario: Waste exemption holder deregisters all exemptions
     And I click on a valid edit link
     And I choose to edit my exemptions
    When I choose to deregister all current exemptions
-    And I confirm deregistration of all my exemptions in the front-office edit flow
+    And I confirm full deregistration
    Then I will see the main edit page with an empty list of exemptions
    When I click to continue
    Then I will see the declaration page

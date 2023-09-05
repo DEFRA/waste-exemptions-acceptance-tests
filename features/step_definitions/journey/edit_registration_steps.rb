@@ -71,10 +71,15 @@ When "I choose to edit my exemptions" do
   expect(@world.journey.choose_exemptions_page.title).to have_text("Untick any exemptions that are no longer needed")
 end
 
-When "I confirm deregistration of an exemption in the front-office edit flow" do
-  expect(@world.journey.confirm_edit_exemptions_front_office_edit_flow_page.heading)
-    .to have_text("remove these exemptions?")
-  @world.journey.confirm_edit_exemptions_front_office_edit_flow_page.submit(deregister: :accept)
+When "I confirm my exemption changes" do
+  expect(@world.journey.confirm_edit_exemptions_page.heading).to have_text("remove these exemptions?")
+  @world.journey.confirm_edit_exemptions_page.submit(deregister: :accept)
+end
+
+When "I confirm full deregistration" do
+  expect(@world.journey.confirm_edit_exemptions_page.heading)
+    .to have_text("Are you sure you want to deregister all of these exemptions")
+  @world.journey.confirm_edit_exemptions_page.submit(deregister: :accept)
 end
 
 Then "I will see the main edit page with the updated list of exemptions" do
@@ -86,12 +91,6 @@ Then "I will see the main edit page with an empty list of exemptions" do
   expect(@world.journey.front_office_edit_page).not_to have_text("U1")
   expect(@world.journey.front_office_edit_page).not_to have_text("U2")
   expect(@world.journey.front_office_edit_page).not_to have_text("U3")
-end
-
-When("I confirm deregistration of all my exemptions in the front-office edit flow") do
-  expect(@world.journey.confirm_edit_exemptions_front_office_edit_flow_page.heading)
-    .to have_text("deregister all of these exemptions")
-  @world.journey.confirm_edit_exemptions_front_office_edit_flow_page.submit(deregister: :accept)
 end
 
 When "I click to continue" do
