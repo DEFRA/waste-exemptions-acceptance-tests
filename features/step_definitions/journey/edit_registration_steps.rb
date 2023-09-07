@@ -108,7 +108,7 @@ end
 
 Then "I will see the edit complete page" do
   expect(@world.journey.front_office_edit_complete_page)
-    .to have_text("ou have successfully updated your registration details")
+    .to have_text("You have successfully updated your registration details")
 end
 
 Then "I will not receive a confirmation email" do
