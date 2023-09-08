@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+edit_link_email_expected_text =
+  "Deregister your waste exemptions and update your contact details before your renewal date"
+
 When("I start the flow to request an edit link") do
   @world.journey.home_page.load
   @world.journey.registration_type_page.submit(start_option: :edit_registration)
@@ -19,9 +22,7 @@ Then("I will see the standard conditional confirmation page") do
 end
 
 Then("I will not receive an edit link email") do
-  expected_text = ["Deregister your waste exemptions and update your contact details before your renewal date"]
-
-  expect(email_exists?(@world.last_reg, expected_text)).to be false
+  expect(email_exists?(@world.last_reg, [@world.last_reg_no, edit_link_email_expected_text])).to be false
 end
 
 When("I enter a valid combination of reference number and email address") do
@@ -30,7 +31,5 @@ When("I enter a valid combination of reference number and email address") do
 end
 
 Then("I will receive an edit link email") do
-  expected_text = ["Deregister your waste exemptions and update your contact details before your renewal date"]
-
-  expect(email_exists?(@world.last_reg, expected_text)).to be true
+  expect(email_exists?(@world.last_reg, [@world.last_reg_no, edit_link_email_expected_text])).to be true
 end
