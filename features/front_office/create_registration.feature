@@ -34,5 +34,5 @@ Feature: Registering a waste exemption
 
     Scenario: Select option to deregister/update details
       Given I am on the service
-      When I select the option to deregister/update details
+      When I select the option to deregister or update details
       Then I will be asked to enter my waste registration number

@@ -122,10 +122,10 @@ Given("I am on the service") do
 end
 
 When("I select the option to change details") do
-  @world.journey.registration_type_page.submit(start_option: :change_registration)
+  @world.journey.registration_type_page.submit(start_option: :edit_registration)
 end
 
-When("I select the option to deregister/update details") do
+When("I select the option to deregister or update details") do
   @world.journey.registration_type_page.submit(start_option: :edit_registration)
 end
 
