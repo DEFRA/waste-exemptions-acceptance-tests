@@ -9,7 +9,7 @@ When("I start the flow to request an edit link") do
 end
 
 When("I enter an invalid combination of reference number and email address") do
-  @world.journey.capture_reference_page.submit(reference: "WEX000321")
+  @world.journey.capture_reference_page.submit(reference: @registration)
   @world.journey.capture_email_page.submit(contact_email: "nonsense@example.foo")
 end
 
