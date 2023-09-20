@@ -75,5 +75,5 @@ Scenario: Waste exemption holder deregisters all exemptions
    When I click to continue
    Then I will see the declaration page
    When I submit the declaration form
-   Then I will see the edit complete page
+   Then I will see the deregistration confirmation page
     And I will receive a deregistration confirmation email
