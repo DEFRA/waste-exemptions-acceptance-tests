@@ -22,6 +22,10 @@ When("I resend the confirmation email") do
   @world.bo.registration_details_page.resend_confirmation_email(@world.last_reg_no).click
 end
 
+When("I open communication history") do
+  @world.bo.registration_details_page.communication_history(@world.last_reg_no).click
+end
+
 Then("I will see a confirmation the renewal reminder letter has been sent") do
   expect(@world.bo.dashboard_page.dashboard_message).to have_text("Renewal letter sent to #{@world.last_reg_no}")
 end
@@ -35,4 +39,10 @@ Then("I will see the registration confirmation email has been sent") do
   expect(@world.bo.dashboard_page.dashboard_message).to have_text("Confirmation email sent to #{@world.last_reg[:contact][:email]}")
   # rubocop:enable Layout/LineLength
 
+end
+
+Then("I can see the communication logs on the communication history page") do
+  expect(@world.bo.communication_history_page.heading).to have_text("Communication history")
+  log = @world.bo.communication_history_page.log_details(@world.last_reg[:contact][:email])
+  expect(log.template_name).to have_text("Registration completion email")
 end

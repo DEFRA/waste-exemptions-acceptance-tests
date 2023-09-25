@@ -28,14 +28,6 @@ class JourneyApp
     @last_page = BusinessTypePage.new
   end
 
-  def confirm_edit_exemptions_page
-    @last_page = ConfirmEditExemptionsPage.new
-  end
-
-  def contact_position_page
-    @last_page = ContactPositionPage.new
-  end
-
   def choose_exemptions_page
     @last_page = ChooseExemptionsPage.new
   end
@@ -72,12 +64,44 @@ class JourneyApp
     @last_page = ConfirmationPage.new
   end
 
+  def confirm_edit_exemptions_page
+    @last_page = ConfirmEditExemptionsPage.new
+  end
+
+  def contact_email_page
+    @last_page = ContactEmailPage.new
+  end
+
+  def contact_name_page
+    @last_page = ContactNamePage.new
+  end
+
+  def contact_phone_page
+    @last_page = ContactPhonePage.new
+  end
+
+  def contact_position_page
+    @last_page = ContactPositionPage.new
+  end
+
   def declaration_page
     @last_page = DeclarationPage.new
   end
 
+  def edit_exemptions_page
+    @last_page = EditExemptionsPage.new
+  end
+
   def email_page
     @last_page = EmailPage.new
+  end
+
+  def front_office_edit_complete_page
+    @last_page = FrontOfficeEditDeclarationPage.new
+  end
+
+  def front_office_edit_declaration_page
+    @last_page = FrontOfficeEditDeclarationPage.new
   end
 
   def farmer_page
@@ -144,5 +168,16 @@ class JourneyApp
     @last_page = RenewNoExemptionsPage.new
   end
 
+  def capture_reference_page
+    @last_page = CaptureReferencePage.new
+  end
+
+  def capture_email_page
+    @last_page = CaptureEmailPage.new
+  end
+
+  def front_office_edit_page
+    @last_page = FrontOfficeEditPage.new
+  end
 end
 # rubocop:enable  Metrics/ClassLength
