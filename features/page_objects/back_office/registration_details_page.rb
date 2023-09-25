@@ -27,4 +27,8 @@ class RegistrationDetailsPage < BasePage
     find(:css, "[href='/resend-confirmation-email/#{registration_number}']")
   end
 
+  def communication_history(registration_number)
+    find(:css, "[href='/registrations/#{registration_number}/communication_logs']")
+  end
+
 end

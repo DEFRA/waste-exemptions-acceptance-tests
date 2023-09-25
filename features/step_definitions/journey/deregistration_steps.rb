@@ -35,11 +35,11 @@ When("I confirm to deregister an exemption") do
   @world.journey.declaration_page.submit
 end
 
-Then("I will see confirmation that my registration has be deregistered") do
+Then("I will see confirmation that my registration has been deregistered") do
   expect(@world.journey.confirmation_page.heading).to have_text("Your registration is inactive")
 end
 
-Then("I will see confirmation that my exemption has be deregistered") do
+Then("I will see confirmation that my exemption has been deregistered") do
   # expect(@world.journey.confirmation_page.heading).to have_text("You have removed")
   expect(@world.journey.confirmation_page).to have_text("You have removed")
 end

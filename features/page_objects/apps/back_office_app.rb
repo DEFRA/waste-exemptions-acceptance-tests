@@ -63,4 +63,8 @@ class BackOfficeApp
     @last_page = UsersPage.new
   end
 
+  def communication_history_page
+    @last_page = CommunicationHistoryPage.new
+  end
+
 end
