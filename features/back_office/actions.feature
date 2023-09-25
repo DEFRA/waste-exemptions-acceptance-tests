@@ -27,3 +27,9 @@ Feature: Back office registration actions
       And I resend the confirmation email
       Then I will see the registration confirmation email has been sent
       And I will receive a registration confirmation email
+
+  Scenario: Communication history can be accessed from registration details page
+      When I search for the registration
+      And I view the registration details
+      And I open communication history
+      Then I can see the communication logs on the communication history page
