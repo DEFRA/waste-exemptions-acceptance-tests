@@ -24,9 +24,10 @@ When("I choose to deregister an exemption") do
 end
 
 Then("I will receive a deregistration confirmation email") do
-  expected_text = [
-    "Your registration #{@registration} is now inactive",
-    "Deregistration complete"
-  ]
-  expect(email_exists?(@world.last_reg, expected_text)).to be true
+  expected_text =
+    "Your registration #{@registration} is now inactive"
+  visit(Quke::Quke.config.custom["urls"]["notify_link"])
+  expect(@world.journey.last_message_page).to have_text(expected_text)
+  expect(@world.journey.last_message_page).to have_text(@contact_email)
+
 end
