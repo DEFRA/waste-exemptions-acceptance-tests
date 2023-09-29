@@ -1,4 +1,4 @@
-@email @edit
+@email @fo_edit
 Feature: Edit / deregistration self-serve
 
 As a waste exemption holder
@@ -13,7 +13,7 @@ Scenario: Waste exemption holder opts to make no changes
   Given I have a valid registration
    When I click on a valid edit link
     And I choose to make no changes
-   Then I will see the declaration page
+   Then I submit the declaration form
     And I will not receive a confirmation email
 
 Scenario: Waste exemption holder modifies contact name
@@ -75,5 +75,10 @@ Scenario: Waste exemption holder deregisters all exemptions
    When I click to continue
    Then I will see the declaration page
    When I submit the declaration form
-   Then I will see the edit complete page
+   Then I will see the deregistration confirmation page
     And I will receive a deregistration confirmation email
+
+Scenario: Waste exemption holder can receive an invite to edit their registration from the back office
+   Given I have a registration "outside" of the renewal window
+   When I choose to deregister exemptions from the email invite
+   Then I will see the main edit page
