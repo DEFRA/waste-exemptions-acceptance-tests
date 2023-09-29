@@ -49,7 +49,7 @@ class LastMessagePage < BasePage
 
   def dereg_url
     # This email is generated through Notify.
-    if message_has_text?(["Make changes to your waste exemptions"]) == false
+    if message_has_text?(["Deregister your waste exemptions"]) == false
       puts("Couldn't find dereg email")
       return "Email not found"
     end
@@ -57,7 +57,7 @@ class LastMessagePage < BasePage
     parsed_data = JSON.parse(message_content.text)
     # Find the string that matches:
     # https://, then any 15-24 characters, then /renew/, then any 24 characters
-    parsed_data["last_notify_message"]["body"].match %r/http(s?):\/\/.{14,24}\/renew\/.{24}/
+    parsed_data["last_notify_message"]["body"].match %r/http(s?):\/\/.{14,24}\/edit_registration\/.{24}/
   end
 
   def message_has_text?(expected_text)

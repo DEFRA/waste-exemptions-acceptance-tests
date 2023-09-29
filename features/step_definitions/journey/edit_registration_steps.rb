@@ -9,6 +9,7 @@ Given "I have a valid registration" do
   puts front_office_root_url("/edit_registration/#{@edit_token}")
   @world.last_reg_no = @registration
   @world.last_reg_edit_token = @edit_token
+  @contact_email = "contact1@example.com"
 end
 
 When "I click on an invalid edit link" do
@@ -33,7 +34,8 @@ When "I choose to change the contact email" do
 end
 
 When "I submit the contact email form" do
-  @world.journey.contact_email_page.submit(contact_email: "new_email@wex.com", confirmed_email: "new_email@wex.com")
+  @contact_email = "new_email@wex.com"
+  @world.journey.contact_email_page.submit(contact_email: @contact_email, confirmed_email: @contact_email)
 end
 
 Then "I will see the main edit page with the updated contact email" do
@@ -118,13 +120,21 @@ Then "I will see the deregistration confirmation page" do
 end
 
 Then "I will not receive a confirmation email" do
+  visit(Quke::Quke.config.custom["urls"]["notify_link"])
   confirmation_text = ["Registration edit complete"]
-
-  expect(email_exists?(@world.last_reg, confirmation_text)).to be false
+  expect(@world.journey.last_message_page).not_to have_text(confirmation_text)
+  expect(@world.journey.last_message_page).not_to have_text(@registration)
 end
 
 Then "I will receive a confirmation email" do
-  confirmation_text = ["Registration edit complete"]
+  visit(Quke::Quke.config.custom["urls"]["notify_link"])
+  confirmation_text = "Registration edit complete"
+  expect(@world.journey.last_message_page).to have_text(confirmation_text)
+  expect(@world.journey.last_message_page).to have_text(@contact_email)
+  expect(@world.journey.last_message_page).to have_text(@registration)
+end
 
-  expect(email_exists?(@world.last_reg, confirmation_text)).to be true
+Then "I will see the main edit page" do
+  expect(@world.journey.front_office_edit_page).to have_text("You can update some of your registration details")
+
 end
