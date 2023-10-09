@@ -12,7 +12,7 @@ end
 def email_exists?(registration, expected_text)
   # registration is the full hash containing all registration details
   # expected_text is an array containing all the text you want to search for
-
+  sleep(2)
   visit(Quke::Quke.config.custom["urls"]["notify_link"])
 
   # if using original `generate_registration` data creation method
