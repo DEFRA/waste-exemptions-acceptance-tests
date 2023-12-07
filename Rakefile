@@ -160,11 +160,6 @@ task :loc_reg do
   sh %( QUKE_CONFIG=config/loc.config.yml bundle exec quke --tags @reg)
 end
 
-desc "Run location on local"
-task :loc_regb do
-  sh %( QUKE_CONFIG=config/loc.config.yml bundle exec quke --tags @location)
-end
-
 desc "Run front office tests on local"
 task :loc_frontoffice do
   sh %( QUKE_CONFIG=config/loc.config.yml bundle exec quke --tags @frontoffice)
