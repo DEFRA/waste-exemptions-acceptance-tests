@@ -145,7 +145,7 @@ Then("I can see the correct renewed details") do
 
   # Check that the page contains information from the renewed registration:
   expect(page).to have_text("U12 — Using mulch") if @changes == :without
-  expect(page).to have_no_text("U12 — Using mulch") if @changes == :with
+  expect(page).not_to have_text("U12 — Using mulch") if @changes == :with
   expect(page).to have_text(@renewed_reg[:operator_name])
   expect(page).to have_text(@world.last_reg_no)
   expect(page).to have_text(@renewed_reg[:applicant][:last_name].to_s)
@@ -207,12 +207,12 @@ Then("I cannot renew it again from the back office") do
   visit(Quke::Quke.config.custom["urls"]["back_office"])
   @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
   expect(@world.bo.dashboard_page.results[0]).to have_text("Already renewed")
-  expect(@world.bo.dashboard_page.results[0]).to have_no_text("Start renewal")
-  expect(@world.bo.dashboard_page.results[0]).to have_no_text("Resend renewal email")
+  expect(@world.bo.dashboard_page.results[0]).not_to have_text("Start renewal")
+  expect(@world.bo.dashboard_page.results[0]).not_to have_text("Resend renewal email")
   find_link("View details").click
   expect(@world.bo.registration_details_page.action_box).to have_text("Already renewed")
-  expect(@world.bo.registration_details_page.action_box).to have_no_text("Start renewal")
-  expect(@world.bo.registration_details_page.action_box).to have_no_text("Resend renewal email")
+  expect(@world.bo.registration_details_page.action_box).not_to have_text("Start renewal")
+  expect(@world.bo.registration_details_page.action_box).not_to have_text("Resend renewal email")
 end
 
 Then("a renewal reminder letter has been sent") do
