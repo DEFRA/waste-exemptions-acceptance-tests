@@ -16,19 +16,19 @@ class RegistrationDetailsPage < BasePage
   element(:deregister_invite_action, "a[href^='/send-edit-invite']")
 
   def resend_renewal_letter(registration_number)
-    find(:css, "[href='/resend-renewal-letter/#{registration_number}']")
+    find(:css, "[href^='/resend-renewal-letter/#{registration_number}']")
   end
 
   def resend_confirmation_letter(registration_number)
-    find(:css, "[href='/resend-confirmation-letter/#{registration_number}']")
+    find(:css, "[href^='/resend-confirmation-letter/#{registration_number}']")
   end
 
   def resend_confirmation_email(registration_number)
-    find(:css, "[href='/resend-confirmation-email/#{registration_number}']")
+    find(:css, "[href^='/resend-confirmation-email/#{registration_number}']")
   end
 
   def communication_history(registration_number)
-    find(:css, "[href='/registrations/#{registration_number}/communication_logs']")
+    find(:css, "[href^='/registrations/#{registration_number}/communication_logs']")
   end
 
 end
