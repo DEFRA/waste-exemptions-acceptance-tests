@@ -13,12 +13,12 @@ end
 
 Then("I can search for registrations") do
   @world.bo.dashboard_page.admin_menu.home_page.click
-  @world.bo.dashboard_page.submit(search_term: @world.known_reg_no)
+  @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
   expect(page).to have_content("Waste exemptions dashboard")
   # We know results should exist because of the registrations created in our
   # before(@data) hook
   expect(@world.bo.dashboard_page).to have_results
-  expect(page).to have_content("Mr Waste")
+  expect(page).to have_content("Operator 1")
 end
 
 Then("I cannot access the user management screen") do
@@ -51,7 +51,7 @@ Then("I cannot access create a new registration") do
 end
 
 Then("I can view their details") do
-  @world.bo.dashboard_page.view_link(@world.known_reg_no).click
+  @world.bo.dashboard_page.view_link(@world.last_reg_no).click
   expect(page).to have_content("Registration details for")
   # rubocop:disable Style/RedundantRegexpEscape
   expect(page).to have_current_path(%r{^\/registrations\/WEX})

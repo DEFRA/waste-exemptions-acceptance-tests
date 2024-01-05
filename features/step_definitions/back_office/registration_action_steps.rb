@@ -35,14 +35,12 @@ Then("I will see the registration confirmation letter has been sent") do
 end
 
 Then("I will see the registration confirmation email has been sent") do
-  # rubocop:disable Layout/LineLength
-  expect(@world.bo.dashboard_page.dashboard_message).to have_text("Confirmation email sent to #{@world.last_reg[:contact][:email]}")
-  # rubocop:enable Layout/LineLength
+  expect(@world.bo.dashboard_page.dashboard_message).to have_text("Confirmation email sent to #{@contact_email}")
 
 end
 
 Then("I can see the communication logs on the communication history page") do
   expect(@world.bo.communication_history_page.heading).to have_text("Communication history")
-  log = @world.bo.communication_history_page.log_details(@world.last_reg[:contact][:email])
+  log = @world.bo.communication_history_page.log_details(@contact_email)
   expect(log.template_name).to have_text("Registration completion email")
 end

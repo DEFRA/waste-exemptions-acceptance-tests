@@ -7,6 +7,7 @@ def create_user(type, email, load_root_page: true)
 end
 
 def login_user(user_email)
+  Capybara.reset_session!
   # Set app to back office, to determine which email service to call later:
   @app = :bo
   @world.bo.login_page.load

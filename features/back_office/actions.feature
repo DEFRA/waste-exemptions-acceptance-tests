@@ -4,7 +4,7 @@ Feature: Back office registration actions
     Actions that can be carried out on a registration in the back office
 
     Background: Create registration and sign into back office
-      Given a registration has been created
+      Given I have a valid registration
       And I sign in as a super agent
 
     Scenario: Renewal reminder letter can be resent from registration details page
@@ -31,5 +31,6 @@ Feature: Back office registration actions
   Scenario: Communication history can be accessed from registration details page
       When I search for the registration
       And I view the registration details
+      And I resend the confirmation email
       And I open communication history
       Then I can see the communication logs on the communication history page

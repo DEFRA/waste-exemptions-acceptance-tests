@@ -20,11 +20,6 @@ Then("I register an exemption") do
   @world.last_reg_no = add_submitted_registration(@world.last_reg, :random, :random)
 end
 
-Given("a registration has been created") do
-  @world.last_reg = generate_registration(:limited_company)
-  @world.last_reg_no = add_submitted_registration(@world.last_reg, :random, :random)
-end
-
 Given("I register choosing to reuse my business information previously entered") do
   @world.journey.location_page.submit(location: :england)
   # Add an S3 exemption
