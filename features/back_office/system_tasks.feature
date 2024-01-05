@@ -1,8 +1,11 @@
-@backoffice @data @system
+@backoffice @system
 Feature: Carry out system tasks
   As a back office user
   I need to manage other users and perform admin tasks
   So that the service is used appropriately
+
+  Background:
+  Given I have a valid registration
 
   @email
   Scenario: System user adds a new user
@@ -22,7 +25,7 @@ Feature: Carry out system tasks
     Given I sign in as a system user
     When I deactivate a user
     Then I see their status has changed
-
+ 
   Scenario: User is a system_user
     Given I sign in as a system user
     Then I can access the user management screen

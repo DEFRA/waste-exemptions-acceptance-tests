@@ -6,7 +6,6 @@ Given "I have a valid registration" do
   @registration = @world.bo.dashboard_page.created_registration.text[/(WEX\d+)/, 1]
   @edit_token = @world.bo.dashboard_page.created_registration.text[/Edit token: (.+)/, 1]
   puts "generated #{@registration}"
-  puts front_office_root_url("/edit_registration/#{@edit_token}")
   @world.last_reg_no = @registration
   @world.last_reg_edit_token = @edit_token
   @contact_email = "contact1@example.com"
