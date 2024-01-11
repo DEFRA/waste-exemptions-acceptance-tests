@@ -4,34 +4,19 @@ require "json"
 
 class LastMessagePage < BasePage
   # Page which shows last message sent in JSON format.
-  # This file works for both the last Notify message and last email sent through Sendgrid - the elements are similar.
-  # Sendgrid messages are on /email/last-email.
   # Notify messages are on /email/last-notify-message.
 
   element(:message_content, "pre")
 
   def get_accept_url(email_address)
-    # This URL is generated through Sendgrid.
-    # As there are two app servers, there is a 50% chance that the latest email
-    # will show each time the page is refreshed.
-    # The page will be loaded up to 10 times until the email shows
-    # (a 1 in 1024 chance of the email not showing).
-    # This is not necessary for Notify messages.
-    10.times do
-      page.evaluate_script "window.location.reload()"
-
-      # Retry if parsed data doesn't contain the correct email address and subject line text:
-      next if message_has_text?([email_address, "Create a Waste Exemptions back office account"]) == false
-
-      parsed_data = JSON.parse(message_content.text)
-      # Find the text in the API JSON between the following two strings:
-      #     link below.\n\n
-      #     \n\n  This invitation
-      # See https://stackoverflow.com/questions/4218986/ruby-using-regex-to-find-something-in-between-two-strings
-      # Full stops need to be escaped. \s+ means 'any number of spaces'.
-      return parsed_data["last_email"]["body"][/link below\.\n\n(.*?)\n\n\s+This invitation/, 1]
+    if message_has_text?([email_address, "Create a Waste Exemptions back office account"]) == false
+      puts("Couldn't find back office invite URL")
+      return "Email not found"
     end
-    puts("Couldn't find back office invite URL")
+
+    parsed_data = JSON.parse(message_content.text)
+
+    parsed_data["last_notify_message"]["body"].match %r/http(s?):\/\/.{30,46}\/accept.{38}/
   end
 
   def get_renewal_url(email_address)
