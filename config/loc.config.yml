@@ -72,7 +72,5 @@ custom:
       username: developer@wex.gov.uk
   urls:
     front_office: "http://localhost:3000"
-    notify_link: "http://localhost:3000/email/last-notify-message"
+    notify_link: "/email/last-notify-message"
     back_office: "http://localhost:8000"
-    # Use this for user management tests, which use Sendgrid:
-    back_office_email: "http://localhost:8000/email/last-email" 
