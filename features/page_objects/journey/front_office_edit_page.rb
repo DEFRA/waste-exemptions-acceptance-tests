@@ -5,4 +5,5 @@ class FrontOfficeEditPage < BasePage
   element(:change_contact_email_link, 'a[href$="/fo_edit/contact_email"]')
   element(:change_contact_name_link, 'a[href$="/fo_edit/contact_name"]')
   element(:change_contact_phone_link, 'a[href$="/fo_edit/contact_phone"]')
+  element(:change_contract_address, 'a[href$="/fo_edit/contact_postcode"]')
 end

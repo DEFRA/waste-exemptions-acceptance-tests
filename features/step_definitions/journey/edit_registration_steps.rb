@@ -8,6 +8,7 @@ Given "I have a valid registration" do
   puts "generated #{@registration}"
   @world.last_reg_no = @registration
   @world.last_reg_edit_token = @edit_token
+  @business_type = :limited_company
   @contact_email = "contact1@example.com"
 end
 
@@ -47,6 +48,10 @@ When "I choose to change the contact name" do
     .to have_text("Who should we contact about this waste exemption operation?")
 end
 
+When("I choose to change the contact address") do
+  @world.journey.front_office_edit_page.change_contract_address.click
+end
+
 When "I submit the contact name form" do
   @world.journey.contact_name_page.submit(first_name: "Dexy", last_name: "Runner")
 end
@@ -66,6 +71,28 @@ end
 
 Then "I will see the main edit page with the updated contact phone number" do
   expect(@world.journey.front_office_edit_page).to have_text("0117 9876543")
+end
+
+When "I update the contact address" do
+  @postcode = "BS1 5AH"
+  @business_address = "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+  @world.journey.address_lookup_page.submit(postcode: @postcode, result: @business_address)
+end
+
+When "I update the contact address to a manual address" do
+  @world.journey.address_lookup_page.choose_manual_address(
+    postcode: "BS1 9XX"
+  )
+  @world.journey.address_manual_page.submit_manual_address(
+    house_no: rand(1..99_999).to_s,
+    address_line_one: "ENVIRONMENT AGENCY",
+    address_line_two: "Manually entered area",
+    city: "Manualton"
+  )
+end
+
+Then "I will see the main edit page with the updated contact address" do
+  expect(@world.journey.front_office_edit_page).to have_text("ENVIRONMENT AGENCY")
 end
 
 When "I choose to edit my exemptions" do
@@ -95,16 +122,12 @@ Then "I will see the main edit page with an empty list of exemptions" do
   expect(@world.journey.front_office_edit_page).not_to have_text("U3")
 end
 
-When "I click to continue" do
-  @world.journey.front_office_edit_page.submit
-end
-
-Then "I will see the declaration page" do
-  expect(@world.journey.declaration_page).to have_text("Declaration")
-  expect(@world.journey.declaration_page).to have_text("I confirm that")
-end
-
 When "I submit the declaration form" do
+  @world.journey.front_office_edit_declaration_page.submit
+end
+
+When "I confirm my registration changes" do
+  @world.journey.front_office_edit_page.submit
   @world.journey.front_office_edit_declaration_page.submit
 end
 
