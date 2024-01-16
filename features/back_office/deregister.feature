@@ -5,9 +5,7 @@ Feature: Back office user deregisters exemptions
   So that I can correctly mark it as revoked or ceased
 
   Background: Register an exemption
-    Given my business is an "individual"
-     When I register an exemption
-     Then I will be informed the registration is complete
+    Given I have a valid registration
 
   Scenario: [RUBY-63] Deregister individual exemptions
     Given I sign in as a super agent

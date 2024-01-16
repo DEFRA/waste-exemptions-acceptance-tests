@@ -18,15 +18,11 @@ When("I edit the most recent registration") do
     last_name: @new_person[:last_name]
   )
 
-  # Edit the operator name
-  @world.bo.edit_page.change_operator_link.click
-  @world.journey.operator_name_page.submit(
-    org_name: @new_details[:operator_name]
-  )
   # Edit the contact email
   @world.bo.edit_page.change_contact_email_link.click
+
   @world.journey.email_page.submit(
-    contact_email: @new_person[:email],
+    email: @new_person[:email],
     confirm_email: @new_person[:email]
   )
 
@@ -37,7 +33,6 @@ Then("I can see the new details on the registration details page") do
   expect(@world.bo.registration_details_page).to have_text(@new_person[:first_name])
   expect(@world.bo.registration_details_page).to have_text(@new_person[:last_name])
   expect(@world.bo.registration_details_page).to have_text(@new_person[:email])
-  expect(@world.bo.registration_details_page).to have_text(@new_details[:operator_name])
   expect(@world.bo.registration_details_page).to have_text(@new_person[:first_name])
 end
 
@@ -68,5 +63,4 @@ When("I cannot see the new details on the registration details page") do
   @world.bo.registration_details_page.reporting_info_link.click
   expect(@world.bo.registration_details_page).not_to have_text(@new_person[:first_name])
   expect(@world.bo.registration_details_page).not_to have_text(@new_person[:last_name])
-  expect(@world.bo.registration_details_page).not_to have_text(@new_details[:operator_name])
 end

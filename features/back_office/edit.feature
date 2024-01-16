@@ -5,9 +5,7 @@ Feature: Back office user edits a registration
   So that I can keep it up to date
 
   Background: Register an exemption
-    Given my business is an "individual"
-     When I register an exemption
-     Then I will be informed the registration is complete
+    Given I have a valid registration
 @smoke
   Scenario: [RUBY-62] Edit a registration
     Given I sign in as a super agent
