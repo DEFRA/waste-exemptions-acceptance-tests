@@ -45,6 +45,19 @@ class LastMessagePage < BasePage
     parsed_data["last_notify_message"]["body"].match %r/http(s?):\/\/.{14,24}\/edit_registration\/.{24}/
   end
 
+  def get_unsubscribe_url(email_address)
+    # This email is generated through Notify. It could be confirmation or renewal reminder email.
+    if message_has_text?([email_address, "unsubscribe"]) == false
+      puts("Couldn't find email")
+      return "Email not found"
+    end
+
+    parsed_data = JSON.parse(message_content.text)
+    # Find the string that matches:
+    # https://, then any 15-24 characters, then /renew/, then any 24 characters
+    parsed_data["last_notify_message"]["body"].match %r/http(s?):\/\/.{14,24}\/registrations\/unsubscribe\/.{24}/
+  end
+
   def message_has_text?(expected_text)
     # Look for an message containing all the strings in the given array
     # and returns true if all the expected text is present.

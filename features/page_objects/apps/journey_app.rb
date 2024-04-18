@@ -179,5 +179,10 @@ class JourneyApp
   def front_office_edit_page
     @last_page = FrontOfficeEditPage.new
   end
+
+  def unsubscription_confirmation_page
+    @last_page = UnsubscriptionConfirmationPage.new
+  end
+
 end
 # rubocop:enable  Metrics/ClassLength
