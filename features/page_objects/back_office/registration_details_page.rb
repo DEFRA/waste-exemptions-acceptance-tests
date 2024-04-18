@@ -31,4 +31,8 @@ class RegistrationDetailsPage < BasePage
     find(:css, "[href^='/registrations/#{registration_number}/communication_logs']")
   end
 
+  def resend_renewal_inviation(registration_number)
+    find(:css, "[href^='/resend-renewal-email/#{registration_number}']")
+  end
+
 end
