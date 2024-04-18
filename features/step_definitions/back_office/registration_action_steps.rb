@@ -22,6 +22,10 @@ When("I resend the confirmation email") do
   @world.bo.registration_details_page.resend_confirmation_email(@world.last_reg_no).click
 end
 
+When("I resend the renewal invite email") do
+  @world.bo.registration_details_page.resend_confirmation_email(@world.last_reg_no).click
+end
+
 When("I open communication history") do
   @world.bo.registration_details_page.communication_history(@world.last_reg_no).click
 end
