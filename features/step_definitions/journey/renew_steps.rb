@@ -13,6 +13,7 @@ When("I renew the registration {string} changes") do |changes|
   # Set a global @changes variable based on whether the renewal is with or without changes:
   @changes = changes.to_sym
   @renewal = true
+  @world.journey.home_page.accept_cookies
   @world.journey.check_registered_company_name_page.submit(choice: :confirm) if company?
   # Check some details at the start of the renewal journey:
   expect(@world.journey.renew_choice_page.heading).to have_text("Do you want to renew with these details?")
@@ -104,6 +105,7 @@ When("I renew the registration") do
 end
 
 When("I renew changing my organisation type") do
+  @world.journey.home_page.accept_cookies
   @world.journey.check_registered_company_name_page.submit(choice: :confirm) if company?
   @renewed_reg = generate_registration(@business_type, nil)
 
@@ -122,6 +124,7 @@ When("I renew changing my organisation type") do
 end
 
 When("I am asked to confirm the exemptions I still require during renewal") do
+  @world.journey.home_page.accept_cookies
   @world.journey.check_registered_company_name_page.submit(choice: :confirm) if company?
   @renewed_reg = generate_registration(@business_type, nil)
 

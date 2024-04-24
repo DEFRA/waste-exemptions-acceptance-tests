@@ -23,6 +23,7 @@ end
 
 When "I click on a valid edit link" do
   visit "/edit_registration/#{@world.last_reg_edit_token}"
+  @world.journey.home_page.accept_cookies
 end
 
 When "I choose to make no changes" do

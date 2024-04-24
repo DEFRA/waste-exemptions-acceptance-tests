@@ -5,6 +5,7 @@ edit_link_email_expected_text =
 
 When("I start the flow to request an edit link") do
   @world.journey.home_page.load
+  @world.journey.home_page.accept_cookies
   @world.journey.registration_type_page.submit(start_option: :edit_registration)
 end
 
