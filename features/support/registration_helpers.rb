@@ -46,6 +46,7 @@ end
 
 def add_unsubmitted_registration(registration, address_type = :random, load_root_page: true)
   @world.journey.home_page.load if load_root_page
+  @world.journey.home_page.accept_cookies
   @world.journey.registration_type_page.submit(start_option: :new_radio)
   @world.journey.location_page.submit(location: :england)
   @world.journey.choose_exemptions_page.submit(exemptions: registration[:exemptions])

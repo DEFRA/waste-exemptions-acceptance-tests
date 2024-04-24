@@ -8,6 +8,7 @@ end
 
 Then("I start a new waste exemption registration") do
   @world.journey.home_page.load
+  @world.journey.home_page.accept_cookies
   @world.journey.registration_type_page.submit(start_option: :new_radio)
 end
 
@@ -114,6 +115,7 @@ end
 
 Given("I am on the service") do
   @world.journey.home_page.load
+  @world.journey.home_page.accept_cookies
 end
 
 When("I select the option to change details") do
