@@ -100,3 +100,30 @@ Then("I cannot deregister anything") do
   expect(@world.bo.registration_details_page.deregister_ex_links.count.zero?).to eq(true)
   expect(@world.bo.registration_details_page.active_tags.count.positive?).to eq(true)
 end
+
+When("I {string} an exemption") do |deregistration_type|
+  # Last registration number is stored in @world.last_reg_no.
+  # Search for the last reference number:
+  @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
+  find_link("View details").click
+  @exemption = @world.bo.registration_details_page.exemption_details.first.exemption.text
+  @world.bo.registration_details_page.deregister_ex_links.first.click
+  @deregistration_type = deregistration_type
+  if deregistration_type == "cease"
+    @world.bo.deregister_page.cease_radio.click
+    @deregistration_reason = "Ceased by user, no longer needed"
+  else
+    @world.bo.deregister_page.revoke_radio.click
+    @deregistration_reason = "Revoked by user, no longer needed"
+  end
+  @world.bo.deregister_page.submit(
+    reason: @deregistration_reason
+  )
+end
+
+Then("I can see the deregistration details from the deregistration details page") do
+  @world.bo.registration_details_page.deregistation_details.first.click
+  log = @world.bo.deregistation_details_page.log_details(@exemption)
+  expect(log.reason).to have_text(@deregistration_reason)
+  expect(log.status).to have_text(@deregistration_type)
+end

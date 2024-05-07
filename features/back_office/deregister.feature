@@ -20,3 +20,8 @@ Feature: Back office user deregisters exemptions
   Scenario: [RUBY-63] Admin agent cannot deregister
      When I sign in as an admin agent
      Then I cannot deregister anything
+
+  Scenario: Ceased exemption details can be viewed from the deregistration details page
+    Given I sign in as a super agent
+     When I "cease" an exemption
+     Then I can see the deregistration details from the deregistration details page
