@@ -67,4 +67,8 @@ class BackOfficeApp
     @last_page = CommunicationHistoryPage.new
   end
 
+  def deregistation_details_page
+    @last_page = DeregistrationDetailsPage.new
+  end
+
 end
