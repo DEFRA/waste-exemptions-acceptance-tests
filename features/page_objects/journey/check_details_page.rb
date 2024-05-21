@@ -8,6 +8,7 @@ class CheckDetailsPage < BasePage
   element(:place_of_business, "#company_place_of_business")
   element(:company_address, "#company_address")
   element(:contact_name, "#company_contact_name")
+  element(:change_contact_name, "a[href='check-your-answers/contact-name']")
   element(:contact_address, "#company_contact_address")
   element(:contact_details, "#company_contact_details")
   element(:exemptions, "#registration_exemptions")
