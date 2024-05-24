@@ -5,7 +5,8 @@ Feature: Registering a waste exemption
   So that I don't have to repeat myself
 
   Scenario: Applicants details can be used later in registration
-      Given I start a new waste exemption registration
+      Given my business is an "individual"
+      And I start a new waste exemption registration
       When I register choosing to reuse my business information previously entered
       Then I am on the check your answers page
       And my phone number is used for the contact phone number
