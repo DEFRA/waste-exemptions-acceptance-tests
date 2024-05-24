@@ -80,11 +80,6 @@ def complete_organisation_details(registration, address_type)
       registration_number: registration[:registration_number]
     )
     @world.journey.check_registered_company_name_page.submit(choice: :confirm)
-  # when :llp
-  #   @world.journey.registration_number_page.submit(
-  #     registration_number: registration[:registration_number]
-  #   )
-  #   @world.journey.check_registered_company_name_page.submit(choice: :confirm)
   when :partnership
     complete_partner_details(registration)
     @world.journey.operator_name_page.submit(org_name: registration[:operator_name])
