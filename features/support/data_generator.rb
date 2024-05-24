@@ -22,7 +22,7 @@ def generate_registration(business_type, operator_name = nil, email: "wex@exampl
   registration_number = company? ? "00445790" : nil
 
   operator_name ||= generate_operator_name(business_type, "#{contact[:first_name]} #{contact[:last_name]}")
-
+  @operator_name = operator_name
   # Return a hash containing the following data.
   # Some of the sub items are also hashes.
   # The farm questions are randomly set as yes or no.
@@ -30,7 +30,7 @@ def generate_registration(business_type, operator_name = nil, email: "wex@exampl
     business_type: business_type,
     applicant: applicant,
     contact: contact,
-    operator_name: operator_name,
+    operator_name: @operator_name,
     registration_number: registration_number,
     partners: generate_partners(business_type),
     site: generate_site,
