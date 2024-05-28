@@ -25,6 +25,19 @@ When("I change the contact address previously entered") do
   complete_address(:manual)
 end
 
+When("I change the contact email address previously entered") do
+  @world.journey.check_details_page.change_contact_email.click
+  @new_contact_email = "new@example.com"
+  @world.journey.contact_email_page.submit(contact_email: @new_contact_email,
+                                           confirmed_email: @new_contact_email)
+end
+
+When("I change the contact phone number previously entered") do
+  @world.journey.check_details_page.change_contact_tel.click
+  @new_contact_phone_no = "07971 123123"
+  @world.journey.contact_phone_page.submit(contact_phone: @new_contact_phone_no)
+end
+
 Then("I can see the contact name has been updated") do
   expect(@world.journey.check_details_page.contact_name.text).to eq(@new_contact[:full_name])
   expect(@world.journey.check_details_page.contact_name.text).not_to eq(@applicant[:full_name])
@@ -47,4 +60,12 @@ Then("I can see the contact address has been updated") do
   raise if @contact_address.nil? || @new_contact_address.nil?
 
   expect(@contact_address).not_to eq(@new_contact_address)
+end
+
+Then("I can see the contact email address has been updated") do
+  expect(@world.journey.check_details_page.contact_email.text).to eq(@new_contact_email)
+end
+
+Then("I can see the contact phone number has been updated") do
+  expect(@world.journey.check_details_page.contact_tel.text).to eq(@new_contact_phone_no)
 end
