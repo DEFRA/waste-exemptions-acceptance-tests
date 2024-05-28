@@ -81,6 +81,7 @@ end
 
 Then("I am on the check your answers page") do
   expect(@world.journey.check_details_page.title).to have_text("Check your answers")
+  puts @world.journey.check_details_page.current_url
 end
 
 Then("I am on the check site address page") do
