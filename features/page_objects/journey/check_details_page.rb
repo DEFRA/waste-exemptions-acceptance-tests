@@ -18,7 +18,6 @@ class CheckDetailsPage < BasePage
   element(:change_contact_email, "a[href='check-your-answers/contact-email']")
   element(:contact_tel, "#company_contact_telephone_number")
   element(:change_contact_tel, "a[href='check-your-answers/contact-phone']")
-  element(:contact_details, "#company_contact_details")
   element(:exemptions, "#registration_exemptions")
   element(:on_farm, "#registration_will_this_waste_operation_take_place_on_a_farm")
   element(:farmer, "#registration_are_the_waste_exemptions_used_by_a_farmer_or_farming_business")

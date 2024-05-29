@@ -136,12 +136,12 @@ end
 
 Then("my phone number is used for the contact phone number") do
   expect(@world.journey.check_details_page.applicant_tel.text).to eq(@applicant[:telephone])
-  expect(@world.journey.check_details_page.contact_details.text).to have_text(@applicant[:telephone])
+  expect(@world.journey.check_details_page.contact_tel.text).to have_text(@applicant[:telephone])
 end
 
 Then("my email address is used for the contact email address") do
   expect(@world.journey.check_details_page.applicant_tel.text).to eq(@applicant[:telephone])
-  expect(@world.journey.check_details_page.contact_details.text).to have_text(@applicant[:email])
+  expect(@world.journey.check_details_page.contact_email.text).to have_text(@applicant[:email])
 end
 
 Then("my business address is used for the contact address") do
