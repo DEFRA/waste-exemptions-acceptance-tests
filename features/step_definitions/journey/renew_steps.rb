@@ -18,6 +18,7 @@ When("I renew the registration {string} changes") do |changes|
   # Check some details at the start of the renewal journey:
   expect(@world.journey.renew_choice_page.heading).to have_text("Do you want to renew with these details?")
   # TODO: check exemption description removal e.g. U12 - Using mulch
+  expect(@world.journey.check_details_page).to have_no_change_your_answers_links
   expect(page).to have_text("U12")
   expect(page).to have_text(@world.last_reg[:operator_name])
   expect(page).to have_text(@world.last_reg[:applicant][:full_name].to_s)
