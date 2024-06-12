@@ -38,6 +38,15 @@ When("I change the contact phone number previously entered") do
   @world.journey.contact_phone_page.submit(contact_phone: @new_contact_phone_no)
 end
 
+When("I change my farming question answers") do
+  @previous_on_farm_answer = @world.journey.check_details_page.on_farm.text
+  @previous_farmer_answser = @world.journey.check_details_page.farmer.text
+  @world.journey.check_details_page.change_on_farm.click
+  @world.journey.on_farm_page.submit
+  @world.journey.check_details_page.change_farmer.click
+  @world.journey.farmer_page.submit
+end
+
 Then("I can see the contact name has been updated") do
   expect(@world.journey.check_details_page.contact_name.text).to eq(@new_contact[:full_name])
   expect(@world.journey.check_details_page.contact_name.text).not_to eq(@applicant[:full_name])
@@ -68,4 +77,11 @@ end
 
 Then("I can see the contact phone number has been updated") do
   expect(@world.journey.check_details_page.contact_tel.text).to eq(@new_contact_phone_no)
+end
+
+Then("I can see the farming questions have been updated") do
+  expect(@world.journey.check_details_page.on_farm.text).to eq("No")
+  expect(@world.journey.check_details_page.on_farm.text).not_to eq(@previous_on_farm_answer)
+  expect(@world.journey.check_details_page.farmer.text).to eq("No")
+  expect(@world.journey.check_details_page.farmer.text).not_to eq(@previous_farmer_answser)
 end
