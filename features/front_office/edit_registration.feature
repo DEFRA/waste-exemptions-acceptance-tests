@@ -45,7 +45,7 @@ Scenario: Waste exemption holder modifies contact phone number
    When I confirm my registration changes
    Then I will see the edit complete page
     And I will receive a confirmation email
-
+    
 Scenario: Waste exemption holder deregisters some exemptions
   Given I have a valid registration
     And I click on a valid edit link

@@ -114,8 +114,9 @@ When "I confirm full deregistration" do
 end
 
 Then "I will see the main edit page with the updated list of exemptions" do
-  expect(@world.journey.front_office_edit_page).to have_text("U2, U3")
-  expect(@world.journey.front_office_edit_page).not_to have_text("U1, U2")
+  expect(@world.journey.front_office_edit_page).to have_text("U2")
+  expect(@world.journey.front_office_edit_page).to have_text("U3")
+  expect(@world.journey.front_office_edit_page).not_to have_text("U1")
 end
 
 Then "I will see the main edit page with an empty list of exemptions" do

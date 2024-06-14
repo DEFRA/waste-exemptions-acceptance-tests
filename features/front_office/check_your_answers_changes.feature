@@ -48,7 +48,7 @@ Scenario: User can change the contact email address from check your answers page
      When I change the contact email address previously entered
      Then I can see the contact email address has been updated
 
-  Scenario: User can change the contact phone number from check your answers page
+Scenario: User can change the contact phone number from check your answers page
     Given my business is a "charity"
       And I start a new waste exemption registration
       And I register choosing to reuse my business information previously entered
@@ -56,10 +56,27 @@ Scenario: User can change the contact email address from check your answers page
      When I change the contact phone number previously entered
      Then I can see the contact phone number has been updated
 
-  Scenario: User can change their farming question answers from check your answers page
+Scenario: User can change their farming question answers from check your answers page
     Given my business is an "individual"
       And I start a new waste exemption registration
       And I register choosing to reuse my business information previously entered
       And I am on the check your answers page
-      When I change my farming question answers
-      Then I can see the farming questions have been updated
+     When I change my farming question answers
+     Then I can see the farming questions have been updated
+
+Scenario: User can change their waste exemptions choices from the check your answers page
+    Given my business is a "limited_company"
+      And I start a new waste exemption registration
+      And I register choosing to reuse my business information previously entered
+      And I am on the check your answers page
+     When I change my waste exemptions
+     Then I can see the waste exemptions chosen have been updated
+
+Scenario: User can change their applicant details from the check your answers page
+    Given my business is a "limited_company"
+      And I start a new waste exemption registration
+      And I register choosing to reuse my business information previously entered
+      And I am on the check your answers page
+     When I change my applicant details
+     Then I can see my applicant details have been updated
+

@@ -49,7 +49,7 @@ def generate_person(email)
     first_name: first_name,
     last_name: last_name,
     full_name: "#{first_name} #{last_name}",
-    telephone: "0117 9000000",
+    telephone: "07971 #{rand(1_000_00..9_999_99)}",
     email: email,
     position: Faker::Job.title
   }
