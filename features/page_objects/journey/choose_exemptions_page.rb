@@ -16,7 +16,6 @@ class ChooseExemptionsPage < BasePage
         exemptions.find { |chk| chk["id"] == search_val }.click
       end
     end
-
     submit_button.click
   end
 

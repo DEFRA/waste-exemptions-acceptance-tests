@@ -47,6 +47,27 @@ When("I change my farming question answers") do
   @world.journey.farmer_page.submit
 end
 
+When("I change my waste exemptions") do
+  @existing_exemption = @world.journey.check_details_page.exemptions.text
+  @world.journey.check_details_page.change_exemptions.click
+  @world.journey.choose_exemptions_page.submit(exemptions: %w[T9 T12])
+end
+
+When("I change my applicant details") do
+  @applicant_name = @world.journey.check_details_page.applicant_name.text
+  @applicant_tel = @world.journey.check_details_page.applicant_tel.text
+  @applicant_email = @world.journey.check_details_page.applicant_email.text
+  @world.journey.check_details_page.change_applicant_name.click
+  @new_applicant = generate_person("new_applicant@example.com")
+  @world.journey.name_page.submit(first_name: @new_applicant[:first_name],
+                                  last_name: @new_applicant[:last_name])
+  @world.journey.check_details_page.change_applicant_tel.click
+  @world.journey.phone_page.submit(tel_no: @new_applicant[:telephone])
+  @world.journey.check_details_page.change_applicant_email.click
+  @world.journey.email_page.submit(email: @new_applicant[:email],
+                                   confirm_email: @new_applicant[:email])
+end
+
 Then("I can see the contact name has been updated") do
   expect(@world.journey.check_details_page.contact_name.text).to eq(@new_contact[:full_name])
   expect(@world.journey.check_details_page.contact_name.text).not_to eq(@applicant[:full_name])
@@ -84,4 +105,16 @@ Then("I can see the farming questions have been updated") do
   expect(@world.journey.check_details_page.on_farm.text).not_to eq(@previous_on_farm_answer)
   expect(@world.journey.check_details_page.farmer.text).to eq("No")
   expect(@world.journey.check_details_page.farmer.text).not_to eq(@previous_farmer_answser)
+end
+
+Then("I can see the waste exemptions chosen have been updated") do
+  expect(@world.journey.check_details_page.exemptions.text).to have_text(@existing_exemption)
+  expect(@world.journey.check_details_page.exemptions.text).to have_text("T9")
+  expect(@world.journey.check_details_page.exemptions.text).to have_text("T12")
+end
+
+Then("I can see my applicant details have been updated") do
+  expect(@world.journey.check_details_page.applicant_name.text).to eq(@new_applicant[:full_name])
+  expect(@world.journey.check_details_page.applicant_tel.text).to eq(@new_applicant[:telephone])
+  expect(@world.journey.check_details_page.applicant_email.text).to eq(@new_applicant[:email])
 end
