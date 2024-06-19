@@ -8,6 +8,7 @@ class CheckDetailsPage < BasePage
   element(:companies_house_number, "#company_companies_house_number")
   element(:place_of_business, "#company_place_of_business")
   element(:company_address, "#company_address")
+  element(:change_company_address, "a[href='check-your-answers/operator-address']")
   element(:contact_name, "#company_contact_name")
   elements(:change_your_answers_links, "a[href^='check-your-answers']")
   element(:change_contact_name, "a[href='check-your-answers/contact-name']")

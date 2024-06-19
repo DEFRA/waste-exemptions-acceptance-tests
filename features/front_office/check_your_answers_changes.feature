@@ -80,3 +80,10 @@ Scenario: User can change their applicant details from the check your answers pa
      When I change my applicant details
      Then I can see my applicant details have been updated
 
+Scenario: User can change the business address from check your answers page
+    Given my business is a "local_authority"
+      And I start a new waste exemption registration
+      And I register choosing to reuse my business information previously entered
+      And I am on the check your answers page
+     When I change the business address
+     Then I can see the business address has been updated
