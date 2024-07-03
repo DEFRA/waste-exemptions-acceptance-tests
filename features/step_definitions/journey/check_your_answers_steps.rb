@@ -83,6 +83,27 @@ When("I change the business address") do
   )
 end
 
+When("I change the site address") do
+  @site_address = @world.journey.check_details_page.site_address.text
+  @world.journey.check_details_page.change_site_location.click
+  @world.journey.check_site_address_page.submit(choice: :use_different_address)
+  @world.journey.address_lookup_page.submit(postcode: "BS1 5AH",
+                                            result: "THRIVE RENEWABLES PLC, DEANERY ROAD, BRISTOL, BS1 5AH")
+end
+
+When("I change my companies house number") do
+  @old_registered_name = @world.journey.check_details_page.company_name.text
+  @world.journey.check_details_page.change_companies_house_number.click
+  @new_companies_house_number = "12345678"
+  @world.journey.registration_number_page.submit(
+    registration_number: @new_companies_house_number
+  )
+end
+
+When("I confirm my business details are correct") do
+  @world.journey.check_registered_company_name_page.submit(choice: :confirm)
+end
+
 Then("I can see the contact name has been updated") do
   expect(@world.journey.check_details_page.contact_name.text).to eq(@new_contact[:full_name])
   expect(@world.journey.check_details_page.contact_name.text).not_to eq(@applicant[:full_name])
@@ -137,4 +158,14 @@ end
 Then("I can see the business address has been updated") do
   expect(@world.journey.check_details_page.company_address.text).not_to eq(@company_address)
   expect(@world.journey.check_details_page.company_address.text).to have_text(@new_postcode)
+end
+
+Then("I can see the site address has been updated") do
+  @new_site_address = @world.journey.check_details_page.site_address.text
+  expect(@site_address).not_to eq(@new_site_address)
+end
+
+Then("my company details have been updated") do
+  expect(@world.journey.check_details_page.companies_house_number.text).to eq(@new_companies_house_number)
+  expect(@old_registered_name).not_to eq @world.journey.check_details_page.company_name.text
 end

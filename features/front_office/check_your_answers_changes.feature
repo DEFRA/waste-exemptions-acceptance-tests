@@ -87,3 +87,20 @@ Scenario: User can change the business address from check your answers page
       And I am on the check your answers page
      When I change the business address
      Then I can see the business address has been updated
+
+Scenario: User can change the site address from check your answers page
+    Given my business is a "limited_company"
+      And I start a new waste exemption registration
+      And I register choosing to reuse my business information previously entered
+      And I am on the check your answers page
+     When I change the site address
+     Then I can see the site address has been updated
+
+Scenario: Limited company can change the business details from check your answers page
+    Given my business is a "limited_company"
+      And I start a new waste exemption registration
+      And I register choosing to reuse my business information previously entered
+      And I am on the check your answers page
+     When I change my companies house number
+      And I confirm my business details are correct
+     Then my company details have been updated
