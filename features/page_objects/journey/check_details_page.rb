@@ -4,8 +4,10 @@ class CheckDetailsPage < BasePage
 
   element(:business_type, "#change_site_details")
   element(:operator_name, "#company_operator_name")
+  element(:company_name, "#company_registered_name")
   element(:change_operator_name, "a[href='check-your-answers/operator-name'")
   element(:companies_house_number, "#company_companies_house_number")
+  element(:change_companies_house_number, "a[href='check-your-answers/registration-number']")
   element(:place_of_business, "#company_place_of_business")
   element(:company_address, "#company_address")
   element(:change_company_address, "a[href='check-your-answers/operator-address']")
@@ -35,5 +37,6 @@ class CheckDetailsPage < BasePage
   element(:grid_ref, "#registration_grid_reference")
   element(:site_desc, "#registration_site_description")
   element(:site_address, "#registration_site_address")
+  element(:change_site_location, "a[href='check-your-answers/check-site-address']")
 
 end
