@@ -1,7 +1,16 @@
 version: 2
+registries:
+  wex-github:
+    type: git
+    url: https://github.com
+    username: ${{secrets.WEX_GITHUB_USERNAME}}
+    password: ${{secrets.WEX_GITHUB_PASSWORD}}
 updates:
 - package-ecosystem: bundler
   directory: "/"
+  insecure-external-code-execution: allow
+  registries:
+  - wex-github
   schedule:
     interval: daily
   open-pull-requests-limit: 10
