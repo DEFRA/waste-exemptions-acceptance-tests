@@ -61,7 +61,12 @@ Given("I register choosing different business and contact addresses") do
   @world.journey.address_lookup_page.submit(postcode: @postcode, result: @contact_address)
   @world.journey.on_farm_page.submit(on_farm: :on_farm)
   @world.journey.farmer_page.submit(farmer: :farmer)
-  @world.journey.site_grid_reference_page.choose_address.click
+  @ngr = "ST 58132 72695"
+  @site_description = "wrong site location"
+  @world.journey.site_grid_reference_page.submit(
+    grid_ref: @ngr,
+    site_details: @site_description
+  )
 end
 
 Then("I will be informed the registration is complete") do

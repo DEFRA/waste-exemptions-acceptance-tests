@@ -37,6 +37,6 @@ class CheckDetailsPage < BasePage
   element(:grid_ref, "#registration_grid_reference")
   element(:site_desc, "#registration_site_description")
   element(:site_address, "#registration_site_address")
-  element(:change_site_location, "a[href='check-your-answers/check-site-address']")
-
+  element(:change_site_address, "a[href='check-your-answers/check-site-address']")
+  elements(:change_site_location, "a[href='check-your-answers/site-grid-reference']")
 end

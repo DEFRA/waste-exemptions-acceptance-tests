@@ -85,10 +85,29 @@ end
 
 When("I change the site address") do
   @site_address = @world.journey.check_details_page.site_address.text
-  @world.journey.check_details_page.change_site_location.click
+  @world.journey.check_details_page.change_site_address.click
   @world.journey.check_site_address_page.submit(choice: :use_different_address)
   @world.journey.address_lookup_page.submit(postcode: "BS1 5AH",
                                             result: "THRIVE RENEWABLES PLC, DEANERY ROAD, BRISTOL, BS1 5AH")
+end
+
+When("I change to a site address") do
+  @world.journey.check_details_page.change_site_location.first.click
+  find_link("postcode").click
+  @new_address = "THRIVE RENEWABLES PLC, DEANERY ROAD, BRISTOL, BS1 5AH"
+  @world.journey.check_site_address_page.submit(choice: :use_different_address)
+  @world.journey.address_lookup_page.submit(postcode: "BS1 5AH",
+                                            result: @new_address)
+end
+
+When("I change the site national grid reference") do
+  @world.journey.check_details_page.change_site_location.first.click
+  @new_ngr = "SD 91402 09578"
+  @new_site_description = "correct location"
+  @world.journey.site_grid_reference_page.submit(
+    grid_ref: @new_ngr,
+    site_details: @new_site_description
+  )
 end
 
 When("I change my companies house number") do
@@ -163,6 +182,15 @@ end
 Then("I can see the site address has been updated") do
   @new_site_address = @world.journey.check_details_page.site_address.text
   expect(@site_address).not_to eq(@new_site_address)
+end
+
+Then("I can see the site address on the check your answers page") do
+  expect(remove_new_lines_from_address(@world.journey.check_details_page.site_address.text)).to eq(@new_address)
+end
+
+Then("I can see the site location has been updated") do
+  expect(@world.journey.check_details_page.grid_ref.text).to eq(@new_ngr)
+  expect(@world.journey.check_details_page.site_desc.text).to eq(@new_site_description)
 end
 
 Then("my company details have been updated") do
