@@ -61,6 +61,31 @@ Given("I register choosing different business and contact addresses") do
   @world.journey.address_lookup_page.submit(postcode: @postcode, result: @contact_address)
   @world.journey.on_farm_page.submit(on_farm: :on_farm)
   @world.journey.farmer_page.submit(farmer: :farmer)
+  @world.journey.site_grid_reference_page.choose_address.click
+end
+
+Given("I register choosing different business and contact addresses and a site grid reference") do
+  @world.journey.location_page.submit(location: :england)
+  # Add an S3 exemption
+  @world.journey.choose_exemptions_page.submit(exemptions: %w[S3])
+  @applicant = generate_person("applicant@example.com")
+  complete_applicant_details(@applicant)
+  @world.journey.business_type_page.submit(business_type: :individual)
+  @world.journey.operator_name_page.submit(org_name: "Soul trader")
+  @postcode = "BS1 5AH"
+  @business_address = "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+  @world.journey.address_lookup_page.submit(postcode: @postcode, result: @business_address)
+  @world.journey.check_contact_name_page.submit(reuse: :reject)
+  @world.journey.name_page.submit(first_name: @applicant[:first_name], last_name: @applicant[:last_name])
+  @world.journey.contact_position_page.submit(position: @applicant[:position])
+  @world.journey.check_contact_phone_page.submit(reuse: :accept)
+  @world.journey.check_contact_email_page.submit(reuse: :accept)
+  @world.journey.check_contact_address_page.submit(reuse: :reject)
+  @postcode = "S9 4WF"
+  @contact_address = "ENVIRONMENT AGENCY, QUADRANT 2, 99, PARKWAY AVENUE, SHEFFIELD, S9 4WF"
+  @world.journey.address_lookup_page.submit(postcode: @postcode, result: @contact_address)
+  @world.journey.on_farm_page.submit(on_farm: :on_farm)
+  @world.journey.farmer_page.submit(farmer: :farmer)
   @ngr = "ST 58132 72695"
   @site_description = "wrong site location"
   @world.journey.site_grid_reference_page.submit(
@@ -90,6 +115,7 @@ Then("I am on the check your answers page") do
 end
 
 Then("I am on the check site address page") do
+  puts current_url
   expect(@world.journey.check_details_page.title).to have_text("Where will the waste operation take place?")
 end
 
