@@ -119,6 +119,15 @@ When("I change my companies house number") do
   )
 end
 
+When("I add another partner") do
+  @world.journey.check_details_page.change_partner_details.click
+  @new_partner = generate_person("partner@example.com")
+  @world.journey.partners_page.submit(
+    first_name: @new_partner[:first_name],
+    last_name: @new_partner[:last_name]
+  )
+end
+
 When("I confirm my business details are correct") do
   @world.journey.check_registered_company_name_page.submit(choice: :confirm)
 end
@@ -196,4 +205,8 @@ end
 Then("my company details have been updated") do
   expect(@world.journey.check_details_page.companies_house_number.text).to eq(@new_companies_house_number)
   expect(@old_registered_name).not_to eq @world.journey.check_details_page.company_name.text
+end
+
+Then("I can see the partner added to the check your answers page") do
+  expect(@world.journey.check_details_page.partner_details.text).to have_text(@new_partner[:full_name])
 end
