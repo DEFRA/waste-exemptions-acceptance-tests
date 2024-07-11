@@ -104,7 +104,6 @@ Scenario: User can change the site location national grid reference from check y
      When I change the site national grid reference
      Then I can see the site location has been updated
 
-
 Scenario: User can change the site location from a grid reference to an address from check your answers page
     Given my business is a "limited_company"
       And I start a new waste exemption registration
@@ -113,7 +112,6 @@ Scenario: User can change the site location from a grid reference to an address 
      When I change to a site address
      Then I can see the site address on the check your answers page
   
-
 Scenario: Limited company can change the business details from check your answers page
     Given my business is a "limited_company"
       And I start a new waste exemption registration
@@ -122,3 +120,11 @@ Scenario: Limited company can change the business details from check your answer
      When I change my companies house number
       And I confirm my business details are correct
      Then my company details have been updated
+
+Scenario: User can partner details from check your answers page
+    Given my business is a "partnership"
+      And I start a new waste exemption registration
+      And I register choosing to reuse my business information previously entered
+      And I am on the check your answers page
+     When I add another partner
+     Then I can see the partner added to the check your answers page
