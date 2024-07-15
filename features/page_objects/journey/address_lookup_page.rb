@@ -12,7 +12,7 @@ class AddressLookupPage < BasePage
   # Search results as a dropdown
   element(:show_list, "input[id='address_match_selection']")
   element(:results_dropdown, "select[id*='address_uprn']")
-  element(:cannot_find_address, "a[href*='skip']")
+  element(:cannot_find_address, "a[href*='skip'],a[href$='/site-grid-reference'")
 
   def submit(args = {})
     enter_postcode(args[:postcode]) if args.key?(:postcode)
