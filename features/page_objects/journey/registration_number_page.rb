@@ -2,7 +2,7 @@
 
 class RegistrationNumberPage < BasePage
 
-  element(:registration_number, "input[id^='registration-number-form-company-no-field']")
+  element(:registration_number, "input[id^='registration-number-form-temp-company-no-field']")
 
   def submit(args = {})
     registration_number.set(args[:registration_number]) if args.key?(:registration_number)
