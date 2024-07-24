@@ -23,7 +23,7 @@ Then("I will see the standard conditional confirmation page") do
 end
 
 Then("I will not receive an edit link email") do
-  expect(email_exists?(@world.last_reg, [@world.last_reg_no, edit_link_email_expected_text])).to be false
+  expect(email_exists?([@world.last_reg_no, edit_link_email_expected_text], @world.last_reg)).to be false
 end
 
 When("I enter a valid combination of reference number and email address") do
@@ -32,5 +32,5 @@ When("I enter a valid combination of reference number and email address") do
 end
 
 Then("I will receive an edit link email") do
-  expect(email_exists?(@world.last_reg, [@world.last_reg_no, edit_link_email_expected_text])).to be true
+  expect(email_exists?([@world.last_reg_no, edit_link_email_expected_text], @world.last_reg)).to be true
 end
