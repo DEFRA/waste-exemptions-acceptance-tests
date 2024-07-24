@@ -20,11 +20,6 @@ When("I renew the registration {string} changes") do |changes|
   expect(@world.journey.renew_choice_page.heading).to have_text("Do you want to renew with these details?")
   expect(page).to have_text("U1")
   unless @changes == :without # make changes for the renewed registration
-
-    # @world.journey.check_details_page.change_contact_email.click
-    # @contact_email = "new_contact@example.com"
-    # @world.journey.contact_email_page.submit(contact_email: @contact_email,
-    #                                        confirmed_email: @contact_email)
     @world.journey.check_details_page.change_applicant_email.click
     @applicant_email = "new_applicant@example.com"
     @world.journey.email_page.submit(email: @applicant_email,
