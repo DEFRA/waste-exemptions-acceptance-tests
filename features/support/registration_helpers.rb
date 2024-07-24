@@ -15,7 +15,6 @@ def add_submitted_registration(registration, address_type = :lookup, site_type =
   @world.journey.registration_type_page.submit(start_option: :new_radio)
   @world.journey.location_page.submit(location: :england)
   @world.journey.choose_exemptions_page.submit(exemptions: registration[:exemptions])
-
   complete_applicant_details(registration[:applicant])
   complete_organisation_details(registration, address_type)
   complete_contact_details(registration[:contact], address_type)

@@ -1,4 +1,4 @@
-@backoffice @renew @renewb
+@backoffice @renew @renewb @email
 Feature: [RUBY-241] Back office user carries out a renewal
    As an admin agent
    I need to renew on behalf of an assisted digital user
@@ -8,20 +8,16 @@ Feature: [RUBY-241] Back office user carries out a renewal
    This requires the environment variable RENEWAL_WINDOW_BEFORE_EXPIRY_IN_DAYS=1096.
 
    Background: Register an exemption
-      Given my business is a "limited_company"
-      When I register an exemption
-      Then I will be informed the registration is complete
-
-      Given I sign in as a super agent
+      Given I have a valid registration
+        And I sign in as a super agent
 @smoke
    Scenario: Renew a registration from back office without changes
       When I choose to renew a registration
-      And I renew the registration "without" changes
-      Then I can see the correct renewed details
-      And I cannot renew it again from the back office
-
+       And I renew the registration "without" changes
+      Then I receive a renewal confirmation email
+      
    Scenario: Renew a registration from back office with changes
       When I choose to renew a registration
-      And I renew the registration "with" changes
-      Then I can see the correct renewed details
-      And I cannot renew it again from the back office
+       And I renew the registration "with" changes
+      Then I receive a renewal confirmation email
+      

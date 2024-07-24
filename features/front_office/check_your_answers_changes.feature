@@ -128,3 +128,19 @@ Scenario: User can partner details from check your answers page
       And I am on the check your answers page
      When I add another partner
      Then I can see the partner added to the check your answers page
+
+Scenario: Renew a registration from back office with exemption changes
+      Given I have a valid registration
+        And I sign in as a super agent
+       When I choose to renew a registration
+        And I am on the check your answers page
+        And I change my waste exemptions
+       Then I can see the waste exemptions chosen have been updated
+
+Scenario: User can change their applicant details from the renewal check your answers page
+     Given I have a valid registration
+       And I sign in as a super agent
+      When I choose to renew a registration
+       And I am on the check your answers page
+      When I change my applicant details
+      Then I can see my applicant details have been updated

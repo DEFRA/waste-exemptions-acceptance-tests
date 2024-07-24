@@ -15,4 +15,6 @@ Given("I have a registration {string} of the renewal window") do |window|
   @business_type = :limited_company
   puts "#{@registration} generated"
   @world.last_reg_no = @registration
+  @contact_email = "contact1@example.com"
+  @applicant_email = "applicant1@example.com"
 end
