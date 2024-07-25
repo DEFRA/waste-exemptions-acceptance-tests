@@ -144,3 +144,11 @@ Scenario: User can change their applicant details from the renewal check your an
        And I am on the check your answers page
       When I change my applicant details
       Then I can see my applicant details have been updated
+
+Scenario: Renew a registration from back office changing contact's position from check your answers page
+     Given I have a valid registration
+       And I sign in as a super agent
+      When I choose to renew a registration
+       And I am on the check your answers page
+     When I change the contact position previously entered
+     Then I can see the contact position has been updated
