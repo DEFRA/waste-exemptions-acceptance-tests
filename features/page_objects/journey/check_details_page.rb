@@ -16,7 +16,8 @@ class CheckDetailsPage < BasePage
   element(:contact_name, "#company_contact_name")
   element(:change_contact_name, "a[href='check-your-answers/contact-name'], a[href='renewal-start/contact-name']")
   element(:contact_position, "#company_contact_position")
-  element(:change_contact_position, "a[href='check-your-answers/contact-position']")
+  element(:change_contact_position,
+          "a[href='check-your-answers/contact-position'],a[href='renewal-start/contact-position']")
   element(:contact_address, "#company_contact_address")
   element(:change_contact_address,
           "a[href='check-your-answers/contact-address'],a[href='renewal-start/contact-address']")

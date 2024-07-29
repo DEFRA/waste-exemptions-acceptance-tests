@@ -176,3 +176,11 @@ Scenario: User can change the contact email address from renewal check your answ
       And I am on the check your answers page
      When I change the contact email address previously entered
      Then I can see the contact email address has been updated
+     
+Scenario: Renew a registration from back office changing contact's position from check your answers page
+     Given I have a valid registration
+       And I sign in as a super agent
+      When I choose to renew a registration
+       And I am on the check your answers page
+      When I change the contact position previously entered
+      Then I can see the contact position has been updated
