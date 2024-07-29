@@ -145,10 +145,42 @@ Scenario: User can change their applicant details from the renewal check your an
       When I change my applicant details
       Then I can see my applicant details have been updated
 
+Scenario: User can change the contact address from the renewal check your answers page
+    Given I have a valid registration
+      And I sign in as a super agent
+     When I choose to renew a registration
+      And I am on the check your answers page
+     When I change the contact address previously entered
+     Then I can see the contact address has been updated
+
+Scenario: User can change the contact phone number from renewal check your answers page
+    Given I have a valid registration
+      And I sign in as a super agent
+     When I choose to renew a registration
+      And I am on the check your answers page
+     When I change the contact phone number previously entered
+     Then I can see the contact phone number has been updated
+
+Scenario: User can change contact name from renewal check your answers page
+    Given I have a valid registration
+      And I sign in as a super agent
+     When I choose to renew a registration
+      And I am on the check your answers page
+     When I change the contact name previously entered
+     Then I can see the contact name has been updated
+
+Scenario: User can change the contact email address from renewal check your answers page
+    Given I have a valid registration
+      And I sign in as a super agent
+     When I choose to renew a registration
+      And I am on the check your answers page
+     When I change the contact email address previously entered
+     Then I can see the contact email address has been updated
+     
 Scenario: Renew a registration from back office changing contact's position from check your answers page
      Given I have a valid registration
        And I sign in as a super agent
       When I choose to renew a registration
        And I am on the check your answers page
-     When I change the contact position previously entered
-     Then I can see the contact position has been updated
+      When I change the contact position previously entered
+      Then I can see the contact position has been updated

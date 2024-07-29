@@ -14,7 +14,7 @@ class CheckDetailsPage < BasePage
   element(:company_address, "#company_address")
   element(:change_company_address, "a[href='check-your-answers/operator-address']")
   element(:contact_name, "#company_contact_name")
-  element(:change_contact_name, "a[href='check-your-answers/contact-name']")
+  element(:change_contact_name, "a[href='check-your-answers/contact-name'], a[href='renewal-start/contact-name']")
   element(:contact_position, "#company_contact_position")
   element(:change_contact_position,
           "a[href='check-your-answers/contact-position'],a[href='renewal-start/contact-position']")
@@ -22,9 +22,9 @@ class CheckDetailsPage < BasePage
   element(:change_contact_address,
           "a[href='check-your-answers/contact-address'],a[href='renewal-start/contact-address']")
   element(:contact_email, "#company_contact_email_address")
-  element(:change_contact_email, "a[href='check-your-answers/contact-email']")
+  element(:change_contact_email, "a[href='check-your-answers/contact-email'], a[href='renewal-start/contact-email']")
   element(:contact_tel, "#company_contact_telephone_number")
-  element(:change_contact_tel, "a[href='check-your-answers/contact-phone']")
+  element(:change_contact_tel, "a[href='check-your-answers/contact-phone'],a[href='renewal-start/contact-phone']")
   element(:exemptions, "#registration_exemptions")
   element(:change_exemptions, "a[href='check-your-answers/exemptions'],a[href='renewal-start/exemptions']")
   element(:on_farm, "#registration_will_this_waste_operation_take_place_on_a_farm")
