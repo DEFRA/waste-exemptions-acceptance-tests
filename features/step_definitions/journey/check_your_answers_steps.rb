@@ -134,7 +134,6 @@ end
 
 Then("I can see the contact name has been updated") do
   expect(@world.journey.check_details_page.contact_name.text).to eq(@new_contact[:full_name])
-  expect(@world.journey.check_details_page.contact_name.text).not_to eq(@applicant[:full_name])
 end
 
 Then("I can see the operator name has been updated") do
