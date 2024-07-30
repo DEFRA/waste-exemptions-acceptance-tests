@@ -9,12 +9,12 @@ def generate_example_email(first_name, last_name)
   "#{first_name.downcase}.#{last_name.downcase}#{rand(1..999)}@example.com".delete("'")
 end
 
-def email_exists?(registration, expected_text)
+def email_exists?(expected_text, registration = nil)
   # registration is the full hash containing all registration details
   # expected_text is an array containing all the text you want to search for
   sleep(2)
   visit(Quke::Quke.config.custom["urls"]["notify_link"])
-
+  # rubocop:disable Style/IdenticalConditionalBranches
   # if using original `generate_registration` data creation method
   if registration
     # We don't know whether the applicant or contact email will be sent first, so try both.
@@ -25,13 +25,21 @@ def email_exists?(registration, expected_text)
     # If that doesn't work, try the contact email:
     expected_text_for_contact = expected_text + [registration[:contact][:email]]
     return true if @world.journey.last_message_page.message_has_text?(expected_text_for_contact)
-  elsif @world.journey.last_message_page.message_has_text?(expected_text)
-    return true
+  else
+    # if using `create_registration(date)` method
+    expected_text_for_applicant = expected_text << @applicant_email
+    return true if @world.journey.last_message_page.message_has_text?(expected_text_for_applicant)
+
+    # removing applicant email from expected text
+    expected_text.delete(@applicant_email)
+    # If that doesn't work, try the contact email:
+    expected_text_for_contact = expected_text << @contact_email
+    return true if @world.journey.last_message_page.message_has_text?(expected_text_for_contact)
   end
-  # if using `create_registration(date)` method
   puts "Email not found"
   false
 end
+# rubocop:enable Style/IdenticalConditionalBranches
 
 def letter_exists?(expected_text)
   visit(Quke::Quke.config.custom["urls"]["notify_link"])
