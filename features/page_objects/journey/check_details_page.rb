@@ -12,7 +12,8 @@ class CheckDetailsPage < BasePage
   element(:change_companies_house_number, "a[href='check-your-answers/registration-number']")
   element(:place_of_business, "#company_place_of_business")
   element(:company_address, "#company_address")
-  element(:change_company_address, "a[href='check-your-answers/operator-address']")
+  element(:change_company_address,
+          "a[href='check-your-answers/operator-address'],a[href='renewal-start/operator-address']")
   element(:contact_name, "#company_contact_name")
   element(:change_contact_name, "a[href='check-your-answers/contact-name'], a[href='renewal-start/contact-name']")
   element(:contact_position, "#company_contact_position")

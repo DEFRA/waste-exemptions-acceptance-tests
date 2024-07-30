@@ -184,3 +184,11 @@ Scenario: Renew a registration from back office changing contact's position from
        And I am on the check your answers page
       When I change the contact position previously entered
       Then I can see the contact position has been updated
+
+Scenario: User can change the business address from renewal check your answers page
+    Given I have a valid registration
+      And I sign in as a super agent
+     When I choose to renew a registration
+      And I am on the check your answers page
+     When I change the business address
+     Then I can see the business address has been updated
