@@ -16,7 +16,7 @@ class LastMessagePage < BasePage
 
     parsed_data = JSON.parse(message_content.text)
 
-    parsed_data["last_notify_message"]["body"].match %r/http(s?):\/\/.{30,46}\/accept.{38}/
+    parsed_data["last_notify_message"]["body"].match %r/http(s?):\/\/.{30,50}\/accept.{38}/
   end
 
   def get_renewal_url(email_address)
@@ -29,7 +29,7 @@ class LastMessagePage < BasePage
     parsed_data = JSON.parse(message_content.text)
     # Find the string that matches:
     # https://, then any 15-24 characters, then /renew/, then any 24 characters
-    parsed_data["last_notify_message"]["body"].match %r/http(s?):\/\/.{14,24}\/renew\/.{24}/
+    parsed_data["last_notify_message"]["body"].match %r/http(s?):\/\/.{14,28}\/renew\/.{24}/
   end
 
   def dereg_url
@@ -42,7 +42,7 @@ class LastMessagePage < BasePage
     parsed_data = JSON.parse(message_content.text)
     # Find the string that matches:
     # https://, then any 15-24 characters, then /renew/, then any 24 characters
-    parsed_data["last_notify_message"]["body"].match %r/http(s?):\/\/.{14,24}\/edit_registration\/.{24}/
+    parsed_data["last_notify_message"]["body"].match %r/http(s?):\/\/.{14,28}\/edit_registration\/.{24}/
   end
 
   def get_unsubscribe_url(email_address)
@@ -55,7 +55,7 @@ class LastMessagePage < BasePage
     parsed_data = JSON.parse(message_content.text)
     # Find the string that matches:
     # https://, then any 15-24 characters, then /renew/, then any 24 characters
-    parsed_data["last_notify_message"]["body"].match %r/http(s?):\/\/.{14,24}\/registrations\/unsubscribe\/.{24}/
+    parsed_data["last_notify_message"]["body"].match %r/http(s?):\/\/.{14,28}\/registrations\/unsubscribe\/.{24}/
   end
 
   def message_has_text?(expected_text)
