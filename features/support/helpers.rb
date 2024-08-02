@@ -19,3 +19,7 @@ end
 def company?
   %i[limited_company llp].include?(@business_type)
 end
+
+def trim_comma(amount)
+  amount.to_s.tr(",", "")
+end

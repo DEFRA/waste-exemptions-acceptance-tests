@@ -1,3 +1,4 @@
+@backoffice
 Feature: Sending letters for registrations and renewals when no contact email is given
 
 Background: Sign into back office
