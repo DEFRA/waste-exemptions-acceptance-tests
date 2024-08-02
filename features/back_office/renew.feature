@@ -10,12 +10,12 @@ Feature: [RUBY-241] Back office user carries out a renewal
    Background: Register an exemption
       Given I have a valid registration
         And I sign in as a super agent
-@smoke
+
    Scenario: Renew a registration from back office without changes
       When I choose to renew a registration
        And I renew the registration "without" changes
       Then I receive a renewal confirmation email
-      
+@smoke
    Scenario: Renew a registration from back office with changes
       When I choose to renew a registration
        And I renew the registration "with" changes

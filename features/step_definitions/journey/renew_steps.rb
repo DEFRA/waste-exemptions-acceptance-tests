@@ -17,17 +17,25 @@ When("I renew the registration {string} changes") do |changes|
   @world.journey.home_page.accept_cookies
   @world.journey.check_registered_company_name_page.submit(choice: :confirm) if company?
   # Check some details at the start of the renewal journey:
-  expect(@world.journey.renew_choice_page.heading).to have_text("Do you want to renew with these details?")
+  expect(@world.journey.check_details_page.heading).to have_text("Do you want to renew with these details?")
   expect(page).to have_text("U1")
   unless @changes == :without # make changes for the renewed registration
+    @world.journey.check_details_page.change_contact_email.click
+    @contact_email = "new@example.com"
+    @world.journey.contact_email_page.submit(contact_email: @contact_email,
+                                             confirmed_email: @contact_email)
     @world.journey.check_details_page.change_applicant_email.click
     @applicant_email = "new_applicant@example.com"
     @world.journey.email_page.submit(email: @applicant_email,
                                      confirm_email: @applicant_email)
-
+    @world.journey.check_details_page.change_on_farm.click
+    @world.journey.on_farm_page.submit
+    @world.journey.check_details_page.change_farmer.click
+    @world.journey.farmer_page.submit
+    @world.journey.check_details_page.change_contact_address.click
+    complete_address(:manual)
   end
-  @world.journey.renew_choice_page.renew_without_changes_radio.click
-  @world.journey.renew_choice_page.submit
+  @world.journey.check_details_page.submit
   expect(@world.journey.renew_splash_page.heading).to have_text("You are about to renew for 3 years")
   @world.journey.renew_splash_page.submit
   @world.journey.declaration_page.submit
@@ -38,50 +46,6 @@ When("I renew the registration {string} changes") do |changes|
   else
     puts "#{@world.last_reg_no} renewed with changes. New registration is #{@world.last_reg_no}."
   end
-end
-
-When("I renew changing my organisation type") do
-  @world.journey.home_page.accept_cookies
-  @world.journey.check_registered_company_name_page.submit(choice: :confirm) if company?
-  @renewed_reg = generate_registration(@business_type, nil)
-
-  @world.journey.renew_choice_page.renew_with_changes_radio.click
-  @world.journey.renew_choice_page.submit
-
-  # rubocop:disable Layout/LineLength
-  expect(@world.journey.renew_splash_page.heading).to have_text("We'll fill in the form with your current registration details")
-  # rubocop:enable Layout/LineLength
-  @world.journey.renew_splash_page.submit
-  @world.journey.location_page.submit(location: :england)
-  @world.journey.choose_exemptions_page.submit
-  complete_applicant_details(@renewed_reg[:applicant])
-
-  @world.journey.business_type_page.submit(business_type: :individual)
-end
-
-When("I am asked to confirm the exemptions I still require during renewal") do
-  @world.journey.home_page.accept_cookies
-  @world.journey.check_registered_company_name_page.submit(choice: :confirm) if company?
-  @renewed_reg = generate_registration(@business_type, nil)
-
-  @world.journey.renew_choice_page.renew_with_changes_radio.click
-  @world.journey.renew_choice_page.submit
-
-  # rubocop:disable Layout/LineLength
-  expect(@world.journey.renew_splash_page.heading).to have_text("We'll fill in the form with your current registration details")
-  # rubocop:enable Layout/LineLength
-  @world.journey.renew_splash_page.submit
-  @world.journey.location_page.submit(location: :england)
-end
-
-Then("I can renew it again") do
-  # The intended behaviour is actually for back office NOT to be able to renew a registration here.
-  # This will be fixed in RUBY-602.
-  find_link("Dashboard").click
-  @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
-  find_link("Start renewal").click
-  @world.journey.ad_privacy_policy_page.submit
-  expect(@world.journey.renew_choice_page.heading).to have_text("Do you want to renew with these details?")
 end
 
 # Front office steps:
@@ -117,7 +81,7 @@ end
 
 Then("I cannot renew it again") do
   visit(@renewal_url)
-  expect(@world.journey.renew_choice_page.heading).to have_text("That registration has already been renewed")
+  expect(@world.journey.confirmation_page.heading).to have_text("That registration has already been renewed")
 end
 
 Then("a renewal reminder letter has been sent") do
@@ -128,15 +92,13 @@ Then("a renewal reminder letter has been sent") do
   expect(letter_exists?(expected_text)).to be true
 end
 
-Then("I am informed I will need a new registration") do
-  expect(@world.journey.can_not_renew_type_page.heading).to have_text("You need a new registration")
-  expect(@world.journey.can_not_renew_type_page).to have_new_registration_option
-end
-
 When("I choose to remove all my exemptions") do
+  @world.journey.home_page.accept_cookies
+  @world.journey.check_registered_company_name_page.submit(choice: :confirm) if company?
+  @world.journey.check_details_page.change_exemptions.click
   @world.journey.choose_exemptions_page.uncheck_all_exemptions_and_submit
 end
 
-When("I will be informed I do not need to renew") do
-  expect(@world.journey.renew_no_exemptions_page.heading).to have_text("You are about to remove all exemptions")
+When("I will be informed I need to select an exemption") do
+  expect(@world.journey.choose_exemptions_page.error.text).to have_text("You must select at least one exemption")
 end

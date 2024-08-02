@@ -1,4 +1,4 @@
-@email @fo_edit
+@frontoffice @email @fo_edit
 Feature: Edit / deregistration self-serve
 
 As a waste exemption holder

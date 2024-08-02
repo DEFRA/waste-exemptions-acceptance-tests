@@ -1,3 +1,4 @@
+@frontoffice
 Feature: Users can unsubscribe from renewal reminder emails
 
 Background: 

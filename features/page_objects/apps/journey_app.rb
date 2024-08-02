@@ -24,6 +24,10 @@ class JourneyApp
     @last_page = AdPrivacyPolicyPage.new
   end
 
+  def beta_start_page
+    @last_page = BetaStartPage.new
+  end
+
   def business_type_page
     @last_page = BusinessTypePage.new
   end
@@ -96,6 +100,10 @@ class JourneyApp
     @last_page = EmailPage.new
   end
 
+  def exemptions_summary_page
+    @last_page = ExemptionsSummaryPage.new
+  end
+
   def front_office_edit_complete_page
     @last_page = FrontOfficeEditDeclarationPage.new
   end
@@ -144,10 +152,6 @@ class JourneyApp
     @last_page = RegistrationNumberPage.new
   end
 
-  def renew_choice_page
-    @last_page = RenewChoicePage.new
-  end
-
   def renew_splash_page
     @last_page = RenewSplashPage.new
   end
@@ -162,10 +166,6 @@ class JourneyApp
 
   def can_not_renew_type_page
     @last_page = CanNotRenewTypePage.new
-  end
-
-  def renew_no_exemptions_page
-    @last_page = RenewNoExemptionsPage.new
   end
 
   def capture_reference_page
