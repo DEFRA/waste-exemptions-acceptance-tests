@@ -4,7 +4,7 @@ Given "I have a valid registration" do
   login_user(@world.developer_user)
   create_registration(Date.today + 365)
   @registration = @world.bo.dashboard_page.created_registration.text[/(WEX\d+)/, 1]
-  @edit_token = @world.bo.dashboard_page.created_registration.text[/Edit token: (.+)/, 1]
+  @edit_token = @world.bo.dashboard_page.created_registration.text[/Edit token (.+)/, 1]
   puts "generated #{@registration}"
   @world.last_reg_no = @registration
   @world.last_reg_edit_token = @edit_token
@@ -25,6 +25,7 @@ end
 
 When "I click on a valid edit link" do
   visit "/edit_registration/#{@world.last_reg_edit_token}"
+  puts current_url
   @world.journey.home_page.accept_cookies
 end
 
