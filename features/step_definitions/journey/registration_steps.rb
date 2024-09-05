@@ -200,3 +200,25 @@ Then("I have the option to choose business, contact address or choose another ad
   expect(@contact_address).to eq(@world.journey.check_site_address_page.contact_address.text)
   expect(@world.journey.check_site_address_page).to have_different_address
 end
+
+When("I enter the registration details") do
+  @world.journey.exemptions_summary_page.submit_button.click
+  @applicant = generate_person("applicant@example.com")
+  complete_applicant_details(@applicant)
+  complete_organisation_details(generate_registration(:individual), :lookup)
+  @world.journey.check_contact_name_page.submit(reuse: :accept)
+  @world.journey.contact_position_page.submit(position: @applicant[:position])
+  @world.journey.check_contact_phone_page.submit(reuse: :accept)
+  @world.journey.check_contact_email_page.submit(reuse: :accept)
+  @world.journey.check_contact_address_page.submit(reuse: :accept)
+  @world.journey.on_farm_page.submit(on_farm: :on_farm)
+  @world.journey.farmer_page.submit(farmer: :farmer)
+  @world.journey.site_grid_reference_page.choose_address.click
+  @world.journey.check_site_address_page.submit(choice: :operator_address_reuse)
+  @world.journey.check_details_page.submit
+  @world.journey.declaration_page.submit
+end
+
+Then("I will see a registration confirmation") do
+  expect(@world.journey.registration_confirmation_page.registration_number).to have_text("WEX")
+end

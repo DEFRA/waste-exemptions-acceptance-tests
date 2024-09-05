@@ -23,3 +23,9 @@ end
 def trim_comma(amount)
   amount.to_s.tr(",", "")
 end
+
+def next_year
+  time = Time.new
+  year = time.strftime "%y"
+  year.to_i + 1
+end
