@@ -184,5 +184,25 @@ class JourneyApp
     @last_page = UnsubscriptionConfirmationPage.new
   end
 
+  def payment_summary_page
+    @last_page = PaymentSummaryPage.new
+  end
+
+  def payment_page
+    @last_page = PaymentPage.new
+  end
+
+  def payment_confirmation_page
+    @last_page = PaymentConfirmationPage.new
+  end
+
+  def registration_confirmation_page
+    @last_page = RegistrationConfirmationPage.new
+  end
+
+  def registration_received_pending_payment_page
+    @last_page = RegistrationReceivedPendingPaymentPage.new
+  end
+
 end
 # rubocop:enable  Metrics/ClassLength
