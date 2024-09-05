@@ -25,6 +25,7 @@ end
 
 When "I click on a valid edit link" do
   visit "/edit_registration/#{@world.last_reg_edit_token}"
+  puts current_url
   @world.journey.home_page.accept_cookies
 end
 
