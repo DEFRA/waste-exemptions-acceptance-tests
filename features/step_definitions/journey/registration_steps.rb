@@ -221,4 +221,5 @@ end
 
 Then("I will see a registration confirmation") do
   expect(@world.journey.registration_confirmation_page.registration_number).to have_text("WEX")
+  puts "#{@world.journey.registration_confirmation_page.registration_number.text} generated"
 end
