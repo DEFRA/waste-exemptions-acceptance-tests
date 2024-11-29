@@ -29,7 +29,7 @@ And("refreshing doesn't create new registrations") do
   last_reg_no = @world.known_reg_no.to_s.scan(/\d+/)[0].to_s
   @world.bo.dashboard_page.submit(search_term: last_reg_no.to_s)
   last_reg_no_number = last_reg_no.to_i
-  puts "#{last_reg_no} is the latest known registration"
+  puts "WEX#{last_reg_no} is the latest known registration"
 
   # Refresh the start page. This should generate no more than one new registration.
   find_link("Start a new registration").click

@@ -9,7 +9,6 @@ class ChangeUserRolePage < BasePage
   element(:user_details, "form p")
 
   element(:system, "#user_role_system + label")
-  element(:super, "#user_role_super_agent + label")
   element(:admin, "#user_role_admin_agent + label")
   element(:data, "#user_role_data_agent + label")
 

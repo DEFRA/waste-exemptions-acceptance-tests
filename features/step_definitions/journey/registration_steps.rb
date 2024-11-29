@@ -202,6 +202,7 @@ Then("I have the option to choose business, contact address or choose another ad
 end
 
 When("I enter the registration details") do
+  @total_charge = trim_pound_sign(@world.journey.exemptions_summary_page.total_charge.text)
   @world.journey.exemptions_summary_page.submit_button.click
   @applicant = generate_person("applicant@example.com")
   complete_applicant_details(@applicant)

@@ -13,6 +13,6 @@ Scenario: Succesful registration by bank transfer after refused card payment
      And I select exemption "U1"
      And I enter the registration details
      But I have my credit card payment rejected
-     When I pay by bank transfer
+     When I choose to pay by bank transfer
      Then I will see a registration pending payment confirmation
     

@@ -15,10 +15,10 @@ Feature: Carry out system tasks
     Then a password is set
     And the new back office user can sign in
     And the new back office user cannot change their password
-  
+
   Scenario: System user changes a user's role
     Given I sign in as a system user
-    When I change a users role to super agent
+    When I change a users role to data agent
     Then I see their role has changed
 
   Scenario: System user deactivates a user
@@ -37,18 +37,6 @@ Feature: Carry out system tasks
     And I can access data exports
     But I cannot toggle features
 
-  Scenario: User is a super_agent
-    Given I sign in as a super agent
-    Then I will not have the option to manage users
-    And I cannot access the user management screen
-    But I will have the option to create a new registration
-    And I can access create a new registration
-    But I can search for registrations
-    And I can view their details
-    And I can continue an in progress registration
-    And I can access data exports
-    But I cannot toggle features
-
   Scenario: User is an admin_agent
     Given I sign in as an admin agent
     Then I will not have the option to manage users
@@ -60,7 +48,7 @@ Feature: Carry out system tasks
     And I can continue an in progress registration
     And I can access data exports
     But I cannot toggle features
-    And I cannot edit the most recent registration
+    And I can edit the most recent registration
 
   Scenario: User is a data_agent
     Given I sign in as a data agent
@@ -86,4 +74,4 @@ Feature: Carry out system tasks
     And I can continue an in progress registration
     And I can access data exports
     And I can toggle features
-    But I cannot edit the most recent registration
+    But I can edit the most recent registration

@@ -13,11 +13,12 @@ When("I have my credit card payment rejected") do
   @world.journey.payment_confirmation_page.return.click
 end
 
-When("I pay by bank transfer") do
+When("I choose to pay by bank transfer") do
   @world.journey.payment_summary_page.submit(payment_type: :bank)
 end
 
 Then("I will see a registration pending payment confirmation") do
-  expect(@world.journey.registration_received_pending_payment_page).to have_text("WEX")
-  puts "#{@world.journey.registration_confirmation_page.heading.text} generated"
+  expect(@world.journey.registration_confirmation_page.heading.text).to have_text("WEX")
+  @registration = @world.journey.registration_received_pending_payment_page.registration_number.text
+  puts "#{@registration} generated"
 end

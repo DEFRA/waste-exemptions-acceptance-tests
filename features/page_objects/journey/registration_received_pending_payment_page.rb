@@ -2,6 +2,6 @@
 
 class RegistrationReceivedPendingPaymentPage < BasePage
 
-  element(:registration_number, "#reg_identifier")
+  element(:registration_number, ".govuk-summary-list__row:nth-child(3) strong")
 
 end

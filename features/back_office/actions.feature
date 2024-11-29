@@ -5,7 +5,7 @@ Feature: Back office registration actions
 
     Background: Create registration and sign into back office
       Given I have a valid registration
-      And I sign in as a super agent
+      And I sign in as an admin agent
 
     Scenario: Renewal reminder letter can be resent from registration details page
       When I search for the registration

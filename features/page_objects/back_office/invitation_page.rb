@@ -9,7 +9,6 @@ class InvitationPage < BasePage
   element(:user_email, "#user_email")
 
   element(:sys, "#user_role_system+ label")
-  element(:sa, "#user_role_super_agent+ label")
   element(:admin, "#user_role_admin_agent+ label")
   element(:data, "#user_role_data_agent+ label")
 
@@ -26,8 +25,6 @@ class InvitationPage < BasePage
     case type
     when :system_user
       sys.click
-    when :super_agent
-      sa.click
     when :admin_agent
       admin.click
     when :data_agent

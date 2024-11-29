@@ -23,10 +23,6 @@ class World
     Quke::Quke.config.custom["accounts"]["AdminAgent"]["username"]
   end
 
-  def super_agent_user
-    Quke::Quke.config.custom["accounts"]["SuperAgent"]["username"]
-  end
-
   def system_user
     Quke::Quke.config.custom["accounts"]["SystemUser"]["username"]
   end

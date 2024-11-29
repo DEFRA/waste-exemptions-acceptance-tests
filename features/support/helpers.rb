@@ -29,3 +29,7 @@ def next_year
   year = time.strftime "%y"
   year.to_i + 1
 end
+
+def trim_pound_sign(amount)
+  amount.tr("£", "")
+end
