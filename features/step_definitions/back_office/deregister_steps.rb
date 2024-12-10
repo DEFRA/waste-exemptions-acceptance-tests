@@ -90,17 +90,6 @@ Then("the registration is no longer active") do
   end
 end
 
-Then("I cannot deregister anything") do
-  @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
-  find_link("View details").click
-
-  # Check that there are no deregister links and at least one active tag:
-  expect(@world.bo.registration_details_page.heading).to have_text("Registration details for #{@world.last_reg_no}")
-  expect(@world.bo.registration_details_page).to have_no_deregister_reg_link
-  expect(@world.bo.registration_details_page.deregister_ex_links.count.zero?).to eq(true)
-  expect(@world.bo.registration_details_page.active_tags.count.positive?).to eq(true)
-end
-
 When("I {string} an exemption") do |deregistration_type|
   # Last registration number is stored in @world.last_reg_no.
   # Search for the last reference number:

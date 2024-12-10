@@ -71,4 +71,16 @@ class BackOfficeApp
     @last_page = DeregistrationDetailsPage.new
   end
 
+  def payment_details_page
+    @last_page = PaymentDetailsPage.new
+  end
+
+  def record_payment_page
+    @last_page = RecordPaymentPage.new
+  end
+
+  def record_refund_page
+    @last_page = RecordRefundPage.new
+  end
+
 end

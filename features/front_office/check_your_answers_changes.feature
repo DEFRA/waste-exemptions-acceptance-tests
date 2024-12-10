@@ -131,7 +131,7 @@ Scenario: User can partner details from check your answers page
 
 Scenario: Renew a registration from back office with exemption changes
       Given I have a valid registration
-        And I sign in as a super agent
+        And I sign in as an admin agent
        When I choose to renew a registration
         And I am on the check your answers page
         And I change my waste exemptions
@@ -139,7 +139,7 @@ Scenario: Renew a registration from back office with exemption changes
 
 Scenario: User can change their applicant details from the renewal check your answers page
      Given I have a valid registration
-       And I sign in as a super agent
+       And I sign in as an admin agent
       When I choose to renew a registration
        And I am on the check your answers page
       When I change my applicant details
@@ -147,7 +147,7 @@ Scenario: User can change their applicant details from the renewal check your an
 
 Scenario: User can change the contact address from the renewal check your answers page
     Given I have a valid registration
-      And I sign in as a super agent
+      And I sign in as an admin agent
      When I choose to renew a registration
       And I am on the check your answers page
      When I change the contact address previously entered
@@ -155,7 +155,7 @@ Scenario: User can change the contact address from the renewal check your answer
 
 Scenario: User can change the contact phone number from renewal check your answers page
     Given I have a valid registration
-      And I sign in as a super agent
+      And I sign in as an admin agent
      When I choose to renew a registration
       And I am on the check your answers page
      When I change the contact phone number previously entered
@@ -163,7 +163,7 @@ Scenario: User can change the contact phone number from renewal check your answe
 
 Scenario: User can change contact name from renewal check your answers page
     Given I have a valid registration
-      And I sign in as a super agent
+      And I sign in as an admin agent
      When I choose to renew a registration
       And I am on the check your answers page
      When I change the contact name previously entered
@@ -171,7 +171,7 @@ Scenario: User can change contact name from renewal check your answers page
 
 Scenario: User can change the contact email address from renewal check your answers page
     Given I have a valid registration
-      And I sign in as a super agent
+      And I sign in as an admin agent
      When I choose to renew a registration
       And I am on the check your answers page
      When I change the contact email address previously entered
@@ -179,7 +179,7 @@ Scenario: User can change the contact email address from renewal check your answ
      
 Scenario: Renew a registration from back office changing contact's position from check your answers page
      Given I have a valid registration
-       And I sign in as a super agent
+       And I sign in as an admin agent
       When I choose to renew a registration
        And I am on the check your answers page
       When I change the contact position previously entered
@@ -187,7 +187,7 @@ Scenario: Renew a registration from back office changing contact's position from
 
 Scenario: User can change the business address from renewal check your answers page
     Given I have a valid registration
-      And I sign in as a super agent
+      And I sign in as an admin agent
      When I choose to renew a registration
       And I am on the check your answers page
      When I change the business address

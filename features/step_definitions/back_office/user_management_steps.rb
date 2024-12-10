@@ -45,7 +45,7 @@ Then("the new back office user cannot change their password") do
 
 end
 
-When("I change a users role to super agent") do
+When("I change a users role to data agent") do
   @world.bo.dashboard_page.admin_menu.user_management.click
 
   # This currently relies on the previous scenario to have generated a last_email.
@@ -54,13 +54,13 @@ When("I change a users role to super agent") do
   @world.bo.users_page.look_for(@world.last_email)
   @world.bo.users_page.change_user_role(@world.last_email)
   expect(@world.bo.change_user_role_page).to have_text(@world.last_email)
-  @world.bo.change_user_role_page.submit(role: :super)
+  @world.bo.change_user_role_page.submit(role: :data)
 end
 
 Then("I see their role has changed") do
   @world.bo.users_page.look_for(@world.last_email)
   user = @world.bo.users_page.user_details(@world.last_email)
-  expect(user.role).to have_text("super agent")
+  expect(user.role).to have_text("data agent")
 end
 
 When("I deactivate a user") do

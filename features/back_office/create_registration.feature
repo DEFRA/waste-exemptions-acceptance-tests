@@ -25,7 +25,7 @@ Feature: Back office user completes assisted digital registration for a user
 
   Scenario: Complete a registration on behalf of an external user
     Given I carry out a partial registration
-      And I sign in as a super agent
+      And I sign in as an admin agent
      When I complete an in progress registration
      Then I can find and edit the registration I just submitted
      

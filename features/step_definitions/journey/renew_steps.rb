@@ -55,7 +55,7 @@ Given("I receive an invitation to renew") do
   @renewal = true
   # Log in initially as a back office user and send the renewal email.
   # This will only work in the test environment, where renewals are instantly available.
-  login_user(@world.super_agent_user)
+  login_user(@world.admin_agent_user)
   @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
   @world.bo.dashboard_page.view_link(@world.last_reg_no)
   find_link("Resend renewal email").click

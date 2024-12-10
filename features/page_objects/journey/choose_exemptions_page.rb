@@ -2,14 +2,14 @@
 
 class ChooseExemptionsPage < BasePage
 
-  elements(:exemptions, "input[name$='exemptions_form[exemption_ids][]']", visible: false)
+  elements(:exemptions, "input[name*='exemptions_form']", visible: false)
 
   def submit(args = {})
     if args.key?(:exemptions)
       args[:exemptions].each do |ex|
 
-        search_val = if args.key?(:renewal)
-                       "renew_exemptions_form_checkbox-#{ex}"
+        search_val = if args.key?(:beta)
+                       "activity_exemptions_form_checkbox-#{ex}"
                      else
                        "exemptions_form_checkbox-#{ex}"
                      end

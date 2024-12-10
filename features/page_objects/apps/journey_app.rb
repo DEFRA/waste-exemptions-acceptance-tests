@@ -204,5 +204,13 @@ class JourneyApp
     @last_page = RegistrationReceivedPendingPaymentPage.new
   end
 
+  def select_waste_activities_page
+    @last_message_page = SelectWasteActivitiesPage.new
+  end
+
+  def confirm_exemption_selection_page
+    @last_message_page = ConfirmExemptionSelectionPage.new
+  end
+
 end
 # rubocop:enable  Metrics/ClassLength

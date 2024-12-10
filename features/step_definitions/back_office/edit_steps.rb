@@ -42,6 +42,12 @@ When("I cannot edit the most recent registration") do
   expect(@world.bo.dashboard_page).not_to have_text("Edit")
 end
 
+When("I can edit the most recent registration") do
+  @world.bo.dashboard_page.admin_menu.home_page.click
+  @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
+  expect(@world.bo.dashboard_page).to have_text("Edit")
+end
+
 When("I complete the edit") do
   @world.bo.edit_page.submit
   @world.journey.declaration_page.submit

@@ -1,5 +1,5 @@
 @email
-@frontoffice @renew @renewf 
+@frontoffice @renew @renewf
 Feature: [RUBY-241] Front office user renews a registration via email
   As a waste operator
   I need to renew my waste exemption
