@@ -7,6 +7,7 @@ class PaymentDetailsPage < BasePage
   section(:admin_menu_section, AdminMenuSection, AdminMenuSection::SELECTOR)
 
   element(:record_payment, "[href*='/payments']")
-  element(:amounts, ".govuk-table__cell govuk-!-text-align-right")
+  element(:balance, "#balance")
+  element(:record_refund, "[href*='/record-refund']")
 
 end

@@ -52,10 +52,9 @@ end
 
 Then("I can view their details") do
   @world.bo.dashboard_page.view_link(@world.last_reg_no).click
-  expect(page).to have_content("Registration details for")
-  # rubocop:disable Style/RedundantRegexpEscape
-  expect(page).to have_current_path(%r{^\/registrations\/WEX})
-  # rubocop:enable Style/RedundantRegexpEscape
+  expect(@world.bo.registration_details_page).to have_content("Registration details for")
+  @world.bo.registration_details_page.payment_details.click
+  expect(@world.bo.payment_details_page).to have_content("Payment details for ")
 end
 
 Then("I can continue an in progress registration") do

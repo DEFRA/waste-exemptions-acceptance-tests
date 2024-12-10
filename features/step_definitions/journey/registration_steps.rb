@@ -224,3 +224,40 @@ Then("I will see a registration confirmation") do
   expect(@world.journey.registration_confirmation_page.registration_number).to have_text("WEX")
   puts "#{@world.journey.registration_confirmation_page.registration_number.text} generated"
 end
+
+When("I select waste activity {string}") do |activity|
+  case activity
+  when "We use waste in building and construction"
+    @world.journey.select_waste_activities_page.submit(building: true)
+  when "We burn waste as fuel"
+    @world.journey.select_waste_activities_page.submit(burn_fuel: true)
+  when "We spread or mix waste"
+    @world.journey.select_waste_activities_page.submit(spread_waste: true)
+  when "We use waste in manufacturing or for a specified purpose"
+    @world.journey.select_waste_activities_page.submit(manufacture: true)
+  when "We use effluent or sludge"
+    @world.journey.select_waste_activities_page.submit(sludge: true)
+  when "We burn plant and wood waste"
+    @world.journey.select_waste_activities_page.submit(burn_plant: true)
+  when "We deposit spoil, sanitary and plant matter waste"
+    @world.journey.select_waste_activities_page.submit(spoil: true)
+  when "We deposit or store waste samples for testing"
+    @world.journey.select_waste_activities_page.submit(deposit_testing: true)
+  when "We chemically treat, wash waste or use anaerobic digestion"
+    @world.journey.select_waste_activities_page.submit(wash: true)
+  when "We crush, bale, shred or chip waste"
+    @world.journey.select_waste_activities_page.submit(crush: true)
+  when "We sort, blend and recover waste"
+    @world.journey.select_waste_activities_page.submit(sort: true)
+  when "We treat waste using a wormery or by composting"
+    @world.journey.select_waste_activities_page.submit(worms: true)
+  when "We store waste"
+    @world.journey.select_waste_activities_page.submit(store: true)
+  end
+end
+
+Given("I select exemption(s) {string} from the activities list") do |exemptions|
+  @world.journey.select_waste_activities_page.submit_button.click
+  @world.journey.choose_exemptions_page.submit(exemptions: exemptions.split,
+                                               beta: true)
+end

@@ -79,4 +79,8 @@ class BackOfficeApp
     @last_page = RecordPaymentPage.new
   end
 
+  def record_refund_page
+    @last_page = RecordRefundPage.new
+  end
+
 end

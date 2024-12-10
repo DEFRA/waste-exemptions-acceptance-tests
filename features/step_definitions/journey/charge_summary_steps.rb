@@ -11,6 +11,10 @@ Given("I select exemption(s) {string}") do |exemptions|
   @world.journey.choose_exemptions_page.submit(exemptions: exemptions.split)
 end
 
+Given("I confirm my waste exemption selections") do
+  @world.journey.confirm_exemption_selection_page.submit(choice: :confirm)
+end
+
 Then("I can see the registration charge is £{float}") do |charge|
   puts current_url
   expect(@world.journey.exemptions_summary_page.registration_charge.text).to include(charge.to_s)
