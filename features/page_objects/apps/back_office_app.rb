@@ -67,7 +67,7 @@ class BackOfficeApp
     @last_page = CommunicationHistoryPage.new
   end
 
-  def deregistation_details_page
+  def deregistration_details_page
     @last_page = DeregistrationDetailsPage.new
   end
 
@@ -81,6 +81,18 @@ class BackOfficeApp
 
   def record_refund_page
     @last_page = RecordRefundPage.new
+  end
+
+  def record_reversal_page
+    @last_page = RecordReversalPage.new
+  end
+
+  def charge_adjustment_type_page
+    @last_page = ChargeAdjustmentTypePage.new
+  end
+
+  def charge_adjustment_page
+    @last_page = ChargeAdjustmentPage.new
   end
 
 end

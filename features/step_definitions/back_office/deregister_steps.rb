@@ -111,8 +111,8 @@ When("I {string} an exemption") do |deregistration_type|
 end
 
 Then("I can see the deregistration details from the deregistration details page") do
-  @world.bo.registration_details_page.deregistation_details.first.click
-  log = @world.bo.deregistation_details_page.log_details(@exemption)
+  @world.bo.registration_details_page.deregistration_details.first.click
+  log = @world.bo.deregistration_details_page.log_details(@exemption)
   expect(log.reason).to have_text(@deregistration_reason)
   expect(log.status).to have_text(@deregistration_type)
 end

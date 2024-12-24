@@ -15,20 +15,32 @@ class World
     @bo = BackOfficeApp.new
   end
 
-  def data_agent_user
-    Quke::Quke.config.custom["accounts"]["DataAgent"]["username"]
+  def data_viewer_user
+    Quke::Quke.config.custom["accounts"]["DataViewer"]["username"]
   end
 
-  def admin_agent_user
-    Quke::Quke.config.custom["accounts"]["AdminAgent"]["username"]
+  def admin_team_user
+    Quke::Quke.config.custom["accounts"]["AdminTeamUser"]["username"]
   end
 
-  def system_user
-    Quke::Quke.config.custom["accounts"]["SystemUser"]["username"]
+  def admin_team_leader
+    Quke::Quke.config.custom["accounts"]["AdminTeamLeader"]["username"]
   end
 
   def developer_user
     Quke::Quke.config.custom["accounts"]["DeveloperUser"]["username"]
+  end
+
+  def service_manager
+    Quke::Quke.config.custom["accounts"]["ServiceManager"]["username"]
+  end
+
+  def finance_user
+    Quke::Quke.config.custom["accounts"]["FinanceUser"]["username"]
+  end
+
+  def policy_adviser_user
+    Quke::Quke.config.custom["accounts"]["PolicyAdviserUser"]["username"]
   end
 
   def default_password

@@ -1,6 +1,6 @@
 @backoffice @deregister
 Feature: Back office user deregisters exemptions
-  As an admin agent
+  As an admin team user
   I need to deregister a waste exemption activity
   So that I can correctly mark it as revoked or ceased
 
@@ -8,16 +8,16 @@ Feature: Back office user deregisters exemptions
     Given I have a valid registration
 
   Scenario: [RUBY-63] Deregister individual exemptions
-    Given I sign in as an admin agent
+    Given I sign in as an admin team user
      When I deregister individual exemptions
      Then the exemptions are no longer active
 
   Scenario: [RUBY-64] Deregister a whole registration
-    Given I sign in as an admin agent
+    Given I sign in as an admin team user
      When I deregister a whole registration
      Then the registration is no longer active
 
   Scenario: Ceased exemption details can be viewed from the deregistration details page
-    Given I sign in as an admin agent
+    Given I sign in as an admin team user
      When I "cease" an exemption
      Then I can see the deregistration details from the deregistration details page

@@ -2,7 +2,7 @@
 Feature: Sending letters for registrations and renewals when no contact email is given
 
 Background: Sign into back office
-    Given I sign in as an admin agent
+    Given I sign in as an admin team user
 
 @letter
   Scenario: Registration in back office where no contact email is given user sends confirmation letter to contact

@@ -23,7 +23,7 @@ pause: 0
 # Continuous Integration (CI) environments where a quick Yes/No is preferable to
 # a detailed response. By default Quke sets this to false if not set in the
 # config.
-stop_on_error: true
+stop_on_error: false
 
 # By default Quke will display web pages where a failure has taken place.
 # A copy of the html is saved and Quke will display it in your default browser.
@@ -60,14 +60,20 @@ print_progress: false
 # available in your tests.
 custom:
   accounts:
-    DataAgent:
-      username: data_agent@wex.gov.uk
-    AdminAgent:
-      username: admin_agent@wex.gov.uk
-    SystemUser:
-      username: system_user@wex.gov.uk
+    DataViewer:
+      username: data_viewer@wex.gov.uk
+    AdminTeamUser:
+      username: admin_team_user@wex.gov.uk
+    AdminTeamLeader:
+      username: admin_team_lead@wex.gov.uk
     DeveloperUser:
       username: developer@wex.gov.uk
+    ServiceManager:
+      username: service_manager@wex.gov.uk
+    FinanceUser:
+      username: finance_user@wex.gov.uk
+    PolicyAdviserUser:
+      username: policy_adviser@wex.gov.uk
   urls:
     front_office: "https://wex-dev.aws-int.defra.cloud"
     back_office: "https://admin-wex-dev.aws-int.defra.cloud"

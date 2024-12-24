@@ -60,14 +60,20 @@ print_progress: false
 # available in your tests.
 custom:
   accounts:
-    DataAgent:
-      username: data_agent@wex.gov.uk
-    AdminAgent:
-      username: admin_agent@wex.gov.uk
-    SystemUser:
-      username: system_user@wex.gov.uk
+    DataViewer:
+      username: data_viewer@wex.gov.uk
+    AdminTeamUser:
+      username: admin_team_user@wex.gov.uk
+    AdminTeamLeader:
+      username: admin_team_lead@wex.gov.uk
     DeveloperUser:
       username: developer@wex.gov.uk
+    ServiceManager:
+      username: service_manager@wex.gov.uk
+    FinanceUser:
+      username: finance_user@wex.gov.uk
+    PolicyAdviserUser:
+      username: policy_adviser@wex.gov.uk
   urls:
     front_office: "https://wex-pre.aws.defra.cloud"
     back_office: "https://admin-wex-pre.aws.defra.cloud"

@@ -11,5 +11,6 @@ class AdminMenuSection < SitePrism::Section
   element(:dashboard_link, "li:nth-child(1) a")
   element(:data_exports, "a[href*='/data-exports']")
   element(:toggle_features_link, "a[href*='/features/feature-toggles']")
-
+  element(:band_management, "a[href*='/bands']")
+  element(:charge_management, "a[href*='/exemptions']")
 end

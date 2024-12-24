@@ -11,6 +11,7 @@ When("I have my credit card payment rejected") do
   @world.journey.payment_confirmation_page.wait_until_return_visible
   expect(@world.journey.payment_summary_page).to have_text("Your payment has been declined")
   @world.journey.payment_confirmation_page.return.click
+  puts current_url
 end
 
 When("I choose to pay by bank transfer") do
