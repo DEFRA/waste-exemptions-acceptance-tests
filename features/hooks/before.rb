@@ -21,7 +21,7 @@ Before("@data") do
   unless $prepped_data
     prepopulate_registrations
     @world.known_bo_user_email = generate_example_email(nil, nil)
-    login_user(@world.system_user)
+    login_user(@world.service_manager)
     create_user(:admin_agent, @world.known_bo_user_email)
     # Clears session otherwise any scenario which attempts to login first would
     # fail as we are already logged in.

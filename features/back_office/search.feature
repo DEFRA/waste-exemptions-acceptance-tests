@@ -5,7 +5,7 @@ Feature: Back office users need to be able to search for registrations
   So that I can support both internal and external users and carry out my duties
 
   Background:
-	  Given I sign in as an admin agent
+	  Given I sign in as an admin team user
 
   Scenario: Submitted registrations
      When The "submitted" search filter is selected

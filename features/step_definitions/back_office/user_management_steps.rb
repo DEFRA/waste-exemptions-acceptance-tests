@@ -7,7 +7,7 @@ end
 When(/^I invite a new back office user$/) do
   @world.last_email = generate_example_email(nil, nil)
   @world.bo.dashboard_page.admin_menu.user_management.click
-  create_user(:system_user, @world.last_email)
+  create_user(:data_viewer, @world.last_email)
 end
 
 When(/^the invite is accepted$/) do
@@ -15,7 +15,7 @@ When(/^the invite is accepted$/) do
   # Need to be logged in for these steps to work.
   visit(Quke::Quke.config.custom["urls"]["notify_link"])
   accept_url = @world.journey.last_message_page.get_accept_url(@world.last_email).to_s
-  # Reset the session, otherwise you stay logged in as a system user.
+  # Reset the session, otherwise you stay logged in.
   Capybara.reset_session!
   visit(accept_url)
 end
@@ -54,13 +54,13 @@ When("I change a users role to data agent") do
   @world.bo.users_page.look_for(@world.last_email)
   @world.bo.users_page.change_user_role(@world.last_email)
   expect(@world.bo.change_user_role_page).to have_text(@world.last_email)
-  @world.bo.change_user_role_page.submit(role: :data)
+  @world.bo.change_user_role_page.submit(role: :customer_service_advisor)
 end
 
 Then("I see their role has changed") do
   @world.bo.users_page.look_for(@world.last_email)
   user = @world.bo.users_page.user_details(@world.last_email)
-  expect(user.role).to have_text("data agent")
+  expect(user.role).to have_text("customer service adviser")
 end
 
 When("I deactivate a user") do

@@ -9,5 +9,7 @@ class PaymentDetailsPage < BasePage
   element(:record_payment, "[href*='/payments']")
   element(:balance, "#balance")
   element(:record_refund, "[href*='/record-refund']")
+  element(:reverse_payment, "[href*='/record-reversal']")
+  element(:adjust_charge, "[href*='/adjustment-type']")
 
 end

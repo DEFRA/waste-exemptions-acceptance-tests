@@ -44,3 +44,26 @@ When("I record a refund of the overpayment") do
   @world.bo.record_refund_page.submit(amount: @overpayment_amount,
                                       reason: "Refund of overpayment")
 end
+
+When("I reverse the payment") do
+  @world.bo.payment_details_page.reverse_payment.click
+  @world.bo.record_reversal_page.reverse_payment.click
+  @world.bo.record_reversal_page.submit(reason: "mistake")
+end
+
+Then("the total charge amount is owed") do
+  expect(@world.bo.payment_details_page.balance.text).to eq("-£#{@total_charge}")
+end
+
+When("I add a positive charge of £{float} to the registration") do |charge|
+  @world.bo.payment_details_page.adjust_charge.click
+  @world.bo.charge_adjustment_type_page.decrease_charge.click
+  @world.bo.charge_adjustment_type_page.submit_button.click
+  @world.bo.charge_adjustment_page.submit(amount: charge,
+                                          reason: "credit for refund")
+end
+
+Then("I can see the registration is £{float} in credit") do |amount|
+  expect(@world.bo.payment_details_page.balance.text).to have_text("£#{amount}")
+  expect(@world.bo.payment_details_page.balance.text).not_to have_text("-")
+end

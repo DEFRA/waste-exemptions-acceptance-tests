@@ -15,7 +15,7 @@ Then("I will see confirmation that I have unsubscibed") do
 end
 
 Then("the unsubscription is logged in the communications history") do
-  login_user(@world.admin_agent_user)
+  login_user(@world.admin_team_user)
   visit(back_office_root_url("/registrations/#{@world.last_reg_no}/communication_logs"))
   log = @world.bo.communication_history_page.log_details(@contact_email)
   expect(log.template_name).to have_text("User unsubscribed from renewal reminders")

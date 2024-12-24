@@ -93,3 +93,11 @@ end
 Then("I cannot toggle features") do
   expect(@world.bo.dashboard_page.admin_menu).to have_no_toggle_features_link
 end
+
+Then("I can access the charge and band management screens") do
+  @world.bo.dashboard_page.admin_menu.home_page.click
+  @world.bo.dashboard_page.admin_menu.band_management.click
+  expect(page).to have_text("Band and charges management")
+  @world.bo.dashboard_page.admin_menu.charge_management.click
+  expect(page).to have_text("Charging catalogue")
+end

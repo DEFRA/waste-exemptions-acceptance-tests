@@ -1,6 +1,6 @@
 @backoffice @renew @renewb @email
 Feature: [RUBY-241] Back office user carries out a renewal
-   As an admin agent
+   As an admin team user
    I need to renew on behalf of an assisted digital user
    So that our data is up to date
 
@@ -9,7 +9,7 @@ Feature: [RUBY-241] Back office user carries out a renewal
 
    Background: Register an exemption
       Given I have a valid registration
-        And I sign in as an admin agent
+        And I sign in as an admin team user
 
    Scenario: Renew a registration from back office without changes
       When I choose to renew a registration

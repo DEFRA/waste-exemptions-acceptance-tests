@@ -1,6 +1,6 @@
 @backoffice @edit 
 Feature: Back office user edits a registration
-  As an admin agent
+  As an admin team user
   I need to edit a waste exemption registration
   So that I can keep it up to date
 
@@ -8,13 +8,13 @@ Feature: Back office user edits a registration
     Given I have a valid registration
 @smoke
   Scenario: [RUBY-62] Edit a registration
-    Given I sign in as an admin agent
+    Given I sign in as an admin team user
      When I edit the most recent registration
       And I complete the edit
      Then I can see the new details on the registration details page
 
   Scenario: Cancel registration
-   Given I sign in as an admin agent
+   Given I sign in as an admin team user
     When I edit the most recent registration
      And I cancel the edit
     Then I cannot see the new details on the registration details page
