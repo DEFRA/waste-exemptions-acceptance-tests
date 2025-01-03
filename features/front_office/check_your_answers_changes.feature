@@ -136,6 +136,7 @@ Scenario: Renew a registration from back office with exemption changes
        When I choose to renew a registration
         And I am on the check your answers page
         And I choose to change my waste exemptions
+        And I select exemptions "T9 T12" from the list
        Then I can see the waste exemptions chosen have been updated
 
 Scenario: User can change their applicant details from the renewal check your answers page
