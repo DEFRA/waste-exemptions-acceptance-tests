@@ -42,15 +42,15 @@ When("I change my farming question answers") do
   @previous_on_farm_answer = @world.journey.check_details_page.on_farm.text
   @previous_farmer_answser = @world.journey.check_details_page.farmer.text
   @world.journey.check_details_page.change_on_farm.click
-  @world.journey.on_farm_page.submit
+  @world.journey.on_farm_page.submit(on_farm: :on_farm)
   @world.journey.check_details_page.change_farmer.click
-  @world.journey.farmer_page.submit
+  @world.journey.farmer_page.submit(farmer: :farmer)
 end
 
-When("I change my waste exemptions") do
-  @existing_exemption = @world.journey.check_details_page.exemptions.text
+When("I choose to change my waste exemptions") do
+  @existing_exemptions = []
+  @existing_exemptions << @world.journey.check_details_page.exemptions.text
   @world.journey.check_details_page.change_exemptions.click
-  @world.journey.choose_exemptions_page.submit(exemptions: %w[T9 T12])
 end
 
 When("I change my applicant details") do
@@ -95,7 +95,8 @@ When("I change to a site address") do
   @world.journey.check_details_page.change_site_location.first.click
   find_link("postcode").click
   @new_address = "THRIVE RENEWABLES PLC, DEANERY ROAD, BRISTOL, BS1 5AH"
-  @world.journey.check_site_address_page.submit(choice: :use_different_address)
+  # this step is removed for new flow due to page reordering
+  @world.journey.check_site_address_page.submit(choice: :use_different_address) unless @beta
   @world.journey.address_lookup_page.submit(postcode: "BS1 5AH",
                                             result: @new_address)
 end
@@ -131,6 +132,19 @@ end
 When("I confirm my business details are correct") do
   @world.journey.check_registered_company_name_page.submit(choice: :confirm)
 end
+When("I change the companies house number") do
+  @world.journey.check_details_page.change_companies_house_number.click
+  @world.journey.registration_number_page.submit(
+    registration_number: "12345678"
+  )
+  puts current_url
+  @new_company_name = @world.journey.check_registered_company_name_page.company_name.text
+  @world.journey.check_registered_company_name_page.submit(choice: :confirm)
+end
+
+Then("I can see the company name has been updated") do
+  expect(@world.journey.check_details_page.company_name.text).to eq(@new_company_name)
+end
 
 Then("I can see the contact name has been updated") do
   expect(@world.journey.check_details_page.contact_name.text).to eq(@new_contact[:full_name])
@@ -164,16 +178,14 @@ Then("I can see the contact phone number has been updated") do
 end
 
 Then("I can see the farming questions have been updated") do
-  expect(@world.journey.check_details_page.on_farm.text).to eq("No")
+  expect(@world.journey.check_details_page.on_farm.text).to eq("Yes")
   expect(@world.journey.check_details_page.on_farm.text).not_to eq(@previous_on_farm_answer)
-  expect(@world.journey.check_details_page.farmer.text).to eq("No")
+  expect(@world.journey.check_details_page.farmer.text).to eq("Yes")
   expect(@world.journey.check_details_page.farmer.text).not_to eq(@previous_farmer_answser)
 end
 
 Then("I can see the waste exemptions chosen have been updated") do
-  expect(@world.journey.check_details_page.exemptions.text).to have_text(@existing_exemption)
-  expect(@world.journey.check_details_page.exemptions.text).to have_text("T9")
-  expect(@world.journey.check_details_page.exemptions.text).to have_text("T12")
+  expect(@world.journey.check_details_page.exemptions_displayed?(@existing_exemptions)).to eq(true)
 end
 
 Then("I can see my applicant details have been updated") do

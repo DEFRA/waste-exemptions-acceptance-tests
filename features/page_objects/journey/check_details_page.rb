@@ -44,4 +44,25 @@ class CheckDetailsPage < BasePage
   element(:site_address, "#registration_site_address")
   element(:change_site_address, "a[href='check-your-answers/check-site-address']")
   elements(:change_site_location, "a[href='check-your-answers/site-grid-reference']")
+
+  def exemptions_displayed?(expected_text)
+    page_text = exemptions.text
+    return false if page_text.include?("Error")
+
+    # Assume message contains all expected text unless proven otherwise:
+    contains_all_text = true
+
+    expected_text.each do |element|
+      unless page_text.include?(element)
+        contains_all_text = false
+        break
+      end
+    end
+
+    return true if contains_all_text
+
+    puts "Couldn't find all exemptions: #{expected_text}"
+    false
+  end
+
 end
