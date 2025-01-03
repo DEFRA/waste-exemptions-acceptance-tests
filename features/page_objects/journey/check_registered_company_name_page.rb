@@ -7,6 +7,7 @@ class CheckRegisteredCompanyNamePage < BasePage
   element(:confirm_company_details, "input[id$='company-details-true-field']", visible: false)
   element(:reject_company_details, "input[id$='company-details-field']", visible: false)
   element(:companies_house_number, ".govuk-heading-m:nth-child(1)")
+  element(:company_name, ".govuk-heading-m+ .govuk-heading-m")
 
   def submit(args = {})
     case args[:choice]

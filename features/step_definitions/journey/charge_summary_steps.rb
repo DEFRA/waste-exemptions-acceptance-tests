@@ -2,6 +2,7 @@
 
 Given("I am participating in the private beta") do
   visit("/beta-start")
+  @beta = true
   @world.journey.home_page.accept_cookies
   @world.journey.beta_start_page.submit
   @world.journey.location_page.submit(location: :england)

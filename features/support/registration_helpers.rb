@@ -16,7 +16,8 @@ def add_submitted_registration(registration, address_type = :lookup, site_type =
   @world.journey.location_page.submit(location: :england)
   @world.journey.choose_exemptions_page.submit(exemptions: registration[:exemptions])
   complete_applicant_details(registration[:applicant])
-  complete_organisation_details(registration, address_type)
+  complete_organisation_details(registration)
+  complete_address(address_type)
   complete_contact_details(registration[:contact], address_type)
   complete_farm_questions(registration)
   complete_site_details(registration, address_type, site_type)
@@ -43,7 +44,7 @@ def choose_random_site_type
   "address"
 end
 
-def add_unsubmitted_registration(registration, address_type = :random, load_root_page: true)
+def add_unsubmitted_registration(registration, load_root_page: true)
   @world.journey.home_page.load if load_root_page
   @world.journey.home_page.accept_cookies
   @world.journey.registration_type_page.submit(start_option: :new_radio)
@@ -51,7 +52,8 @@ def add_unsubmitted_registration(registration, address_type = :random, load_root
   @world.journey.choose_exemptions_page.submit(exemptions: registration[:exemptions])
 
   complete_applicant_details(registration[:applicant])
-  complete_organisation_details(registration, address_type)
+  complete_organisation_details(registration)
+  complete_address(:address_type)
 end
 
 def continue_unsubmitted_registration(registration, address_type = :random, site_type = :random)
@@ -70,7 +72,7 @@ def complete_applicant_details(person)
   @world.journey.email_page.submit(no_email: true) if @no_email
 end
 
-def complete_organisation_details(registration, address_type)
+def complete_organisation_details(registration)
   @world.journey.business_type_page.submit(business_type: registration[:business_type])
 
   case registration[:business_type]
@@ -85,7 +87,6 @@ def complete_organisation_details(registration, address_type)
   else
     @world.journey.operator_name_page.submit(org_name: registration[:operator_name])
   end
-  complete_address(address_type)
 end
 
 def complete_address(address_type)
