@@ -48,4 +48,8 @@ class RegistrationDetailsPage < BasePage
   def send_private_beta_invite(registration_number)
     find(:css, "[href^='/send-private-beta-invite-email/#{registration_number}']")
   end
+
+  def start_private_beta_registration(registration_number)
+    find(:css, "[href^='/registrations/#{registration_number}/beta_start']")
+  end
 end
