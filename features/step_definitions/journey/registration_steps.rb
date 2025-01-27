@@ -213,6 +213,7 @@ When("I enter the registration details") do
   @world.journey.check_contact_name_page.submit(reuse: :accept)
   @world.journey.contact_position_page.submit(position: @applicant[:position])
   @world.journey.check_contact_phone_page.submit(reuse: :accept)
+  @contact_email = @applicant[:email]
   @world.journey.check_contact_email_page.submit(reuse: :accept)
   @world.journey.check_contact_address_page.submit(reuse: :accept)
 end
@@ -228,6 +229,7 @@ When("I confirm the charge summary") do
 end
 
 Then("I will see a registration confirmation") do
+  @world.last_reg_no = @world.journey.registration_confirmation_page.registration_number.text
   expect(@world.journey.registration_confirmation_page.registration_number).to have_text("WEX")
   puts "#{@world.journey.registration_confirmation_page.registration_number.text} generated"
 end
@@ -273,17 +275,28 @@ Given("I select exemption(s) {string} from the activities list") do |exemptions|
                                                beta: true)
 end
 
-Given("I select exemption(s) {string} from the list") do |exemptions|
+Given("I select exemption(s) {string} from the {string} list") do |exemptions, list_type|
+  @existing_exemptions = [] if @existing_exemptions.nil?
   exemptions.split.each do |ex|
     @existing_exemptions << ex
   end
 
-  @world.journey.choose_exemptions_page.submit(exemptions: exemptions.split)
+  case list_type
+  when "farming"
+    @world.journey.choose_exemptions_page.submit(exemptions: exemptions.split,
+                                                 farm: true)
+  when "exemptions"
+    @world.journey.choose_exemptions_page.submit(exemptions: exemptions.split)
+  end
 end
 
-Given("I confirm my waste activities are {string} on a farm") do |choice|
+Given("I select all exemptions from the list") do
+  @world.journey.choose_exemptions_page.check_all_exemptions_and_submit
+end
+
+Given("I confirm my waste activities are {string} a farm") do |choice|
   case choice
-  when "not"
+  when "not on"
     @world.journey.on_farm_page.submit(on_farm: false)
     @world.journey.farmer_page.submit(farmer: false)
   when "on"

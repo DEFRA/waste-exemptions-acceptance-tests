@@ -2,11 +2,15 @@
 Feature: Charge summary 
 
 As a user I want to see a breakdown of the charges for the exemptions I have chosen
-
 # Note: will need feature toggle private_beta enabled
+Background:
+    Given I have a valid registration
+      And I sign in as an admin team user
+      And I send a private beta invite
+      And I start my private beta registration
+
 Scenario: Single band one U1 exemption charges £476
-    Given I am participating in the private beta
-      And I confirm my waste activities are "not" on a farm
+    Given I confirm my waste activities are "not on" a farm
       And I enter my business details
      When I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list
@@ -18,8 +22,7 @@ Scenario: Single band one U1 exemption charges £476
       And I can see that the "Full" compliance charge of band 1 exemption is £420.00
 
 Scenario: Multiple exemptions of the same band one have discounted exemptions
-    Given I am participating in the private beta
-      And I confirm my waste activities are "not" on a farm
+    Given I confirm my waste activities are "not on" a farm
       And I enter my business details
      When I select waste activity "We use waste in manufacturing or for a specified purpose"
       And I select waste activity "We sort, blend and recover waste"
@@ -34,8 +37,7 @@ Scenario: Multiple exemptions of the same band one have discounted exemptions
       And I can see that the "Discounted" compliance charge of band 1 exemption is £76.00
 
 Scenario: Multiple exemptions of different bands 1, 2 and 3
-    Given I am participating in the private beta
-      And I confirm my waste activities are "not" on a farm
+    Given I confirm my waste activities are "not on" a farm
       And I enter my business details
      When I select waste activity "We sort, blend and recover waste"
       And I select exemption "T10 T12 T16 T28" from the activities list
@@ -48,8 +50,7 @@ Scenario: Multiple exemptions of different bands 1, 2 and 3
       And I can see that the "Discounted" compliance charge of band 3 exemption is £30.00
 
 Scenario: Multiple exemptions of different bands 1, 2, 3 and 4
-    Given I am participating in the private beta
-      And I confirm my waste activities are "not" on a farm
+    Given I confirm my waste activities are "not on" a farm
       And I enter my business details
      When I select waste activity "We crush, bale, shred or chip waste"
       And I select waste activity "We store waste"
@@ -63,3 +64,34 @@ Scenario: Multiple exemptions of different bands 1, 2, 3 and 4
       And I can see the total charge is £1474.00
       And I can see that the "Full" compliance charge of band 4 exemption is £1236.00
       And I can see that the "Discounted" compliance charge of band 3 exemption is £30.00
+@farm
+Scenario: Farming waste exemptions are charged the farming compliance change
+    Given I confirm my waste activities are "on" a farm
+      And I enter my business details
+      And I select exemptions "U1 T23" from the "farming" list
+      And I confirm my waste exemption selections
+      And I enter the registration details
+      And I confirm the registration details
+     Then I can see the registration charge is £56.00
+      And I can see the total charge is £144.00
+@farm
+  Scenario: Farming waste exemptions less than farming compliance charge are charged the lesser amount
+    Given I confirm my waste activities are "on" a farm
+      And I enter my business details
+      And I select exemptions "U13" from the "farming" list
+      And I confirm my waste exemption selections
+      And I enter the registration details
+      And I confirm the registration details
+     Then I can see the registration charge is £56.00
+      And I can see the total charge is £86.00
+@farm
+Scenario: Choosing all farming exemptions results in farming compliance change
+    Given I confirm my waste activities are "on" a farm
+      And I enter my business details
+      And I select all exemptions from the "farming" list
+      And I confirm my waste exemption selections
+      And I enter the registration details
+      And I confirm the registration details
+     Then I can see the registration charge is £56.00
+      And I can see the total charge is £144.00
+      

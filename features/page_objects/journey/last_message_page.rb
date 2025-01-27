@@ -58,6 +58,21 @@ class LastMessagePage < BasePage
     parsed_data["last_notify_message"]["body"].match %r/http(s?):\/\/.{14,28}\/registrations\/unsubscribe\/.{24}/
   end
 
+  def get_invite_url(email_address)
+    # This email is generated through Notify.
+    if message_text?([email_address, "Invitation to attend"]) == false
+      puts("Couldn't find invite email")
+      return "Email not found"
+    end
+
+    parsed_data = JSON.parse(message_content.text)
+    # Find the string that matches:
+    # https://, then any 15-24 characters, then /renew/, then any 24 characters
+    # https://wex-dev.aws-int.defra.cloud/beta/84f59814-6013-421d-ac58-343ec85ebd82/start
+
+    parsed_data["last_notify_message"]["body"].match %r/http(s?):\/\/.{14,40}\/beta\/.{42}/
+  end
+
   def message_text?(expected_text)
     # Look for an message containing all the strings in the given array
     # and returns true if all the expected text is present.
