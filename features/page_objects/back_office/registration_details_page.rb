@@ -12,10 +12,10 @@ class RegistrationDetailsPage < BasePage
   elements(:ceased_tags, ".status-tag-ceased")
   elements(:revoked_tags, ".status-tag-revoked")
   elements(:deregister_ex_links, ".deregister-exemption-button")
-  element(:reporting_info_link, ".govuk-details__summary-text")
   element(:deregister_invite_action, "a[href^='/send-edit-invite']")
   elements(:deregistration_details, "[href^='/deregistrations']")
   element(:payment_details, "[href*='/payment_details']")
+  element(:private_beta_intive, "[href^='/send-private-beta-invite-email']")
 
   sections :exemption_details, "table tbody tr" do
     element(:exemption, "td:nth-child(1)")
@@ -45,4 +45,7 @@ class RegistrationDetailsPage < BasePage
     find(:css, "[href^='/resend-renewal-email/#{registration_number}']")
   end
 
+  def send_private_beta_invite(registration_number)
+    find(:css, "[href^='/send-private-beta-invite-email/#{registration_number}']")
+  end
 end

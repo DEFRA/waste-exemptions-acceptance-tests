@@ -69,7 +69,8 @@ Scenario: User can change their waste exemptions choices from the check your ans
       And I start a new waste exemption registration
       And I register choosing to reuse my business information previously entered
       And I am on the check your answers page
-     When I change my waste exemptions
+     When I choose to change my waste exemptions
+     And I select exemptions "T9 T12" from the "exemptions" list
      Then I can see the waste exemptions chosen have been updated
 
 Scenario: User can change their applicant details from the check your answers page
@@ -134,7 +135,8 @@ Scenario: Renew a registration from back office with exemption changes
         And I sign in as an admin team user
        When I choose to renew a registration
         And I am on the check your answers page
-        And I change my waste exemptions
+        And I choose to change my waste exemptions
+        And I select exemptions "T9 T12" from the "exemptions" list
        Then I can see the waste exemptions chosen have been updated
 
 Scenario: User can change their applicant details from the renewal check your answers page
@@ -192,3 +194,4 @@ Scenario: User can change the business address from renewal check your answers p
       And I am on the check your answers page
      When I change the business address
      Then I can see the business address has been updated
+

@@ -27,14 +27,15 @@ Given("I register choosing to reuse my business information previously entered")
   @world.journey.choose_exemptions_page.submit(exemptions: %w[S3])
   @applicant = generate_person("applicant@example.com")
   complete_applicant_details(@applicant)
-  complete_organisation_details(@world.last_reg, :lookup)
+  complete_organisation_details(@world.last_reg)
+  complete_address(:lookup)
   @world.journey.check_contact_name_page.submit(reuse: :accept)
   @world.journey.contact_position_page.submit(position: @applicant[:position])
   @world.journey.check_contact_phone_page.submit(reuse: :accept)
   @world.journey.check_contact_email_page.submit(reuse: :accept)
   @world.journey.check_contact_address_page.submit(reuse: :accept)
-  @world.journey.on_farm_page.submit(on_farm: :on_farm)
-  @world.journey.farmer_page.submit(farmer: :farmer)
+  @world.journey.on_farm_page.submit
+  @world.journey.farmer_page.submit
   @world.journey.site_grid_reference_page.choose_address.click
   @world.journey.check_site_address_page.submit(choice: :operator_address_reuse)
 end
@@ -202,25 +203,33 @@ Then("I have the option to choose business, contact address or choose another ad
 end
 
 When("I enter the registration details") do
-  @total_charge = trim_pound_sign(@world.journey.exemptions_summary_page.total_charge.text)
-  @world.journey.exemptions_summary_page.submit_button.click
+  @world.journey.site_grid_reference_page.submit(
+    grid_ref: "SD 91402 09578",
+    site_details: "test location"
+  )
+  complete_address(:lookup)
   @applicant = generate_person("applicant@example.com")
   complete_applicant_details(@applicant)
-  complete_organisation_details(generate_registration(:individual), :lookup)
   @world.journey.check_contact_name_page.submit(reuse: :accept)
   @world.journey.contact_position_page.submit(position: @applicant[:position])
   @world.journey.check_contact_phone_page.submit(reuse: :accept)
+  @contact_email = @applicant[:email]
   @world.journey.check_contact_email_page.submit(reuse: :accept)
   @world.journey.check_contact_address_page.submit(reuse: :accept)
-  @world.journey.on_farm_page.submit(on_farm: :on_farm)
-  @world.journey.farmer_page.submit(farmer: :farmer)
-  @world.journey.site_grid_reference_page.choose_address.click
-  @world.journey.check_site_address_page.submit(choice: :operator_address_reuse)
+end
+
+When("I confirm the registration details") do
   @world.journey.check_details_page.submit
+end
+
+When("I confirm the charge summary") do
+  @total_charge = trim_pound_sign(@world.journey.exemptions_summary_page.total_charge.text)
+  @world.journey.exemptions_summary_page.submit_button.click
   @world.journey.declaration_page.submit
 end
 
 Then("I will see a registration confirmation") do
+  @world.last_reg_no = @world.journey.registration_confirmation_page.registration_number.text
   expect(@world.journey.registration_confirmation_page.registration_number).to have_text("WEX")
   puts "#{@world.journey.registration_confirmation_page.registration_number.text} generated"
 end
@@ -258,6 +267,48 @@ end
 
 Given("I select exemption(s) {string} from the activities list") do |exemptions|
   @world.journey.select_waste_activities_page.submit_button.click
+  @existing_exemptions = []
+  exemptions.split.each do |ex|
+    @existing_exemptions << ex
+  end
   @world.journey.choose_exemptions_page.submit(exemptions: exemptions.split,
                                                beta: true)
+end
+
+Given("I select exemption(s) {string} from the {string} list") do |exemptions, list_type|
+  @existing_exemptions = [] if @existing_exemptions.nil?
+  exemptions.split.each do |ex|
+    @existing_exemptions << ex
+  end
+
+  case list_type
+  when "farming"
+    @world.journey.choose_exemptions_page.submit(exemptions: exemptions.split,
+                                                 farm: true)
+  when "exemptions"
+    @world.journey.choose_exemptions_page.submit(exemptions: exemptions.split)
+  end
+end
+
+Given("I select all exemptions from the list") do
+  @world.journey.choose_exemptions_page.check_all_exemptions_and_submit
+end
+
+Given("I confirm my waste activities are {string} a farm") do |choice|
+  case choice
+  when "not on"
+    @world.journey.on_farm_page.submit(on_farm: false)
+    @world.journey.farmer_page.submit(farmer: false)
+  when "on"
+    @world.journey.on_farm_page.submit(on_farm: :on_farm)
+    @world.journey.farmer_page.submit(farmer: :farmer)
+  end
+end
+
+Given("I enter my business details") do
+  complete_organisation_details(generate_registration(:individual))
+end
+
+Given("I enter my business details for a {string}") do |business|
+  complete_organisation_details(generate_registration(business.to_sym))
 end
