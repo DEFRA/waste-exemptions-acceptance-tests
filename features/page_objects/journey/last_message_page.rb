@@ -84,13 +84,15 @@ class LastMessagePage < BasePage
 
     # Assume message contains all expected text unless proven otherwise:
     contains_all_text = true
-
+    i = 1
     expected_text.each do |element|
       puts element
+      puts i
       unless page_text.include?(element)
         contains_all_text = false
         break
       end
+      i += 1
     end
 
     return true if contains_all_text
