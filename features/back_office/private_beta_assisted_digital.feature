@@ -6,7 +6,7 @@ Background: Create registration and sign into back office
       And I sign in as an admin team user
       And I start the assisted digital private beta registration
 @card
-Scenario: Succesful payment for registration using card
+Scenario: Succesful payment for assisted digital registration using card
     Given I confirm my waste activities are "not on" a farm
       And I enter my business details
       And I select waste activity "We use waste in building and construction"
@@ -19,7 +19,7 @@ Scenario: Succesful payment for registration using card
      Then I will see a registration confirmation
      And I will receive a registration confirmation email
 @bacs
-Scenario: Succesful registration by bank transfer after refused card payment
+Scenario: Succesful for assisted digital registration by bank transfer after refused card payment
     Given I confirm my waste activities are "not on" a farm
       And I enter my business details
       And I select waste activity "We crush, bale, shred or chip waste"

@@ -102,11 +102,14 @@ Then("I will be informed the registration is complete") do
 end
 
 Then("I will receive a registration confirmation email") do
+
   expected_text = [
     "Waste exemptions registration #{@world.last_reg_no} completed",
     "Download your confirmation",
     "causing a nuisance through noise and odours"
   ]
+  puts "this is the expected text"
+  puts expected_text
   expect(email_exists?(expected_text, @world.last_reg)).to be true
 end
 
