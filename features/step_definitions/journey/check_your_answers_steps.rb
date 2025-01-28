@@ -137,7 +137,6 @@ When("I change the companies house number") do
   @world.journey.registration_number_page.submit(
     registration_number: "12345678"
   )
-  puts current_url
   @new_company_name = @world.journey.check_registered_company_name_page.company_name.text
   @world.journey.check_registered_company_name_page.submit(choice: :confirm)
 end

@@ -88,7 +88,7 @@ Scenario: Farming waste exemptions are charged the farming compliance change
 Scenario: Choosing all farming exemptions results in farming compliance change
     Given I confirm my waste activities are "on" a farm
       And I enter my business details
-      And I select all exemptions from the "farming" list
+      And I select all exemptions from the list
       And I confirm my waste exemption selections
       And I enter the registration details
       And I confirm the registration details

@@ -1,4 +1,4 @@
-@backoffice
+@backoffice @actions
 Feature: Back office registration actions
 
     Actions that can be carried out on a registration in the back office
