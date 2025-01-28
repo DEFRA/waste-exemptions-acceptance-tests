@@ -79,6 +79,7 @@ class LastMessagePage < BasePage
     # Adapted from Waste Carriers.
 
     page_text = message_content.text
+    puts page_text
     return false if page_text.include?("Error")
 
     # Assume message contains all expected text unless proven otherwise:
