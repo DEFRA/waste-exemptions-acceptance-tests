@@ -2,7 +2,6 @@
 
 When("I pay by card") do
   @world.journey.payment_summary_page.submit(payment_type: :card)
-  submit_card_payment
 end
 
 When("I have my credit card payment rejected") do

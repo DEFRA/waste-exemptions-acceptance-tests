@@ -60,7 +60,7 @@ class LastMessagePage < BasePage
 
   def get_invite_url(email_address)
     # This email is generated through Notify.
-    if message_text?([email_address, "Invitation to attend"]) == false
+    if message_text?([email_address, "invitation to attend"]) == false
       puts("Couldn't find invite email")
       return "Email not found"
     end

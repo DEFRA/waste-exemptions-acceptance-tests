@@ -32,7 +32,7 @@ Scenario: Succesful registration by bank transfer after refused card payment
       And I enter the registration details
       And I confirm the registration details
       And I confirm the charge summary
-      But I have my credit card payment rejected
      When I choose to pay by bank transfer
-     Then I will see a registration pending payment confirmation
+     Then I will see a registration confirmation
+     And I will receive a registration confirmation email
     
