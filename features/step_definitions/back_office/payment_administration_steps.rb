@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 Given("I find the payment details for the registration") do
-  @world.bo.dashboard_page.submit(search_term: @registration)
-  @world.bo.dashboard_page.view_link(@registration).click
+  @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
+  @world.bo.dashboard_page.view_link(@world.last_reg_no).click
   @world.bo.registration_details_page.payment_details.click
 end
 
-When("I record a bank transfer payment for the registraton amount") do
+When("I record a bank transfer payment for the registration amount") do
   @world.bo.payment_details_page.record_payment.click
   @world.bo.record_payment_page.submit(
     payment_type: :bacs,

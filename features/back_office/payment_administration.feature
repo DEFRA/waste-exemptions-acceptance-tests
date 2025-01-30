@@ -15,12 +15,13 @@ Background: Private beta registration opting to pay by bank transfer
       And I confirm the registration details
       And I confirm the charge summary
      When I choose to pay by bank transfer
-      And I will see a registration pending payment confirmation
+    Then I will see a registration confirmation
+     And I will receive a registration confirmation email
 
 Scenario: Recording bank transfer payment to registration
     Given I sign in as a finance user
       And I find the payment details for the registration
-     When I record a bank transfer payment for the registraton amount
+     When I record a bank transfer payment for the registration amount
      Then the balance will be zero
 
 Scenario: Overpayment of registration charge refund can be recorded
@@ -40,6 +41,6 @@ Scenario: Incorrect payment entry can be reversed
 Scenario: Charge adjustment can be added to a registration to put it in credit
     Given I sign in as an admin team user
       And I find the payment details for the registration
-      And I record a bank transfer payment for the registraton amount
+      And I record a bank transfer payment for the registration amount
      When I add a positive charge of £10.00 to the registration
      Then I can see the registration is £10.00 in credit
