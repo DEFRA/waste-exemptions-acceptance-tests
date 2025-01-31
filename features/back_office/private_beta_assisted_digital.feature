@@ -1,4 +1,4 @@
-@beta @ad
+@beta @ad @email
 Feature: Assisted digital registrations
 
 Background: Create registration and sign into back office

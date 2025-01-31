@@ -1,22 +1,21 @@
-@backoffice @regb
+@backoffice @regb @email
 Feature: Back office user completes assisted digital registration for a user
   As an admin team user
   I need to register a waste exemption activity
   So that I can register exemptions on behalf of assisted digital users
 
-@email
   Scenario: Registration of a limited company by a back office user
   	Given I sign in as an admin team user
      When I complete a "limited_company" registration
      Then I will be informed the registration is complete
      And I will receive a registration confirmation email
-
+  
   Scenario: Registration of a partnership by a back office user
     Given I sign in as an admin team user
      When I complete a "partnership" registration
      Then I will be informed the registration is complete
      And I will receive a registration confirmation email
-
+  
   Scenario: Registration of an LLP by a back office user
     Given I sign in as an admin team user
      When I complete an "llp" registration

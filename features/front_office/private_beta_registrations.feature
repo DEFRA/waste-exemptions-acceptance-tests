@@ -1,4 +1,4 @@
-@beta
+@beta @email
 Feature: Registration payments using card or bank transfer
 
 Background: Create registration and sign into back office
