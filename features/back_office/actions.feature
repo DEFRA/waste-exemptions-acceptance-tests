@@ -6,21 +6,22 @@ Feature: Back office registration actions
     Background: Create registration and sign into back office
       Given I have a valid registration
       And I sign in as an admin team user
-
+      
+    @letter
     Scenario: Renewal reminder letter can be resent from registration details page
       When I search for the registration
       And I view the registration details
       And I resend the renewal reminder letter  
       Then I will see a confirmation the renewal reminder letter has been sent
       And a renewal reminder letter has been sent
-
+  @letter
    Scenario: Confirmation letter can be resent from registration details page
       When I search for the registration
       And I view the registration details
       And I resend the confirmation letter
       Then I will see the registration confirmation letter has been sent
       And a registration confirmation letter has been sent
-
+  @email
   Scenario: Confirmation email can be resent from registration details page
       When I search for the registration
       And I view the registration details
