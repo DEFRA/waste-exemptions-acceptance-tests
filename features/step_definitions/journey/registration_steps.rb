@@ -267,6 +267,7 @@ end
 
 Given("I select exemption(s) {string} from the activities list") do |exemptions|
   @world.journey.select_waste_activities_page.submit_button.click
+  expect(@world.journey.choose_exemptions_page.heading.text).to have_text("exemptions")
   @existing_exemptions = []
   exemptions.split.each do |ex|
     @existing_exemptions << ex
