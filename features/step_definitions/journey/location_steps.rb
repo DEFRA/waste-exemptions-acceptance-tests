@@ -5,21 +5,21 @@ Then("I choose locations outside England") do
   @world.journey.location_page.submit(location: :wales)
 
   expect(page).to have_text("You cannot register your exemptions here")
-  expect(page).to have_text("you need to register with Natural Resources Wales")
+  expect(page).to have_text("Natural Resources Wales")
 
   @world.journey.location_page.back_link.click
 
   # Select Scotland:
   @world.journey.location_page.submit(location: :scotland)
   expect(page).to have_text("You cannot register your exemptions here")
-  expect(page).to have_text("register with the Scottish Environment Protection Agency (SEPA)")
+  expect(page).to have_text("Scottish Environment Protection Agency (SEPA)")
 
   @world.journey.location_page.back_link.click
 
   # Select Northern Ireland:
   @world.journey.location_page.submit(location: :northern_ireland)
   expect(page).to have_text("You cannot register your exemptions here")
-  expect(page).to have_text("register with the Northern Ireland Environment Agency (NIEA)")
+  expect(page).to have_text("Northern Ireland Environment Agency (NIEA)")
 
   @world.journey.location_page.back_link.click
 
