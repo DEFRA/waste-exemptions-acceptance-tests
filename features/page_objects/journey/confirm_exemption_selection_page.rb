@@ -6,9 +6,10 @@ class ConfirmExemptionSelectionPage < BasePage
   element(:change, "input[value='false'] + label")
 
   def submit(args = {})
-    if args[:choice]
+    case args[:choice]
+    when :confirm
       confirm.click
-    else
+    when :change
       change.click
     end
 

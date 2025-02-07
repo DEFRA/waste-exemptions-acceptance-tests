@@ -94,4 +94,42 @@ Scenario: Choosing all farming exemptions results in farming compliance change
       And I confirm the registration details
      Then I can see the registration charge is £56.00
       And I can see the total charge is £144.00
+
+ @farm
+  Scenario: Farming and non farming waste exemptions can be chosen together
+    Given I confirm my waste activities are "on" a farm
+      And I enter my business details
+      And I select exemptions "U13 D6 D7" from the "farming" list
+      And I choose to add waste exemptions that are not included in the farming exemptions
+      And I select waste activity "We use effluent or sludge"
+      And I select exemption "U7" from the activities list
+      And I confirm my waste exemption selections
+      And I enter the registration details
+      And I confirm the registration details
+     Then I can see the registration charge is £56.00
+      And I can see the total charge is £174.00  
       
+  @farm
+  Scenario: Choosing all exemptions from farming and non farming waste exemptions list
+    Given I confirm my waste activities are "on" a farm
+      And I enter my business details
+      And I select all exemptions from the list
+      And I choose to add waste exemptions that are not included in the farming exemptions
+      And I select all waste activities
+      And I select all exemptions from the list
+      And I confirm my waste exemption selections
+      And I enter the registration details
+      And I confirm the registration details
+     Then I can see the registration charge is £56.00
+      And I can see the total charge is £4048.00
+    
+  Scenario: Choosing all exemptions from non farming waste exemptions list
+    Given I confirm my waste activities are "not on" a farm
+      And I enter my business details
+      And I select all waste activities
+      And I select all exemptions from the list
+      And I confirm my waste exemption selections
+      And I enter the registration details
+      And I confirm the registration details
+     Then I can see the registration charge is £56.00
+      And I can see the total charge is £4732.00

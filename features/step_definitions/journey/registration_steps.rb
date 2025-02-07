@@ -295,6 +295,10 @@ Given("I select all exemptions from the list") do
   @world.journey.choose_exemptions_page.check_all_exemptions_and_submit
 end
 
+Given("I select all waste activities") do
+  @world.journey.select_waste_activities_page.check_all_activities_and_submit
+end
+
 Given("I confirm my waste activities are {string} a farm") do |choice|
   case choice
   when "not on"
@@ -312,4 +316,8 @@ end
 
 Given("I enter my business details for a {string}") do |business|
   complete_organisation_details(generate_registration(business.to_sym))
+end
+
+Then("my farming exemptions are not available to be chosen from the list") do
+  expect(@world.journey.choose_exemptions_page.exemptions_displayed?(@existing_exemptions)).to eq(false)
 end
