@@ -27,6 +27,10 @@ Given("I confirm my waste exemption selections") do
   @world.journey.confirm_exemption_selection_page.submit(choice: :confirm)
 end
 
+Given("I choose to add waste exemptions that are not included in the farming exemptions") do
+  @world.journey.confirm_exemption_selection_page.submit(choice: :change)
+end
+
 Then("I can see the registration charge is £{float}") do |charge|
   puts current_url
   expect(@world.journey.exemptions_summary_page.registration_charge.text).to include(charge.to_s)

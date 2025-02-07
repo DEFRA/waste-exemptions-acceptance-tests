@@ -34,5 +34,13 @@ Scenario: Succesful registration by bank transfer after refused card payment
       And I confirm the charge summary
      When I choose to pay by bank transfer
      Then I will see a registration confirmation
-     And I will receive a registration confirmation email
+      And I will receive a registration confirmation email
     
+@farm
+Scenario: All chosen farming exemptions can not be chosen from the non farming exemptions list
+    Given I confirm my waste activities are "on" a farm
+      And I enter my business details
+      And I select exemptions "U1 U14 D6 D7 T23" from the "farming" list
+      And I choose to add waste exemptions that are not included in the farming exemptions
+      And I select all waste activities
+     Then my farming exemptions are not available to be chosen from the list

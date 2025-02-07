@@ -20,6 +20,8 @@ class SelectWasteActivitiesPage < BasePage
   # Storing wate
   element(:store, "#waste_activities_form_checkbox-13 + label")
 
+  elements(:activities, "[name='waste_activities_form[temp_waste_activities][]'] + label")
+
   # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/AbcSize
   def submit(args = {})
     building.click if args.key?(:building)
@@ -36,5 +38,13 @@ class SelectWasteActivitiesPage < BasePage
     worms.click if args.key?(:worms)
     store.click if args.key?(:store)
   end
+
+  def check_all_activities_and_submit
+    activities.each do |act|
+      act.click unless act.checked?
+    end
+    submit_button.click
+  end
+
   # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/AbcSize
 end
