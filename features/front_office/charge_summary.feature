@@ -4,10 +4,8 @@ Feature: Charge summary
 As a user I want to see a breakdown of the charges for the exemptions I have chosen
 # Note: will need feature toggle private_beta enabled
 Background:
-    Given I have a valid registration
-      And I sign in as an admin team user
-      And I send a private beta invite
-      And I start my private beta registration
+    Given I sign in as an admin team user
+      And I start an assisted digital registration
 
 Scenario: Single band one U1 exemption charges £476
     Given I confirm my waste activities are "not on" a farm
@@ -122,7 +120,7 @@ Scenario: Choosing all farming exemptions results in farming compliance change
       And I confirm the registration details
      Then I can see the registration charge is £56.00
       And I can see the total charge is £4048.00
-    
+  @ts
   Scenario: Choosing all exemptions from non farming waste exemptions list
     Given I confirm my waste activities are "not on" a farm
       And I enter my business details
@@ -133,3 +131,18 @@ Scenario: Choosing all farming exemptions results in farming compliance change
       And I confirm the registration details
      Then I can see the registration charge is £56.00
       And I can see the total charge is £4732.00
+
+ @fix
+  Scenario: Reviewing and selecting same exemption does not duplicate charge
+    Given I confirm my waste activities are "not on" a farm
+      And I enter my business details for a "limited_company"
+      And I select waste activity "We use waste in manufacturing or for a specified purpose"
+      And I select exemption "U9" from the activities list
+      But I choose I want to change the exemptions I’ve selected
+      And I select waste activity "We use waste in manufacturing or for a specified purpose"
+      And I select exemption "U9" from the activities list
+      And I confirm my waste exemption selections
+      And I enter the registration details
+      And I confirm the registration details
+     Then I can see the registration charge is £56.00
+      And I can see the total charge is £476.00

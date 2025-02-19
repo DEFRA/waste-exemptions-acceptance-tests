@@ -2,10 +2,8 @@
 Feature: Payment administration
 
 Background: Private beta registration opting to pay by bank transfer
-    Given I have a valid registration
-      And I sign in as an admin team user
-      And I send a private beta invite
-      And I start my private beta registration
+    Given I sign in as an admin team user
+      And I start an assisted digital registration
       And I confirm my waste activities are "not on" a farm
       And I enter my business details
      When I select waste activity "We use waste in building and construction"

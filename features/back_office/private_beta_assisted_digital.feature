@@ -2,9 +2,8 @@
 Feature: Assisted digital registrations
 
 Background: Create registration and sign into back office
-    Given I have a valid registration
-      And I sign in as an admin team user
-      And I start the assisted digital private beta registration
+    Given I sign in as an admin team user
+      And I start an assisted digital registration
 @card
 Scenario: Succesful payment for registration using card
     Given I confirm my waste activities are "not on" a farm

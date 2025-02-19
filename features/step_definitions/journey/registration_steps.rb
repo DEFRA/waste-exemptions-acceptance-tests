@@ -208,7 +208,9 @@ When("I enter the registration details") do
     site_details: "test location"
   )
   complete_address(:lookup)
-  @applicant = generate_person("applicant@example.com")
+  @applicant_email = "applicant@example.com"
+  @applicant = generate_person(@applicant_email)
+
   complete_applicant_details(@applicant)
   @world.journey.check_contact_name_page.submit(reuse: :accept)
   @world.journey.contact_position_page.submit(position: @applicant[:position])
@@ -292,6 +294,7 @@ Given("I select exemption(s) {string} from the {string} list") do |exemptions, l
 end
 
 Given("I select all exemptions from the list") do
+  expect(@world.journey.choose_exemptions_page.heading.text).to have_text("waste exemptions")
   @world.journey.choose_exemptions_page.check_all_exemptions_and_submit
 end
 
