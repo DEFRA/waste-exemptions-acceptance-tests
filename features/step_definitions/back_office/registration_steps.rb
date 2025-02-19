@@ -73,3 +73,9 @@ Given("I start the assisted digital private beta registration") do
   @world.journey.beta_start_page.submit
   @world.journey.location_page.submit(location: :england)
 end
+
+Given("I start an assisted digital registration") do
+  @world.bo.dashboard_page.create_new_registration.click
+  @world.journey.ad_privacy_policy_page.submit
+  @world.journey.location_page.submit(location: :england)
+end

@@ -15,7 +15,8 @@ class ChooseExemptionsPage < BasePage
                      else
                        "exemptions_form_checkbox-#{ex}"
                      end
-        exemptions.find { |chk| chk["id"] == search_val }.click
+        ex = exemptions.find { |chk| chk["id"] == search_val }
+        ex.click unless ex.checked?
       end
     end
     submit_button.click
