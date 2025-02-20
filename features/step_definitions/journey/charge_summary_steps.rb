@@ -27,8 +27,12 @@ Given("I confirm my waste exemption selections") do
   @world.journey.confirm_exemption_selection_page.submit(choice: :confirm)
 end
 
+Given("I confirm my farming waste exemption selections") do
+  @world.journey.confirm_farming_exemption_selection_page.submit(choice: :confirm)
+end
+
 Given("I choose to add waste exemptions that are not included in the farming exemptions") do
-  @world.journey.confirm_exemption_selection_page.submit(choice: :change)
+  @world.journey.confirm_farming_exemption_selection_page.submit(choice: :change)
 end
 
 Given("I choose I want to change the exemptions I’ve selected") do
