@@ -324,3 +324,11 @@ end
 Then("my farming exemptions are not available to be chosen from the list") do
   expect(@world.journey.choose_exemptions_page.exemptions_displayed?(@existing_exemptions)).to eq(false)
 end
+
+Given("I select no exemptions from the list") do
+  @world.journey.choose_exemptions_page.submit_button.click
+end
+
+Then("I can select waste activities from the list") do
+  expect(@world.journey.select_waste_activities_page).to have_activities
+end

@@ -44,3 +44,11 @@ Scenario: All chosen farming exemptions can not be chosen from the non farming e
       And I choose to add waste exemptions that are not included in the farming exemptions
       And I select all waste activities
      Then my farming exemptions are not available to be chosen from the list
+
+@farm @fix
+  Scenario: Non farming exemptions can be chosen for an on farm registration
+    Given I confirm my waste activities are "on" a farm
+      And I enter my business details
+     When I select no exemptions from the list
+      And I choose to add waste exemptions that are not included in the farming exemptions
+     Then I can select waste activities from the list  
