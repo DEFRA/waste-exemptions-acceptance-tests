@@ -27,7 +27,7 @@ Given("I confirm my waste exemption selections") do
   @world.journey.confirm_exemption_selection_page.submit(choice: :confirm)
 end
 
-Given("I confirm my farming waste exemption selections") do
+Given(/^I confirm my farming waste exemption selections|I confirm I do not want any more waste exemptions$/) do
   @world.journey.confirm_farming_exemption_selection_page.submit(choice: :confirm)
 end
 

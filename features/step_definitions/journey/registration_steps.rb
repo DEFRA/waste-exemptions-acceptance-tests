@@ -332,3 +332,8 @@ end
 Then("I can select waste activities from the list") do
   expect(@world.journey.select_waste_activities_page).to have_activities
 end
+# rubocop:disable Layout/LineLength
+Then("I am told I can not continue without adding exemptions") do
+  expect(@world.journey.confirm_farming_exemption_selection_page.heading.text).to have_text("You have not selected any exemptions")
+end
+# rubocop:enable Layout/LineLength
