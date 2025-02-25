@@ -110,6 +110,20 @@ Then("I will receive a registration confirmation email") do
   expect(email_exists?(expected_text, @world.last_reg)).to be true
 end
 
+Then("I will receive a registration received pending payment email") do
+  expected_text = [
+    "Payment needed for your waste exemption registration", @world.last_reg_no
+  ]
+  expect(email_exists?(expected_text, @world.last_reg)).to be true
+end
+
+Then("I will see a registration received pending payment confirmation") do
+  expect(page).to have_content "Confirm you've paid"
+  expect(@world.journey.registration_received_pending_payment_page.payment_amount.text).to have_text(@total_charge)
+  @world.last_reg_no = @world.journey.registration_received_pending_payment_page.registration_number.text
+  puts "Registration #{@world.last_reg_no} completed pending £#{@total_charge} payment"
+end
+
 Then("I am on the check your answers page") do
   @world.journey.check_registered_company_name_page.submit(choice: :confirm) if company? && @renewal
   if @renewal
