@@ -1,4 +1,4 @@
-@beta
+@mvp
 Feature: Payment administration
 
 Background: Private beta registration opting to pay by bank transfer
@@ -13,8 +13,7 @@ Background: Private beta registration opting to pay by bank transfer
       And I confirm the registration details
       And I confirm the charge summary
      When I choose to pay by bank transfer
-    Then I will see a registration confirmation
-     And I will receive a registration confirmation email
+     Then I will see a registration received pending payment confirmation
 
 Scenario: Recording bank transfer payment to registration
     Given I sign in as a finance user
