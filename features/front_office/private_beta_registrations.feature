@@ -16,11 +16,11 @@ Scenario: Succesful payment for registration using card
       And I enter the registration details
       And I confirm the registration details
       And I confirm the charge summary
-     When I pay by card
+     When I indicate I will pay by card
      Then I will see a registration confirmation
      And I will receive a registration confirmation email
 @bacs
-Scenario: Succesful registration by bank transfer after refused card payment
+Scenario: Succesful registration by bank transfer
     Given I confirm my waste activities are "not on" a farm
       And I enter my business details
       And I select waste activity "We crush, bale, shred or chip waste"

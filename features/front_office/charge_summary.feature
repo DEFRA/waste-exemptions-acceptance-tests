@@ -1,4 +1,4 @@
-@frontoffice @beta
+@frontoffice @mvp
 Feature: Charge summary 
 
 As a user I want to see a breakdown of the charges for the exemptions I have chosen
