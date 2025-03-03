@@ -33,3 +33,8 @@ end
 def trim_pound_sign(amount)
   amount.tr("£", "")
 end
+
+def strip_text_whitespace_convert_to_array(text)
+  text.gsub(/\s+/, "")
+  text.split(",")
+end

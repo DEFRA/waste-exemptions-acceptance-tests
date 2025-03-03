@@ -1,4 +1,4 @@
-@beta @email
+@charging @email
 Feature: Registration payments using card or bank transfer
 
 Background: Create registration and sign into back office
@@ -16,7 +16,7 @@ Scenario: Succesful payment for registration using card
       And I enter the registration details
       And I confirm the registration details
       And I confirm the charge summary
-     When I indicate I will pay by card
+     When I pay by card
      Then I will see a registration confirmation
      And I will receive a registration confirmation email
 @bacs
@@ -33,8 +33,8 @@ Scenario: Succesful registration by bank transfer
       And I confirm the registration details
       And I confirm the charge summary
      When I choose to pay by bank transfer
-     Then I will see a registration confirmation
-      And I will receive a registration confirmation email
+     Then I will see a registration received pending payment confirmation
+      And I will receive a registration received pending payment email
     
 @farm
 Scenario: All chosen farming exemptions can not be chosen from the non farming exemptions list
