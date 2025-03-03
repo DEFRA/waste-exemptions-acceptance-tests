@@ -1,4 +1,4 @@
-@mvp @ad @email
+@charging @ad @email
 Feature: Assisted digital charged registrations
 
 Background: Create registration and sign into back office

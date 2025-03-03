@@ -1,4 +1,4 @@
-@frontoffice @changes @beta
+@frontoffice @changes @charging
 Feature: Check your answers changes - private beta
 
 Background: Create registration and sign into back office

@@ -40,7 +40,7 @@ end
 
 When("I change my farming question answers") do
   @previous_on_farm_answer = @world.journey.check_details_page.on_farm.text
-  @previous_farmer_answser = @world.journey.check_details_page.farmer.text
+  @previous_farmer_answer = @world.journey.check_details_page.farmer.text
   @world.journey.check_details_page.change_on_farm.click
   @world.journey.on_farm_page.submit(on_farm: :on_farm)
   @world.journey.check_details_page.change_farmer.click
@@ -48,8 +48,8 @@ When("I change my farming question answers") do
 end
 
 When("I choose to change my waste exemptions") do
-  @existing_exemptions = []
-  @existing_exemptions << @world.journey.check_details_page.exemptions.text
+  exemptions = @world.journey.check_details_page.exemptions.text
+  @existing_exemptions = strip_text_whitespace_convert_to_array(exemptions)
   @world.journey.check_details_page.change_exemptions.click
 end
 
@@ -96,7 +96,7 @@ When("I change to a site address") do
   find_link("postcode").click
   @new_address = "THRIVE RENEWABLES PLC, DEANERY ROAD, BRISTOL, BS1 5AH"
   # this step is removed for new flow due to page reordering
-  @world.journey.check_site_address_page.submit(choice: :use_different_address) unless @beta
+  @world.journey.check_site_address_page.submit(choice: :use_different_address) unless @charging
   @world.journey.address_lookup_page.submit(postcode: "BS1 5AH",
                                             result: @new_address)
 end
@@ -180,7 +180,7 @@ Then("I can see the farming questions have been updated") do
   expect(@world.journey.check_details_page.on_farm.text).to eq("Yes")
   expect(@world.journey.check_details_page.on_farm.text).not_to eq(@previous_on_farm_answer)
   expect(@world.journey.check_details_page.farmer.text).to eq("Yes")
-  expect(@world.journey.check_details_page.farmer.text).not_to eq(@previous_farmer_answser)
+  expect(@world.journey.check_details_page.farmer.text).not_to eq(@previous_farmer_answer)
 end
 
 Then("I can see the waste exemptions chosen have been updated") do

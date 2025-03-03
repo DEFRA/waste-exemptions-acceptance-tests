@@ -1,4 +1,4 @@
-@mvp
+@charging
 Feature: Payment administration
 
 Background: Private beta registration opting to pay by bank transfer
