@@ -83,7 +83,7 @@ Scenario: Farming waste exemptions are charged the farming compliance change
       And I confirm the registration details
      Then I can see the registration charge is £56.00
       And I can see the total charge is £86.00
-@farm @ts
+@farm
 Scenario: Choosing all farming exemptions results in farming compliance change
     Given I confirm my waste activities are "on" a farm
       And I enter my business details
