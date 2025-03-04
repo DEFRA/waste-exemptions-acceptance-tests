@@ -96,7 +96,7 @@ When("I change to a site address") do
   find_link("postcode").click
   @new_address = "THRIVE RENEWABLES PLC, DEANERY ROAD, BRISTOL, BS1 5AH"
   # this step is removed for new flow due to page reordering
-  @world.journey.check_site_address_page.submit(choice: :use_different_address) unless @charging
+  @world.journey.check_site_address_page.submit(choice: :use_different_address) unless @beta
   @world.journey.address_lookup_page.submit(postcode: "BS1 5AH",
                                             result: @new_address)
 end
