@@ -2,7 +2,6 @@
 Feature: Charge summary 
 
 As a user I want to see a breakdown of the charges for the exemptions I have chosen
-# Note: will need feature toggle private_beta enabled
 Background:
     Given I sign in as an admin team user
       And I start an assisted digital registration

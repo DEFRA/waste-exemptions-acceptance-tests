@@ -64,16 +64,6 @@ Then(/^I complete (?:a|an) assisted digital "([^"]*)" registration without an em
   @world.last_reg_no = add_submitted_registration(@world.last_reg, :random, :random, load_root_page: false)
 end
 
-Given("I start the assisted digital private beta registration") do
-  visit(back_office_root_url("/registrations/#{@registration}"))
-  @world.bo.registration_details_page.start_private_beta_registration(@registration).click
-  @beta = true
-  @app = :bo
-  @world.journey.home_page.accept_cookies
-  @world.journey.beta_start_page.submit
-  @world.journey.location_page.submit(location: :england)
-end
-
 Given("I start an assisted digital registration") do
   @world.bo.dashboard_page.create_new_registration.click
   @world.journey.ad_privacy_policy_page.submit
