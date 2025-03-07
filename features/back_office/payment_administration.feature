@@ -1,7 +1,7 @@
 @charging
 Feature: Payment administration
 
-Background: Private beta registration opting to pay by bank transfer
+Background: Charging registration opting to pay by bank transfer
     Given I sign in as an admin team user
       And I start an assisted digital registration
       And I confirm my waste activities are "not on" a farm

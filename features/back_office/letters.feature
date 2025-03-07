@@ -10,7 +10,7 @@ Background: Sign into back office
      Then I will be informed the registration is complete
      And a registration confirmation letter has been sent
 
-@letter
+@letter @renewal
   Scenario: Renewal in back office where no contact email is given user sends confirmation letter to contact
       When I complete an assisted digital "limited_company" registration without an email address
       And I choose to renew a registration

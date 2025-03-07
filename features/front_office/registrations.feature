@@ -2,14 +2,11 @@
 Feature: Registration payments using card or bank transfer
 
 Background: Create registration and sign into back office
-    Given I have a valid registration
-      And I sign in as an admin team user
-      And I send a private beta invite
-      And I start my private beta registration
+    Given I start a new waste exemption registration
 @card
 Scenario: Succesful payment for registration using card
     Given I confirm my waste activities are "not on" a farm
-      And I enter my business details
+      And I enter my business details for a "partnership"
       And I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list 
       And I confirm my waste exemption selections
@@ -22,7 +19,7 @@ Scenario: Succesful payment for registration using card
 @bacs
 Scenario: Succesful registration by bank transfer
     Given I confirm my waste activities are "not on" a farm
-      And I enter my business details
+      And I enter my business details for a "limited_company"
       And I select waste activity "We crush, bale, shred or chip waste"
       And I select waste activity "We store waste"
       And I select waste activity "We burn plant and wood waste"
@@ -59,3 +56,8 @@ Scenario: All chosen farming exemptions can not be chosen from the non farming e
      When I select no exemptions from the list
       But I confirm I do not want any more waste exemptions
      Then I am told I can not continue without adding exemptions
+@ts
+  Scenario: Charities are requested to call the Environment Agency to register
+    Given I confirm my waste activities are "not on" a farm
+      When I select that I am registering as a charity
+      Then I am told to call the Environment Agency to register

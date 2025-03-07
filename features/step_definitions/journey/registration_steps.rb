@@ -10,15 +10,7 @@ Then("I start a new waste exemption registration") do
   @world.journey.home_page.load
   @world.journey.home_page.accept_cookies
   @world.journey.registration_type_page.submit(start_option: :new_radio)
-end
-
-Then("I register an exemption") do
-  # Set app to front office, to determine which email service to call later
-  @app = :fo
-  # Complete the registration. See registration_helpers for an explanation of the parameters.
-  # Registration details are stored as a hash, @world.last_reg.
-  # Registration number is stored as a string, @world.last_reg_no.
-  @world.last_reg_no = add_submitted_registration(@world.last_reg, :random, :random)
+  @world.journey.location_page.submit(location: :england)
 end
 
 Given("I register choosing to reuse my business information previously entered") do
@@ -351,3 +343,6 @@ Then("I am told I can not continue without adding exemptions") do
   expect(@world.journey.confirm_farming_exemption_selection_page.heading.text).to have_text("You have not selected any exemptions")
 end
 # rubocop:enable Layout/LineLength
+Then("I am told to call the Environment Agency to register") do
+  expect(page).to have_content("Charities register free")
+end

@@ -8,12 +8,10 @@ class ChooseExemptionsPage < BasePage
   def submit(args = {})
     if args.key?(:exemptions)
       args[:exemptions].each do |ex|
-        search_val = if args.key?(:beta)
-                       "activity_exemptions_form_checkbox-#{ex}"
-                     elsif args.key?(:farm)
+        search_val = if args.key?(:farm)
                        "farm_exemptions_form_checkbox-#{ex}"
                      else
-                       "exemptions_form_checkbox-#{ex}"
+                       "activity_exemptions_form_checkbox-#{ex}"
                      end
         ex = exemptions.find { |chk| chk["id"] == search_val }
         ex.click unless ex.checked?
