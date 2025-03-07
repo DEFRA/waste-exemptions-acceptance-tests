@@ -17,7 +17,7 @@ Scenario: Succesful payment for registration using card
      When I pay by card
      Then I will see a registration confirmation
      And I will receive a registration confirmation email
-@bacs @wip
+@bacs
 Scenario: Succesful registration by bank transfer
     Given I confirm my waste activities are "on" a farm
       And I enter my business details for a "local_authority"
@@ -32,7 +32,7 @@ Scenario: Succesful registration by bank transfer
      When I choose to pay by bank transfer
      Then I will see a registration received pending payment confirmation
       And I will receive a registration received pending payment email
-  @wipi
+  
   Scenario: Charities can register by calling the Environment Agency
     Given I confirm my waste activities are "not on" a farm
       And I enter my business details for a "charity"

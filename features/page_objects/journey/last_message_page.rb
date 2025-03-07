@@ -6,7 +6,7 @@ class LastMessagePage < BasePage
   # Page which shows last message sent in JSON format.
   # Notify messages are on /email/last-notify-message.
 
-  element(:message_content, "#content")
+  element(:message_content, "pre")
 
   def get_accept_url(email_address)
     if message_text?([email_address, "Create a Waste Exemptions back office account"]) == false
