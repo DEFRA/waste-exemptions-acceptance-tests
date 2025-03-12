@@ -139,6 +139,13 @@ Then("a registration confirmation letter has been sent") do
   expect(letter_exists?(expected_text)).to be true
 end
 
+Then("a payment by bank transfer letter has been sent") do
+  expected_text = [
+    "Payment needed for waste exemption registration #{@world.last_reg_no}"
+  ]
+  expect(letter_exists?(expected_text)).to be true
+end
+
 When("I carry out a partial registration") do
   # Generate and submit an incomplete registration and record the applicant's name, for later searching:
   unsubmitted_reg = generate_registration(:individual)

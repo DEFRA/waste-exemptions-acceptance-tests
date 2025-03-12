@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
-def add_submitted_registration(registration, address_type = :lookup, _site_type = :random, load_root_page: true)
+def add_submitted_registration(registration, address_type = :lookup, _site_type = :random, payment = :card,
+                               load_root_page: true)
   # This function completes a full registration with parameters:
   # - a full set of `registration` data - generated from the generate_registration function in data_generator
   # - an option to load the root page or not (default true)
@@ -28,14 +29,19 @@ def add_submitted_registration(registration, address_type = :lookup, _site_type 
   @world.journey.check_details_page.submit
   @world.journey.exemptions_summary_page.submit_button.click
   @world.journey.declaration_page.submit
-  @world.journey.payment_summary_page.submit(payment_type: :card)
-  submit_card_payment
+
+  if payment == :card
+    @world.journey.payment_summary_page.submit(payment_type: :card)
+    submit_card_payment
+  else
+    @world.journey.payment_summary_page.submit(payment_type: :bank)
+  end
   ref_no = @world.journey.confirmation_page.ref_no.text
   puts "#{ref_no} completed by #{registration[:applicant][:full_name]}"
   ref_no
 end
 
-# rubocop:enable Metrics/AbcSize, Metrics/MethodLength
+# rubocop:enable Metrics/AbcSize,Metrics/MethodLength
 def choose_random_address_type
   # Select :lookup addresses, or manually entering addresses at random.
   # Lookup is more common.
