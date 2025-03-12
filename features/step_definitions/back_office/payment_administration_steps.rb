@@ -63,7 +63,7 @@ When("I add a positive charge of £{float} to the registration") do |charge|
                                           reason: "credit for refund")
 end
 
-When("I add a positive charge the full registration amount") do
+When("I add a positive charge of the full registration amount") do
   @world.bo.payment_details_page.adjust_charge.click
   @world.bo.charge_adjustment_type_page.decrease_charge.click
   @world.bo.charge_adjustment_type_page.submit_button.click

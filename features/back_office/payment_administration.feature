@@ -31,7 +31,7 @@ Scenario: Overpayment bank transfer payment to registration sends confirmation e
 Scenario: Charge adjustment of registration to sends confirmation email
     Given I sign in as an admin team user
       And I find the payment details for the registration
-      And I add a positive charge the full registration amount
+      And I add a positive charge of the full registration amount
      Then I will receive a registration confirmation email
 
 Scenario: Overpayment of registration charge refund can be recorded
