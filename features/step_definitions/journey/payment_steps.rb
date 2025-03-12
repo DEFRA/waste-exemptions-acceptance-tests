@@ -25,6 +25,6 @@ end
 
 Then("I will see a registration pending payment confirmation") do
   expect(@world.journey.registration_confirmation_page.heading.text).to have_text("WEX")
-  @registration = @world.journey.registration_received_pending_payment_page.registration_number.text
-  puts "#{@registration} generated"
+  @world.last_reg_no = @world.journey.registration_received_pending_payment_page.registration_number.text
+  puts "#{@world.last_reg_no} pending payment"
 end

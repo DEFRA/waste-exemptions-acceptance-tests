@@ -56,7 +56,7 @@ Scenario: All chosen farming exemptions can not be chosen from the non farming e
      When I select no exemptions from the list
       But I confirm I do not want any more waste exemptions
      Then I am told I can not continue without adding exemptions
-@ts
+
   Scenario: Charities are requested to call the Environment Agency to register
     Given I confirm my waste activities are "not on" a farm
       When I select that I am registering as a charity

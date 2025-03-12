@@ -15,18 +15,31 @@ Background: Charging registration opting to pay by bank transfer
      When I choose to pay by bank transfer
      Then I will see a registration received pending payment confirmation
 
-Scenario: Recording bank transfer payment to registration
+Scenario: Recording full bank transfer payment to registration sends confirmation email
     Given I sign in as a finance user
       And I find the payment details for the registration
      When I record a bank transfer payment for the registration amount
      Then the balance will be zero
+     And I will receive a registration confirmation email
+
+Scenario: Overpayment bank transfer payment to registration sends confirmation email
+    Given I sign in as an admin team leader
+      And I find the payment details for the registration
+      And I record a bank transfer payment for more than the registration amount
+     Then I will receive a registration confirmation email
+
+Scenario: Charge adjustment of registration to sends confirmation email
+    Given I sign in as an admin team user
+      And I find the payment details for the registration
+      And I add a positive charge the full registration amount
+     Then I will receive a registration confirmation email
 
 Scenario: Overpayment of registration charge refund can be recorded
     Given I sign in as an admin team leader
       And I find the payment details for the registration
       And I record a bank transfer payment for more than the registration amount
      When I record a refund of the overpayment
-    Then the balance will be zero
+     Then the balance will be zero
 
 Scenario: Incorrect payment entry can be reversed
     Given I sign in as an admin team user
