@@ -37,7 +37,7 @@ end
 
 When "I choose to change the contact email" do
   @world.journey.front_office_edit_page.change_contact_email_link.click
-  expect(@world.journey.contact_email_page.title).to have_text("What's the correct email address to contact?")
+  expect(@world.journey.contact_email_page.heading).to have_text("What's the contact email address?")
 end
 
 When "I submit the contact email form" do

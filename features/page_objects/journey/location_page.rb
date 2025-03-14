@@ -2,10 +2,10 @@
 
 class LocationPage < BasePage
 
-  element(:england, "input[value='england'] + label")
-  element(:wales, "input[value='wales'] + label")
-  element(:scotland, "input[value='scotland'] + label")
-  element(:northern_ireland, "input[value='northern_ireland'] + label")
+  element(:england, "#location-form-location-england-field + label")
+  element(:wales, "#location-form-location-wales-field + label")
+  element(:scotland, "#location-form-location-scotland-field + label")
+  element(:northern_ireland, "#location-form-location-northern-ireland-field + label")
 
   def submit(args = {})
     case args[:location]

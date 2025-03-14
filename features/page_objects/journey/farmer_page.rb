@@ -3,8 +3,8 @@
 class FarmerPage < BasePage
 
   # Is the person carrying out the waste operation a farmer?
-  element(:farmer_yes, "input[value='true'] + label")
-  element(:farmer_no, "input[value='false'] + label")
+  element(:farmer_yes, "#is-a-farmer-form-is-a-farmer-true-field + label")
+  element(:farmer_no, "#is-a-farmer-form-is-a-farmer-field + label")
 
   def submit(args = {})
     if args[:farmer]

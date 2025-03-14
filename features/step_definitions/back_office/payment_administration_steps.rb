@@ -63,6 +63,14 @@ When("I add a positive charge of £{float} to the registration") do |charge|
                                           reason: "credit for refund")
 end
 
+When("I add a positive charge of the full registration amount") do
+  @world.bo.payment_details_page.adjust_charge.click
+  @world.bo.charge_adjustment_type_page.decrease_charge.click
+  @world.bo.charge_adjustment_type_page.submit_button.click
+  @world.bo.charge_adjustment_page.submit(amount: @total_charge,
+                                          reason: "No charge registration")
+end
+
 Then("I can see the registration is £{float} in credit") do |amount|
   expect(@world.bo.payment_details_page.balance.text).to have_text("£#{amount}")
   expect(@world.bo.payment_details_page.balance.text).not_to have_text("-")
