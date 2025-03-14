@@ -141,7 +141,7 @@ end
 
 Then("a payment by bank transfer letter has been sent") do
   expected_text = [
-    "Payment needed for waste exemption registration #{@world.last_reg_no}"
+    "Payment due for #{@world.last_reg_no}"
   ]
   expect(letter_exists?(expected_text)).to be true
 end
