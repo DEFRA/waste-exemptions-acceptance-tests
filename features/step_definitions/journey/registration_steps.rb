@@ -307,7 +307,7 @@ Given("I select exemption(s) {string} from the {string} list") do |exemptions, l
 end
 
 Given("I select all exemptions from the list") do
-  expect(@world.journey.choose_exemptions_page.heading.text).to have_text("waste exemptions")
+  expect(@world.journey.choose_exemptions_page.heading.text).to have_text("exemptions")
   @world.journey.choose_exemptions_page.check_all_exemptions_and_submit
 end
 
