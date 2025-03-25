@@ -32,7 +32,7 @@ Scenario: Multiple exemptions of the same band one have discounted exemptions
       And I can see the total charge is £628.00
       And I can see that the "Full" compliance charge of band 1 exemption is £20.00
       And I can see that the "Discounted" compliance charge of band 1 exemption is £76.00
-
+@ts
 Scenario: Multiple exemptions of different bands 1, 2 and 3
     Given I confirm my waste activities are "not on" a farm
       And I enter my business details
@@ -45,7 +45,7 @@ Scenario: Multiple exemptions of different bands 1, 2 and 3
      Then I can see the registration charge is £56.00
       And I can see the total charge is £658.00
       And I can see that the "Full" compliance charge of band 1 exemption is £420.00
-      And I can see that the "Discounted" compliance charge of band 3 exemption is £30.00
+      And I can see that the "No discount" compliance charge of band 3 exemption is £30.00
 
 Scenario: Multiple exemptions of different bands 1, 2, 3 and 4
     Given I confirm my waste activities are "not on" a farm
@@ -61,7 +61,7 @@ Scenario: Multiple exemptions of different bands 1, 2, 3 and 4
      Then I can see the registration charge is £56.00
       And I can see the total charge is £1474.00
       And I can see that the "Full" compliance charge of band 4 exemption is £1236.00
-      And I can see that the "Discounted" compliance charge of band 3 exemption is £30.00
+      And I can see that the "No discount" compliance charge of band 3 exemption is £30.00
 @farm
 Scenario: Farming waste exemptions are charged the farming compliance change
     Given I confirm my waste activities are "on" a farm
