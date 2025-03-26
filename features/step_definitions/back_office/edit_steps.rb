@@ -49,6 +49,7 @@ end
 
 When("I complete the edit") do
   @world.bo.edit_page.submit
+  @world.bo.edit_reason_page.submit(reason: "Requested by customer")
   @world.journey.declaration_page.submit
   expect(@world.bo.edit_details_page.heading).to have_text("Edit complete")
   puts "#{@world.last_reg_no} edited"
