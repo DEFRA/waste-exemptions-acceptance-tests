@@ -35,6 +35,10 @@ class BackOfficeApp
     @last_page = EditPage.new
   end
 
+  def edit_reason_page
+    @last_page = EditReasonPage.new
+  end
+
   def edit_details_page
     @last_page = EditDetailsPage.new
   end
