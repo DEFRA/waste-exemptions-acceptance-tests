@@ -62,7 +62,7 @@ Then("I can continue an in progress registration") do
   @world.bo.dashboard_page.unsubmitted_filter.click
   @world.bo.dashboard_page.submit(search_term: "Mr Waste")
   @world.bo.dashboard_page.resume_links[0].click
-  expect(page).to have_content("Do you want to use this as the contact name?")
+  expect(page).to have_content("Is this the name of the contact person?")
 end
 
 Then("I cannot continue an in progress registration") do

@@ -16,7 +16,7 @@ Then("I complete an in progress registration") do
   @world.bo.dashboard_page.unsubmitted_filter.click
   @world.bo.dashboard_page.submit(search_term: @last_transient_name)
   @world.bo.dashboard_page.resume_links[0].click
-  expect(page).to have_content("Do you want to use this as the contact name?")
+  expect(page).to have_content("Is this the name of the contact person?")
 
   # Generate the data for the rest of the registration and save it as a world variable:
   @world.reg_to_complete = generate_registration(:individual)
@@ -55,11 +55,18 @@ Then(/^I complete (?:a|an) "([^"]*)" registration$/) do |business|
   @world.last_reg_no = add_submitted_registration(@world.last_reg, :random, :random)
 end
 
-Then(/^I complete (?:a|an) assisted digital "([^"]*)" registration without an email address$/) do |business|
+When("I complete an AD {string} registration without an email address paying by {string}") do |business, payment|
   @world.bo.dashboard_page.create_new_registration.click
   @world.journey.ad_privacy_policy_page.submit
   @world.last_reg = generate_registration(business.to_sym, email: nil)
   @no_email = true
   # This also stores the exemption number so the exemption can be edited in later steps.
-  @world.last_reg_no = add_submitted_registration(@world.last_reg, :random, :random, load_root_page: false)
+  @world.last_reg_no = add_submitted_registration(@world.last_reg, :random, :random, payment.to_sym,
+                                                  load_root_page: false)
+end
+
+Given("I start an assisted digital registration") do
+  @world.bo.dashboard_page.create_new_registration.click
+  @world.journey.ad_privacy_policy_page.submit
+  @world.journey.location_page.submit(location: :england)
 end

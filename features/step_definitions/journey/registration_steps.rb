@@ -10,15 +10,7 @@ Then("I start a new waste exemption registration") do
   @world.journey.home_page.load
   @world.journey.home_page.accept_cookies
   @world.journey.registration_type_page.submit(start_option: :new_radio)
-end
-
-Then("I register an exemption") do
-  # Set app to front office, to determine which email service to call later
-  @app = :fo
-  # Complete the registration. See registration_helpers for an explanation of the parameters.
-  # Registration details are stored as a hash, @world.last_reg.
-  # Registration number is stored as a string, @world.last_reg_no.
-  @world.last_reg_no = add_submitted_registration(@world.last_reg, :random, :random)
+  @world.journey.location_page.submit(location: :england)
 end
 
 Given("I register choosing to reuse my business information previously entered") do
@@ -110,6 +102,20 @@ Then("I will receive a registration confirmation email") do
   expect(email_exists?(expected_text, @world.last_reg)).to be true
 end
 
+Then("I will receive a registration received pending payment email") do
+  expected_text = [
+    "Payment needed for your waste exemption registration", @world.last_reg_no
+  ]
+  expect(email_exists?(expected_text, @world.last_reg)).to be true
+end
+
+Then("I will see a registration received pending payment confirmation") do
+  expect(page).to have_content "Confirm you've paid"
+  expect(@world.journey.registration_received_pending_payment_page.payment_amount.text).to have_text(@total_charge)
+  @world.last_reg_no = @world.journey.registration_received_pending_payment_page.registration_number.text
+  puts "Registration #{@world.last_reg_no} completed pending £#{@total_charge} payment"
+end
+
 Then("I am on the check your answers page") do
   @world.journey.check_registered_company_name_page.submit(choice: :confirm) if company? && @renewal
   if @renewal
@@ -129,6 +135,13 @@ end
 Then("a registration confirmation letter has been sent") do
   expected_text = [
     "Your reference: #{@world.last_reg_no}"
+  ]
+  expect(letter_exists?(expected_text)).to be true
+end
+
+Then("a payment by bank transfer letter has been sent") do
+  expected_text = [
+    "Payment due for #{@world.last_reg_no}"
   ]
   expect(letter_exists?(expected_text)).to be true
 end
@@ -208,7 +221,9 @@ When("I enter the registration details") do
     site_details: "test location"
   )
   complete_address(:lookup)
-  @applicant = generate_person("applicant@example.com")
+  @applicant_email = "applicant@example.com"
+  @applicant = generate_person(@applicant_email)
+
   complete_applicant_details(@applicant)
   @world.journey.check_contact_name_page.submit(reuse: :accept)
   @world.journey.contact_position_page.submit(position: @applicant[:position])
@@ -267,6 +282,7 @@ end
 
 Given("I select exemption(s) {string} from the activities list") do |exemptions|
   @world.journey.select_waste_activities_page.submit_button.click
+  expect(@world.journey.choose_exemptions_page.heading.text).to have_text("exemptions")
   @existing_exemptions = []
   exemptions.split.each do |ex|
     @existing_exemptions << ex
@@ -291,7 +307,12 @@ Given("I select exemption(s) {string} from the {string} list") do |exemptions, l
 end
 
 Given("I select all exemptions from the list") do
+  expect(@world.journey.choose_exemptions_page.heading.text).to have_text("exemptions")
   @world.journey.choose_exemptions_page.check_all_exemptions_and_submit
+end
+
+Given("I select all waste activities") do
+  @world.journey.select_waste_activities_page.check_all_activities_and_submit
 end
 
 Given("I confirm my waste activities are {string} a farm") do |choice|
@@ -311,4 +332,24 @@ end
 
 Given("I enter my business details for a {string}") do |business|
   complete_organisation_details(generate_registration(business.to_sym))
+end
+
+Then("my farming exemptions are not available to be chosen from the list") do
+  expect(@world.journey.choose_exemptions_page.exemptions_displayed?(@existing_exemptions)).to eq(false)
+end
+
+Given("I select no exemptions from the list") do
+  @world.journey.choose_exemptions_page.submit_button.click
+end
+
+Then("I can select waste activities from the list") do
+  expect(@world.journey.select_waste_activities_page).to have_activities
+end
+# rubocop:disable Layout/LineLength
+Then("I am told I can not continue without adding exemptions") do
+  expect(@world.journey.confirm_farming_exemption_selection_page.heading.text).to have_text("You have not selected any exemptions")
+end
+# rubocop:enable Layout/LineLength
+Then("I am told to call the Environment Agency to register") do
+  expect(page).to have_content("Charities register free")
 end

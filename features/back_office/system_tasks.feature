@@ -33,7 +33,6 @@ Feature: Carry out system tasks
     And I can access create a new registration
     And I can search for registrations
     And I can view their details
-    And I can continue an in progress registration
     And I can access data exports
     But I cannot toggle features
 
@@ -44,7 +43,6 @@ Feature: Carry out system tasks
     And I can access create a new registration
     And I can search for registrations
     And I can view their details
-    And I can continue an in progress registration
     And I can access data exports
     But I cannot toggle features
     And I can edit the most recent registration
@@ -57,7 +55,6 @@ Feature: Carry out system tasks
     And I cannot access create a new registration
     But I can search for registrations
     And I can view their details
-    But I cannot continue an in progress registration
     But I can access data exports
     But I cannot edit the most recent registration
     But I cannot toggle features
@@ -70,7 +67,6 @@ Feature: Carry out system tasks
     And I can access create a new registration
     And I can search for registrations
     And I can view their details
-    And I can continue an in progress registration
     And I can access data exports
     And I can toggle features
     But I can edit the most recent registration
@@ -83,7 +79,6 @@ Feature: Carry out system tasks
     And I can access create a new registration
     And I can search for registrations
     And I can view their details
-    And I can continue an in progress registration
     And I can access data exports
     And I cannot toggle features
     And I can edit the most recent registration

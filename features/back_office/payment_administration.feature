@@ -1,11 +1,9 @@
-@beta
+@charging
 Feature: Payment administration
 
-Background: Private beta registration opting to pay by bank transfer
-    Given I have a valid registration
-      And I sign in as an admin team user
-      And I send a private beta invite
-      And I start my private beta registration
+Background: Charging registration opting to pay by bank transfer
+    Given I sign in as an admin team user
+      And I start an assisted digital registration
       And I confirm my waste activities are "not on" a farm
       And I enter my business details
      When I select waste activity "We use waste in building and construction"
@@ -15,20 +13,33 @@ Background: Private beta registration opting to pay by bank transfer
       And I confirm the registration details
       And I confirm the charge summary
      When I choose to pay by bank transfer
-      And I will see a registration pending payment confirmation
+     Then I will see a registration received pending payment confirmation
 
-Scenario: Recording bank transfer payment to registration
+Scenario: Recording full bank transfer payment to registration sends confirmation email
     Given I sign in as a finance user
       And I find the payment details for the registration
-     When I record a bank transfer payment for the registraton amount
+     When I record a bank transfer payment for the registration amount
      Then the balance will be zero
+     And I will receive a registration confirmation email
+
+Scenario: Overpayment bank transfer payment to registration sends confirmation email
+    Given I sign in as an admin team leader
+      And I find the payment details for the registration
+      And I record a bank transfer payment for more than the registration amount
+     Then I will receive a registration confirmation email
+
+Scenario: Charge adjustment of registration to sends confirmation email
+    Given I sign in as an admin team user
+      And I find the payment details for the registration
+      And I add a positive charge of the full registration amount
+     Then I will receive a registration confirmation email
 
 Scenario: Overpayment of registration charge refund can be recorded
     Given I sign in as an admin team leader
       And I find the payment details for the registration
       And I record a bank transfer payment for more than the registration amount
      When I record a refund of the overpayment
-    Then the balance will be zero
+     Then the balance will be zero
 
 Scenario: Incorrect payment entry can be reversed
     Given I sign in as an admin team user
@@ -40,6 +51,6 @@ Scenario: Incorrect payment entry can be reversed
 Scenario: Charge adjustment can be added to a registration to put it in credit
     Given I sign in as an admin team user
       And I find the payment details for the registration
-      And I record a bank transfer payment for the registraton amount
+      And I record a bank transfer payment for the registration amount
      When I add a positive charge of £10.00 to the registration
      Then I can see the registration is £10.00 in credit

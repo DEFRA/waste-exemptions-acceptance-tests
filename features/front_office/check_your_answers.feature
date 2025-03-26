@@ -1,11 +1,8 @@
-@frontoffice @changes @beta
-Feature: Check your answers changes - private beta
+@frontoffice @changes @charging
+Feature: Check your answers changes
 
 Background: Create registration and sign into back office
-    Given I have a valid registration
-      And I sign in as an admin team user
-      And I send a private beta invite
-      And I start my private beta registration
+    Given I start a new waste exemption registration
 
 Scenario: User can change contact name from check your answers page
     Given I confirm my waste activities are "not on" a farm
@@ -75,7 +72,7 @@ Scenario: User can change the contact email address from check your answers page
 
 Scenario: User can change the contact phone number from check your answers page
     Given I confirm my waste activities are "not on" a farm
-      And I enter my business details for a "charity"
+      And I enter my business details for a "limited_company"
       And I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list
       And I confirm my waste exemption selections

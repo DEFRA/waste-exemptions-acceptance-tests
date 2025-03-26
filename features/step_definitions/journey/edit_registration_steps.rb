@@ -37,7 +37,7 @@ end
 
 When "I choose to change the contact email" do
   @world.journey.front_office_edit_page.change_contact_email_link.click
-  expect(@world.journey.contact_email_page.title).to have_text("What's their email address?")
+  expect(@world.journey.contact_email_page.heading).to have_text("What's the contact email address?")
 end
 
 When "I submit the contact email form" do
@@ -51,8 +51,8 @@ end
 
 When "I choose to change the contact name" do
   @world.journey.front_office_edit_page.change_contact_name_link.click
-  expect(@world.journey.contact_name_page.title)
-    .to have_text("Who should we contact about this waste exemption operation?")
+  expect(@world.journey.contact_name_page.heading)
+    .to have_text("Who is the contact for this registration?")
 end
 
 When("I choose to change the contact address") do
@@ -69,7 +69,7 @@ end
 
 When "I choose to change the contact phone number" do
   @world.journey.front_office_edit_page.change_contact_phone_link.click
-  expect(@world.journey.contact_phone_page.title).to have_text("What's their telephone number?")
+  expect(@world.journey.contact_phone_page.heading).to have_text("Contact phone number")
 end
 
 When "I submit the contact phone number form" do

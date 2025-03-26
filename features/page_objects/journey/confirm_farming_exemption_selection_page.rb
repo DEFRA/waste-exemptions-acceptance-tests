@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-class ConfirmExemptionSelectionPage < BasePage
+class ConfirmFarmingExemptionSelectionPage < BasePage
 
-  element(:confirm, "input[value='true'] + label")
-  element(:change, "input[value='false'] + label")
+  element(:confirm, "input[value='false'] + label")
+  element(:change, "input[value='true'] + label")
 
   def submit(args = {})
     case args[:choice]

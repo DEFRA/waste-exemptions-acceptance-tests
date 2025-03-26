@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-def add_submitted_registration(registration, address_type = :lookup, site_type = :random, load_root_page: true)
+# rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+def add_submitted_registration(registration, address_type = :lookup, _site_type = :random, payment = :card,
+                               load_root_page: true)
   # This function completes a full registration with parameters:
   # - a full set of `registration` data - generated from the generate_registration function in data_generator
   # - an option to load the root page or not (default true)
@@ -12,21 +14,35 @@ def add_submitted_registration(registration, address_type = :lookup, site_type =
 
   @world.journey.home_page.load if load_root_page
   @world.journey.home_page.accept_cookies
-  @world.journey.registration_type_page.submit(start_option: :new_radio)
   @world.journey.location_page.submit(location: :england)
-  @world.journey.choose_exemptions_page.submit(exemptions: registration[:exemptions])
-  complete_applicant_details(registration[:applicant])
+  @world.journey.on_farm_page.submit(on_farm: false)
+  @world.journey.farmer_page.submit(farmer: false)
   complete_organisation_details(registration)
+  @world.journey.select_waste_activities_page.check_all_activities_and_submit
+  @world.journey.choose_exemptions_page.submit(exemptions: registration[:exemptions])
+  @world.journey.confirm_exemption_selection_page.submit(choice: :confirm)
+  complete_site_details(registration, address_type, :grid_ref)
   complete_address(address_type)
-  complete_contact_details(registration[:contact], address_type)
-  complete_farm_questions(registration)
-  complete_site_details(registration, address_type, site_type)
+  complete_applicant_details(registration[:applicant])
 
-  ref_no = complete_confirmations
+  complete_contact_details(registration[:contact], address_type)
+  @world.journey.check_details_page.submit
+  expect(@world.journey.exemptions_summary_page.heading.text).to eq("Your exemptions and charges")
+  @world.journey.exemptions_summary_page.submit_button.click
+  @world.journey.declaration_page.submit
+
+  if payment == :card
+    @world.journey.payment_summary_page.submit(payment_type: :card)
+    submit_card_payment
+  else
+    @world.journey.payment_summary_page.submit(payment_type: :bank)
+  end
+  ref_no = @world.journey.confirmation_page.ref_no.text
   puts "#{ref_no} completed by #{registration[:applicant][:full_name]}"
   ref_no
 end
 
+# rubocop:enable Metrics/AbcSize,Metrics/MethodLength
 def choose_random_address_type
   # Select :lookup addresses, or manually entering addresses at random.
   # Lookup is more common.

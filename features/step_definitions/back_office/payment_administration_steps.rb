@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 Given("I find the payment details for the registration") do
-  @world.bo.dashboard_page.submit(search_term: @registration)
-  @world.bo.dashboard_page.view_link(@registration).click
+  @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
+  @world.bo.dashboard_page.view_link(@world.last_reg_no).click
   @world.bo.registration_details_page.payment_details.click
 end
 
-When("I record a bank transfer payment for the registraton amount") do
+When("I record a bank transfer payment for the registration amount") do
   @world.bo.payment_details_page.record_payment.click
   @world.bo.record_payment_page.submit(
     payment_type: :bacs,
@@ -61,6 +61,14 @@ When("I add a positive charge of £{float} to the registration") do |charge|
   @world.bo.charge_adjustment_type_page.submit_button.click
   @world.bo.charge_adjustment_page.submit(amount: charge,
                                           reason: "credit for refund")
+end
+
+When("I add a positive charge of the full registration amount") do
+  @world.bo.payment_details_page.adjust_charge.click
+  @world.bo.charge_adjustment_type_page.decrease_charge.click
+  @world.bo.charge_adjustment_type_page.submit_button.click
+  @world.bo.charge_adjustment_page.submit(amount: @total_charge,
+                                          reason: "No charge registration")
 end
 
 Then("I can see the registration is £{float} in credit") do |amount|
