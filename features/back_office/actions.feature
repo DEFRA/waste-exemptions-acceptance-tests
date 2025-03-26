@@ -7,7 +7,7 @@ Feature: Back office registration actions
       Given I have a valid registration
       And I sign in as an admin team user
       
-    @letter
+    @letter @renewal
     Scenario: Renewal reminder letter can be resent from registration details page
       When I search for the registration
       And I view the registration details
