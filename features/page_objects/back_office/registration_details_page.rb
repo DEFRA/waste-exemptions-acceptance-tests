@@ -15,6 +15,9 @@ class RegistrationDetailsPage < BasePage
   element(:deregister_invite_action, "a[href^='/send-edit-invite']")
   elements(:deregistration_details, "[href^='/deregistrations']")
   element(:payment_details, "[href*='/payment_details']")
+  element(:refresh_company_details, "a[href^='/companies-house-details']")
+  element(:company_name, ".govuk-summary-list__row:nth-child(2) .govuk-body:nth-child(2)")
+  element(:change_history, "a[href*='change_history']")
 
   sections :exemption_details, "table tbody tr" do
     element(:exemption, "td:nth-child(1)")
