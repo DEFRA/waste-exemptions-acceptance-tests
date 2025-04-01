@@ -52,17 +52,18 @@ end
 When("I refresh the company name from companies house") do
   @company_name = @world.bo.registration_details_page.company_name.text
   @world.bo.registration_details_page.refresh_company_details.click
+  @change_reason = "Companies House information refreshed"
 end
 
 Then("I will see a confirmation the company name has been refreshed") do
   expect(@world.bo.registration_details_page.company_name.text).not_to eq(@company_name)
-  @new_company_name = @world.bo.registration_details_page.company_name.text
+  @updated_detail = @world.bo.registration_details_page.company_name.text
   expect(@world.bo.dashboard_page.dashboard_message).to have_text("refreshed the Companies House")
 end
 
 Then("I can see the change recorded on the change history page") do
   @world.bo.registration_details_page.change_history.click
   expect(@world.bo.change_history_page.heading).to have_text("Change history")
-  log = @world.bo.change_history_page.change_reason("Companies House information refreshed")
-  expect(log.updated_detail).to have_text(@new_company_name)
+  log = @world.bo.change_history_page.change_reason(@change_reason)
+  expect(log.updated_detail).to have_text(@updated_detail)
 end
