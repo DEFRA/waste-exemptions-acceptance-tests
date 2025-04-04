@@ -45,6 +45,13 @@ When("I record a refund of the overpayment") do
                                       reason: "Refund of overpayment")
 end
 
+When("I record a partial refund of half of the overpayment") do
+  @world.bo.payment_details_page.record_refund.click
+  @world.bo.record_refund_page.record_refund.first.click
+  @world.bo.record_refund_page.submit(amount: half_amount(@overpayment_amount),
+                                      reason: "Partial refund of overpayment")
+end
+
 When("I reverse the payment") do
   @world.bo.payment_details_page.reverse_payment.click
   @world.bo.record_reversal_page.reverse_payment.click

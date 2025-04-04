@@ -38,3 +38,8 @@ def strip_text_whitespace_convert_to_array(text)
   text.gsub(/\s+/, "")
   text.split(",")
 end
+
+def half_amount(amount)
+  amount = amount.to_f
+  amount / 2
+end
