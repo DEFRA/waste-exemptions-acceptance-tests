@@ -232,7 +232,6 @@ When("I enter the registration details") do
   @world.journey.check_contact_email_page.submit(reuse: :accept)
   expect(@world.journey.check_contact_email_page.heading.text).to eq("Is this the contact address?")
   @world.journey.check_contact_address_page.submit(reuse: :accept)
-  puts current_url
 end
 
 When("I confirm the registration details") do
