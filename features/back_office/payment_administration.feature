@@ -9,9 +9,9 @@ Background: Charging registration opting to pay by bank transfer
      When I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list
       And I confirm my waste exemption selections
+      And I confirm the charge summary
       And I enter the registration details
       And I confirm the registration details
-      And I confirm the charge summary
      When I choose to pay by bank transfer
      Then I will see a registration received pending payment confirmation
 
