@@ -28,7 +28,6 @@ def add_submitted_registration(registration, address_type = :lookup, _site_type 
   complete_contact_details(registration[:contact], address_type)
   @world.journey.check_details_page.submit
 
-
   @world.journey.declaration_page.submit
 
   if payment == :card
