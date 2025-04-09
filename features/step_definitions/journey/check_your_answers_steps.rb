@@ -112,7 +112,7 @@ end
 When("I change my companies house number") do
   @old_registered_name = @world.journey.check_details_page.company_name.text
   @world.journey.check_details_page.change_companies_house_number.click
-  @new_companies_house_number = "12345678"
+  @new_companies_house_number = "10336040"
   @world.journey.registration_number_page.submit(
     registration_number: @new_companies_house_number
   )
@@ -134,7 +134,7 @@ end
 When("I change the companies house number") do
   @world.journey.check_details_page.change_companies_house_number.click
   @world.journey.registration_number_page.submit(
-    registration_number: "12345678"
+    registration_number: "10336040"
   )
   @new_company_name = @world.journey.check_registered_company_name_page.company_name.text
   @world.journey.check_registered_company_name_page.submit(choice: :confirm)
