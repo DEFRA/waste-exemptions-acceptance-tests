@@ -10,9 +10,9 @@ Scenario: Succesful payment for registration using card
       And I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list 
       And I confirm my waste exemption selections
+      And I confirm the charge summary
       And I enter the registration details
       And I confirm the registration details
-      And I confirm the charge summary
      When I pay by card
      Then I will see a registration confirmation
      And I will receive a registration confirmation email
@@ -26,9 +26,9 @@ Scenario: Succesful registration by bank transfer
       And I select waste activity "We deposit spoil, sanitary and plant matter waste"
       And I select exemption "T8 S1 D1 D8" from the activities list
       And I confirm my waste exemption selections
+      And I confirm the charge summary
       And I enter the registration details
       And I confirm the registration details
-      And I confirm the charge summary
      When I choose to pay by bank transfer
      Then I will see a registration received pending payment confirmation
       And I will receive a registration received pending payment email
