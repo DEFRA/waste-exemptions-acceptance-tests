@@ -34,7 +34,7 @@ class LastMessagePage < BasePage
 
   def dereg_url
     # This email is generated through Notify.
-    if message_text?(["Deregister your waste exemptions"]) == false
+    if message_text?(["Update your details or deregister your waste exemptions"]) == false
       puts("Couldn't find dereg email")
       return "Email not found"
     end
