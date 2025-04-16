@@ -7,7 +7,7 @@ Feature: Back office registration actions
       Given I have a valid registration
       And I sign in as an admin team user
       
-    @letter
+    @letter @renew
     Scenario: Renewal reminder letter can be resent from registration details page
       When I search for the registration
       And I view the registration details
@@ -35,3 +35,10 @@ Feature: Back office registration actions
       And I resend the confirmation email
       And I open communication history
       Then I can see the communication logs on the communication history page
+      
+  Scenario: Companies name can be refreshed from companies house
+      When I search for the registration
+      And I view the registration details
+      And I refresh the company name from companies house
+      Then I will see a confirmation the company name has been refreshed
+      And I can see the change recorded on the change history page

@@ -9,9 +9,9 @@ Background: Charging registration opting to pay by bank transfer
      When I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list
       And I confirm my waste exemption selections
+      And I confirm the charge summary
       And I enter the registration details
       And I confirm the registration details
-      And I confirm the charge summary
      When I choose to pay by bank transfer
      Then I will see a registration received pending payment confirmation
 
@@ -34,12 +34,22 @@ Scenario: Charge adjustment of registration to sends confirmation email
       And I add a positive charge of the full registration amount
      Then I will receive a registration confirmation email
 
+@refund
 Scenario: Overpayment of registration charge refund can be recorded
     Given I sign in as an admin team leader
       And I find the payment details for the registration
       And I record a bank transfer payment for more than the registration amount
      When I record a refund of the overpayment
      Then the balance will be zero
+     
+@refund
+Scenario: Partial refund of registration charge can be recorded
+    Given I sign in as an admin team leader
+      And I find the payment details for the registration
+      And I record a bank transfer payment for more than the registration amount
+     When I record a partial refund of half of the overpayment
+     Then I record a partial refund of half of the overpayment
+      And the balance will be zero
 
 Scenario: Incorrect payment entry can be reversed
     Given I sign in as an admin team user

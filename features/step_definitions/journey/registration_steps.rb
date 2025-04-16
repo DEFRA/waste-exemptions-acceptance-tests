@@ -230,17 +230,19 @@ When("I enter the registration details") do
   @world.journey.check_contact_phone_page.submit(reuse: :accept)
   @contact_email = @applicant[:email]
   @world.journey.check_contact_email_page.submit(reuse: :accept)
+  expect(@world.journey.check_contact_email_page.heading.text).to eq("Is this the contact address?")
   @world.journey.check_contact_address_page.submit(reuse: :accept)
 end
 
 When("I confirm the registration details") do
   @world.journey.check_details_page.submit
+  @world.journey.declaration_page.submit
 end
 
 When("I confirm the charge summary") do
   @total_charge = trim_pound_sign(@world.journey.exemptions_summary_page.total_charge.text)
   @world.journey.exemptions_summary_page.submit_button.click
-  @world.journey.declaration_page.submit
+
 end
 
 Then("I will see a registration confirmation") do

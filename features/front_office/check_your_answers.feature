@@ -10,6 +10,7 @@ Scenario: User can change contact name from check your answers page
       And I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list
       And I confirm my waste exemption selections
+      And I confirm the charge summary
       And I enter the registration details
       And I am on the check your answers page
      When I change the contact name previously entered
@@ -21,6 +22,7 @@ Scenario: User can change operator name from check your answers page
       And I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list
       And I confirm my waste exemption selections
+      And I confirm the charge summary
       And I enter the registration details
       And I am on the check your answers page
      When I change the operator name previously entered
@@ -32,6 +34,7 @@ Scenario: A company can change companies house number from check your answers pa
       And I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list
       And I confirm my waste exemption selections
+      And I confirm the charge summary
       And I enter the registration details
      When I am on the check your answers page
       And I change the companies house number
@@ -43,6 +46,7 @@ Scenario: User can change the contact's position from check your answers page
       And I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list
       And I confirm my waste exemption selections
+      And I confirm the charge summary
       And I enter the registration details
      When I am on the check your answers page
       And I change the contact position previously entered
@@ -54,6 +58,7 @@ Scenario: User can change the contact address from check your answers page
       And I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list
       And I confirm my waste exemption selections
+      And I confirm the charge summary
       And I enter the registration details
      When I am on the check your answers page
      When I change the contact address previously entered
@@ -65,6 +70,7 @@ Scenario: User can change the contact email address from check your answers page
       And I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list
       And I confirm my waste exemption selections
+      And I confirm the charge summary
       And I enter the registration details
      When I am on the check your answers page
       And I change the contact email address previously entered
@@ -76,6 +82,7 @@ Scenario: User can change the contact phone number from check your answers page
       And I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list
       And I confirm my waste exemption selections
+      And I confirm the charge summary
       And I enter the registration details
      When I am on the check your answers page
       And I change the contact phone number previously entered
@@ -87,6 +94,7 @@ Scenario: User can change their farming question answers from check your answers
       And I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list
       And I confirm my waste exemption selections
+      And I confirm the charge summary
       And I enter the registration details
      When I am on the check your answers page
       And I change my farming question answers
@@ -98,6 +106,7 @@ Scenario: User can change their waste exemptions choices from the check your ans
       And I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list
       And I confirm my waste exemption selections
+      And I confirm the charge summary
       And I enter the registration details
       And I am on the check your answers page
      When I choose to change my waste exemptions
@@ -114,6 +123,7 @@ Scenario: User can change their applicant details from the check your answers pa
       And I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list
       And I confirm my waste exemption selections
+      And I confirm the charge summary
       And I enter the registration details
       And I am on the check your answers page
      When I change my applicant details
@@ -124,7 +134,8 @@ Scenario: User can change the business address from check your answers page
       And I enter my business details for a "local_authority"
       And I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list
-      And I confirm my waste exemption selections
+      And I confirm my waste exemption selections\
+      And I confirm the charge summary
       And I enter the registration details
      When I am on the check your answers page
       And I change the business address
@@ -136,6 +147,7 @@ Scenario: User can change the site location from a grid reference to an address 
       And I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list
       And I confirm my waste exemption selections
+      And I confirm the charge summary
       And I enter the registration details
       And I am on the check your answers page
      When I change to a site address
@@ -147,6 +159,7 @@ Scenario: User can partner details from check your answers page
       And I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list
       And I confirm my waste exemption selections
+      And I confirm the charge summary
       And I enter the registration details
       And I am on the check your answers page
      When I add another partner

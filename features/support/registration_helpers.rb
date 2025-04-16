@@ -21,14 +21,13 @@ def add_submitted_registration(registration, address_type = :lookup, _site_type 
   @world.journey.select_waste_activities_page.check_all_activities_and_submit
   @world.journey.choose_exemptions_page.submit(exemptions: registration[:exemptions])
   @world.journey.confirm_exemption_selection_page.submit(choice: :confirm)
+  @world.journey.exemptions_summary_page.submit_button.click
   complete_site_details(registration, address_type, :grid_ref)
   complete_address(address_type)
   complete_applicant_details(registration[:applicant])
-
   complete_contact_details(registration[:contact], address_type)
   @world.journey.check_details_page.submit
-  expect(@world.journey.exemptions_summary_page.heading.text).to eq("Your exemptions and charges")
-  @world.journey.exemptions_summary_page.submit_button.click
+
   @world.journey.declaration_page.submit
 
   if payment == :card
