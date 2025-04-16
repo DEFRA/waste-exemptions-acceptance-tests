@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 edit_link_email_expected_text =
-  "Deregister your waste exemptions and update your contact details before your renewal date"
+  "Update your details or deregister your waste exemptions"
 
 When("I start the flow to request an edit link") do
   @world.journey.home_page.load
