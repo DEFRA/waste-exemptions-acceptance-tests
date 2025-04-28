@@ -69,9 +69,9 @@ When("I change my applicant details") do
 end
 
 When("I change the business address") do
-  @company_address = @world.journey.check_details_page.company_address.text
+  @company_address = @world.journey.check_details_page.operator_address.text
   @new_postcode = "BS1 1YY"
-  @world.journey.check_details_page.change_company_address.click
+  @world.journey.check_details_page.change_operator_address.click
   @world.journey.address_lookup_page.choose_manual_address(
     postcode: @new_postcode
   )
@@ -193,8 +193,8 @@ Then("I can see my applicant details have been updated") do
 end
 
 Then("I can see the business address has been updated") do
-  expect(@world.journey.check_details_page.company_address.text).not_to eq(@company_address)
-  expect(@world.journey.check_details_page.company_address.text).to have_text(@new_postcode)
+  expect(@world.journey.check_details_page.operator_address.text).not_to eq(@company_address)
+  expect(@world.journey.check_details_page.operator_address.text).to have_text(@new_postcode)
 end
 
 Then("I can see the site address has been updated") do
