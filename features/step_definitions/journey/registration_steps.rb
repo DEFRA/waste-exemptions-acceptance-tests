@@ -118,6 +118,7 @@ end
 
 Then("I am on the check your answers page") do
   @world.journey.check_registered_company_name_page.submit(choice: :confirm) if company? && @renewal
+  sleep(1)
   if @renewal
     expect(@world.journey.check_details_page.title).to have_text("Do you want to renew with these details?")
   else
@@ -230,6 +231,7 @@ When("I enter the registration details") do
   @world.journey.check_contact_phone_page.submit(reuse: :accept)
   @contact_email = @applicant[:email]
   @world.journey.check_contact_email_page.submit(reuse: :accept)
+  sleep(1)
   expect(@world.journey.check_contact_email_page.heading.text).to eq("Is this the contact address?")
   @world.journey.check_contact_address_page.submit(reuse: :accept)
 end
@@ -283,7 +285,9 @@ When("I select waste activity {string}") do |activity|
 end
 
 Given("I select exemption(s) {string} from the activities list") do |exemptions|
-  @world.journey.select_waste_activities_page.submit_button.click
+  @world
+    .journey.select_waste_activities_page.submit_button.click
+  sleep(1)
   expect(@world.journey.choose_exemptions_page.heading.text).to have_text("exemptions")
   @existing_exemptions = []
   exemptions.split.each do |ex|

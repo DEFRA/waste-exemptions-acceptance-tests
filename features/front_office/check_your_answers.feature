@@ -134,7 +134,7 @@ Scenario: User can change the business address from check your answers page
       And I enter my business details for a "local_authority"
       And I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list
-      And I confirm my waste exemption selections\
+      And I confirm my waste exemption selections
       And I confirm the charge summary
       And I enter the registration details
      When I am on the check your answers page
