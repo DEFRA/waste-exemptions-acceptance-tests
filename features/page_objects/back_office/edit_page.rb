@@ -10,7 +10,8 @@ class EditPage < BasePage
   element(:change_operator_link, "a[href*='/edit/operator_name']")
   element(:change_contact_email_link, "a[href*='/edit/contact_email']")
   element(:change_applicant_phone, "a[href*='/edit/applicant_phone']")
-
+  element(:change_site_location, "a[href*='/edit/site_grid_reference']")
+  element(:change_contact_address, "a[href*='/edit/contact_postcode']")
   element(:cancel_link, "a[href*='/cancel']")
 
 end

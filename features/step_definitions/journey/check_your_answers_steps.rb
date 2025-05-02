@@ -20,7 +20,7 @@ When("I change the contact position previously entered") do
 end
 
 When("I change the contact address previously entered") do
-  @contact_address = remove_new_lines_from_address(@world.journey.check_details_page.contact_address.text)
+  @contact_address = remove_new_lines_from_text(@world.journey.check_details_page.contact_address.text)
   @world.journey.check_details_page.change_contact_address.click
   complete_address(:manual)
 end
@@ -161,7 +161,7 @@ Then("I can see the contact position has been updated") do
 end
 
 Then("I can see the contact address has been updated") do
-  @new_contact_address = remove_new_lines_from_address(@world.journey.check_details_page.contact_address.text)
+  @new_contact_address = remove_new_lines_from_text(@world.journey.check_details_page.contact_address.text)
   raise if @contact_address.nil? || @new_contact_address.nil?
 
   expect(@contact_address).not_to eq(@new_contact_address)
@@ -203,7 +203,7 @@ Then("I can see the site address has been updated") do
 end
 
 Then("I can see the site address on the check your answers page") do
-  expect(remove_new_lines_from_address(@world.journey.check_details_page.site_address.text)).to eq(@new_address)
+  expect(remove_new_lines_from_text(@world.journey.check_details_page.site_address.text)).to eq(@new_address)
 end
 
 Then("I can see the site location has been updated") do
