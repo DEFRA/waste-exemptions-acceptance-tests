@@ -4,6 +4,7 @@ Given("I find the payment details for the registration") do
   @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
   @world.bo.dashboard_page.view_link(@world.last_reg_no).click
   @world.bo.registration_details_page.payment_details.click
+  @total_charge = remove_pound_and_minus_sign(@world.bo.payment_details_page.balance.text)
 end
 
 When("I record a bank transfer payment for the registration amount") do

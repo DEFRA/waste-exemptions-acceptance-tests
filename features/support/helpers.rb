@@ -43,3 +43,7 @@ def half_amount(amount)
   amount = amount.to_f
   amount / 2
 end
+
+def remove_pound_and_minus_sign(amount)
+  amount.tr("£-", "")
+end
