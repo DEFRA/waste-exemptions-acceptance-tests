@@ -1,19 +1,8 @@
 @charging
 Feature: Payment administration
 
-Background: Charging registration opting to pay by bank transfer
-    Given I sign in as an admin team user
-      And I start an assisted digital registration
-      And I confirm my waste activities are "not on" a farm
-      And I enter my business details
-     When I select waste activity "We use waste in building and construction"
-      And I select exemption "U1" from the activities list
-      And I confirm my waste exemption selections
-      And I confirm the charge summary
-      And I enter the registration details
-      And I confirm the registration details
-     When I choose to pay by bank transfer
-     Then I will see a registration received pending payment confirmation
+Background: Create a registration
+    Given I have a valid registration
 
 Scenario: Recording full bank transfer payment to registration sends confirmation email
     Given I sign in as a finance user

@@ -197,15 +197,15 @@ Then("my email address is used for the contact email address") do
 end
 
 Then("my business address is used for the contact address") do
-  @contact_address = remove_new_lines_from_address(@world.journey.check_details_page.contact_address.text)
-  @business_address = remove_new_lines_from_address(@world.journey.check_details_page.company_address.text)
+  @contact_address = remove_new_lines_from_text(@world.journey.check_details_page.contact_address.text)
+  @business_address = remove_new_lines_from_text(@world.journey.check_details_page.company_address.text)
   expect(@contact_address).to eq(@address)
   expect(@business_address).to eq(@address)
 end
 
 Then("my business address is used for the site address") do
-  @site_address = remove_new_lines_from_address(@world.journey.check_details_page.site_address.text)
-  @business_address = remove_new_lines_from_address(@world.journey.check_details_page.company_address.text)
+  @site_address = remove_new_lines_from_text(@world.journey.check_details_page.site_address.text)
+  @business_address = remove_new_lines_from_text(@world.journey.check_details_page.company_address.text)
   expect(@site_address).to eq(@address)
   expect(@business_address).to eq(@address)
 end

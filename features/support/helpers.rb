@@ -12,7 +12,7 @@ def check_for_accessibility
   step("the page should be axe clean according to: wcag21a, wcag21aa")
 end
 
-def remove_new_lines_from_address(address)
+def remove_new_lines_from_text(address)
   address.split(/\n+/).join(", ")
 end
 
@@ -42,4 +42,8 @@ end
 def half_amount(amount)
   amount = amount.to_f
   amount / 2
+end
+
+def remove_pound_and_minus_sign(amount)
+  amount.tr("£-", "")
 end

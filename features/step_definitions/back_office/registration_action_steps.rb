@@ -65,5 +65,6 @@ Then("I can see the change recorded on the change history page") do
   @world.bo.registration_details_page.change_history.click
   expect(@world.bo.change_history_page.heading).to have_text("Change history")
   log = @world.bo.change_history_page.change_reason(@change_reason)
-  expect(log.updated_detail).to have_text(@updated_detail)
+  expected_text = remove_new_lines_from_text(log.updated_detail.text)
+  expect(expected_text).to have_text(@updated_detail)
 end
