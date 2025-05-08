@@ -120,7 +120,7 @@ Then("I am on the check your answers page") do
   @world.journey.check_registered_company_name_page.submit(choice: :confirm) if company? && @renewal
   sleep(1)
   if @renewal
-    expect(@world.journey.check_details_page.title).to have_text("Do you want to renew with these details?")
+    expect(@world.journey.check_details_page.title).to have_text("Are these details correct?")
   else
     expect(@world.journey.check_details_page.title).to have_text("Check your answers")
   end
@@ -237,6 +237,7 @@ When("I enter the registration details") do
 end
 
 When("I confirm the registration details") do
+  sleep(1)
   @world.journey.check_details_page.submit
   @world.journey.declaration_page.submit
 end
