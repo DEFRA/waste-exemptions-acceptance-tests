@@ -3,9 +3,7 @@
 Given "I have a valid registration" do
   login_user(@world.developer_user)
   create_registration(Date.today + 365)
-  sleep 2
   @registration = @world.bo.dashboard_page.created_registration.text[/(WEX\d+)/, 1]
-  puts @world.bo.dashboard_page.created_registration.text
   raise "Test data creation failed" if @registration.nil?
 
   @edit_token = @world.bo.dashboard_page.created_registration.text[/Edit token (.+)/, 1]
