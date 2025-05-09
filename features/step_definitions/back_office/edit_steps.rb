@@ -103,6 +103,7 @@ When("I can edit the most recent registration") do
 end
 
 When("I complete the edit") do
+  sleep(1)
   @world.bo.edit_page.submit
   @world.bo.edit_reason_page.submit(reason: @change_reason)
   @world.journey.declaration_page.submit

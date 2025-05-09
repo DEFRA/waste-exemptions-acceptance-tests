@@ -19,7 +19,7 @@ When("I pause for a while") do
 end
 
 Then("I will see the standard conditional confirmation page") do
-  expect(page).to have_content "If the email address you entered is correct"
+  expect(page).to have_content "If your email address is in our system we'll send you a link to your registration page."
 end
 
 Then("I will not receive an edit link email") do
