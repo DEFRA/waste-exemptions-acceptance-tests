@@ -115,7 +115,7 @@ Scenario: User can change their waste exemptions choices from the check your ans
       And I select waste activity "We store waste"
       And I select exemption "U9 T12 S1" from the activities list
       And I confirm my waste exemption selections
-     Then I can see the waste exemptions chosen have been updated
+      Then I can see the total charge is £704.00
 
 Scenario: User can change their applicant details from the check your answers page
     Given I confirm my waste activities are "not on" a farm
