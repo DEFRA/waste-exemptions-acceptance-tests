@@ -12,7 +12,7 @@ driver: chrome
 # Let Quke know you want to run the browser in headless mode. Headless mode
 # means the browser still runs but you won't see it displayed. The benefit is
 # that your tests will take less time as it's less resource intensive.
-headless: true
+headless: false
 
 # Add a pause (in seconds) between steps so you can visually track how the
 # browser is responding. Only useful if using a non-headless browser. The
@@ -78,3 +78,4 @@ custom:
     front_office: "http://localhost:3000"
     notify_link: "/email/last-notify-message"
     back_office: "http://localhost:8000"
+    mock_enabled: "http://localhost:3000/fo/mocks/company/00445790"

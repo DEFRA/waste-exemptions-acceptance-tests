@@ -2,7 +2,7 @@
 
 When("I pay by card") do
   @world.journey.payment_summary_page.submit(payment_type: :card)
-  submit_card_payment
+  submit_card_payment unless mocking_enabled?
 end
 
 When("I indicate I will pay by card") do
