@@ -47,3 +47,37 @@ end
 def remove_pound_and_minus_sign(amount)
   amount.tr("£-", "")
 end
+
+def mocking_enabled?
+  # Simple helper to check if mocking is currently enabled.
+  # It is based on the fact that the mock gem uses URL constraints,
+  # hence when we hit a mocking valid URL, if we receive a 404 response back,
+  # we can assume that mocking is disabled
+  uri = URI.parse(Quke::Quke.config.custom["urls"]["mock_enabled"])
+
+  if ENV["WEX_PROXY"].nil?
+    # using an instance variable so that we make the request to the mocking
+    # endpoint only once
+    @_mocking_enabled_response ||= Net::HTTP.get_response(uri)
+  else
+    # Adding proxy for http request
+    proxy_uri = URI.parse(ENV["WEX_PROXY"])
+    http = Net::HTTP.new(uri.hostname, uri.port, proxy_uri.host, proxy_uri.port)
+    request = Net::HTTP::Get.new(uri.request_uri)
+    http.use_ssl = true unless uri.to_s.include?("http://")
+    @_mocking_enabled_response ||= http.request(request)
+  end
+  return false if @_mocking_enabled_response.to_s.include?("HTTPNotFound")
+
+  true
+end
+
+# rubocop:disable Layout/LineLength
+def visit_govpay_mock_payment_status_page(status)
+  visit("#{Quke::Quke.config.custom['urls']['back_office']}/bo/mocks/govpay/v1/payments/set_test_payment_response_status/#{status}")
+end
+
+def visit_govpay_mock_refund_status_page(status)
+  visit("#{Quke::Quke.config.custom['urls']['back_office']}/bo/mocks/govpay/v1/payments/set_test_refund_response_status/#{status}")
+end
+# rubocop:enable Layout/LineLength

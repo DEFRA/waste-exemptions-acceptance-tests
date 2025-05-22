@@ -114,6 +114,7 @@ Then("I will see a registration received pending payment confirmation") do
   expect(@world.journey.registration_received_pending_payment_page.payment_amount.text).to have_text(@total_charge)
   @world.last_reg_no = @world.journey.registration_received_pending_payment_page.registration_number.text
   puts "Registration #{@world.last_reg_no} completed pending £#{@total_charge} payment"
+  visit_govpay_mock_payment_status_page("success")
 end
 
 Then("I am on the check your answers page") do
@@ -359,4 +360,13 @@ end
 # rubocop:enable Layout/LineLength
 Then("I am told to call the Environment Agency to register") do
   expect(page).to have_content("Charities register free")
+end
+
+Given("mocking is {string}") do |option|
+  case option
+  when "enabled"
+    pending "It makes no sense to test this feature when mocking is disabled" unless mocking_enabled?
+  when "disabled"
+    pending "It makes no sense to test this feature when mocking is enabled" if mocking_enabled?
+  end
 end

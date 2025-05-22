@@ -78,3 +78,4 @@ custom:
     front_office: "https://wex-pre.aws.defra.cloud"
     back_office: "https://admin-wex-pre.aws.defra.cloud"
     notify_link: "/email/last-notify-message"
+    mock_enabled: "https://wex-pre.aws-int.defra.cloud/fo/mocks/company/00445790"

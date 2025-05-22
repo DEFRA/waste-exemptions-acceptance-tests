@@ -78,3 +78,4 @@ custom:
     front_office: "http://localhost:3000"
     notify_link: "/email/last-notify-message"
     back_office: "http://localhost:8000"
+    mock_enabled: "http://localhost:3000/fo/mocks/company/00445790"
