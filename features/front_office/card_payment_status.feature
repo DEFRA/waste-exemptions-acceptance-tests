@@ -8,7 +8,7 @@ Feature: Card payment status
       And I confirm my waste activities are "not on" a farm
       And I enter my business details for a "partnership"
       And I select waste activity "We use waste in building and construction"
-      And I select exemption "U1" from the activities list 
+      And I select exemption "U3" from the activities list 
       And I confirm my waste exemption selections
       And I confirm the charge summary
       And I enter the registration details
