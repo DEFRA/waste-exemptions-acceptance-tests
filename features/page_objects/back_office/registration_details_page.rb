@@ -7,6 +7,7 @@ class RegistrationDetailsPage < BasePage
   section(:admin_menu_section, AdminMenuSection, AdminMenuSection::SELECTOR)
 
   element(:action_box, ".action-panel")
+  element(:set_new_expiry_date, "a[href$='/modify_expiry_date']")
   element(:deregister_reg_link, ".action-panel a[href*='deregister']")
   elements(:active_tags, ".status-tag-active")
   elements(:ceased_tags, ".status-tag-ceased")
