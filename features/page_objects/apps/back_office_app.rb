@@ -43,6 +43,10 @@ class BackOfficeApp
     @last_page = EditDetailsPage.new
   end
 
+  def extend_expiry_date_page
+    @last_page = ExtendExpiryDatePage.new
+  end
+
   def invitation_page
     @last_page = InvitationPage.new
   end
