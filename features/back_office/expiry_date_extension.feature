@@ -1,3 +1,4 @@
+@expiry_extension
 Feature: Expiry date extensions
 
     Exemption expiry dates can be extended, with the reason for change tracked in the change history
