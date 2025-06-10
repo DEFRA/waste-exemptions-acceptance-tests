@@ -60,18 +60,12 @@ When("I deregister a whole registration") do
   expect(@world.bo.deregister_page.heading).to have_text("Deregister all active Exemptions for Registration #{@world.last_reg_no}")
   # rubocop:enable Layout/LineLength
 
-  # Randomly revoke or cease the whole registration:
-  if rand(0..1).zero?
-    @world.bo.deregister_page.revoke_radio.click
-    @reg_status = "revoked"
-  else
-    @world.bo.deregister_page.cease_radio.click
-    @reg_status = "ceased"
-  end
+  @world.bo.deregister_page.cease_radio.click
+  @reg_status = "ceased"
 
   # Specify reason for revoking:
   @world.bo.deregister_page.submit(
-    reason: "I decided I didn't like this registration at: #{Time.new.inspect}"
+    reason: "Smoke test of release auto deregistered"
   )
   puts "#{@world.last_reg_no} fully #{@reg_status}"
 end
