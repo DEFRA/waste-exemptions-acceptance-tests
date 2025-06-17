@@ -1,6 +1,5 @@
 Feature: Card payment status
 
-@fix
   Scenario: Submitted govPay response completes user registration RUBY-3835
     Given mocking is "enabled"
       And the govPay payment status is "submitted"
@@ -14,4 +13,5 @@ Feature: Card payment status
       And I enter the registration details
       And I confirm the registration details
      When I pay by card
-     Then I will see a registration received pending payment confirmation
+     Then I will see a registration confirmation
+     And I will receive a registration confirmation email
