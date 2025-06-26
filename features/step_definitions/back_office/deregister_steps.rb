@@ -73,8 +73,8 @@ end
 Then("the registration is no longer active") do
   # Check that there are no deregister links or active tags
   expect(@world.bo.registration_details_page).to have_no_deregister_reg_link
-  expect(@world.bo.registration_details_page.deregister_ex_links.count.zero?).to eq(true)
-  expect(@world.bo.registration_details_page.active_tags.count.zero?).to eq(true)
+  expect(@world.bo.registration_details_page.deregister_ex_links.none?).to eq(true)
+  expect(@world.bo.registration_details_page.active_tags.none?).to eq(true)
   @world.bo.registration_details_page.back_link.click
   @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
   if @reg_status == "ceased"
