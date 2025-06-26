@@ -159,7 +159,7 @@ Scenario: Farming waste exemptions are charged the farming compliance change
       And I select all exemptions from the list
       And I confirm my waste exemption selections
      Then I can see the registration charge is £56.00
-      And I can see the total charge is £4732.00
+      And I can see the total charge is £4870.00
 
   Scenario: Reviewing and selecting same exemption does not duplicate charge
     Given I confirm my waste activities are "not on" a farm
