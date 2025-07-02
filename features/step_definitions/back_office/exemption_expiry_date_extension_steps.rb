@@ -14,6 +14,6 @@ When("I extend the registration's exemption expiry date") do
 end
 # rubocop:disable Layout/LineLength
 Then("I can see the exemption expiry date has extended") do
-  expect(@world.bo.registration_details_page.exemption_details.first.expiry_date.text).to eq(@new_date.strftime("%d %B %Y"))
+  expect(@world.bo.registration_details_page.exemption_details.first.expiry_date.text).to eq(@new_date.strftime("%-d %B %Y"))
 end
 # rubocop:enable Layout/LineLength
