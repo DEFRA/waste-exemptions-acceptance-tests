@@ -24,12 +24,12 @@ class JourneyApp
     @last_page = AdPrivacyPolicyPage.new
   end
 
-  def beta_start_page
-    @last_page = BetaStartPage.new
-  end
-
   def business_type_page
     @last_page = BusinessTypePage.new
+  end
+
+  def charity_register_free_page
+    @last_message_page = CharityRegisterFreePage.new
   end
 
   def choose_exemptions_page
