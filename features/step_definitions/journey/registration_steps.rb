@@ -358,8 +358,10 @@ Then("I am told I can not continue without adding exemptions") do
   expect(@world.journey.confirm_farming_exemption_selection_page.heading.text).to have_text("You have not selected any exemptions")
 end
 # rubocop:enable Layout/LineLength
+
 Then("I am told to call the Environment Agency to register") do
-  expect(page).to have_content("Charities register free")
+  sleep(2)
+  expect(@world.journey.charity_register_free_page.current_url).to have_text("charity-register-free")
 end
 
 Given("mocking is {string}") do |option|
