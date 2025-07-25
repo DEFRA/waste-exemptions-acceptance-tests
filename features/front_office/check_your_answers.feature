@@ -148,7 +148,7 @@ Scenario: User can change the site location from a grid reference to an address 
       And I select exemption "U1" from the activities list
       And I confirm my waste exemption selections
       And I confirm the charge summary
-      And I enter the registration details
+      And I enter the registration details for site "TQ6465676136"
       And I am on the check your answers page
      When I change to a site address
      Then I can see the site address on the check your answers page
