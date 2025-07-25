@@ -217,11 +217,31 @@ Then("I have the option to choose business, contact address or choose another ad
   expect(@world.journey.check_site_address_page).to have_different_address
 end
 
-When("I enter the registration details") do
+When("I enter the registration details for site {string}") do |grid_ref|
   @world.journey.site_grid_reference_page.submit(
-    grid_ref: "SD 91402 09578",
-    site_details: "test location"
+    grid_ref: grid_ref,
+    site_details: "EA area lookup"
   )
+  complete_address(:lookup)
+  @applicant_email = "applicant@example.com"
+  @applicant = generate_person(@applicant_email)
+
+  complete_applicant_details(@applicant)
+  @world.journey.check_contact_name_page.submit(reuse: :accept)
+  @world.journey.contact_position_page.submit(position: @applicant[:position])
+  @world.journey.check_contact_phone_page.submit(reuse: :accept)
+  @contact_email = @applicant[:email]
+  @world.journey.check_contact_email_page.submit(reuse: :accept)
+  sleep(1)
+  expect(@world.journey.check_contact_email_page.heading.text).to eq("Is this the contact address?")
+  @world.journey.check_contact_address_page.submit(reuse: :accept)
+end
+
+When("I enter the registration details") do
+  @world.journey.site_grid_reference_page.choose_address.click
+  @postcode = "S70 5SZ"
+  @address = "DUNKIN DONUTS, UNIT 1B, KESTREL WAY, BIRDWELL, BARNSLEY, S70 5SZ"
+  @world.journey.address_lookup_page.submit(postcode: @postcode, result: @address)
   complete_address(:lookup)
   @applicant_email = "applicant@example.com"
   @applicant = generate_person(@applicant_email)

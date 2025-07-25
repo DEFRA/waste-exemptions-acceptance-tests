@@ -19,6 +19,7 @@ class RegistrationDetailsPage < BasePage
   element(:refresh_company_details, "a[href^='/companies-house-details']")
   element(:company_name, ".govuk-summary-list__row:nth-child(2) .govuk-body:nth-child(2)")
   element(:change_history, "a[href*='change_history']")
+  element(:ea_area, ".govuk-summary-list .govuk-body:nth-child(12)")
 
   sections :exemption_details, "table tbody tr" do
     element(:exemption, "td:nth-child(1)")
