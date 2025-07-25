@@ -70,3 +70,10 @@ Given("I start an assisted digital registration") do
   @world.journey.ad_privacy_policy_page.submit
   @world.journey.location_page.submit(location: :england)
 end
+
+Then("I can see the correct EA area is {string}") do |ea_area|
+  @world.bo.dashboard_page.admin_menu.home_page.click
+  @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
+  @world.bo.dashboard_page.view_link(@world.last_reg_no).click
+  expect(@world.bo.registration_details_page.ea_area.text).to eq(ea_area)
+end
