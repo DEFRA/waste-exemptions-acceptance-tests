@@ -96,3 +96,7 @@ end
 def create_registration(date)
   visit(back_office_root_url("/testing/create_registration/#{date}"))
 end
+
+def create_registration_with_exemption(date, exemption)
+  visit(back_office_root_url("/testing/create_registration/#{date}?exemptions[]=#{exemption}"))
+end
