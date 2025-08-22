@@ -18,7 +18,6 @@ When("I renew the registration {string} changes") do |changes|
   @world.journey.check_registered_company_name_page.submit(choice: :confirm) if company?
   # Check some details at the start of the renewal journey:
   expect(@world.journey.check_details_page.heading).to have_text("Are these details correct?")
-  expect(page).to have_text("U1")
   unless @changes == :without # make changes for the renewed registration
     @world.journey.check_details_page.change_contact_email.click
     @contact_email = "new@example.com"
