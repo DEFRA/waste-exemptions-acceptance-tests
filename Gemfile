@@ -18,3 +18,9 @@ gem "pry"
 
 # Run tasks:
 gem "rake"
+
+gem "rubocop-rake"
+
+gem "rubocop-rspec"
+
+gem "rubocop-factory_bot"
