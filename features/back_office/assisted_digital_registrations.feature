@@ -11,6 +11,7 @@ Scenario: Succesful payment for registration using card
       And I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list 
       And I confirm my waste exemption selections
+      And I confirm my exemption is for a single site
       And I confirm the charge summary
       And I enter the registration details
       And I confirm the registration details
@@ -26,6 +27,7 @@ Scenario: Succesful registration by bank transfer
       And I select waste activity "We use effluent or sludge"
       And I select exemption "U7" from the activities list
       And I confirm my waste exemption selections
+      And I confirm my exemption is for a single site
       And I confirm the charge summary
       And I enter the registration details
       And I confirm the registration details
@@ -39,6 +41,7 @@ Scenario: Succesful registration by bank transfer
       And I select waste activity "We use waste in building and construction"
       And I select exemptions "U1 U2 U3" from the activities list
       And I confirm my waste exemption selections
+      And I confirm my exemption is for a single site
       And I confirm the charge summary
       And I enter the registration details
       And I confirm the registration details

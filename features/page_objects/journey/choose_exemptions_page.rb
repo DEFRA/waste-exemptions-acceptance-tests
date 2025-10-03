@@ -3,6 +3,7 @@
 class ChooseExemptionsPage < BasePage
 
   elements(:exemptions, "input[name*='exemptions_form']", visible: false)
+  element(:t28, "#activity_exemptions_form_checkbox-T28", visible: false)
   element(:exemption_fieldset, "#matched_exemptions")
 
   def submit(args = {})
@@ -27,11 +28,17 @@ class ChooseExemptionsPage < BasePage
     submit_button.click
   end
 
-  def check_all_exemptions_and_submit
+  def check_all_exemptions
     exemptions.each do |ex|
       ex.click unless ex.checked?
     end
-    submit_button.click
+  end
+
+  def uncheck_exemption(exemption)
+    search_val = "activity_exemptions_form_checkbox-#{exemption}"
+
+    ex = exemptions.find { |chk| chk["id"] == search_val }
+    ex.click if ex.checked?
   end
 
   def exemptions_displayed?(expected_text)

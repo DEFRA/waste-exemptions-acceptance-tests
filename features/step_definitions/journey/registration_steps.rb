@@ -10,6 +10,7 @@ Then("I start a new waste exemption registration") do
   @world.journey.home_page.load
   @world.journey.home_page.accept_cookies
   @world.journey.registration_type_page.submit(start_option: :new_radio)
+  @frontoffice = true
   @world.journey.location_page.submit(location: :england)
 end
 
@@ -238,10 +239,13 @@ When("I enter the registration details for site {string}") do |grid_ref|
 end
 
 When("I enter the registration details") do
-  @world.journey.site_grid_reference_page.choose_address.click
-  @postcode = "S70 5SZ"
-  @address = "DUNKIN DONUTS, UNIT 1B, KESTREL WAY, BIRDWELL, BARNSLEY, S70 5SZ"
-  @world.journey.address_lookup_page.submit(postcode: @postcode, result: @address)
+  unless @multiple_sites
+    @world.journey.site_grid_reference_page.choose_address.click
+    @postcode = "S70 5SZ"
+    @address = "DUNKIN DONUTS, UNIT 1B, KESTREL WAY, BIRDWELL, BARNSLEY, S70 5SZ"
+    @world.journey.address_lookup_page.submit(postcode: @postcode, result: @address)
+  end
+
   complete_address(:lookup)
   @applicant_email = "applicant@example.com"
   @applicant = generate_person(@applicant_email)
@@ -336,7 +340,13 @@ end
 
 Given("I select all exemptions from the list") do
   expect(@world.journey.choose_exemptions_page.heading.text).to have_text("exemptions")
-  @world.journey.choose_exemptions_page.check_all_exemptions_and_submit
+  @world.journey.choose_exemptions_page.check_all_exemptions
+  # T28 exemptions can not be selected from the front office
+  if @world.journey.choose_exemptions_page.has_t28?
+    puts "T28 exemption can not be selected from the front office - unchecking"
+    @world.journey.choose_exemptions_page.uncheck_exemption("T28")
+  end
+  @world.journey.choose_exemptions_page.submit_button.click
 end
 
 Given("I select all waste activities") do

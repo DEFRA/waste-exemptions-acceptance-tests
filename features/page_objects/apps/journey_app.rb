@@ -128,6 +128,14 @@ class JourneyApp
     @last_page = NamePage.new
   end
 
+  def multiple_sites_question_page
+    @last_page = MultipleSitesQuestionPage.new
+  end
+
+  def multiple_sites_summary_page
+    @last_page = MultipleSitesSummaryPage.new
+  end
+
   def operator_name_page
     @last_page = OperatorNamePage.new
   end
