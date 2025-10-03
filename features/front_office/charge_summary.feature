@@ -151,7 +151,7 @@ Scenario: Farming waste exemptions are charged the farming compliance change
      Then I can see the registration charge is £56.00
       And I can see the total charge is £356.00  
       
-  @farm @wip
+  @farm
   Scenario: Choosing all exemptions from farming and non farming waste exemptions list except T28
     Given I confirm my waste activities are "on" a farm
       And I enter my business details
