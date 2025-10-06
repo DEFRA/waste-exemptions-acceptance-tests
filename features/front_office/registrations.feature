@@ -17,6 +17,7 @@ Scenario: Succesful payment for registration using card
      When I pay by card
      Then I will see a registration confirmation
      And I will receive a registration confirmation email
+
 @bacs
 Scenario: Succesful registration by bank transfer
     Given I confirm my waste activities are "not on" a farm
@@ -50,7 +51,8 @@ Scenario: All chosen farming exemptions can not be chosen from the non farming e
       And I enter my business details
      When I select no exemptions from the list
       And I choose to add waste exemptions that are not included in the farming exemptions
-     Then I can select waste activities from the list  
+     Then I can select waste activities from the list
+
 @farm
   Scenario: On farm registrant informed to pick exemptions when no exemptions are chosen 
     Given I confirm my waste activities are "on" a farm

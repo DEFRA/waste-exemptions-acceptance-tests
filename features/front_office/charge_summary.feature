@@ -2,6 +2,7 @@
 Feature: Charge summary 
 
 As a user I want to see a breakdown of the charges for the exemptions I have chosen
+
 Background:
     Given I start a new waste exemption registration
 
@@ -75,6 +76,7 @@ Scenario: Farming waste exemptions are charged the farming compliance change
       And I confirm my exemption is for a single site 
      Then I can see the registration charge is £56.00
       And I can see the total charge is £86.00
+      
 @farm
   Scenario: Choosing all farming exemptions results in farming compliance change
     Given I confirm my waste activities are "on" a farm
@@ -98,7 +100,6 @@ Scenario: Farming waste exemptions are charged the farming compliance change
      Then I can see the registration charge is £56.00
       And I can see the total charge is £1380.00
       
-
   @farm
   Scenario: Farming and band 1 non farming waste exemptions can be chosen together
     Given I confirm my waste activities are "on" a farm
