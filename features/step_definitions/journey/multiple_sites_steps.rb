@@ -37,5 +37,5 @@ end
 
 Then("I am shown the multiple site registration charge summary") do
   @world.journey.multiple_sites_summary_page.submit
-  expect(@world.journey.exemptions_summary_page.heading.text).to eq("How your charges are calculated")
+  expect(@world.journey.exemptions_summary_page).to have_total_charge
 end
