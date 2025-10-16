@@ -3,9 +3,9 @@
 class MultipleSitesQuestionPage < BasePage
 
   element(:single_site,
-          "#is-multisite-registration-form-is-multisite-registration-field+ .govuk-radios__label")
+          "#is-multisite-registration-form-is-multisite-registration-field+ .govuk-radios__label", visible: false)
   element(:multiple_site,
-          "#is-multisite-registration-form-is-multisite-registration-true-field+ .govuk-radios__label")
+          "#is-multisite-registration-form-is-multisite-registration-true-field+ .govuk-radios__label", visible: false)
 
   def submit(args = {})
     case args[:choice]

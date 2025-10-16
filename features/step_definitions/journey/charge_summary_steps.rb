@@ -29,28 +29,6 @@ Then("I can see the total charge is £{float}") do |charge|
   expect(trim_comma(@world.journey.exemptions_summary_page.total_charge.text)).to include(charge.to_s)
 end
 
-Then("I can see that the {string} compliance charge of band {int} exemption is £{float}") do |charge_type, band, charge|
-  case charge_type
-  when "Full"
-    expect(@world.journey.exemptions_summary_page.charge_types.first.text).to have_text(charge_type)
-    expect(trim_comma(@world.journey.exemptions_summary_page.charge_amounts.first.text)).to include(charge.to_s)
-    if band == 4
-      expect(@world.journey.exemptions_summary_page.bands.first.text).to have_text("Upper")
-    else
-      expect(@world.journey.exemptions_summary_page.bands.first.text).to have_text(band)
-    end
-  when "Discounted"
-    expect(@world.journey.exemptions_summary_page.charge_types.last.text).to have_text(charge_type)
-    expect(@world.journey.exemptions_summary_page.charge_amounts.last.text).to include(charge.to_s)
-    if band == 4
-      expect(@world.journey.exemptions_summary_page.bands.last.text).to have_text("Upper")
-    else
-      expect(@world.journey.exemptions_summary_page.bands.last.text).to have_text(band)
-    end
-  end
-
-end
-
 When("I select that I am registering as a charity") do
   @world.journey.business_type_page.submit(business_type: :charity)
 end

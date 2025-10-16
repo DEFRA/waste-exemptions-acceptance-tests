@@ -51,6 +51,7 @@ end
 
 When("I refresh the company name from companies house") do
   @company_name = @world.bo.registration_details_page.company_name.text
+  puts "Current company name is #{@company_name}"
   @world.bo.registration_details_page.refresh_company_details.click
   @change_reason = "Companies House information refreshed"
 end
@@ -62,7 +63,7 @@ Then("I will see a confirmation the company name has been refreshed") do
 end
 
 Then("I can see the change recorded on the change history page") do
-  @world.bo.registration_details_page.change_history.click
+  visit(back_office_root_url("/registrations/#{@world.last_reg_no}/change_history"))
   expect(@world.bo.change_history_page.heading).to have_text("Change history")
   log = @world.bo.change_history_page.change_reason(@change_reason)
   expected_text = remove_new_lines_from_text(log.updated_detail.text)

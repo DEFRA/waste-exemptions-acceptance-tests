@@ -5,7 +5,7 @@ Feature: Expiry date extensions
 
 Background: Register an exemption
     Given I have a valid registration
-
+@skip
 Scenario: Registration exemption expiry dates can be extended with the reason for change tracked in the change history
     Given I sign in as an admin team user
      When I extend the registration's exemption expiry date

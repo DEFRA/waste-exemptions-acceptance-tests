@@ -29,3 +29,16 @@ Feature: Adding multiple sites to a registration
       And I enter the grid reference for another 29 sites
      Then I am shown the multiple site registration charge summary
 
+  Scenario: User can not continue with registration after deleting thirtieth site
+    Given I confirm my waste activities are "not on" a farm
+      And I enter my business details for a "limited_company"
+      And I select waste activity "We use waste in building and construction"
+      And I select exemption "U1" from the activities list 
+      And I confirm my waste exemption selections
+      And I confirm my exemption is for multiple sites
+      And I enter the grid reference for a site
+      And I enter the grid reference for another 29 sites
+      But I delete a site
+     Then I am informed of how many more sites I need to add to complete my registration
+      And I cannot continue with my registration
+

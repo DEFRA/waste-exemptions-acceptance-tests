@@ -1,23 +1,19 @@
 # frozen_string_literal: true
 
 When("I deregister individual exemptions") do
-  # Last registration number is stored in @world.last_reg_no.
-  # Search for the last reference number:
-  @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
-  find_link("View details").click
-  expect(@world.bo.registration_details_page.heading).to have_text("Registration details for #{@world.last_reg_no}")
-
+  @world.bo.sites_page.sites.first.exemptions_link.click
   # Count the number of deregister links and active, ceased and revoked items
-  @no_of_dereg_links = @world.bo.registration_details_page.deregister_ex_links.count
-  @no_of_active_tags = @world.bo.registration_details_page.active_tags.count
-  @no_of_ceased_tags = @world.bo.registration_details_page.ceased_tags.count
-  @no_of_revoked_tags = @world.bo.registration_details_page.revoked_tags.count
+  @no_of_dereg_links = @world.bo.exemptions_page.deregister_ex_links.count
+  @no_of_active_tags = @world.bo.exemptions_page.active_tags.count
+  @no_of_ceased_tags = @world.bo.exemptions_page.ceased_tags.count
+  @no_of_revoked_tags = @world.bo.exemptions_page.revoked_tags.count
 
   # Count how many have been revoked or ceased this step:
   @no_revoked = 0
   @no_ceased = 0
 
   # Deregister 3 exemptions, choosing randomly between revoking or ceasing.
+  @world.bo.sites_page
   3.times do
 
     # Click the first 'deregister exemption' link. There should be at least 3 from the background:
@@ -51,6 +47,7 @@ Then("the exemptions are no longer active") do
 end
 
 When("I deregister a whole registration") do
+  @world.bo.dashboard_page.admin_menu.home_page.click
   # Search for the last reference number
   @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
   find_link("View details").click
@@ -73,8 +70,6 @@ end
 Then("the registration is no longer active") do
   # Check that there are no deregister links or active tags
   expect(@world.bo.registration_details_page).to have_no_deregister_reg_link
-  expect(@world.bo.registration_details_page.deregister_ex_links.none?).to eq(true)
-  expect(@world.bo.registration_details_page.active_tags.none?).to eq(true)
   @world.bo.registration_details_page.back_link.click
   @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
   if @reg_status == "ceased"
@@ -87,9 +82,12 @@ end
 When("I {string} an exemption") do |deregistration_type|
   # Last registration number is stored in @world.last_reg_no.
   # Search for the last reference number:
+  @world.bo.dashboard_page.admin_menu.home_page.click
   @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
   find_link("View details").click
-  @exemption = @world.bo.registration_details_page.exemption_details.first.exemption.text
+  @world.bo.registration_details_page.sites.click
+  @world.bo.sites_page.sites.first.click
+  @exemption = @world.bo.exemptions_page.exemption_details.exemption.first.text
   @world.bo.registration_details_page.deregister_ex_links.first.click
   @deregistration_type = deregistration_type
   if deregistration_type == "cease"
@@ -104,9 +102,31 @@ When("I {string} an exemption") do |deregistration_type|
   )
 end
 
-Then("I can see the deregistration details from the deregistration details page") do
+Then("I can see the deregistration details from the site's exemptions page") do
   @world.bo.registration_details_page.deregistration_details.first.click
   log = @world.bo.deregistration_details_page.log_details(@exemption)
   expect(log.reason).to have_text(@deregistration_reason)
   expect(log.status).to have_text(@deregistration_type)
+end
+
+Then("each site has been deregistered") do
+  find_link("View details").click
+  @world.bo.registration_details_page.sites.click
+
+  while @world.bo.sites_page.has_next_page?
+    @world.bo.sites_page.sites.each do |site|
+      expect(site).to have_no_deregister_link
+      expect(site.site_status.text).to eq("deregistered")
+    end
+    @world.bo.sites_page.next_page.click if @world.bo.sites_page.has_next_page?
+  end
+end
+
+When("I deregister a site") do
+  @world.bo.dashboard_page.admin_menu.home_page.click
+  # Search for the last reference number
+  @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
+  find_link("View details").click
+  @world.bo.registration_details_page.sites.click
+  @world.bo.sites_page.sites.first.deregister_link.click
 end

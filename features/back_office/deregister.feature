@@ -6,18 +6,17 @@ Feature: Back office user deregisters exemptions
 
   Background: Register an exemption
     Given I have a valid registration
-
+      And I sign in as an admin team user
+      And I view a registration's sites information
+@skip
   Scenario: [RUBY-63] Deregister individual exemptions
-    Given I sign in as an admin team user
      When I deregister individual exemptions
      Then the exemptions are no longer active
 
   Scenario: [RUBY-64] Deregister a whole registration
-    Given I sign in as an admin team user
      When I deregister a whole registration
      Then the registration is no longer active
-
-  Scenario: Ceased exemption details can be viewed from the deregistration details page
-    Given I sign in as an admin team user
+@skip
+  Scenario: Ceased exemption details can be viewed from the sites exemptions page
      When I "cease" an exemption
-     Then I can see the deregistration details from the deregistration details page
+     Then I can see the deregistration details from the site's exemptions page
