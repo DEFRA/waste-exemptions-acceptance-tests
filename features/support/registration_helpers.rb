@@ -21,6 +21,7 @@ def add_submitted_registration(registration, address_type = :lookup, _site_type 
   @world.journey.select_waste_activities_page.check_all_activities_and_submit
   @world.journey.choose_exemptions_page.submit(exemptions: registration[:exemptions])
   @world.journey.confirm_exemption_selection_page.submit(choice: :confirm)
+  @world.journey.multiple_sites_question_page.submit(choice: :single)
   @world.journey.exemptions_summary_page.submit_button.click
   complete_site_details(registration, address_type, :grid_ref)
   complete_address(address_type)

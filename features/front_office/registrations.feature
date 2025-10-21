@@ -1,7 +1,7 @@
-@charging @email
+@frontoffice @charging @email
 Feature: Registration payments using card or bank transfer
 
-Background: Create registration and sign into back office
+Background: Create registration
     Given I start a new waste exemption registration
 @card
 Scenario: Succesful payment for registration using card
@@ -10,12 +10,14 @@ Scenario: Succesful payment for registration using card
       And I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list 
       And I confirm my waste exemption selections
+      And I confirm my exemption is for a single site
       And I confirm the charge summary
       And I enter the registration details
       And I confirm the registration details
      When I pay by card
      Then I will see a registration confirmation
      And I will receive a registration confirmation email
+
 @bacs
 Scenario: Succesful registration by bank transfer
     Given I confirm my waste activities are "not on" a farm
@@ -26,6 +28,7 @@ Scenario: Succesful registration by bank transfer
       And I select waste activity "We deposit spoil, sanitary and plant matter waste"
       And I select exemption "T8 S1 D1 D8" from the activities list
       And I confirm my waste exemption selections
+      And I confirm my exemption is for a single site
       And I confirm the charge summary
       And I enter the registration details
       And I confirm the registration details
@@ -48,7 +51,8 @@ Scenario: All chosen farming exemptions can not be chosen from the non farming e
       And I enter my business details
      When I select no exemptions from the list
       And I choose to add waste exemptions that are not included in the farming exemptions
-     Then I can select waste activities from the list  
+     Then I can select waste activities from the list
+
 @farm
   Scenario: On farm registrant informed to pick exemptions when no exemptions are chosen 
     Given I confirm my waste activities are "on" a farm
@@ -61,3 +65,23 @@ Scenario: All chosen farming exemptions can not be chosen from the non farming e
     Given I confirm my waste activities are "not on" a farm
      When I select that I am registering as a charity
      Then I am told to call the Environment Agency to register
+
+@smoke @multiple @card
+  Scenario: Multiple site registration
+    Given I confirm my waste activities are "not on" a farm
+      And I enter my business details
+     When I select waste activity "We use waste in manufacturing or for a specified purpose"
+      And I select waste activity "We sort, blend and recover waste"
+      And I select waste activity "We store waste"
+      And I select exemption "U9 T12 S1" from the activities list
+      And I confirm my waste exemption selections
+      And I confirm my exemption is for multiple sites
+      And I enter the grid reference for a site
+      And I enter the grid reference for another 29 sites
+      And I confirm I have added all my sites
+     Then I confirm the charge summary
+      And I enter the registration details
+      And I confirm the registration details
+     When I pay by card
+     Then I will see a registration confirmation
+      And I will receive a registration confirmation email

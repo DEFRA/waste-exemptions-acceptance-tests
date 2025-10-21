@@ -75,5 +75,6 @@ Then("I can see the correct EA area is {string}") do |ea_area|
   @world.bo.dashboard_page.admin_menu.home_page.click
   @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
   @world.bo.dashboard_page.view_link(@world.last_reg_no).click
-  expect(@world.bo.registration_details_page.ea_area.text).to eq(ea_area)
+  @world.bo.registration_details_page.sites.click
+  expect(@world.bo.sites_page.sites.first.ea_area.text).to eq(ea_area)
 end

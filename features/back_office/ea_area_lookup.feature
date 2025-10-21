@@ -9,6 +9,7 @@ Background: Create registration and sign into back office
       And I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list 
       And I confirm my waste exemption selections
+      And I confirm my exemption is for a single site
       And I confirm the charge summary
 
 Scenario Outline: Grid reference provided for site <site> location returns correct EA area <ea_area>  

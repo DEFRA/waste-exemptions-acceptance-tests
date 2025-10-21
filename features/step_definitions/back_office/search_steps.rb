@@ -13,6 +13,7 @@ end
 
 When("I search for the registration") do
   registration = @world.last_reg_no
+  puts "Searching for registration #{registration}"
   @world.bo.dashboard_page.submit(search_term: registration)
 end
 
@@ -22,4 +23,21 @@ end
 
 Then("I don't see {string}") do |unexpected_name|
   expect(page).not_to have_content(unexpected_name)
+end
+
+When("I view a registration's sites information") do
+  # Last registration number is stored in @world.last_reg_no.
+  # Search for the last reference number:
+  @world.bo.dashboard_page.admin_menu.home_page.click
+  @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
+  find_link("View details").click
+  expect(@world.bo.registration_details_page.heading).to have_text("Registration details for #{@world.last_reg_no}")
+
+  @world.bo.registration_details_page.sites.click
+end
+
+When("I view the registrations details") do
+  @world.bo.dashboard_page.admin_menu.home_page.click
+  @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
+  @world.bo.dashboard_page.view_link(@world.last_reg_no).click
 end

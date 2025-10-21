@@ -90,6 +90,12 @@ Then("I can see the new details on the registration details page") do
   expect(expected_text).to have_text(@updated_detail)
 end
 
+Then("I can see the updated location in the registration's sites list") do
+  @world.bo.registration_details_page.sites.click
+  expected_text = remove_new_lines_from_text(@world.bo.sites_page.sites.first.location.text)
+  expect(expected_text).to have_text(@updated_detail)
+end
+
 When("I cannot edit the most recent registration") do
   @world.bo.dashboard_page.admin_menu.home_page.click
   @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)

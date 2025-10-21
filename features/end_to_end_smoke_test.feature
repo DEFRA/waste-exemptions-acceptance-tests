@@ -11,6 +11,7 @@ Scenario: Front office registration and deregistration in the back office
       And I select waste activity "We deposit spoil, sanitary and plant matter waste"
       And I select exemption "T8 S1 D1 D8" from the activities list
       And I confirm my waste exemption selections
+      And I confirm my exemption is for a single site
       And I confirm the charge summary
       And I enter the registration details
       And I confirm the registration details

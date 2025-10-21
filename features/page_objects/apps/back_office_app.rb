@@ -43,6 +43,10 @@ class BackOfficeApp
     @last_page = EditDetailsPage.new
   end
 
+  def exemptions_page
+    @last_page = ExemptionsPage.new
+  end
+
   def extend_expiry_date_page
     @last_page = ExtendExpiryDatePage.new
   end
@@ -97,6 +101,10 @@ class BackOfficeApp
 
   def record_reversal_page
     @last_page = RecordReversalPage.new
+  end
+
+  def sites_page
+    @last_page = SitesPage.new
   end
 
   def charge_adjustment_type_page
