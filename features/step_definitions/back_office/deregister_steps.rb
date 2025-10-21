@@ -64,7 +64,7 @@ When("I deregister a whole registration") do
 
   # Specify reason for revoking:
   @world.bo.deregister_page.submit(
-    reason: "Smoke test of release auto deregistered"
+    reason: "Whole registration deregistered"
   )
   puts "#{@world.last_reg_no} fully #{@reg_status}"
 end
@@ -99,7 +99,7 @@ When("I {string} an exemption") do |deregistration_type|
     @deregistration_reason = "Ceased by user, no longer needed"
   else
     @world.bo.deregister_page.revoke_radio.click
-    @deregistration_reason = "Revoked by user, no longer needed"
+    @deregistration_reason = "Revoked on advice from area"
   end
   @world.bo.deregister_page.submit(
     reason: @deregistration_reason
