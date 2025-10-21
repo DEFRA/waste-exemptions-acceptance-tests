@@ -48,3 +48,7 @@ end
 Then("I cannot continue with my registration") do
   expect(@world.journey.multiple_sites_summary_page.submit_button).to be_disabled
 end
+
+Then("I can see the total number of sites on the check your answers page") do
+  expect(@world.journey.check_details_page).to have_content("Number of sites #{@number_of_sites}")
+end

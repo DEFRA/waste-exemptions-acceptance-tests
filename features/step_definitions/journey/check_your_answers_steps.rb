@@ -219,3 +219,7 @@ end
 Then("I can see the partner added to the check your answers page") do
   expect(@world.journey.check_details_page.partner_details.text).to have_text(@new_partner[:full_name])
 end
+
+When("I choose to change my site locations") do
+  @world.journey.check_details_page.change_sites.click
+end

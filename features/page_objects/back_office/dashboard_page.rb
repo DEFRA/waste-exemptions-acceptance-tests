@@ -21,6 +21,7 @@ class DashboardPage < BasePage
   element(:dashboard_message, ".govuk-notification-banner__content:nth-child(1) .govuk-notification-banner__heading")
 
   elements(:results, "#search-results")
+  element(:active_tag, ".status-tag-active")
   element(:revoked_tag, ".status-tag-revoked")
   element(:ceased_tag, ".status-tag-ceased")
   elements(:view_transient_details_links, "a[href*='new-registrations']")

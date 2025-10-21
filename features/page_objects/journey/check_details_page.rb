@@ -44,6 +44,7 @@ class CheckDetailsPage < BasePage
   element(:site_address, "#registration_site_address")
   element(:change_site_address, "a[href='check-your-answers/check-site-address']")
   elements(:change_site_location, "a[href='check-your-answers/site-grid-reference']")
+  element(:change_sites, "a[href='check-your-answers/sites']")
 
   def exemptions_displayed?(expected_text)
     page_text = exemptions.text

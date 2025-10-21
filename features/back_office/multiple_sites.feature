@@ -6,7 +6,7 @@ Background: Sign in and create a multiple site registration
       And I confirm my waste activities are "not on" a farm
       And I enter my business details for a "limited_company"
       And I select waste activity "We use waste in building and construction"
-      And I select exemption "U1" from the activities list 
+      And I select exemptions "U1 U2 U3" from the activities list
       And I confirm my waste exemption selections
       And I confirm my exemption is for multiple sites
       And I enter the grid reference for a site
@@ -23,6 +23,8 @@ Scenario: Multiple site registration can have all sites deregistered
   Then the registration is no longer active
    And each site has been deregistered
 
-@skip
 Scenario: Multiple site registration can have individual sites deregistered
-  When I deregister a site
+  When I "cease" a site
+  Then the site is no longer active
+   And each exemption on the site has been "ceased"
+   But the registration remains active
