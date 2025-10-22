@@ -4,7 +4,7 @@ Feature: Check your answers changes
 Background: Create registration and sign into back office
     Given I start a new waste exemption registration
       And I confirm my waste activities are "not on" a farm
-      And I enter my business details for a "partnership"
+      And I enter my business details for a "limited_company"
       And I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list
       And I confirm my waste exemption selections
