@@ -2,6 +2,7 @@
 
 Given("I confirm my exemption is for a single site") do
   @world.journey.multiple_sites_question_page.submit(choice: :single)
+  @multiple_sites = false
 end
 
 Given("I confirm my exemption is for multiple sites") do
@@ -50,5 +51,5 @@ Then("I cannot continue with my registration") do
 end
 
 Then("I can see the total number of sites on the check your answers page") do
-  expect(@world.journey.check_details_page).to have_content("Number of sites #{@number_of_sites}")
+  expect(@world.journey.check_details_page).to have_content("Number of sites: #{@number_of_sites}")
 end

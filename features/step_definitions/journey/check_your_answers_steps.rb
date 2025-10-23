@@ -93,7 +93,7 @@ end
 
 When("I change to a site address") do
   @world.journey.check_details_page.change_site_location.first.click
-  find_link("postcode").click
+  @world.journey.site_grid_reference_page.choose_address.click
   @new_address = "THRIVE RENEWABLES PLC, DEANERY ROAD, BRISTOL, BS1 5AH"
   @world.journey.address_lookup_page.submit(postcode: "BS1 5AH",
                                             result: @new_address)

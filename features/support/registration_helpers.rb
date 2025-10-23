@@ -173,7 +173,7 @@ def complete_site_details(registration, _address_type = :lookup, site_type = :gr
       site_details: registration[:site][:site_details]
     )
   else # the site is at an address
-    find_link("postcode").click
+    @world.journey.site_grid_reference_page.choose_address.click
     @world.journey.check_site_address_page.submit(choice: :use_different_address)
     # No manual address entry possible
     complete_address(:lookup)
