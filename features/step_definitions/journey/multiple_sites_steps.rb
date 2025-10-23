@@ -32,10 +32,6 @@ When("I confirm I have added all my sites") do
   @world.journey.multiple_sites_summary_page.submit
 end
 
-Then("I am informed of how many more sites I need to add to complete my registration") do
-  expect(@world.journey.multiple_sites_summary_page).to have_content("#{30 - @number_of_sites} more site")
-end
-
 Then("I am shown the multiple site registration charge summary") do
   @world.journey.multiple_sites_summary_page.submit
   expect(@world.journey.exemptions_summary_page).to have_total_charge
