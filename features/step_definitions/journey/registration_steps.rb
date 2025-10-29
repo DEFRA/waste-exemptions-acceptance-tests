@@ -319,8 +319,7 @@ Given("I select exemption(s) {string} from the activities list") do |exemptions|
   exemptions.split.each do |ex|
     @existing_exemptions << ex
   end
-  @world.journey.choose_exemptions_page.submit(exemptions: exemptions.split,
-                                               beta: true)
+  @world.journey.choose_exemptions_page.submit(exemptions: exemptions.split)
 end
 
 Given("I select exemption(s) {string} from the {string} list") do |exemptions, list_type|
