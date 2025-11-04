@@ -21,7 +21,7 @@ Given("I choose I want to change the exemptions I’ve selected") do
 end
 
 Then("I can see the registration charge is £{int}") do |charge|
-  expect(@world.journey.exemptions_summary_page.registration_charge.text).to include(charge.to_s)
+  expect(@world.journey.exemptions_summary_page.registration_charge.first.text).to include(charge.to_s)
 end
 
 Then("I can see the total charge is £{int}") do |charge|
@@ -31,4 +31,10 @@ end
 
 When("I select that I am registering as a charity") do
   @world.journey.business_type_page.submit(business_type: :charity)
+end
+
+Then("I should not see a discounted charge applied") do
+  @world.journey.exemptions_summary_page.charge_amounts.each do |amount|
+    expect(amount.text).not_to include("(d)")
+  end
 end

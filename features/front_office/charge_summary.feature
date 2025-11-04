@@ -182,6 +182,18 @@ Scenario: Farming waste exemptions are charged the farming compliance change
      Then I can see the registration charge is £56
       And I can see the total charge is £476
 
+  Scenario: Choosing multiple exemptions including a band 3 exemption does not indicate a discounted band 3 charge
+    Given I confirm my waste activities are "not on" a farm
+      And I enter my business details for a "limited_company"
+      When I select waste activity "We use waste in building and construction"
+      And I select waste activity "We burn plant and wood waste"
+      And I select exemption "U1 D7" from the activities list
+      And I confirm my waste exemption selections
+      And I confirm my exemption is for a single site 
+     Then I can see the registration charge is £56
+      And I can see the total charge is £506
+      But I should not see a discounted charge applied
+
   @multiple
   Scenario: Charge summary for multiple site registration with 30 sites
     Given I confirm my waste activities are "not on" a farm
