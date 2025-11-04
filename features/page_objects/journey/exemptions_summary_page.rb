@@ -2,7 +2,7 @@
 
 class ExemptionsSummaryPage < BasePage
 
-  element(:registration_charge, "#registration-charge, #registration-charge-row .govuk-table__cell--numeric")
+  elements(:registration_charge, "#registration-charge-row .govuk-table__cell")
   element(:total_charge, "#total-charge, #total-charge-row .govuk-table__cell--numeric")
   elements(:exemptions, ".govuk-table__cell:nth-child(1)")
   elements(:charge_amounts, ".govuk-table__cell:nth-child(2)")

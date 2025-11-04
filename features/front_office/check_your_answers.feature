@@ -1,4 +1,4 @@
-@frontoffice @changes @charging
+@frontoffice @changes
 Feature: Check your answers changes
 
 Scenario: User can change contact name from check your answers page
