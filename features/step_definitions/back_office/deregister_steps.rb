@@ -107,6 +107,9 @@ When("I {string} an exemption") do |deregistration_type|
 end
 
 Then("I can see the deregistration details from the site's exemptions page") do
+  @world.bo.dashboard_page.admin_menu.home_page.click
+  @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
+  find_link("View details").click
   @world.bo.registration_details_page.sites.click
   @world.bo.sites_page.sites.first.exemptions_link.click
   @world.bo.exemptions_page.deregistration_details.first.click
@@ -161,6 +164,28 @@ When("I {string} a site") do |deregistration_type|
   )
 end
 
+When("I {string} an exemption on a site") do |deregistration_type|
+  @world.bo.dashboard_page.admin_menu.home_page.click
+  # Search for the last reference number
+  @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
+  find_link("View details").click
+  @world.bo.registration_details_page.sites.click
+  @world.bo.sites_page.sites.first.exemptions_link.click
+  @exemption = @world.bo.exemptions_page.exemption_details.first.exemption.text
+  @deregistration_type = deregistration_type
+  @world.bo.exemptions_page.deregister_ex_links.first.click
+  if deregistration_type == "cease"
+    @world.bo.deregister_page.cease_radio.click
+    @deregistration_reason = "Ceased by user, exemption no longer needed"
+  else
+    @world.bo.deregister_page.revoke_radio.click
+    @deregistration_reason = "Revoked by area team on advice"
+  end
+  @world.bo.deregister_page.submit(
+    reason: @deregistration_reason
+  )
+end
+
 Then("the registration remains active") do
   @world.bo.dashboard_page.admin_menu.home_page.click
   # Search for the last reference number
@@ -173,4 +198,15 @@ Then("each exemption on the site has been {string}") do |status|
   @world.bo.exemptions_page.exemption_details.each do |exemption|
     expect(exemption.exemption_status.text).to eq(status)
   end
+end
+
+Then("the exemption on the site has been {string}") do |status|
+  @world.bo.registration_details_page.sites.click
+  @world.bo.sites_page.sites.first.exemptions_link.click
+  expect(@world.bo.exemptions_page.exemption_details.last.exemption_status.text).to eq(status)
+end
+
+Then("the site remains active") do
+  @world.bo.exemptions_page.back_link.click
+  expect(@world.bo.sites_page.sites.first.site_status.text).to eq("active")
 end

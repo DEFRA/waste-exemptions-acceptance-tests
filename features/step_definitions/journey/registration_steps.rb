@@ -268,6 +268,7 @@ When("I confirm the registration details") do
 end
 
 When("I confirm the charge summary") do
+  puts current_url
   @total_charge = trim_pound_sign(@world.journey.exemptions_summary_page.total_charge.text)
   @world.journey.exemptions_summary_page.submit_button.click
 
