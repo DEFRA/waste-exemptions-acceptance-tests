@@ -7,7 +7,7 @@ Given "I have a valid registration" do
   raise "Test data creation failed" if @registration.nil?
 
   @edit_token = @world.bo.dashboard_page.created_registration.text[/Edit token (.+)/, 1]
-  puts "generated #{@registration}"
+  puts "#{Quke::Quke.config.custom['urls']['back_office']}/registrations/#{@registration} generated"
   @world.last_reg_no = @registration
   @world.last_reg_edit_token = @edit_token
   @business_type = :limited_company

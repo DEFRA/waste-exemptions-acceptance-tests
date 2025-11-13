@@ -277,7 +277,7 @@ end
 Then("I will see a registration confirmation") do
   @world.last_reg_no = @world.journey.registration_confirmation_page.registration_number.text
   expect(@world.journey.registration_confirmation_page.registration_number).to have_text("WEX")
-  puts "#{@world.journey.registration_confirmation_page.registration_number.text} generated"
+  puts "#{Quke::Quke.config.custom['urls']['back_office']}/registrations/#{@world.last_reg_no} generated"
 end
 
 When("I select waste activity {string}") do |activity|

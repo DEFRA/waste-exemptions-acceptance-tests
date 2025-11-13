@@ -9,6 +9,7 @@ class SitesPage < BasePage
   elements(:waste_sites, ".govuk-table__body .govuk-table__row")
   elements(:active_tags, ".status-tag-active")
   element(:next_page, "a[aria-label='Next page']")
+  elements(:edit_sites, ".govuk-table__row a[href*='/operation_sites']")
 
   sections :sites, "table tbody tr" do
     element(:registration, "td:nth-child(1)")

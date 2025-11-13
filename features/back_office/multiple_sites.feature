@@ -18,7 +18,7 @@ Background: Sign in and create a multiple site registration
       And I confirm the registration details
      When I pay by card
      Then I will see a registration confirmation
-
+     
   Scenario: Multiple site registration can have all sites deregistered
      When I deregister a whole registration
      Then the registration is no longer active
