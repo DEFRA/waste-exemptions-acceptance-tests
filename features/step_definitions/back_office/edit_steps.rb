@@ -46,7 +46,8 @@ When("I edit the site location") do
   expect(@world.bo.edit_page.heading).to have_text("Edit #{@world.last_reg_no} registration")
 
   # Edit the site location
-  @world.bo.edit_page.change_site_location.click
+  @world.bo.edit_page.change_site_locations.click
+  @world.bo.sites_page.edit_sites.first.click
 
   @world.journey.site_grid_reference_page.choose_address.click
   @updated_detail = "BUCKINGHAM PALACE, LONDON, SW1A 1AA"
