@@ -13,4 +13,5 @@ class AdminMenuSection < SitePrism::Section
   element(:toggle_features_link, "a[href*='/features/feature-toggles']")
   element(:band_management, "a[href*='/bands']")
   element(:charge_management, "a[href*='/exemptions']")
+  element(:linear_registrations, "a[href*='/registrations/linear']")
 end
