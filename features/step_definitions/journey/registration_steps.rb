@@ -239,7 +239,7 @@ When("I enter the registration details for site {string}") do |grid_ref|
 end
 
 When("I enter the registration details") do
-  unless @multiple_sites
+  unless @multiple_sites || @linear_site
     @world.journey.site_grid_reference_page.choose_address.click
     @postcode = "S70 5SZ"
     @address = "DUNKIN DONUTS, UNIT 1B, KESTREL WAY, BIRDWELL, BARNSLEY, S70 5SZ"

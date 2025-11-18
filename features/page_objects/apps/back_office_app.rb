@@ -59,6 +59,10 @@ class BackOfficeApp
     @last_page = LoginPage.new
   end
 
+  def linear_registrations_page
+    @last_page = LinearRegistrationsPage.new
+  end
+
   def registration_complete_page
     @last_page = RegistrationCompletePage.new
   end
