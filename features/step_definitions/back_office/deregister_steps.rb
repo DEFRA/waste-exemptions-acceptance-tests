@@ -53,7 +53,7 @@ When("I deregister a whole registration") do
   # Search for the last reference number
   @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
   find_link("View details").click
-  expect(@world.bo.registration_details_page.heading).to have_text("registration details for #{@world.last_reg_no}")
+  expect(@world.bo.registration_details_page.heading).to have_text("details for #{@world.last_reg_no}")
   @world.bo.registration_details_page.deregister_reg_link.click
   # rubocop:disable Layout/LineLength
   expect(@world.bo.deregister_page.heading).to have_text("Deregister all active Exemptions for Registration #{@world.last_reg_no}")
