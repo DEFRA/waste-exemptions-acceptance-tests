@@ -14,9 +14,11 @@ end
 
 Then("I can view linear registration's details from the linear registrations list") do
   @world.bo.dashboard_page.admin_menu.linear_registrations.click
+  @world.bo.linear_registrations_page.wait_until_first_view_registration_link_visible
   @world.bo.linear_registrations_page.last_page.click if @world.bo.linear_registrations_page.has_last_page?
   linear_registration = @world.bo.linear_registrations_page.linear_regs(@world.last_reg_no)
   linear_registration.view_registration.click
+  puts current_url
   @world.bo.registration_details_page.wait_until_sites_visible
   expect(@world.bo.registration_details_page.heading.text).to have_text("Linear registration details for #{@world.last_reg_no}")
 end

@@ -17,6 +17,7 @@ class LinearRegistrationsPage < BasePage
   end
 
   element(:last_page, "a[aria-label='Last page']")
+  element(:first_view_registration_link, ".govuk-table__row:nth-child(1) .govuk-link")
 
   def linear_regs(registration_number)
     linear_registrations.find { |log| log.registration_number.text == registration_number }
