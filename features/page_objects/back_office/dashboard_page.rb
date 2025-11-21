@@ -25,7 +25,7 @@ class DashboardPage < BasePage
   element(:revoked_tag, ".status-tag-revoked")
   element(:ceased_tag, ".status-tag-ceased")
   elements(:view_transient_details_links, "a[href*='new-registrations']")
-  elements(:view_reg_details_links, "a[href*='/registrations/']")
+  elements(:view_reg_details_links, "a[href*='/registrations/WEX']")
   elements(:resume_links, "[id^=resume]")
   element(:created_registration, "#main-content")
 
