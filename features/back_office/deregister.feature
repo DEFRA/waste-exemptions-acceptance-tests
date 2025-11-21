@@ -32,3 +32,12 @@ Feature: Back office user deregisters exemptions
   Scenario: Ceased exemption details can be viewed from the sites exemptions page
      When I "cease" an exemption
      Then I can see the deregistration details from the site's exemptions page
+     
+@fix
+  Scenario: Revoked exemption is kept when registration is edited
+     When I "revoke" an exemption
+      And I edit the contact email address
+      And I complete the edit
+      Then I can see the deregistration details from the site's exemptions page
+
+

@@ -10,7 +10,7 @@ Background: Sign into back office
       And I will see a registration pending payment confirmation
      Then a payment by bank transfer letter has been sent
 
-@letter @renew
+@letter @renew @fix
   Scenario: Renewal in back office where no contact email is given user sends confirmation letter to contact
       When I complete an AD "limited_company" registration without an email address paying by "card"
       And I choose to renew a registration

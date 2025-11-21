@@ -20,6 +20,7 @@ end
 When("I edit the contact email address") do
   # Last registration number is stored in @world.last_reg_no.
   # Search for the last reference number:
+  @world.bo.dashboard_page.admin_menu.home_page.click
   @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
   find_link("Edit").click
   expect(@world.bo.edit_page.heading).to have_text("Edit #{@world.last_reg_no} registration")
