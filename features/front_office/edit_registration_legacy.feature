@@ -70,7 +70,7 @@ Scenario: Waste exemption holder deregisters all exemptions
 
 Scenario: Waste exemption holder can receive an invite to edit their registration from the back office
    Given I have a registration "outside" of the renewal window
-   When I choose to deregister exemptions from the email invite
+   When I choose to amend my registration details from the email invite
    Then I will see the main edit page
 
 Scenario: Waste exemption holder changes address 

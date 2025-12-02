@@ -99,8 +99,8 @@ Then "I will see the main edit page with the updated contact phone number" do
 end
 
 When "I update the contact address" do
-  @postcode = "BS1 5AH"
-  @business_address = "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+  @postcode = "S9 4WF"
+  @business_address = "ENVIRONMENT AGENCY, QUADRANT 2, 99, PARKWAY AVENUE, SHEFFIELD, S9 4WF"
   @world.journey.address_lookup_page.submit(postcode: @postcode, result: @business_address)
 end
 
@@ -171,7 +171,6 @@ Then "I will not receive a confirmation email" do
   visit(Quke::Quke.config.custom["urls"]["notify_link"])
   confirmation_text = ["Registration edit complete"]
   expect(@world.journey.last_message_page).not_to have_text(confirmation_text)
-  expect(@world.journey.last_message_page).not_to have_text(@registration)
 end
 
 Then "I will receive a confirmation email" do

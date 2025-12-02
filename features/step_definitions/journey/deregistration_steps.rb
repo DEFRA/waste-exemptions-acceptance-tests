@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-When("I choose to deregister exemptions from the email invite") do
+When("I choose to amend my registration details from the email invite") do
   @world.bo.dashboard_page.admin_menu.home_page.click
   @world.bo.dashboard_page.submit(search_term: @registration)
   @world.bo.dashboard_page.view_reg_details_links.first.click

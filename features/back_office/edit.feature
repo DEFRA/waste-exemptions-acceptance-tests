@@ -47,7 +47,7 @@ Feature: Back office user edits a registration
       And I complete the edit
      Then I can see the new details on the registration details page
       And I can see the change recorded on the change history page
-@fix
+
   Scenario: Cancel registration
    Given I sign in as an admin team user
     When I edit the most recent registration
