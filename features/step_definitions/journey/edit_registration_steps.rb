@@ -49,6 +49,7 @@ When "I click on a valid edit link" do
 end
 
 When "I choose to make no changes" do
+  @world.journey.home_page.accept_cookies
   @world.journey.front_office_edit_page.submit
 end
 

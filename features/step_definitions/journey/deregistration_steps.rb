@@ -10,10 +10,10 @@ When("I choose to deregister exemptions from the email invite") do
   expect(@dereg_url).to have_text("/edit_registration/")
   puts @dereg_url
   visit(@dereg_url)
+  @world.journey.choose_exemptions_page.accept_cookies
 end
 
 When("I choose to deregister all current exemptions") do
-  @world.journey.choose_exemptions_page.accept_cookies
   @world.journey.choose_exemptions_page.uncheck_all_exemptions_and_submit
 end
 
