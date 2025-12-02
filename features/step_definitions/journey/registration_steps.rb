@@ -276,6 +276,7 @@ end
 
 Then("I will see a registration confirmation") do
   @world.last_reg_no = @world.journey.registration_confirmation_page.registration_number.text
+  @registration = @world.last_reg_no
   expect(@world.journey.registration_confirmation_page.registration_number).to have_text("WEX")
   puts "#{Quke::Quke.config.custom['urls']['back_office']}/registrations/#{@world.last_reg_no} generated"
 end
