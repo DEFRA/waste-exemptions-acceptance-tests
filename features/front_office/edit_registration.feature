@@ -1,4 +1,4 @@
-@frontoffice @email @fo_edit @fix
+@frontoffice @email @fo_edit
 Feature: Edit / deregistration self-serve
 
 As a waste exemption holder
@@ -20,7 +20,7 @@ Background: Create registration
      Then I will see a registration confirmation
      And I will receive a registration confirmation email
      And I sign in as an admin team user
-     And I choose to deregister exemptions from the email invite
+     And I choose to amend my registration details from the email invite
 
 Scenario: Waste exemption holder opts to make no changes
    When I choose to make no changes
