@@ -16,7 +16,6 @@ Then("I can view linear registration's details from the linear registrations lis
   @world.bo.dashboard_page.admin_menu.linear_registrations.click
   @world.bo.linear_registrations_page.last_page.click if @world.bo.linear_registrations_page.has_last_page?
   @world.bo.linear_registrations_page.wait_until_first_view_registration_link_visible
-  
   linear_registration = @world.bo.linear_registrations_page.linear_regs(@world.last_reg_no)
   linear_registration.view_registration.click
   puts current_url
