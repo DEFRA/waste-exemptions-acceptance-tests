@@ -13,7 +13,7 @@ class LinearRegistrationsPage < BasePage
     element(:contact, "td:nth-child(4)")
     element(:grid_ref, "td:nth-child(5)")
     element(:ea_area, "td:nth-child(6)")
-    element(:view_registration, "td:nth-child(7)")
+    element(:view_registration, "td:nth-child(7) a")
   end
 
   element(:last_page, "a[aria-label='Last page']")

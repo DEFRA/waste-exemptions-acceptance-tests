@@ -17,12 +17,12 @@ Then("I can view linear registration's details from the linear registrations lis
   @world.bo.linear_registrations_page.last_page.click if @world.bo.linear_registrations_page.has_last_page?
   @world.bo.linear_registrations_page.wait_until_first_view_registration_link_visible
   5.times do
-    puts "Checking for linear registration #{@world.last_reg_no}"
+    puts "Checking for registration number #{@world.last_reg_no} in linear registrations list"
     sleep 1
-    break unless @world.bo.linear_registrations_page.linear_regs(@world.last_reg_no).nil?
+    # Stops clicking on the link until the page has rendered
+    break if @world.bo.linear_registrations_page.linear_regs(@world.last_reg_no).view_registration["href"].include? @world.last_reg_no
   end
-  @linear_registration = @world.bo.linear_registrations_page.linear_regs(@world.last_reg_no)
-  @linear_registration.view_registration.click
+  @world.bo.linear_registrations_page.linear_regs(@world.last_reg_no).view_registration.click
   @world.bo.registration_details_page.wait_until_sites_visible
   expect(@world.bo.registration_details_page.heading.text).to have_text("Linear registration details for #{@world.last_reg_no}")
 end
