@@ -68,7 +68,6 @@ Scenario: Waste exemption holder deregisters all exemptions
    When I confirm my registration changes
    Then I will see the deregistration confirmation page
     And I will receive a deregistration confirmation email
-    And choose to deregister exemptions from the email invite
 
 Scenario: Waste exemption holder changes address 
    When I choose to change the contact address

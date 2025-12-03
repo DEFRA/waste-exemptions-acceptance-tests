@@ -16,9 +16,13 @@ Then("I can view linear registration's details from the linear registrations lis
   @world.bo.dashboard_page.admin_menu.linear_registrations.click
   @world.bo.linear_registrations_page.last_page.click if @world.bo.linear_registrations_page.has_last_page?
   @world.bo.linear_registrations_page.wait_until_first_view_registration_link_visible
-  linear_registration = @world.bo.linear_registrations_page.linear_regs(@world.last_reg_no)
-  linear_registration.view_registration.click
-  puts current_url
+  5.times do
+    puts "Checking for linear registration #{@world.last_reg_no}"
+    sleep 1
+    break unless @world.bo.linear_registrations_page.linear_regs(@world.last_reg_no).nil?
+  end
+  @linear_registration = @world.bo.linear_registrations_page.linear_regs(@world.last_reg_no)
+  @linear_registration.view_registration.click
   @world.bo.registration_details_page.wait_until_sites_visible
   expect(@world.bo.registration_details_page.heading.text).to have_text("Linear registration details for #{@world.last_reg_no}")
 end
