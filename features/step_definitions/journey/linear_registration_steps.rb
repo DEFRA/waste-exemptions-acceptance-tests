@@ -22,6 +22,11 @@ Then("I can view linear registration's details from the linear registrations lis
     break unless @world.bo.linear_registrations_page.linear_regs(@world.last_reg_no).nil?
   end
   @linear_registration = @world.bo.linear_registrations_page.linear_regs(@world.last_reg_no)
+  5.times do
+    sleep 1
+    break if @linear_registration.view_registration["href"].include? @world.last_reg_no
+  end
+  puts @linear_registration.view_registration["href"]
   @linear_registration.view_registration.click
   @world.bo.registration_details_page.wait_until_sites_visible
   expect(@world.bo.registration_details_page.heading.text).to have_text("Linear registration details for #{@world.last_reg_no}")
