@@ -34,6 +34,23 @@ Given("I have a valid registration with a {string} exemption") do |exemption|
   @world.bo.dashboard_page.admin_menu.home_page.click
 end
 
+Given("I have a valid registration for {int} sites") do |number_of_sites|
+  login_user(@world.developer_user)
+  create_multiple_site_registration(Date.today + 365, number_of_sites)
+  @registration = @world.bo.dashboard_page.created_registration.text[/(WEX\d+)/, 1]
+  raise "Test data creation failed" if @registration.nil?
+
+  @edit_token = @world.bo.dashboard_page.created_registration.text[/Edit token (.+)/, 1]
+  puts "generated #{@registration}"
+  @world.last_reg_no = @registration
+  @world.last_reg_edit_token = @edit_token
+  @business_type = :limited_company
+  @contact_email = "contact1@example.com"
+  @applicant_email = "applicant1@example.com"
+
+  @world.bo.dashboard_page.admin_menu.home_page.click
+end
+
 When "I click on an invalid edit link" do
   visit "/edit_registration/foo"
 end

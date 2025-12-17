@@ -4,22 +4,11 @@ Feature: Back office user deregisters exemptions
   I need to deregister a waste exemption activity
   So that I can correctly mark it as revoked or ceased
 
-  Background: Register an exemption
-    Given I sign in as an admin team user
-      And I start an assisted digital registration
-      And I confirm my waste activities are "not on" a farm
-      And I enter my business details for a "llp"
-      And I select waste activity "We use waste in building and construction"
-      And I select exemptions "U1 U2 U3" from the activities list
-      And I confirm my waste exemption selections
-      And I confirm my exemption is for a single site
-      And I confirm the charge summary
-      And I enter the registration details
-      And I confirm the registration details
-      And I pay by card
-      And I will see a registration confirmation
-      And I view a registration's sites information
-    
+   Background: Register an exemption
+    Given I have a valid registration
+      And I search for the registration
+      And I view the registration details
+   
   Scenario: [RUBY-63] Deregister individual exemptions
      When I deregister individual exemptions
      Then the exemptions are no longer active
@@ -38,5 +27,3 @@ Feature: Back office user deregisters exemptions
       And I edit the contact email address
       And I complete the edit
       Then I can see the deregistration details from the site's exemptions page
-
-
