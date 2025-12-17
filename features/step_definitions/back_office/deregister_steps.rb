@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 When("I deregister individual exemptions") do
+  @world.bo.registration_details_page.sites.click
   @world.bo.sites_page.sites.first.exemptions_link.click
   # Count the number of deregister links and active, ceased and revoked items
   @no_of_dereg_links = @world.bo.exemptions_page.deregister_ex_links.count
