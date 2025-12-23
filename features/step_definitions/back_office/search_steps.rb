@@ -13,6 +13,7 @@ end
 
 When("I search for the registration") do
   registration = @world.last_reg_no
+  @world.bo.dashboard_page.admin_menu.home_page.click
   puts "Searching for registration #{registration}"
   @world.bo.dashboard_page.submit(search_term: registration)
 end

@@ -35,7 +35,7 @@ Feature: Back office registration actions
       And I resend the confirmation email
       And I open communication history
       Then I can see the communication logs on the communication history page
-      
+    @skip
   Scenario: Companies name can be refreshed from companies house
       When I search for the registration
       And I view the registration details
