@@ -12,8 +12,8 @@ Background: Sign into back office
 
 @letter @renew
   Scenario: Renewal in back office where no contact email is given user sends confirmation letter to contact
-      When I complete an AD "limited_company" registration without an email address paying by "card"
+     When I complete an AD "limited_company" registration without an email address paying by "card"
       And I choose to renew a registration
       And I renew the registration "without" changes
-      Then I will be informed the registration is complete
+     Then I will be informed the registration is complete
       And a registration confirmation letter has been sent

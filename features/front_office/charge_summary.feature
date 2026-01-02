@@ -32,7 +32,7 @@ Scenario: Multiple exemptions of different bands 1, 2 and 3
     Given I confirm my waste activities are "not on" a farm
       And I enter my business details
      When I select waste activity "We sort, blend and recover waste"
-     And I select waste activity "We chemically treat, wash waste or use anaerobic digestion"
+      And I select waste activity "We chemically treat, wash waste or use anaerobic digestion"
       And I select exemption "T10 T12 T16 T18" from the activities list
       And I confirm my waste exemption selections
       And I confirm my exemption is for a single site 
@@ -139,7 +139,7 @@ Scenario: Farming waste exemptions are charged the farming compliance change
       And I enter my business details
       And I select exemptions "U13 D6 D7" from the "farming" list
       And I choose to add waste exemptions that are not included in the farming exemptions
-      When I select waste activity "We use waste in building and construction"
+     When I select waste activity "We use waste in building and construction"
       And I select exemption "U2" from the activities list
       And I confirm my waste exemption selections
       And I confirm my exemption is for a single site 
@@ -185,7 +185,7 @@ Scenario: Farming waste exemptions are charged the farming compliance change
   Scenario: Choosing multiple exemptions including a band 3 exemption does not indicate a discounted band 3 charge
     Given I confirm my waste activities are "not on" a farm
       And I enter my business details for a "limited_company"
-      When I select waste activity "We use waste in building and construction"
+     When I select waste activity "We use waste in building and construction"
       And I select waste activity "We burn plant and wood waste"
       And I select exemption "U1 D7" from the activities list
       And I confirm my waste exemption selections
@@ -219,7 +219,7 @@ Scenario: Farming waste exemptions are charged the farming compliance change
       And I confirm my exemption is for multiple sites
       And I enter the grid reference for a site
       And I enter the grid reference for another 29 sites
-      Then I am shown the multiple site registration charge summary
+     Then I am shown the multiple site registration charge summary
       And I can see the registration charge is £56
       And I can see the total charge is £956
       
@@ -232,7 +232,7 @@ Scenario: Farming waste exemptions are charged the farming compliance change
       And I confirm my exemption is for multiple sites
       And I enter the grid reference for a site
       And I enter the grid reference for another 29 sites
-      Then I am shown the multiple site registration charge summary
+     Then I am shown the multiple site registration charge summary
       And I can see the registration charge is £56
       And I can see the total charge is £2696
 
@@ -240,13 +240,13 @@ Scenario: Farming waste exemptions are charged the farming compliance change
 Scenario: All exemptions chosen for multiple site registration
     Given I confirm my waste activities are "not on" a farm
       And I enter my business details
-     And I select all waste activities
+      And I select all waste activities
       And I select all exemptions from the list
       And I confirm my waste exemption selections
       And I confirm my exemption is for multiple sites
       And I enter the grid reference for a site
       And I enter the grid reference for another 29 sites
-      Then I am shown the multiple site registration charge summary
+     Then I am shown the multiple site registration charge summary
       And I can see the total charge is £143576
 
 @multiple @farm
@@ -261,4 +261,4 @@ Scenario: All exemptions chosen for multiple site registration
       And I confirm my exemption is for multiple sites
       And I enter the grid reference for a site
       And I enter the grid reference for another 29 sites
-      Then I am shown the multiple site registration charge summary
+     Then I am shown the multiple site registration charge summary

@@ -2,7 +2,7 @@
 Feature: Linear registrations in the back office
 
 Scenario: Linear registration via assisted digital
-    Given I sign in as an admin team user
+      Given I sign in as an admin team user
         And I start an assisted digital registration
         And I confirm my waste activities are "not on" a farm
         And I enter my business details for a "limited_company"

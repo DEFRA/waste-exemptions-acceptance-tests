@@ -26,4 +26,4 @@ Scenario: Registration is within the renewal window
    When I start the flow to request an edit link
     And I enter a valid combination of reference number and email address
    Then I will see the standard conditional confirmation page
-   And I will receive an edit link email
+    And I will receive an edit link email

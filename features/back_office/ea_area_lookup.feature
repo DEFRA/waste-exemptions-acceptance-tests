@@ -13,7 +13,7 @@ Background: Create registration and sign into back office
       And I confirm the charge summary
 
 Scenario Outline: Grid reference provided for site <site> location returns correct EA area <ea_area>  
-      When I enter the registration details for site <site>
+     When I enter the registration details for site <site>
       And I confirm the registration details
       And I pay by card
      Then I will see a registration confirmation
@@ -27,7 +27,7 @@ Scenario Outline: Grid reference provided for site <site> location returns corre
           | "SC 81171 23759"  | "Outside England"                             |
 
 Scenario: Address provided for site location returns correct EA area
-    When I enter the registration details
+     When I enter the registration details
       And I confirm the registration details
       And I pay by card
      Then I will see a registration confirmation
