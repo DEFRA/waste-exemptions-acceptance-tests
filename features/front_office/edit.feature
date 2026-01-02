@@ -6,8 +6,8 @@ I want to be able to edit my contact details and/or deregister some or all of my
 So my registration is up to date and accurate
 
 Scenario: Invalid edit link
-  When I click on an invalid edit link
-  Then I will see the invalid link page
+   When I click on an invalid edit link
+   Then I will see the invalid link page
 
 Scenario: Waste exemption holder opts to make no changes
   Given I have a valid registration
@@ -69,7 +69,7 @@ Scenario: Waste exemption holder deregisters all exemptions
     And I will receive a deregistration confirmation email
 
 Scenario: Waste exemption holder can receive an invite to edit their registration from the back office
-   Given I have a registration "outside" of the renewal window
+  Given I have a registration "outside" of the renewal window
    When I choose to amend my registration details from the email invite
    Then I will see the main edit page
 

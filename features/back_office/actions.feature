@@ -4,41 +4,41 @@ Feature: Back office registration actions
     Actions that can be carried out on a registration in the back office
 
     Background: Create registration and sign into back office
-      Given I have a valid registration
-      And I sign in as an admin team user
+     Given I have a valid registration
+       And I sign in as an admin team user
       
     @letter @renew
     Scenario: Renewal reminder letter can be resent from registration details page
       When I search for the registration
-      And I view the registration details
-      And I resend the renewal reminder letter  
+       And I view the registration details
+       And I resend the renewal reminder letter  
       Then I will see a confirmation the renewal reminder letter has been sent
-      And a renewal reminder letter has been sent
+       And a renewal reminder letter has been sent
   @letter
    Scenario: Confirmation letter can be resent from registration details page
       When I search for the registration
-      And I view the registration details
-      And I resend the confirmation letter
+       And I view the registration details
+       And I resend the confirmation letter
       Then I will see the registration confirmation letter has been sent
-      And a registration confirmation letter has been sent
+       And a registration confirmation letter has been sent
   @email
   Scenario: Confirmation email can be resent from registration details page
       When I search for the registration
-      And I view the registration details
-      And I resend the confirmation email
+       And I view the registration details
+       And I resend the confirmation email
       Then I will see the registration confirmation email has been sent
-      And I will receive a registration confirmation email
+       And I will receive a registration confirmation email
 
   Scenario: Communication history can be accessed from registration details page
       When I search for the registration
-      And I view the registration details
-      And I resend the confirmation email
-      And I open communication history
+       And I view the registration details
+       And I resend the confirmation email
+       And I open communication history
       Then I can see the communication logs on the communication history page
-    @skip
+    
   Scenario: Companies name can be refreshed from companies house
       When I search for the registration
-      And I view the registration details
-      And I refresh the company name from companies house
+       And I view the registration details
+       And I refresh the company name from companies house
       Then I will see a confirmation the company name has been refreshed
-      And I can see the change recorded on the change history page
+       And I can see the change recorded on the change history page

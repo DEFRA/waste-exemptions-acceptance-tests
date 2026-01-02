@@ -14,15 +14,15 @@ Feature: [RUBY-241] Front office user renews a registration via email
       And I click the link in the renewal email
 
   Scenario: Renew a registration from email without changes
-     And I renew the registration "without" changes
-      And I receive a renewal confirmation email
+     When I renew the registration "without" changes
+     Then I receive a renewal confirmation email
       And I cannot renew it again
   @smoke
   Scenario: Renew a registration from email with changes
      When I renew the registration "with" changes
-      And I receive a renewal confirmation email
+     Then I receive a renewal confirmation email
       And I cannot renew it again
   
   Scenario: Deselecting all exemptions on renewal prompts user to stop renewal
-    When I choose to remove all my exemptions
-    Then I will be informed I need to select an exemption
+     When I choose to remove all my exemptions
+     Then I will be informed I need to select an exemption

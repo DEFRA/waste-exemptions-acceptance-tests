@@ -5,6 +5,6 @@ Background: Register an exemption and get renewal email
       And I receive an invitation to renew
       And I click the link in the renewal email
 @t28
-      Scenario: Renew a T28 registration from email without changes
-        And I renew the registration "without" changes
-        And I receive a renewal confirmation email
+  Scenario: Renew a T28 registration from email without changes
+     When I renew the registration "without" changes
+     Then I receive a renewal confirmation email

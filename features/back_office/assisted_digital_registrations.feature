@@ -17,7 +17,7 @@ Scenario: Succesful payment for registration using card
       And I confirm the registration details
      When I pay by card
      Then I will see a registration confirmation
-     And I will receive a registration confirmation email
+      And I will receive a registration confirmation email
 @bacs
 Scenario: Succesful registration by bank transfer
     Given I confirm my waste activities are "on" a farm
@@ -47,4 +47,4 @@ Scenario: Succesful registration by bank transfer
       And I confirm the registration details
      When I pay by card
      Then I will see a registration confirmation
-     And I will receive a registration confirmation email
+      And I will receive a registration confirmation email

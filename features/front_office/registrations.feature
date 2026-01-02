@@ -4,7 +4,7 @@ Feature: Registration payments using card or bank transfer
 Background: Create registration
     Given I start a new waste exemption registration
 @card
-Scenario: Succesful payment for registration using card
+  Scenario: Succesful payment for registration using card
     Given I confirm my waste activities are "not on" a farm
       And I enter my business details for a "partnership"
       And I select waste activity "We use waste in building and construction"
@@ -16,10 +16,10 @@ Scenario: Succesful payment for registration using card
       And I confirm the registration details
      When I pay by card
      Then I will see a registration confirmation
-     And I will receive a registration confirmation email
+      And I will receive a registration confirmation email
 
 @bacs
-Scenario: Succesful registration by bank transfer
+  Scenario: Succesful registration by bank transfer
     Given I confirm my waste activities are "not on" a farm
       And I enter my business details for a "limited_company"
       And I select waste activity "We crush, bale, shred or chip waste"
@@ -37,7 +37,7 @@ Scenario: Succesful registration by bank transfer
       And I will receive a registration received pending payment email
     
 @farm
-Scenario: All chosen farming exemptions can not be chosen from the non farming exemptions list
+  Scenario: All chosen farming exemptions can not be chosen from the non farming exemptions list
     Given I confirm my waste activities are "on" a farm
       And I enter my business details
       And I select exemptions "U1 U14 D6 D7 T23" from the "farming" list
