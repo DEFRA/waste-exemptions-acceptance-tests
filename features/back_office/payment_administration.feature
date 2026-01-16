@@ -1,4 +1,4 @@
-@charging
+@backoffice @charging
 Feature: Payment administration
 
 Background: Create a registration

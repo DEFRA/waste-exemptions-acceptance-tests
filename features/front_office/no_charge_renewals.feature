@@ -1,3 +1,4 @@
+@frontoffice
 Feature: No charge renewals
 
 Background: Register an exemption and get renewal email

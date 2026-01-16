@@ -1,4 +1,4 @@
-@linear
+@backoffice @linear
 Feature: Linear registrations in the back office
 
 Scenario: Linear registration via assisted digital

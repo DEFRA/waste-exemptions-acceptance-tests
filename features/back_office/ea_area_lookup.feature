@@ -1,4 +1,4 @@
-@ea_area_lookup
+@backoffice @ea_area_lookup
 Feature: Finding EA area of site location
 
 Background: Create registration and sign into back office

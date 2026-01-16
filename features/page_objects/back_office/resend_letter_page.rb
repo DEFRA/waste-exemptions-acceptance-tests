@@ -4,12 +4,7 @@ require_relative "sections/admin_menu_section"
 
 class ResendLetterPage < BasePage
 
-  def resend_renewal_letter(registration_number)
-    find(:css, "[href^='/resend-renewal-letter/#{registration_number}']")
-  end
-
-  def resend_confirmation_letter(registration_number)
-    find(:css, "[href^='/resend-confirmation-letter/#{registration_number}']")
-  end
+  element(:resend_renewal_letter, "form[action*='resend-renewal-letter'] button")
+  element(:resend_confirmation_letter, "form[action*='resend-confirmation-letter'] button")
 
 end
