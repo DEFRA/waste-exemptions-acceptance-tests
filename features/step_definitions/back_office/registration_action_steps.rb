@@ -5,29 +5,29 @@ When("I view the registration details") do
 end
 
 When("I resend the renewal reminder letter") do
-  @world.bo.registration_details_page.resend_renewal_letter(@world.last_reg_no).click
+  @world.bo.registration_details_page.resend_renewal_letter.click
   # As same element is used on both pages a check to wait for the second page to load is needed
   expect(@world.bo.resend_letter_page.heading).to have_content("resend")
-  @world.bo.resend_letter_page.resend_renewal_letter(@world.last_reg_no).click
+  @world.bo.resend_letter_page.resend_renewal_letter.click
 end
 
 When("I resend the confirmation letter") do
-  @world.bo.registration_details_page.resend_confirmation_letter(@world.last_reg_no).click
+  @world.bo.registration_details_page.resend_confirmation_letter.click
   # As same element is used on both pages a check to wait for the second page to load is needed
   expect(@world.bo.resend_letter_page.heading).to have_content("resend")
-  @world.bo.resend_letter_page.resend_confirmation_letter(@world.last_reg_no).click
+  @world.bo.resend_letter_page.resend_confirmation_letter.click
 end
 
 When("I resend the confirmation email") do
-  @world.bo.registration_details_page.resend_confirmation_email(@world.last_reg_no).click
+  @world.bo.registration_details_page.resend_confirmation_email.click
 end
 
 When("I resend the renewal invite email") do
-  @world.bo.registration_details_page.resend_confirmation_email(@world.last_reg_no).click
+  @world.bo.registration_details_page.resend_confirmation_email.click
 end
 
 When("I open communication history") do
-  @world.bo.registration_details_page.communication_history(@world.last_reg_no).click
+  @world.bo.registration_details_page.communication_history.click
 end
 
 Then("I will see a confirmation the renewal reminder letter has been sent") do

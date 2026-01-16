@@ -1,4 +1,4 @@
-@multiple
+@frontoffice @multiple
 Feature: Adding multiple sites to a registration
   As a user
   I want to be able to add multiple sites to my waste exemption registration

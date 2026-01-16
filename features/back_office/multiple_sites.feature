@@ -1,4 +1,4 @@
-@multiple
+@backoffice @multiple
 Feature: Managing multiple site registrations in the back office
 
 Background: Sign in and create a multiple site registration
