@@ -126,7 +126,7 @@ Then("each site has been deregistered") do
   while @world.bo.sites_page.has_next_page?
     @world.bo.sites_page.sites.each do |site|
       expect(site).to have_no_deregister_link
-      expect(site.site_status.text).to eq("deregistered")
+      expect(site.site_status.text).to eq("Deregistered")
     end
     @world.bo.sites_page.next_page.click if @world.bo.sites_page.has_next_page?
   end
@@ -142,7 +142,7 @@ When("I deregister a site") do
 end
 
 Then("the site is no longer active") do
-  expect(@world.bo.sites_page.sites.first.site_status.text).to eq("deregistered")
+  expect(@world.bo.sites_page.sites.first.site_status.text).to eq("Deregistered")
 end
 
 When("I {string} a site") do |deregistration_type|
@@ -209,5 +209,5 @@ end
 
 Then("the site remains active") do
   @world.bo.exemptions_page.back_link.click
-  expect(@world.bo.sites_page.sites.first.site_status.text).to eq("active")
+  expect(@world.bo.sites_page.sites.first.site_status.text).to eq("Active")
 end
