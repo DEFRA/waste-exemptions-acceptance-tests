@@ -3,7 +3,6 @@
 class ChooseExemptionsPage < BasePage
 
   elements(:exemptions, "input[name*='exemptions_form']", visible: false)
-  element(:t28, "#activity_exemptions_form_checkbox-T28", visible: false)
   element(:exemption_fieldset, "#matched_exemptions")
 
   def submit(args = {})
