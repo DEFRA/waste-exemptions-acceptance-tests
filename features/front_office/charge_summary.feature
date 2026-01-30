@@ -147,7 +147,7 @@ Scenario: Farming waste exemptions are charged the farming compliance change
       And I can see the total charge is £356
       
   @farm
-  Scenario: Choosing all exemptions from farming and non farming waste exemptions list except T28
+  Scenario: Choosing all exemptions from farming and non farming waste exemptions list
     Given I confirm my waste activities are "on" a farm
       And I enter my business details
       And I select all exemptions from the list
@@ -159,7 +159,7 @@ Scenario: Farming waste exemptions are charged the farming compliance change
      Then I can see the registration charge is £56
       And I can see the total charge is £4004
   
-  Scenario: Choosing all exemptions from non farming waste exemptions list except T28
+  Scenario: Choosing all exemptions from non farming waste exemptions list
     Given I confirm my waste activities are "not on" a farm
       And I enter my business details
       And I select all waste activities
@@ -262,3 +262,14 @@ Scenario: All exemptions chosen for multiple site registration
       And I enter the grid reference for a site
       And I enter the grid reference for another 29 sites
      Then I am shown the multiple site registration charge summary
+
+@t28
+  Scenario: Charge summary: Registration with only a T28 exemption is not charged
+    Given I confirm my waste activities are "not on" a farm
+      And I enter my business details for a "limited_company"
+      And I select waste activity "We sort, blend and recover waste"
+      And I select exemption "T28" from the activities list
+      And I confirm my waste exemption selections
+      And I confirm my exemption is for a single site
+      And I can see the registration charge is £0
+      And I can see the total charge is £0

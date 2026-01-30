@@ -85,3 +85,35 @@ Background: Create registration
      When I pay by card
      Then I will see a registration confirmation
       And I will receive a registration confirmation email
+
+
+@t28
+  Scenario: Registration with only a T28 exemption is not charged
+    Given I confirm my waste activities are "not on" a farm
+      And I enter my business details for a "limited_company"
+      And I select waste activity "We sort, blend and recover waste"
+      And I select exemption "T28" from the activities list
+      And I confirm my waste exemption selections
+      And I confirm my exemption is for a single site
+      And I confirm the charge summary
+      And I enter the registration details
+      And I confirm the registration details
+      Then I will see a registration confirmation
+      And I will receive a registration confirmation email
+
+  @smoke @multiple
+  Scenario: Multiple site T28 no charge registration
+    Given I confirm my waste activities are "not on" a farm
+      And I enter my business details
+     When I select waste activity "We sort, blend and recover waste"
+      And I select exemption "T28" from the activities list
+      And I confirm my waste exemption selections
+      And I confirm my exemption is for multiple sites
+      And I enter the grid reference for a site
+      And I enter the grid reference for another 29 sites
+      And I confirm I have added all my sites
+     Then I confirm the charge summary
+      And I enter the registration details
+      And I confirm the registration details
+     Then I will see a registration confirmation
+      And I will receive a registration confirmation email

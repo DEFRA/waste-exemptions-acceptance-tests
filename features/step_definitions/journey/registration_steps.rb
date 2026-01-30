@@ -342,11 +342,6 @@ end
 Given("I select all exemptions from the list") do
   expect(@world.journey.choose_exemptions_page.heading.text).to have_text("exemptions")
   @world.journey.choose_exemptions_page.check_all_exemptions
-  # T28 exemptions can not be selected from the front office
-  if @world.journey.choose_exemptions_page.has_t28?
-    puts "T28 exemption can not be selected from the front office - unchecking"
-    @world.journey.choose_exemptions_page.uncheck_exemption("T28")
-  end
   @world.journey.choose_exemptions_page.submit_button.click
 end
 
