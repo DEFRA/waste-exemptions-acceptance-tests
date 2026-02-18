@@ -13,13 +13,7 @@ def email_exists?(expected_text, registration = nil)
   # expected_text is an array containing all the text you want to search for
   sleep(2)
   visit(Quke::Quke.config.custom["urls"]["notify_link"])
-  @applicant_email = [registration[:applicant][:email]].first if @applicant_email.nil?
-  expected_text_for_applicant = expected_text << @applicant_email
-  return true if @world.journey.last_message_page.message_text?(expected_text_for_applicant)
 
-  # removing applicant email from expected text
-  expected_text.delete(@applicant_email)
-  # If that doesn't work, try the contact email:
   @contact_email = [registration[:contact][:email]].first if @contact_email.nil?
   expected_text_for_contact = expected_text << @contact_email
   return true if @world.journey.last_message_page.message_text?(expected_text_for_contact)

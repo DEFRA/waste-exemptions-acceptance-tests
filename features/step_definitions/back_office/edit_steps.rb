@@ -1,22 +1,5 @@
 # frozen_string_literal: true
 
-When("I edit the applicants phone number") do
-  # Last registration number is stored in @world.last_reg_no.
-  # Search for the last reference number:
-  @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
-  find_link("Edit").click
-  expect(@world.bo.edit_page.heading).to have_text("Edit #{@world.last_reg_no} registration")
-
-  # Generate data using the functions in data_generator.rb
-  @new_details = generate_registration(:individual, "Mr Waste")
-  @new_person = generate_person("wex@example.com")
-
-  @world.bo.edit_page.change_applicant_phone.click
-  @updated_detail = @new_person[:telephone]
-  @world.journey.phone_page.submit(tel_no: @updated_detail)
-  @change_reason = "Applicant phone number changed"
-end
-
 When("I edit the contact email address") do
   # Last registration number is stored in @world.last_reg_no.
   # Search for the last reference number:

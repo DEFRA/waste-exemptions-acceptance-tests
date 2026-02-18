@@ -23,10 +23,6 @@ When("I renew the registration {string} changes") do |changes|
     @contact_email = "new@example.com"
     @world.journey.contact_email_page.submit(contact_email: @contact_email,
                                              confirmed_email: @contact_email)
-    @world.journey.check_details_page.change_applicant_email.click
-    @applicant_email = "new_applicant@example.com"
-    @world.journey.email_page.submit(email: @applicant_email,
-                                     confirm_email: @applicant_email)
     @world.journey.check_details_page.change_on_farm.click
     @world.journey.on_farm_page.submit
     @world.journey.check_details_page.change_farmer.click

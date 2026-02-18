@@ -21,7 +21,7 @@ Feature: Back office registration actions
        And I resend the confirmation letter
       Then I will see the registration confirmation letter has been sent
        And a registration confirmation letter has been sent
-  @email
+  @email @check
   Scenario: Confirmation email can be resent from registration details page
       When I search for the registration
        And I view the registration details

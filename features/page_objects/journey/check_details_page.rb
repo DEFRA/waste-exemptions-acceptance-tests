@@ -32,13 +32,6 @@ class CheckDetailsPage < BasePage
   element(:change_on_farm, "a[href='check-your-answers/on-a-farm'],a[href='renewal-start/on-a-farm']")
   element(:farmer, "#registration_are_the_waste_exemptions_used_by_a_farmer_or_farming_business")
   element(:change_farmer, "a[href='check-your-answers/is-a-farmer'],a[href='renewal-start/is-a-farmer']")
-  element(:applicant_name, "#registration_form_completed_by")
-  element(:change_applicant_name, "a[href='check-your-answers/applicant-name'],a[href='renewal-start/applicant-name']")
-  element(:applicant_tel, "#registration_telephone_number")
-  element(:change_applicant_tel, "a[href='check-your-answers/applicant-phone'],a[href='renewal-start/applicant-phone']")
-  element(:applicant_email, "#registration_email_address")
-  element(:change_applicant_email,
-          "a[href='check-your-answers/applicant-email'],a[href='renewal-start/applicant-email']")
   element(:grid_ref, "#registration_grid_reference")
   element(:site_desc, "#registration_site_description")
   element(:site_address, "#registration_site_address")
