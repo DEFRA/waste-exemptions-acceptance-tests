@@ -14,10 +14,6 @@ When("I enter an invalid combination of reference number and email address") do
   @world.journey.capture_email_page.submit(contact_email: "nonsense@example.foo")
 end
 
-When("I pause for a while") do
-  sleep 100
-end
-
 Then("I will see the standard conditional confirmation page") do
   expect(page).to have_content "If your email address is in our system we'll send you a link to your registration page."
 end

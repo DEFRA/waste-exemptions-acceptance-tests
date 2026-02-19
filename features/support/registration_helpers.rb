@@ -6,8 +6,8 @@ def add_submitted_registration(registration, address_type = :lookup, _site_type 
   # This function completes a full registration with parameters:
   # - a full set of `registration` data - generated from the generate_registration function in data_generator
   # - an option to load the root page or not (default true)
-  # - an address type, for the applicant and contact addresses, of:
-  #     lookup - looks up a postcode for the applicant and contact addresses (default)
+  # - an address type, for the contact addresses, of:
+  #     lookup - looks up a postcode of the contact addresses (default)
   #     manual - enters addresses manually
   #     random - chooses a method at random
   # - a site type entered as a `grid_ref`, an `address`, or a `random` choice of either
@@ -25,7 +25,6 @@ def add_submitted_registration(registration, address_type = :lookup, _site_type 
   @world.journey.exemptions_summary_page.submit_button.click
   complete_site_details(registration, address_type, :grid_ref)
   complete_address(address_type)
-  complete_applicant_details(registration[:applicant])
   complete_contact_details(registration[:contact], address_type)
   @world.journey.check_details_page.submit
 
@@ -38,7 +37,7 @@ def add_submitted_registration(registration, address_type = :lookup, _site_type 
     @world.journey.payment_summary_page.submit(payment_type: :bank)
   end
   ref_no = @world.journey.confirmation_page.ref_no.text
-  puts "#{ref_no} completed by #{registration[:applicant][:full_name]}"
+  puts "#{ref_no} completed by #{registration[:contact][:full_name]}"
   ref_no
 end
 
@@ -66,8 +65,6 @@ def add_unsubmitted_registration(registration, load_root_page: true)
   @world.journey.registration_type_page.submit(start_option: :new_radio)
   @world.journey.location_page.submit(location: :england)
   @world.journey.choose_exemptions_page.submit(exemptions: registration[:exemptions])
-
-  complete_applicant_details(registration[:applicant])
   complete_organisation_details(registration)
   complete_address(:address_type)
 end
@@ -79,13 +76,6 @@ def continue_unsubmitted_registration(registration, address_type = :random, site
   ref_no = complete_confirmations
   puts "#{ref_no} completed"
   ref_no
-end
-
-def complete_applicant_details(person)
-  @world.journey.name_page.submit(first_name: person[:first_name], last_name: person[:last_name])
-  @world.journey.phone_page.submit(tel_no: person[:telephone])
-  @world.journey.email_page.submit(email: person[:email], confirm_email: person[:email]) unless @no_email
-  @world.journey.email_page.submit(no_email: true) if @no_email
 end
 
 def complete_organisation_details(registration)
@@ -139,25 +129,16 @@ def complete_partner_details(registration)
   )
 end
 
-# rubocop:disable Metrics/AbcSize
 def complete_contact_details(person, address_type)
-  @world.journey.check_contact_name_page.submit(reuse: :reject) unless @changes == :with
   @world.journey.name_page.submit(first_name: person[:first_name], last_name: person[:last_name])
   @world.journey.contact_position_page.submit(position: person[:position])
-  @world.journey.check_contact_phone_page.submit(reuse: :reject) unless @changes == :with
   @world.journey.phone_page.submit(tel_no: person[:telephone])
 
-  reuse_email unless @renewal
   @world.journey.email_page.submit(email: person[:email], confirm_email: person[:email]) if @renewal
   # No email reuse page if it's for a back office registration without a contact email
   @world.journey.email_page.submit(no_email: true) if @no_email
   @world.journey.check_contact_address_page.submit(reuse: :reject) if @changes != :with
   complete_address(address_type)
-end
-
-# rubocop:enable Metrics/AbcSize
-def reuse_email
-  @world.journey.check_contact_email_page.submit(reuse: :accept) unless @no_email
 end
 
 def complete_farm_questions(registration)

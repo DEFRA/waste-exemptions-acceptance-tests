@@ -132,20 +132,6 @@ Scenario: User can change their waste exemptions choices from the check your ans
       And I confirm my waste exemption selections
      Then I can see the total charge is £704
 
-Scenario: User can change their applicant details from the check your answers page
-    Given I start a new waste exemption registration
-      And I confirm my waste activities are "not on" a farm
-      And I enter my business details for a "limited_company"
-      And I select waste activity "We use waste in building and construction"
-      And I select exemption "U1" from the activities list
-      And I confirm my waste exemption selections
-      And I confirm my exemption is for a single site
-      And I confirm the charge summary
-      And I enter the registration details
-      And I am on the check your answers page
-     When I change my applicant details
-     Then I can see my applicant details have been updated
-
 Scenario: User can change the business address from check your answers page
     Given I start a new waste exemption registration
       And I confirm my waste activities are "not on" a farm

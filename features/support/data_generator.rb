@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "faker"
-# rubocop:disable Metrics/MethodLength
 def generate_registration(business_type, operator_name = nil, email: "wex@example.com")
   # Generate data to be used for a registration.
   # Input parameters:
@@ -9,13 +8,9 @@ def generate_registration(business_type, operator_name = nil, email: "wex@exampl
   # - a given operator name (default nil)
   # - email - allows testing of Assisted digital registration which will generate a letter (default "wex@example.com")
   @business_type = business_type
-  applicant = generate_person(email)
 
-  contact = if business_type == :limited_company
-              generate_person(email)
-            else
-              applicant
-            end
+  contact =
+    generate_person(email)
 
   # Syntax from https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Style/MultipleComparison
   # If the business type is :limited_company or :llp then set registration number.
@@ -28,7 +23,6 @@ def generate_registration(business_type, operator_name = nil, email: "wex@exampl
   # The farm questions are randomly set as yes or no.
   {
     business_type: business_type,
-    applicant: applicant,
     contact: contact,
     operator_name: @operator_name,
     registration_number: registration_number,
@@ -40,7 +34,6 @@ def generate_registration(business_type, operator_name = nil, email: "wex@exampl
   }
 end
 
-# rubocop:enable Metrics/MethodLength
 def generate_person(email)
   first_name ||= Faker::Name.unique.first_name
   last_name ||= Faker::Name.unique.last_name
@@ -89,8 +82,8 @@ def prepopulate_registrations
   unsubmitted_reg = generate_registration(:individual, "Mr Waste unsubmitted")
   add_unsubmitted_registration(unsubmitted_reg)
 
-  # Get the full name of the last submitted applicant for search tests:
-  @world.known_submitted_applicant = @world.known_reg[:applicant][:full_name].to_s
+  # Get the full name of the last submitted contact for search tests:
+  @world.known_submitted_contact = @world.known_reg[:contact][:full_name].to_s
 end
 
 def create_registration(date)

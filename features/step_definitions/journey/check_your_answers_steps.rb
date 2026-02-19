@@ -53,21 +53,6 @@ When("I choose to change my waste exemptions") do
   @world.journey.check_details_page.change_exemptions.click
 end
 
-When("I change my applicant details") do
-  @applicant_name = @world.journey.check_details_page.applicant_name.text
-  @applicant_tel = @world.journey.check_details_page.applicant_tel.text
-  @applicant_email = @world.journey.check_details_page.applicant_email.text
-  @world.journey.check_details_page.change_applicant_name.click
-  @new_applicant = generate_person("new_applicant@example.com")
-  @world.journey.name_page.submit(first_name: @new_applicant[:first_name],
-                                  last_name: @new_applicant[:last_name])
-  @world.journey.check_details_page.change_applicant_tel.click
-  @world.journey.phone_page.submit(tel_no: @new_applicant[:telephone])
-  @world.journey.check_details_page.change_applicant_email.click
-  @world.journey.email_page.submit(email: @new_applicant[:email],
-                                   confirm_email: @new_applicant[:email])
-end
-
 When("I change the business address") do
   @company_address = @world.journey.check_details_page.operator_address.text
   @new_postcode = "BS1 1YY"
@@ -184,12 +169,6 @@ end
 
 Then("I can see the waste exemptions chosen have been updated") do
   expect(@world.journey.check_details_page.exemptions_displayed?(@existing_exemptions)).to eq(true)
-end
-
-Then("I can see my applicant details have been updated") do
-  expect(@world.journey.check_details_page.applicant_name.text).to eq(@new_applicant[:full_name])
-  expect(@world.journey.check_details_page.applicant_tel.text).to eq(@new_applicant[:telephone])
-  expect(@world.journey.check_details_page.applicant_email.text).to eq(@new_applicant[:email])
 end
 
 Then("I can see the business address has been updated") do

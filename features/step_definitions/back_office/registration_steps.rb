@@ -31,9 +31,8 @@ Then("I can find and edit the registration I just submitted") do
   @world.bo.dashboard_page.submitted_filter.click
   @world.bo.dashboard_page.submit(search_term: @world.completed_reg)
   expect(@world.bo.dashboard_page).to have_results
-  expect(page).to have_content(@world.reg_to_complete[:applicant][:first_name].to_s)
+  expect(page).to have_content(@world.reg_to_complete[:contact][:first_name].to_s)
 
-  # Edit the applicant's name so that it doesn't appear in the submitted search results
   find_link("Edit").click
   expect(@world.bo.edit_page.heading).to have_text("Edit #{@world.completed_reg} registration")
   @world.bo.edit_page.change_operator_link.click
