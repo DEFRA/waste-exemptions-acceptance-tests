@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Given("I enter the grid reference for the linear site") do
+  @world.journey.multiple_sites_question_page.submit(choice: :single)
   @linear_site = true
   @world.journey.site_grid_reference_page.submit(grid_ref: create_grid_reference,
                                                  site_details: "Linear registration",
