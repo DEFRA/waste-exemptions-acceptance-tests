@@ -114,7 +114,6 @@ Scenario: Farming waste exemptions are charged the farming compliance change
  @farm
   Scenario: Farming and band 3 non farming waste exemptions can be chosen together
     Given I enter my business details
-      And I choose to add waste exemptions that are not included in the farming exemptions
       And I select waste activity "We use effluent or sludge"
       And I select waste activity "We spread or mix waste"
       And I select waste activity "We burn plant and wood waste"

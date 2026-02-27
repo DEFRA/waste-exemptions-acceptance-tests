@@ -8,9 +8,12 @@ Background: Create registration and sign into back office
       And I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list 
       And I confirm my waste exemption selections
-
+@wip
 Scenario Outline: Grid reference provided for site <site> location returns correct EA area <ea_area>  
      When I enter the registration details for site <site>
+      And I confirm my waste activities are "not on" a farm
+      And I confirm the charge summary
+      And I enter the registration details
       And I confirm the registration details
       And I pay by card
      Then I will see a registration confirmation

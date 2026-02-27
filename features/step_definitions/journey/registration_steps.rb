@@ -134,8 +134,6 @@ Then("I have the option to choose business, contact address or choose another ad
   expect(@world.journey.check_site_address_page).to have_different_address
 end
 
-
-
 When("I enter the registration details") do
   complete_address(:lookup)
   @contact_email = "contact@example.com"

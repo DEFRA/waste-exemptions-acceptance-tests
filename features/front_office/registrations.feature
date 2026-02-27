@@ -37,9 +37,8 @@ Background: Create registration
       And I will receive a registration received pending payment email
   
   Scenario: Charities are requested to call the Environment Agency to register
-    Given I confirm my waste activities are "not on" a farm
-     When I select that I am registering as a charity
-     Then I am told to call the Environment Agency to register
+    When I select that I am registering as a charity
+    Then I am told to call the Environment Agency to register
 
 @smoke @multiple @card
   Scenario: Multiple site registration
