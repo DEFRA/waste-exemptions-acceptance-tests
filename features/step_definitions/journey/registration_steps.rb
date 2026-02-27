@@ -134,28 +134,7 @@ Then("I have the option to choose business, contact address or choose another ad
   expect(@world.journey.check_site_address_page).to have_different_address
 end
 
-When("I enter the registration details for site {string}") do |grid_ref|
-  @world.journey.multiple_sites_question_page.submit(choice: :single)
-  @world.journey.site_grid_reference_page.submit(
-    grid_ref: grid_ref,
-    site_details: "EA area lookup"
-  )
-  @world.journey.on_farm_page.submit(on_farm: false)
-  @world.journey.farmer_page.submit(farmer: false)
-  @world.journey.exemptions_summary_page.submit_button.click
-  complete_address(:lookup)
-  @contact_email = "contact@example.com"
-  @contact = generate_person(@contact_email)
 
-  @world.journey.contact_name_page.submit(first_name: @contact[:first_name],
-                                          last_name: @contact[:last_name])
-  @world.journey.contact_position_page.submit(position: @contact[:position])
-  @world.journey.contact_phone_page.submit(contact_phone: "0117 9876543")
-  @world.journey.contact_email_page.submit(contact_email: @contact_email, confirmed_email: @contact_email)
-  sleep(1)
-  @world.journey.check_contact_address_page.submit(reuse: :accept)
-
-end
 
 When("I enter the registration details") do
   complete_address(:lookup)

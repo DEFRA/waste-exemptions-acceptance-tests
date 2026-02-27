@@ -8,6 +8,14 @@ Given("I enter my location for the site") do
   @world.journey.address_lookup_page.submit(postcode: @postcode, result: @address)
 end
 
+When("I enter the registration details for site {string}") do |grid_ref|
+  @world.journey.multiple_sites_question_page.submit(choice: :single)
+  @world.journey.site_grid_reference_page.submit(
+    grid_ref: grid_ref,
+    site_details: "EA area lookup"
+  )
+end
+
 Given("I confirm my exemption is for multiple sites") do
   @world.journey.multiple_sites_question_page.submit(choice: :multiple)
   @number_of_sites = 0
