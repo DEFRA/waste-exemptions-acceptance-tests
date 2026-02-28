@@ -208,9 +208,5 @@ class JourneyApp
     @last_message_page = ConfirmExemptionSelectionPage.new
   end
 
-  def confirm_farming_exemption_selection_page
-    @last_message_page = ConfirmFarmingExemptionSelectionPage.new
-  end
-
 end
 # rubocop:enable  Metrics/ClassLength

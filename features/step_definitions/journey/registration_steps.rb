@@ -134,32 +134,7 @@ Then("I have the option to choose business, contact address or choose another ad
   expect(@world.journey.check_site_address_page).to have_different_address
 end
 
-When("I enter the registration details for site {string}") do |grid_ref|
-  @world.journey.site_grid_reference_page.submit(
-    grid_ref: grid_ref,
-    site_details: "EA area lookup"
-  )
-  complete_address(:lookup)
-  @contact_email = "contact@example.com"
-  @contact = generate_person(@contact_email)
-
-  @world.journey.contact_name_page.submit(first_name: @contact[:first_name],
-                                          last_name: @contact[:last_name])
-  @world.journey.contact_position_page.submit(position: @contact[:position])
-  @world.journey.contact_phone_page.submit(contact_phone: "0117 9876543")
-  @world.journey.contact_email_page.submit(contact_email: @contact_email, confirmed_email: @contact_email)
-  sleep(1)
-  @world.journey.check_contact_address_page.submit(reuse: :accept)
-end
-
 When("I enter the registration details") do
-  unless @multiple_sites || @linear_site
-    @world.journey.site_grid_reference_page.choose_address.click
-    @postcode = "S70 5SZ"
-    @address = "DUNKIN DONUTS, UNIT 1B, KESTREL WAY, BIRDWELL, BARNSLEY, S70 5SZ"
-    @world.journey.address_lookup_page.submit(postcode: @postcode, result: @address)
-  end
-
   complete_address(:lookup)
   @contact_email = "contact@example.com"
   @contact = generate_person(@contact_email)
@@ -182,7 +157,6 @@ When("I confirm the charge summary") do
   puts current_url
   @total_charge = trim_pound_sign(@world.journey.exemptions_summary_page.total_charge.text)
   @world.journey.exemptions_summary_page.submit_button.click
-
 end
 
 Then("I will see a registration confirmation") do
@@ -199,7 +173,7 @@ When("I select waste activity {string}") do |activity|
   when "We burn waste as fuel"
     @world.journey.select_waste_activities_page.submit(burn_fuel: true)
   when "We spread or mix waste"
-    @world.journey.select_waste_activities_page.submit(spread_waste: true)
+    @world.journey.select_waste_activities_page.submit(spread: true)
   when "We use waste in manufacturing or for a specified purpose"
     @world.journey.select_waste_activities_page.submit(manufacture: true)
   when "We use effluent or sludge"
@@ -235,20 +209,13 @@ Given("I select exemption(s) {string} from the activities list") do |exemptions|
   @world.journey.choose_exemptions_page.submit(exemptions: exemptions.split)
 end
 
-Given("I select exemption(s) {string} from the {string} list") do |exemptions, list_type|
-  @existing_exemptions = [] if @existing_exemptions.nil?
-  exemptions.split.each do |ex|
-    @existing_exemptions << ex
-  end
-
-  case list_type
-  when "farming"
-    @world.journey.choose_exemptions_page.submit(exemptions: exemptions.split,
-                                                 farm: true)
-  when "exemptions"
-    @world.journey.choose_exemptions_page.submit(exemptions: exemptions.split)
-  end
-end
+# Given("I select exemption(s) {string} from the activities list") do |exemptions|
+#   @existing_exemptions = [] if @existing_exemptions.nil?
+#   exemptions.split.each do |ex|
+#     @existing_exemptions << ex
+#   end
+#   @world.journey.choose_exemptions_page.submit(exemptions: exemptions.split)
+# end
 
 Given("I select all exemptions from the list") do
   expect(@world.journey.choose_exemptions_page.heading.text).to have_text("exemptions")
@@ -261,6 +228,7 @@ Given("I select all waste activities") do
 end
 
 Given("I confirm my waste activities are {string} a farm") do |choice|
+  puts current_url
   case choice
   when "not on"
     @world.journey.on_farm_page.submit(on_farm: false)
@@ -279,10 +247,6 @@ Given("I enter my business details for a {string}") do |business|
   complete_organisation_details(generate_registration(business.to_sym))
 end
 
-Then("my farming exemptions are not available to be chosen from the list") do
-  expect(@world.journey.choose_exemptions_page.exemptions_displayed?(@existing_exemptions)).to eq(false)
-end
-
 Given("I select no exemptions from the list") do
   @world.journey.choose_exemptions_page.submit_button.click
 end
@@ -290,11 +254,6 @@ end
 Then("I can select waste activities from the list") do
   expect(@world.journey.select_waste_activities_page).to have_activities
 end
-# rubocop:disable Layout/LineLength
-Then("I am told I can not continue without adding exemptions") do
-  expect(@world.journey.confirm_farming_exemption_selection_page.heading.text).to have_text("You have not selected any exemptions")
-end
-# rubocop:enable Layout/LineLength
 
 Then("I am told to call the Environment Agency to register") do
   sleep(2)
