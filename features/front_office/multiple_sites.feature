@@ -17,6 +17,7 @@ Feature: Adding multiple sites to a registration
       And I enter the grid reference for another 29 sites
       And I confirm I have added all my sites
       And I confirm my waste activities are "not on" a farm
+      And I confirm my organisation is not a charity
      Then I am shown the multiple site registration charge summary
 
   Scenario: User can not continue with registration after deleting thirtieth site

@@ -10,6 +10,7 @@ Scenario: Linear registration via assisted digital
         And I confirm my waste exemption selections
         And I enter the grid reference for the linear site
         And I confirm my waste activities are "not on" a farm
+        And I confirm my organisation is not a charity
         And I confirm the charge summary
         And I enter the registration details
         And I confirm the registration details

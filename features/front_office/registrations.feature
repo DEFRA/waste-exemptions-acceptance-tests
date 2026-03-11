@@ -11,6 +11,7 @@ Background: Create registration
       And I confirm my waste exemption selections
       And I enter my location for the site
       And I confirm my waste activities are "not on" a farm
+      And I confirm my organisation is not a charity
       And I confirm the charge summary
       And I enter the registration details
       And I confirm the registration details
@@ -29,16 +30,28 @@ Background: Create registration
       And I confirm my waste exemption selections
       And I enter my location for the site
       And I confirm my waste activities are "not on" a farm
+      And I confirm my organisation is not a charity
       And I confirm the charge summary
       And I enter the registration details
       And I confirm the registration details
      When I choose to pay by bank transfer
      Then I will see a registration received pending payment confirmation
       And I will receive a registration received pending payment email
+
   
-  Scenario: Charities are requested to call the Environment Agency to register
-    When I select that I am registering as a charity
-    Then I am told to call the Environment Agency to register
+  Scenario: Charititable purpose exemptions are not charged
+     When I enter my business details for a "charity"
+      And I select waste activity "We store waste"
+      And I select exemption "S1" from the activities list
+      And I confirm my waste exemption selections
+      And I enter my location for the site
+      And I confirm my waste activities are "not on" a farm
+      And I confirm my organisation is a charity
+      And I confirm the charge summary
+      And I enter the registration details
+      And I confirm the registration details
+     Then I will see a registration confirmation
+      And I will receive a registration confirmation email
 
 @smoke @multiple @card
   Scenario: Multiple site registration
@@ -53,6 +66,7 @@ Background: Create registration
       And I enter the grid reference for another 29 sites
       And I confirm I have added all my sites
       And I confirm my waste activities are "not on" a farm
+      And I confirm my organisation is not a charity
      Then I confirm the charge summary
       And I enter the registration details
       And I confirm the registration details
@@ -68,6 +82,7 @@ Background: Create registration
       And I confirm my waste exemption selections
       And I enter my location for the site
       And I confirm my waste activities are "not on" a farm
+      And I confirm my organisation is not a charity
       And I confirm the charge summary
       And I enter the registration details
       And I confirm the registration details
@@ -85,6 +100,7 @@ Background: Create registration
       And I enter the grid reference for another 29 sites
       And I confirm I have added all my sites
       And I confirm my waste activities are "not on" a farm
+      And I confirm my organisation is not a charity
      Then I confirm the charge summary
       And I enter the registration details
       And I confirm the registration details

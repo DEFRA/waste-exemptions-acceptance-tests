@@ -28,10 +28,6 @@ class JourneyApp
     @last_page = BusinessTypePage.new
   end
 
-  def charity_register_free_page
-    @last_message_page = CharityRegisterFreePage.new
-  end
-
   def choose_exemptions_page
     @last_page = ChooseExemptionsPage.new
   end
@@ -74,6 +70,14 @@ class JourneyApp
 
   def contact_position_page
     @last_page = ContactPositionPage.new
+  end
+
+  def charitable_purpose_page
+    @last_page = CharitablePurposePage.new
+  end
+
+  def charitable_purpose_declaration_page
+    @last_page = CharitablePurposeDeclarationPage.new
   end
 
   def declaration_page

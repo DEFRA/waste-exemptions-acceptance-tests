@@ -153,6 +153,15 @@ When("I confirm the registration details") do
   @world.journey.declaration_page.submit
 end
 
+When("I confirm my organisation is a charity") do
+  @world.journey.charitable_purpose_page.submit(charity: true)
+  @world.journey.charitable_purpose_declaration_page.submit
+end
+
+When("I confirm my organisation is not a charity") do
+  @world.journey.charitable_purpose_page.submit
+end
+
 When("I confirm the charge summary") do
   puts current_url
   @total_charge = trim_pound_sign(@world.journey.exemptions_summary_page.total_charge.text)
@@ -253,11 +262,6 @@ end
 
 Then("I can select waste activities from the list") do
   expect(@world.journey.select_waste_activities_page).to have_activities
-end
-
-Then("I am told to call the Environment Agency to register") do
-  sleep(2)
-  expect(@world.journey.charity_register_free_page.current_url).to have_text("charity-register-free")
 end
 
 Given("mocking is {string}") do |option|
