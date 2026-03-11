@@ -32,6 +32,7 @@ end
 Given("I enter the grid reference for another {int} sites") do |sites|
   sites.times do
     @world.journey.multiple_sites_summary_page.add_site.click
+    @world.journey.site_grid_reference_page.wait_until_choose_address_visible
     @world.journey.site_grid_reference_page.submit(grid_ref: create_grid_reference,
                                                    site_details: "Site #{@number_of_sites + 1}")
     @number_of_sites += 1
