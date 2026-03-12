@@ -56,6 +56,10 @@ Then("I am on the check your answers page") do
   puts @world.journey.check_details_page.current_url
 end
 
+When("I choose to change my organisation's charitable status") do
+  @world.journey.check_details_page.change_charitable_purpose.click
+end
+
 Then("I am on the check site address page") do
   puts current_url
   expect(@world.journey.check_details_page.title).to have_text("Where will the waste operation take place?")
