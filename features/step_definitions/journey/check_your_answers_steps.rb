@@ -43,8 +43,10 @@ When("I change my farming question answers") do
   @previous_farmer_answer = @world.journey.check_details_page.farmer.text
   @world.journey.check_details_page.change_on_farm.click
   @world.journey.on_farm_page.submit(on_farm: :on_farm)
+  @world.journey.exemptions_summary_page.submit
   @world.journey.check_details_page.change_farmer.click
   @world.journey.farmer_page.submit(farmer: :farmer)
+  @world.journey.exemptions_summary_page.submit
 end
 
 When("I choose to change my waste exemptions") do

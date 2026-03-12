@@ -23,6 +23,7 @@ def add_submitted_registration(registration, address_type = :lookup, _site_type 
   complete_site_details(registration, address_type, :grid_ref)
   @world.journey.on_farm_page.submit(on_farm: false)
   @world.journey.farmer_page.submit(farmer: false)
+  @world.journey.charitable_purpose_page.submit
   @world.journey.exemptions_summary_page.submit_button.click
   complete_address(address_type)
   complete_contact_details(registration[:contact], address_type)

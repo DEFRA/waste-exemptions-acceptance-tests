@@ -12,6 +12,7 @@ Scenario: Succesful payment for registration using card
       And I confirm my waste exemption selections
       And I enter my location for the site
       And I confirm my waste activities are "not on" a farm
+      And I confirm my organisation is not a charity
       And I confirm the charge summary
       And I enter the registration details
       And I confirm the registration details
@@ -29,6 +30,7 @@ Scenario: Succesful registration by bank transfer
       And I confirm my waste exemption selections
       And I enter my location for the site
       And I confirm my waste activities are "on" a farm
+      And I confirm my organisation is not a charity
       And I confirm the charge summary
       And I enter the registration details
       And I confirm the registration details
@@ -43,6 +45,7 @@ Scenario: Succesful registration by bank transfer
       And I confirm my waste exemption selections
       And I enter my location for the site
       And I confirm my waste activities are "not on" a farm
+      And I confirm my organisation is not a charity
       And I confirm the charge summary
       And I enter the registration details
       And I confirm the registration details

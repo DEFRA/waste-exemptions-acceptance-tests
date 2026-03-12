@@ -12,11 +12,12 @@ Scenario: Front office registration and deregistration in the back office
       And I confirm my waste exemption selections
       And I enter my location for the site
       And I confirm my waste activities are "not on" a farm
+      And I confirm my organisation is not a charity
       And I confirm the charge summary
       And I enter the registration details
       And I confirm the registration details
      When I choose to pay by bank transfer
      Then I will see a registration received pending payment confirmation
-     Given I sign in as an admin team user
+    Given I sign in as an admin team user
      When I deregister a whole registration
      Then the registration is no longer active

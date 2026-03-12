@@ -12,6 +12,7 @@ Background: Create registration and sign into back office
 Scenario Outline: Grid reference provided for site <site> location returns correct EA area <ea_area>  
      When I enter the registration details for site <site>
       And I confirm my waste activities are "not on" a farm
+      And I confirm my organisation is not a charity
       And I confirm the charge summary
       And I enter the registration details
       And I confirm the registration details

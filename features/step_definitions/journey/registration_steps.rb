@@ -56,6 +56,10 @@ Then("I am on the check your answers page") do
   puts @world.journey.check_details_page.current_url
 end
 
+When("I choose to change my organisation's charitable status") do
+  @world.journey.check_details_page.change_charitable_purpose.click
+end
+
 Then("I am on the check site address page") do
   puts current_url
   expect(@world.journey.check_details_page.title).to have_text("Where will the waste operation take place?")
@@ -151,6 +155,15 @@ When("I confirm the registration details") do
   sleep(1)
   @world.journey.check_details_page.submit
   @world.journey.declaration_page.submit
+end
+
+When("I confirm my organisation is a charity") do
+  @world.journey.charitable_purpose_page.submit(charity: true)
+  @world.journey.charitable_purpose_declaration_page.submit
+end
+
+When("I confirm my organisation is not a charity") do
+  @world.journey.charitable_purpose_page.submit
 end
 
 When("I confirm the charge summary") do
@@ -253,11 +266,6 @@ end
 
 Then("I can select waste activities from the list") do
   expect(@world.journey.select_waste_activities_page).to have_activities
-end
-
-Then("I am told to call the Environment Agency to register") do
-  sleep(2)
-  expect(@world.journey.charity_register_free_page.current_url).to have_text("charity-register-free")
 end
 
 Given("mocking is {string}") do |option|

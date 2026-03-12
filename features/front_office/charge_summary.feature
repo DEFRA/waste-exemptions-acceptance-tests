@@ -13,6 +13,7 @@ Scenario: Single band one U1 exemption charges £476
       And I confirm my waste exemption selections
       And I enter my location for the site
       And I confirm my waste activities are "not on" a farm
+      And I confirm my organisation is not a charity
      Then I can see the registration charge is £56
       And I can see the total charge is £476
 
@@ -25,6 +26,7 @@ Scenario: Multiple exemptions of the same band one have discounted exemptions
       And I confirm my waste exemption selections
       And I enter my location for the site
       And I confirm my waste activities are "not on" a farm
+      And I confirm my organisation is not a charity
      Then I can see the registration charge is £56
       And I can see the total charge is £628
 
@@ -36,6 +38,7 @@ Scenario: Multiple exemptions of different bands 1, 2 and 3
       And I confirm my waste exemption selections
       And I enter my location for the site
       And I confirm my waste activities are "not on" a farm
+      And I confirm my organisation is not a charity
      Then I can see the registration charge is £56
       And I can see the total charge is £658
 
@@ -49,6 +52,7 @@ Scenario: Multiple exemptions of different bands 1, 2, 3 and 4
       And I confirm my waste exemption selections
       And I enter my location for the site 
       And I confirm my waste activities are "not on" a farm
+      And I confirm my organisation is not a charity
      Then I can see the registration charge is £56
       And I can see the total charge is £1474
 
@@ -61,6 +65,7 @@ Scenario: Farming waste exemptions are charged the farming compliance change
       And I confirm my waste exemption selections
       And I enter my location for the site
       And I confirm my waste activities are "on" a farm
+      And I confirm my organisation is not a charity
      Then I can see the registration charge is £56
       And I can see the total charge is £144
 @farm
@@ -71,6 +76,7 @@ Scenario: Farming waste exemptions are charged the farming compliance change
       And I confirm my waste exemption selections
       And I enter my location for the site
       And I confirm my waste activities are "on" a farm
+      And I confirm my organisation is not a charity
      Then I can see the registration charge is £56
       And I can see the total charge is £86
       
@@ -83,6 +89,7 @@ Scenario: Farming waste exemptions are charged the farming compliance change
       And I confirm my waste exemption selections
       And I enter my location for the site
       And I confirm my waste activities are "on" a farm
+      And I confirm my organisation is not a charity
      Then I can see the registration charge is £56
       And I can see the total charge is £1380
       
@@ -95,6 +102,7 @@ Scenario: Farming waste exemptions are charged the farming compliance change
       And I confirm my waste exemption selections
       And I enter my location for the site
       And I confirm my waste activities are "on" a farm
+      And I confirm my organisation is not a charity
      Then I can see the registration charge is £56
       And I can see the total charge is £564
   
@@ -107,7 +115,8 @@ Scenario: Farming waste exemptions are charged the farming compliance change
       And I select exemption "U2 U13 D6 D7" from the activities list
       And I confirm my waste exemption selections
       And I enter my location for the site
-      And I confirm my waste activities are "on" a farm 
+      And I confirm my waste activities are "on" a farm
+      And I confirm my organisation is not a charity
      Then I can see the registration charge is £56
       And I can see the total charge is £356
 
@@ -121,6 +130,7 @@ Scenario: Farming waste exemptions are charged the farming compliance change
       And I confirm my waste exemption selections
       And I enter my location for the site
       And I confirm my waste activities are "on" a farm
+      And I confirm my organisation is not a charity
      Then I can see the registration charge is £56
       And I can see the total charge is £174
 
@@ -134,6 +144,7 @@ Scenario: Farming waste exemptions are charged the farming compliance change
       And I confirm my waste exemption selections
       And I enter my location for the site
       And I confirm my waste activities are "on" a farm
+      And I confirm my organisation is not a charity
      Then I can see the registration charge is £56
       And I can see the total charge is £356
       
@@ -145,6 +156,7 @@ Scenario: Farming waste exemptions are charged the farming compliance change
       And I confirm my waste exemption selections
       And I enter my location for the site
       And I confirm my waste activities are "on" a farm
+      And I confirm my organisation is not a charity
      Then I can see the registration charge is £56
       And I can see the total charge is £4004
   
@@ -155,6 +167,7 @@ Scenario: Farming waste exemptions are charged the farming compliance change
       And I confirm my waste exemption selections
       And I enter my location for the site
       And I confirm my waste activities are "not on" a farm
+      And I confirm my organisation is not a charity
      Then I can see the registration charge is £56
       And I can see the total charge is £4840
 
@@ -168,6 +181,7 @@ Scenario: Farming waste exemptions are charged the farming compliance change
       And I confirm my waste exemption selections
       And I enter my location for the site
       And I confirm my waste activities are "not on" a farm
+      And I confirm my organisation is not a charity
      Then I can see the registration charge is £56
       And I can see the total charge is £476
 
@@ -179,6 +193,7 @@ Scenario: Farming waste exemptions are charged the farming compliance change
       And I confirm my waste exemption selections
       And I enter my location for the site
       And I confirm my waste activities are "not on" a farm
+      And I confirm my organisation is not a charity
      Then I can see the registration charge is £56
       And I can see the total charge is £506
       But I should not see a discounted charge applied
@@ -196,6 +211,7 @@ Scenario: Farming waste exemptions are charged the farming compliance change
       And I enter the grid reference for another 31 sites
       And I confirm I have added all my sites
       And I confirm my waste activities are "not on" a farm
+      And I confirm my organisation is not a charity
      Then I am shown the multiple site registration charge summary
       And I can see the registration charge is £56
       And I can see the total charge is £18360
@@ -211,6 +227,7 @@ Scenario: Farming waste exemptions are charged the farming compliance change
       And I enter the grid reference for another 29 sites
       And I confirm I have added all my sites
       And I confirm my waste activities are "on" a farm
+      And I confirm my organisation is not a charity
      Then I am shown the multiple site registration charge summary
       And I can see the registration charge is £56
       And I can see the total charge is £956
@@ -226,6 +243,7 @@ Scenario: Farming waste exemptions are charged the farming compliance change
       And I enter the grid reference for another 29 sites
       And I confirm I have added all my sites
       And I confirm my waste activities are "on" a farm
+      And I confirm my organisation is not a charity
      Then I am shown the multiple site registration charge summary
       And I can see the registration charge is £56
       And I can see the total charge is £2696
@@ -241,6 +259,7 @@ Scenario: All exemptions chosen for multiple site registration
       And I enter the grid reference for another 29 sites
       And I confirm I have added all my sites
       And I confirm my waste activities are "not on" a farm
+      And I confirm my organisation is not a charity
      Then I am shown the multiple site registration charge summary
       And I can see the total charge is £143576
 @t28
@@ -251,5 +270,21 @@ Scenario: All exemptions chosen for multiple site registration
       And I confirm my waste exemption selections
       And I enter my location for the site
       And I confirm my waste activities are "not on" a farm
+      And I confirm my organisation is not a charity
       And I can see the registration charge is £0
+      And I can see the total charge is £0
+
+  @multiple
+Scenario: On farm multiple site registration with charitable purpose exemptions are not charged
+    Given I enter my business details
+      And I select all waste activities
+      And I select all exemptions from the list
+      And I confirm my waste exemption selections
+      And I confirm my exemption is for multiple sites
+      And I enter the grid reference for a site
+      And I enter the grid reference for another 29 sites
+      And I confirm I have added all my sites
+      And I confirm my waste activities are "on" a farm
+      And I confirm my organisation is a charity
+     Then I can see the registration charge is £0
       And I can see the total charge is £0

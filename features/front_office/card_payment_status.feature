@@ -5,6 +5,7 @@ Feature: Card payment status
       And the govPay payment status is "submitted"
       And I start a new waste exemption registration
       And I confirm my waste activities are "not on" a farm
+      And I confirm my organisation is not a charity
       And I enter my business details for a "partnership"
       And I select waste activity "We use waste in building and construction"
       And I select exemption "U3" from the activities list 

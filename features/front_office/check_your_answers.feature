@@ -9,6 +9,7 @@ Scenario: User can change contact name from check your answers page
       And I confirm my waste exemption selections
       And I enter my location for the site
       And I confirm my waste activities are "not on" a farm
+      And I confirm my organisation is not a charity
       And I confirm the charge summary
       And I enter the registration details
       And I am on the check your answers page
@@ -23,6 +24,7 @@ Scenario: User can change operator name from check your answers page
       And I confirm my waste exemption selections
       And I enter my location for the site
       And I confirm my waste activities are "not on" a farm
+      And I confirm my organisation is not a charity
       And I confirm the charge summary
       And I enter the registration details
       And I am on the check your answers page
@@ -37,6 +39,7 @@ Scenario: A company can change companies house number from check your answers pa
       And I confirm my waste exemption selections
       And I enter my location for the site
       And I confirm my waste activities are "not on" a farm
+      And I confirm my organisation is not a charity
       And I confirm the charge summary
       And I enter the registration details
      When I am on the check your answers page
@@ -51,6 +54,7 @@ Scenario: User can change the contact's position from check your answers page
       And I confirm my waste exemption selections
       And I enter my location for the site
       And I confirm my waste activities are "not on" a farm
+      And I confirm my organisation is not a charity
       And I confirm the charge summary
       And I enter the registration details
      When I am on the check your answers page
@@ -65,6 +69,7 @@ Scenario: User can change the contact address from check your answers page
       And I confirm my waste exemption selections
       And I enter my location for the site
       And I confirm my waste activities are "not on" a farm
+      And I confirm my organisation is not a charity
       And I confirm the charge summary
       And I enter the registration details
      When I am on the check your answers page
@@ -79,6 +84,7 @@ Scenario: User can change the contact email address from check your answers page
       And I confirm my waste exemption selections
       And I enter my location for the site
       And I confirm my waste activities are "not on" a farm
+      And I confirm my organisation is not a charity
       And I confirm the charge summary
       And I enter the registration details
      When I am on the check your answers page
@@ -93,6 +99,7 @@ Scenario: User can change the contact phone number from check your answers page
       And I confirm my waste exemption selections
       And I enter my location for the site
       And I confirm my waste activities are "not on" a farm
+      And I confirm my organisation is not a charity
       And I confirm the charge summary
       And I enter the registration details
      When I am on the check your answers page
@@ -107,13 +114,14 @@ Scenario: User can change their farming question answers from check your answers
       And I confirm my waste exemption selections
       And I enter my location for the site
       And I confirm my waste activities are "not on" a farm
+      And I confirm my organisation is not a charity
       And I confirm the charge summary
       And I enter the registration details
      When I am on the check your answers page
       And I change my farming question answers
      Then I can see the farming questions have been updated
 
-Scenario: User can change their waste exemptions choices from the check your answers page
+Scenario: No farming user can change their waste exemptions choices from the check your answers page
     Given I start a new waste exemption registration
       And I enter my business details for a "limited_company"
       And I select waste activity "We use waste in building and construction"
@@ -121,6 +129,7 @@ Scenario: User can change their waste exemptions choices from the check your ans
       And I confirm my waste exemption selections
       And I enter my location for the site
       And I confirm my waste activities are "not on" a farm
+      And I confirm my organisation is not a charity
       And I confirm the charge summary
       And I enter the registration details
       And I am on the check your answers page
@@ -132,6 +141,27 @@ Scenario: User can change their waste exemptions choices from the check your ans
       And I confirm my waste exemption selections
      Then I can see the total charge is £704
 
+Scenario: Farming user can change their waste exemptions choices from the check your answers page
+    Given I start a new waste exemption registration
+      And I enter my business details for a "limited_company"
+      And I select waste activity "We use waste in building and construction"
+      And I select exemption "U1" from the activities list
+      And I confirm my waste exemption selections
+      And I enter my location for the site
+      And I confirm my waste activities are "on" a farm
+      And I confirm my organisation is not a charity
+      And I confirm the charge summary
+      And I enter the registration details
+      And I am on the check your answers page
+     When I choose to change my waste exemptions
+      And I select waste activity "We use waste in manufacturing or for a specified purpose"
+      And I select waste activity "We sort, blend and recover waste"
+      And I select waste activity "We store waste"
+      And I select exemption "U9 T12 S1" from the activities list
+      And I confirm my waste exemption selections
+     Then I can see the total charge is £716
+
+
 Scenario: User can change the business address from check your answers page
     Given I start a new waste exemption registration
       And I enter my business details for a "limited_company"
@@ -140,6 +170,7 @@ Scenario: User can change the business address from check your answers page
       And I confirm my waste exemption selections
       And I enter my location for the site
       And I confirm my waste activities are "not on" a farm
+      And I confirm my organisation is not a charity
       And I confirm the charge summary
       And I enter the registration details
      When I am on the check your answers page
@@ -154,6 +185,7 @@ Scenario: User can change the site location from a grid reference to an address 
       And I confirm my waste exemption selections
       And I enter the registration details for site "TQ6465676136"
       And I confirm my waste activities are "not on" a farm
+      And I confirm my organisation is not a charity
       And I confirm the charge summary
       And I enter the registration details
       And I am on the check your answers page
@@ -172,6 +204,7 @@ Scenario: User can change the site locations for a multiple site registration fr
       And I enter the grid reference for another 29 sites
       And I confirm I have added all my sites
       And I confirm my waste activities are "not on" a farm
+      And I confirm my organisation is not a charity
       And I confirm the charge summary
       And I enter the registration details
       And I am on the check your answers page
@@ -189,8 +222,27 @@ Scenario: User can partner details from check your answers page
       And I confirm my waste exemption selections
       And I enter my location for the site
       And I confirm my waste activities are "not on" a farm
+      And I confirm my organisation is not a charity
       And I confirm the charge summary
       And I enter the registration details
       And I am on the check your answers page
      When I add another partner
      Then I can see the partner added to the check your answers page
+     
+@skip
+  Scenario: A user can change their charitable status from the check your answers page
+    Given I start a new waste exemption registration
+      And I enter my business details for a "limited_company"
+      And I select waste activity "We use waste in building and construction"
+      And I select exemption "U1" from the activities list
+      And I confirm my waste exemption selections
+      And I enter my location for the site
+      And I confirm my waste activities are "on" a farm
+      And I confirm my organisation is not a charity
+      And I confirm the charge summary
+      And I enter the registration details
+      And I am on the check your answers page
+     When I choose to change my organisation's charitable status
+      And I confirm my organisation is a charity
+      And I can see the registration charge is £0
+      And I can see the total charge is £0
