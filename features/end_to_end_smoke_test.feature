@@ -3,7 +3,6 @@ Feature: End to end smoke test of front and back office
 
 Scenario: Front office registration and deregistration in the back office
     Given I start a new waste exemption registration
-      And I enter my business details for a "individual"
       And I select waste activity "We crush, bale, shred or chip waste"
       And I select waste activity "We store waste"
       And I select waste activity "We burn plant and wood waste"
@@ -14,6 +13,7 @@ Scenario: Front office registration and deregistration in the back office
       And I confirm my waste activities are "not on" a farm
       And I confirm my organisation is not a charity
       And I confirm the charge summary
+      And I enter my business details for a "individual"
       And I enter the registration details
       And I confirm the registration details
      When I choose to pay by bank transfer
