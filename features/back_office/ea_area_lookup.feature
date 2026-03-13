@@ -4,7 +4,6 @@ Feature: Finding EA area of site location
 Background: Create registration and sign into back office
     Given I sign in as an admin team user
       And I start an assisted digital registration
-      And I enter my business details for a "llp"
       And I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list 
       And I confirm my waste exemption selections
@@ -14,6 +13,7 @@ Scenario Outline: Grid reference provided for site <site> location returns corre
       And I confirm my waste activities are "not on" a farm
       And I confirm my organisation is not a charity
       And I confirm the charge summary
+      And I enter my business details for a "llp"
       And I enter the registration details
       And I confirm the registration details
       And I pay by card

@@ -15,7 +15,6 @@ def add_submitted_registration(registration, address_type = :lookup, _site_type 
   @world.journey.home_page.load if load_root_page
   @world.journey.home_page.accept_cookies
   @world.journey.location_page.submit(location: :england)
-  complete_organisation_details(registration)
   @world.journey.select_waste_activities_page.check_all_activities_and_submit
   @world.journey.choose_exemptions_page.submit(exemptions: registration[:exemptions])
   @world.journey.confirm_exemption_selection_page.submit(choice: :confirm)
@@ -25,6 +24,7 @@ def add_submitted_registration(registration, address_type = :lookup, _site_type 
   @world.journey.farmer_page.submit(farmer: false)
   @world.journey.charitable_purpose_page.submit
   @world.journey.exemptions_summary_page.submit_button.click
+  complete_organisation_details(registration)
   complete_address(address_type)
   complete_contact_details(registration[:contact], address_type)
   @world.journey.check_details_page.submit
