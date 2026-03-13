@@ -8,8 +8,7 @@ Feature: Adding multiple sites to a registration
     Given I start a new waste exemption registration
 
   Scenario: User can continue with registration after adding required number of 30 sites
-    Given I enter my business details for a "limited_company"
-      And I select waste activity "We use waste in building and construction"
+    Given I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list 
       And I confirm my waste exemption selections
       And I confirm my exemption is for multiple sites
@@ -21,8 +20,7 @@ Feature: Adding multiple sites to a registration
      Then I am shown the multiple site registration charge summary
 
   Scenario: User can not continue with registration after deleting thirtieth site
-    Given I enter my business details for a "limited_company"
-      And I select waste activity "We use waste in building and construction"
+    Given I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list 
       And I confirm my waste exemption selections
       And I confirm my exemption is for multiple sites

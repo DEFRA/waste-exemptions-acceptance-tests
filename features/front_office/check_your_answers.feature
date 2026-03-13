@@ -3,7 +3,6 @@ Feature: Check your answers changes
 
 Scenario: User can change contact name from check your answers page
     Given I start a new waste exemption registration
-      And I enter my business details for a "limited_company"
       And I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list
       And I confirm my waste exemption selections
@@ -11,6 +10,7 @@ Scenario: User can change contact name from check your answers page
       And I confirm my waste activities are "not on" a farm
       And I confirm my organisation is not a charity
       And I confirm the charge summary
+      And I enter my business details for a "limited_company"
       And I enter the registration details
       And I am on the check your answers page
      When I change the contact name previously entered
@@ -18,7 +18,6 @@ Scenario: User can change contact name from check your answers page
 
 Scenario: User can change operator name from check your answers page
       Given I start a new waste exemption registration
-      And I enter my business details for a "individual"
       And I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list
       And I confirm my waste exemption selections
@@ -26,6 +25,7 @@ Scenario: User can change operator name from check your answers page
       And I confirm my waste activities are "not on" a farm
       And I confirm my organisation is not a charity
       And I confirm the charge summary
+      And I enter my business details for a "individual"
       And I enter the registration details
       And I am on the check your answers page
      When I change the operator name previously entered
@@ -33,7 +33,6 @@ Scenario: User can change operator name from check your answers page
 
 Scenario: A company can change companies house number from check your answers page
       Given I start a new waste exemption registration
-      And I enter my business details for a "limited_company"
       And I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list
       And I confirm my waste exemption selections
@@ -41,6 +40,7 @@ Scenario: A company can change companies house number from check your answers pa
       And I confirm my waste activities are "not on" a farm
       And I confirm my organisation is not a charity
       And I confirm the charge summary
+      And I enter my business details for a "limited_company"
       And I enter the registration details
      When I am on the check your answers page
       And I change the companies house number
@@ -48,7 +48,6 @@ Scenario: A company can change companies house number from check your answers pa
 
 Scenario: User can change the contact's position from check your answers page
     Given I start a new waste exemption registration   
-      And I enter my business details for a "limited_company"
       And I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list
       And I confirm my waste exemption selections
@@ -56,6 +55,7 @@ Scenario: User can change the contact's position from check your answers page
       And I confirm my waste activities are "not on" a farm
       And I confirm my organisation is not a charity
       And I confirm the charge summary
+      And I enter my business details for a "limited_company"
       And I enter the registration details
      When I am on the check your answers page
       And I change the contact position previously entered
@@ -63,7 +63,7 @@ Scenario: User can change the contact's position from check your answers page
 
 Scenario: User can change the contact address from check your answers page
     Given I start a new waste exemption registration
-      And I enter my business details for a "limited_company"
+  
       And I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list
       And I confirm my waste exemption selections
@@ -71,6 +71,7 @@ Scenario: User can change the contact address from check your answers page
       And I confirm my waste activities are "not on" a farm
       And I confirm my organisation is not a charity
       And I confirm the charge summary
+      And I enter my business details for a "limited_company"
       And I enter the registration details
      When I am on the check your answers page
      When I change the contact address previously entered
@@ -78,7 +79,6 @@ Scenario: User can change the contact address from check your answers page
 
 Scenario: User can change the contact email address from check your answers page
     Given I start a new waste exemption registration
-      And I enter my business details for a "limited_company"
       And I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list
       And I confirm my waste exemption selections
@@ -86,6 +86,7 @@ Scenario: User can change the contact email address from check your answers page
       And I confirm my waste activities are "not on" a farm
       And I confirm my organisation is not a charity
       And I confirm the charge summary
+      And I enter my business details for a "limited_company"
       And I enter the registration details
      When I am on the check your answers page
       And I change the contact email address previously entered
@@ -93,7 +94,6 @@ Scenario: User can change the contact email address from check your answers page
 
 Scenario: User can change the contact phone number from check your answers page
     Given I start a new waste exemption registration
-      And I enter my business details for a "limited_company"
       And I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list
       And I confirm my waste exemption selections
@@ -101,6 +101,7 @@ Scenario: User can change the contact phone number from check your answers page
       And I confirm my waste activities are "not on" a farm
       And I confirm my organisation is not a charity
       And I confirm the charge summary
+      And I enter my business details for a "limited_company"
       And I enter the registration details
      When I am on the check your answers page
       And I change the contact phone number previously entered
@@ -108,7 +109,6 @@ Scenario: User can change the contact phone number from check your answers page
 
 Scenario: User can change their farming question answers from check your answers page
     Given I start a new waste exemption registration
-      And I enter my business details for a "limited_company"
       And I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list
       And I confirm my waste exemption selections
@@ -116,6 +116,7 @@ Scenario: User can change their farming question answers from check your answers
       And I confirm my waste activities are "not on" a farm
       And I confirm my organisation is not a charity
       And I confirm the charge summary
+      And I enter my business details for a "limited_company"
       And I enter the registration details
      When I am on the check your answers page
       And I change my farming question answers
@@ -123,7 +124,6 @@ Scenario: User can change their farming question answers from check your answers
 
 Scenario: No farming user can change their waste exemptions choices from the check your answers page
     Given I start a new waste exemption registration
-      And I enter my business details for a "limited_company"
       And I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list
       And I confirm my waste exemption selections
@@ -131,6 +131,7 @@ Scenario: No farming user can change their waste exemptions choices from the che
       And I confirm my waste activities are "not on" a farm
       And I confirm my organisation is not a charity
       And I confirm the charge summary
+      And I enter my business details for a "limited_company"
       And I enter the registration details
       And I am on the check your answers page
      When I choose to change my waste exemptions
@@ -143,7 +144,6 @@ Scenario: No farming user can change their waste exemptions choices from the che
 
 Scenario: Farming user can change their waste exemptions choices from the check your answers page
     Given I start a new waste exemption registration
-      And I enter my business details for a "limited_company"
       And I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list
       And I confirm my waste exemption selections
@@ -151,6 +151,7 @@ Scenario: Farming user can change their waste exemptions choices from the check 
       And I confirm my waste activities are "on" a farm
       And I confirm my organisation is not a charity
       And I confirm the charge summary
+      And I enter my business details for a "limited_company"
       And I enter the registration details
       And I am on the check your answers page
      When I choose to change my waste exemptions
@@ -164,7 +165,6 @@ Scenario: Farming user can change their waste exemptions choices from the check 
 
 Scenario: User can change the business address from check your answers page
     Given I start a new waste exemption registration
-      And I enter my business details for a "limited_company"
       And I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list
       And I confirm my waste exemption selections
@@ -172,6 +172,7 @@ Scenario: User can change the business address from check your answers page
       And I confirm my waste activities are "not on" a farm
       And I confirm my organisation is not a charity
       And I confirm the charge summary
+      And I enter my business details for a "limited_company"
       And I enter the registration details
      When I am on the check your answers page
       And I change the business address
@@ -179,7 +180,6 @@ Scenario: User can change the business address from check your answers page
 
 Scenario: User can change the site location from a grid reference to an address from check your answers page
     Given I start a new waste exemption registration
-      And I enter my business details for a "limited_company"
       And I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list
       And I confirm my waste exemption selections
@@ -187,6 +187,7 @@ Scenario: User can change the site location from a grid reference to an address 
       And I confirm my waste activities are "not on" a farm
       And I confirm my organisation is not a charity
       And I confirm the charge summary
+      And I enter my business details for a "limited_company"
       And I enter the registration details
       And I am on the check your answers page
      When I change to a site address
@@ -195,7 +196,6 @@ Scenario: User can change the site location from a grid reference to an address 
 @multiple
 Scenario: User can change the site locations for a multiple site registration from check your answers page
     Given I start a new waste exemption registration
-      And I enter my business details for a "limited_company"
       And I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list
       And I confirm my waste exemption selections
@@ -206,6 +206,7 @@ Scenario: User can change the site locations for a multiple site registration fr
       And I confirm my waste activities are "not on" a farm
       And I confirm my organisation is not a charity
       And I confirm the charge summary
+      And I enter my business details for a "limited_company"
       And I enter the registration details
       And I am on the check your answers page
      When I choose to change my site locations
@@ -216,7 +217,6 @@ Scenario: User can change the site locations for a multiple site registration fr
 
 Scenario: User can partner details from check your answers page
     Given I start a new waste exemption registration
-      And I enter my business details for a "partnership"
       And I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list
       And I confirm my waste exemption selections
@@ -224,6 +224,7 @@ Scenario: User can partner details from check your answers page
       And I confirm my waste activities are "not on" a farm
       And I confirm my organisation is not a charity
       And I confirm the charge summary
+      And I enter my business details for a "partnership"
       And I enter the registration details
       And I am on the check your answers page
      When I add another partner
@@ -232,7 +233,6 @@ Scenario: User can partner details from check your answers page
 @skip
   Scenario: A user can change their charitable status from the check your answers page
     Given I start a new waste exemption registration
-      And I enter my business details for a "limited_company"
       And I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list
       And I confirm my waste exemption selections
@@ -240,6 +240,7 @@ Scenario: User can partner details from check your answers page
       And I confirm my waste activities are "on" a farm
       And I confirm my organisation is not a charity
       And I confirm the charge summary
+      And I enter my business details for a "limited_company"
       And I enter the registration details
       And I am on the check your answers page
      When I choose to change my organisation's charitable status
