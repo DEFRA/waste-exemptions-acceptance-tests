@@ -229,8 +229,7 @@ Scenario: User can partner details from check your answers page
       And I am on the check your answers page
      When I add another partner
      Then I can see the partner added to the check your answers page
-     
-@skip
+    
   Scenario: A user can change their charitable status from the check your answers page
     Given I start a new waste exemption registration
       And I select waste activity "We use waste in building and construction"
