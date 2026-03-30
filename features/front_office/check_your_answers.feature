@@ -140,7 +140,7 @@ Scenario: No farming user can change their waste exemptions choices from the che
       And I select waste activity "We store waste"
       And I select exemption "U9 T12 S1" from the activities list
       And I confirm my waste exemption selections
-     Then I can see the total charge is £704
+     Then I can see the total charge is £730.76
 
 Scenario: Farming user can change their waste exemptions choices from the check your answers page
     Given I start a new waste exemption registration
@@ -160,8 +160,7 @@ Scenario: Farming user can change their waste exemptions choices from the check 
       And I select waste activity "We store waste"
       And I select exemption "U9 T12 S1" from the activities list
       And I confirm my waste exemption selections
-     Then I can see the total charge is £716
-
+     Then I can see the total charge is £743.21
 
 Scenario: User can change the business address from check your answers page
     Given I start a new waste exemption registration
@@ -229,8 +228,7 @@ Scenario: User can partner details from check your answers page
       And I am on the check your answers page
      When I add another partner
      Then I can see the partner added to the check your answers page
-     
-@skip
+    
   Scenario: A user can change their charitable status from the check your answers page
     Given I start a new waste exemption registration
       And I select waste activity "We use waste in building and construction"
