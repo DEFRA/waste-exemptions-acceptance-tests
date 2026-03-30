@@ -168,7 +168,7 @@ end
 
 When("I confirm the charge summary") do
   puts current_url
-  @total_charge = trim_pound_sign(@world.journey.exemptions_summary_page.total_charge.text)
+  @total_charge = trim_pound_sign(@world.journey.exemptions_summary_page.total_charge.last.text)
   @world.journey.exemptions_summary_page.submit_button.click
 end
 
@@ -241,7 +241,6 @@ Given("I select all waste activities") do
 end
 
 Given("I confirm my waste activities are {string} a farm") do |choice|
-  puts current_url
   case choice
   when "not on"
     @world.journey.on_farm_page.submit(on_farm: false)

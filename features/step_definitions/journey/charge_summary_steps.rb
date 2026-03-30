@@ -22,12 +22,12 @@ end
 
 Then("I can see the total charge is £{float}") do |charge|
   puts current_url
-  expect(trim_comma(@world.journey.exemptions_summary_page.total_charge.text)).to include(charge.to_s)
+  expect(trim_comma(@world.journey.exemptions_summary_page.total_charge.last.text)).to include(charge.to_s)
 end
 
 Then("I can see the total charge is £{int}") do |charge|
   puts current_url
-  expect(trim_comma(@world.journey.exemptions_summary_page.total_charge.text)).to include(charge.to_s)
+  expect(trim_comma(@world.journey.exemptions_summary_page.total_charge.last.text)).to include(charge.to_s)
 end
 
 When("I select that I am registering as a charity") do

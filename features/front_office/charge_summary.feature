@@ -76,7 +76,7 @@ Scenario: Farming waste exemptions are charged the farming compliance change
      Then I can see the registration charge is £58.13
       And I can see the total charge is £89.27
       
-  @farm 
+@farm 
   Scenario: Farming and upper band non farming waste exemptions can be chosen together
      When I select waste activity "We crush, bale, shred or chip waste"
       And I select waste activity "We treat waste using a wormery or by composting"
@@ -88,7 +88,7 @@ Scenario: Farming waste exemptions are charged the farming compliance change
      Then I can see the registration charge is £58.13
       And I can see the total charge is £1432.44
       
-  @farm 
+@farm 
   Scenario: Farming and band 1 non farming waste exemptions can be chosen together
      When I select waste activity "We use waste in manufacturing or for a specified purpose"
       And I select waste activity "We treat waste using a wormery or by composting"
@@ -100,7 +100,7 @@ Scenario: Farming waste exemptions are charged the farming compliance change
      Then I can see the registration charge is £58.13
       And I can see the total charge is £585.43
   
-  @farm 
+@farm 
   Scenario: Farming and band 2 non farming waste exemptions can be chosen together
      When I select waste activity "We use waste in building and construction"
       And I select waste activity "We spread or mix waste"
@@ -113,7 +113,7 @@ Scenario: Farming waste exemptions are charged the farming compliance change
      Then I can see the registration charge is £58.13
       And I can see the total charge is £369.53
 
- @farm 
+@farm 
   Scenario: Farming and band 3 non farming waste exemptions can be chosen together
      When I select waste activity "We use effluent or sludge"
       And I select waste activity "We spread or mix waste"
@@ -126,7 +126,7 @@ Scenario: Farming waste exemptions are charged the farming compliance change
      Then I can see the registration charge is £58.13
       And I can see the total charge is £180.61
 
-  @farm 
+@farm 
   Scenario: Farming and band 2 non farming waste exemptions can be chosen together
      When I select waste activity "We use waste in building and construction"
       And I select waste activity "We spread or mix waste"
@@ -139,7 +139,7 @@ Scenario: Farming waste exemptions are charged the farming compliance change
      Then I can see the registration charge is £58.13
       And I can see the total charge is £369.53
       
-  @farm 
+@farm 
   Scenario: Choosing all exemptions from waste exemptions list with farming discount
      When I select all waste activities
       And I select all exemptions from the list
@@ -185,7 +185,7 @@ Scenario: Farming waste exemptions are charged the farming compliance change
       And I can see the total charge is £525.23
       But I should not see a discounted charge applied
 
-  @multiple 
+@multiple 
   Scenario: Charge summary for multiple site registration with 30 sites
      When I select waste activity "We use waste in manufacturing or for a specified purpose"
       And I select waste activity "We sort, blend and recover waste"
@@ -217,7 +217,7 @@ Scenario: Farming waste exemptions are charged the farming compliance change
       And I can see the registration charge is £58.13
       And I can see the total charge is £992.33
       
-  @farm @multiple
+@farm @multiple
   Scenario: Farming waste exemptions are charged the farming compliance change registered for multiple sites
      When I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list 
@@ -257,7 +257,7 @@ Scenario: All exemptions chosen for multiple site registration
       And I can see the registration charge is £0
       And I can see the total charge is £0
 
-  @multiple
+@multiple
 Scenario: On farm multiple site registration with charitable purpose exemptions are not charged
     Given I select all waste activities
       And I select all exemptions from the list
