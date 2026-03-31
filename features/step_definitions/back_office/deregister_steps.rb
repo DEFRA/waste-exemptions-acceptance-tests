@@ -55,7 +55,7 @@ When("I deregister a whole registration") do
   @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
   find_link("View details").click
   expect(@world.bo.registration_details_page.heading).to have_text("details for #{@world.last_reg_no}")
-  
+
   @world.bo.registration_details_page.deregister_reg_link.click
 
   @world.bo.registration_details_page.wait_until_submit_button_visible

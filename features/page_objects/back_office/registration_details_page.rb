@@ -7,7 +7,7 @@ class RegistrationDetailsPage < BasePage
   section(:admin_menu_section, AdminMenuSection, AdminMenuSection::SELECTOR)
 
   element(:action_box, ".action-panel")
-  element(:set_new_expiry_date, "a[action$='/modify_expiry_date']")
+  element(:set_new_expiry_date, "[action$='/modify_expiry_date']")
   element(:deregister_reg_link, ".action-panel [action*='deregister'] button")
   elements(:deregister_ex_links, ".deregister-exemption-button")
   element(:deregister_invite_action, "[action^='/send-edit-invite']")
