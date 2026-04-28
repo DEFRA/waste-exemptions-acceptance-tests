@@ -16,7 +16,7 @@ When("I deregister individual exemptions") do
   # Deregister 2 exemptions, choosing randomly between revoking or ceasing.
 
   2.times do
-
+    @world.bo.exemptions_page.wait_until_deregister_ex_links_visible
     # Click the first 'deregister exemption' link. There should be at least 3 from the background:
     @world.bo.exemptions_page.deregister_ex_links.first.click
     expect(@world.bo.exemptions_page.heading).to have_text("Deregister Exemption")

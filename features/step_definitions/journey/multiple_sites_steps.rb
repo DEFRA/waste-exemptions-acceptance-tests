@@ -8,6 +8,40 @@ Given("I enter my location for the site") do
   @world.journey.address_lookup_page.submit(postcode: @postcode, result: @address)
 end
 
+Given("I enter a grid reference for a site outside of England") do
+  @world.journey.multiple_sites_question_page.submit(choice: :single)
+  @world.journey.site_grid_reference_page.wait_until_choose_address_visible
+  @world.journey.site_grid_reference_page.submit(grid_ref: "ST5385296269",
+                                                 site_details: "Across the border")
+  puts current_url
+end
+
+When("I enter an address for a site outside of England") do
+  @world.journey.multiple_sites_question_page.submit(choice: :single)
+  @world.journey.site_grid_reference_page.wait_until_choose_address_visible
+  @world.journey.site_grid_reference_page.choose_address.click
+  @world.journey.address_lookup_page.submit(postcode: "LL11 1AP")
+end
+
+When("I enter an address for a site with both Welsh and English addresses") do
+  @world.journey.multiple_sites_question_page.submit(choice: :single)
+  @world.journey.site_grid_reference_page.wait_until_choose_address_visible
+  @world.journey.site_grid_reference_page.choose_address.click
+  @world.journey.address_lookup_page.submit(postcode: "SY108LB")
+end
+
+Then("I will be informed the grid reference must be inside England") do
+  expect(@world.journey.site_grid_reference_page.error.text).to have_content("The grid reference must be in England")
+end
+
+Then("I will be informed the address must be inside England") do
+  expect(@world.journey.address_lookup_page.error.text).to have_content("We cannot find an address in England")
+end
+
+Then("I will be informed that only English addresses are shown") do
+  expect(@world.journey.address_lookup_page).to have_content("Only addresses in England are shown.")
+end
+
 When("I enter the registration details for site {string}") do |grid_ref|
   @world.journey.multiple_sites_question_page.submit(choice: :single)
   @world.journey.site_grid_reference_page.submit(
