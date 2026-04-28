@@ -7,6 +7,7 @@ Feature: Card payment status
       And I select waste activity "We use waste in building and construction"
       And I select exemption "U3" from the activities list 
       And I confirm my waste exemption selections
+      And I enter my location for the site
       And I confirm my waste activities are "not on" a farm
       And I confirm my organisation is not a charity
       And I confirm the charge summary
