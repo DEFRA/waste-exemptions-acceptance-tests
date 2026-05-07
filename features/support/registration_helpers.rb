@@ -33,7 +33,7 @@ def add_submitted_registration(registration, address_type = :lookup, _site_type 
 
   if payment == :card
     @world.journey.payment_summary_page.submit(payment_type: :card)
-    submit_card_payment
+    submit_card_payment unless mocking_enabled?
   else
     @world.journey.payment_summary_page.submit(payment_type: :bank)
   end
