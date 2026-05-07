@@ -231,7 +231,8 @@ end
 # end
 
 Given("I select all exemptions from the list") do
-  expect(@world.journey.choose_exemptions_page.heading.text).to have_text("exemptions")
+  @world.journey.choose_exemptions_page.wait_until_heading_visible
+  expect(@world.journey.choose_exemptions_page.heading).to have_text("exemptions")
   @world.journey.choose_exemptions_page.check_all_exemptions
   @world.journey.choose_exemptions_page.submit_button.click
 end
