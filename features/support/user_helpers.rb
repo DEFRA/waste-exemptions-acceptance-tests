@@ -17,6 +17,10 @@ def login_user(user_email)
     email: user_email,
     password: @world.default_password
   )
+  # Wait for the dashboard sign-out link to confirm login completed before continuing.
+  # Without this wait, Chrome's redirect can race the next visit() call, leaving
+  # the session unestablished and causing intermittent "Test data creation failed".
+  @world.bo.dashboard_page.wait_until_sign_out_visible
 end
 
 def sign_out_of_back_office
