@@ -15,9 +15,9 @@ return unless Quke::Quke.config.driver == "chrome"
 
 # --- 1. Inject <pre> for Chrome's JSON viewer ---
 module ChromeJsonPreInjector
-  def find(*args, **kwargs, &block)
+  def find(*args, **kwargs, &)
     super
-  rescue Capybara::ElementNotFound => e
+  rescue Capybara::ElementNotFound
     raise unless args.first.to_s == "pre"
 
     inject_pre_from_json
@@ -39,7 +39,7 @@ end
 Capybara::Node::Document.prepend(ChromeJsonPreInjector)
 
 # --- 2. Wait before visiting notify endpoints ---
-module ChromeNotifyWait
+module ChromeNotifyWait # rubocop:disable Style/OneClassPerFile
   def visit(url)
     sleep 1 if url.to_s.include?("notify")
     super

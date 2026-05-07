@@ -31,7 +31,8 @@ When("I enter an address for a site with both Welsh and English addresses") do
 end
 
 Then("I will be informed the grid reference must be inside England") do
-  expect(@world.journey.site_grid_reference_page.error.text).to have_content("This service only accepts sites in England")
+  expect(@world.journey.site_grid_reference_page.error.text)
+    .to have_content("This service only accepts sites in England")
 end
 
 Then("I will be informed the address must be inside England") do
