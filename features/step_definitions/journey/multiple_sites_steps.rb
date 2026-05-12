@@ -31,15 +31,16 @@ When("I enter an address for a site with both Welsh and English addresses") do
 end
 
 Then("I will be informed the grid reference must be inside England") do
-  expect(@world.journey.site_grid_reference_page.error.text).to have_content("The grid reference must be in England")
+  expect(@world.journey.site_grid_reference_page.error.text)
+    .to have_content("This service only accepts sites in England")
 end
 
 Then("I will be informed the address must be inside England") do
-  expect(@world.journey.address_lookup_page.error.text).to have_content("We cannot find an address in England")
+  expect(@world.journey.address_lookup_page.error.text).to have_content("This service only accepts sites in England")
 end
 
 Then("I will be informed that only English addresses are shown") do
-  expect(@world.journey.address_lookup_page).to have_content("Only addresses in England are shown.")
+  expect(@world.journey.address_lookup_page).to have_content("This service only shows addresses in England.")
 end
 
 When("I enter the registration details for site {string}") do |grid_ref|
