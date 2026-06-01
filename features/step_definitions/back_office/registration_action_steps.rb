@@ -16,18 +16,23 @@ When("I resend the confirmation letter") do
   # As same element is used on both pages a check to wait for the second page to load is needed
   expect(@world.bo.resend_letter_page.heading).to have_content("resend")
   @world.bo.resend_letter_page.resend_confirmation_letter.click
+  @message_template = "Registration completion letter"
 end
 
 When("I resend the confirmation email") do
   @world.bo.registration_details_page.resend_confirmation_email.click
+  @message_template = "Registration completion email"
 end
 
 When("I resend the renewal invite email") do
   @world.bo.registration_details_page.resend_confirmation_email.click
 end
 
-When("I open communication history") do
+When("I open communication message from the communication history") do
   @world.bo.registration_details_page.communication_history.click
+
+  log = @world.bo.communication_history_page.log_details(@message_template)
+  log.template_title.click
 end
 
 Then("I will see a confirmation the renewal reminder letter has been sent") do
@@ -43,10 +48,10 @@ Then("I will see the registration confirmation email has been sent") do
 
 end
 
-Then("I can see the communication logs on the communication history page") do
-  expect(@world.bo.communication_history_page.heading).to have_text("Communication history")
-  log = @world.bo.communication_history_page.log_details(@contact_email)
-  expect(log.template_name).to have_text("Registration completion email")
+Then("I can see the message details on the communication details page") do
+  puts current_url
+  expect(@world.bo.communication_log_page.template_title).to have_text(@message_template)
+  expect(@world.bo.communication_log_page).to have_text(@world.last_reg_no)
 end
 
 When("I refresh the company name from companies house") do

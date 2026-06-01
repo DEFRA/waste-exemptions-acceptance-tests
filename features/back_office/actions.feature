@@ -29,12 +29,19 @@ Feature: Back office registration actions
       Then I will see the registration confirmation email has been sent
        And I will receive a registration confirmation email
 
-  Scenario: Communication history can be accessed from registration details page
+  Scenario: Communication history for an email can be accessed from registration details page
       When I search for the registration
        And I view the registration details
        And I resend the confirmation email
-       And I open communication history
-      Then I can see the communication logs on the communication history page
+       And I open communication message from the communication history
+      Then I can see the message details on the communication details page
+
+  Scenario: Communication history for a letter can be accessed from registration details page
+      When I search for the registration
+       And I view the registration details
+       And I resend the confirmation letter
+      And I open communication message from the communication history
+      Then I can see the message details on the communication details page
     
   Scenario: Companies name can be refreshed from companies house
       When I search for the registration
