@@ -46,7 +46,6 @@ When("I edit the contact address") do
   @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
   find_link("Edit").click
   expect(@world.bo.edit_page.heading).to have_text("Edit #{@world.last_reg_no} registration")
-  sleep(20)
   @world.bo.edit_page.change_contact_address.click
 
   @updated_detail = "BUCKINGHAM PALACE, LONDON, SW1A 1AA"
