@@ -75,7 +75,7 @@ Then("I can see the change recorded on the change history page") do
   expect(expected_text).to have_text(@updated_detail)
 end
 
-Then("I can see the site details have been on the change history page") do
+Then("I can see the site details have been update on the change history page") do
   visit(back_office_root_url("/registrations/#{@world.last_reg_no}/change_history"))
   expect(@world.bo.change_history_page.heading).to have_text("Change history")
   log = @world.bo.change_history_page.updated_detail("Site address:")
