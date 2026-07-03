@@ -20,7 +20,7 @@ Feature: Back office user edits a registration
      When I edit the site location
       And I complete the edit
      Then I can see the updated location in the registration's sites list
-      And I can see the change recorded on the change history page
+      And I can see the site details have been update on the change history page
       
   Scenario: Edit a registration's contact address
     Given I sign in as an admin team user
