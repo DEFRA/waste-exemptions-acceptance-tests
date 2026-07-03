@@ -17,4 +17,8 @@ class ChangeHistoryPage < BasePage
   def change_reason(reason)
     edit_history_logs.find { |log| log.change_reason.text == reason }
   end
+
+  def updated_detail(detail)
+    edit_history_logs.find { |log| log.updated_detail.text.include?(detail) }
+  end
 end
