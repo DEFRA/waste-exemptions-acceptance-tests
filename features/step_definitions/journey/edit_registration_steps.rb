@@ -12,7 +12,6 @@ Given "I have a valid registration" do
   @world.last_reg_edit_token = @edit_token
   @business_type = :limited_company
   @contact_email = "contact1@example.com"
-
   @world.bo.dashboard_page.admin_menu.home_page.click
 end
 

@@ -33,7 +33,7 @@ When("I deregister individual exemptions") do
 
     # Specify a reason for revoking:
     @world.bo.deregister_page.submit(
-      reason: "I decided I didn't like this exemption at: #{Time.new.inspect}"
+      reason: "I decided I didn't like this exemption at: #{Time.now.inspect}"
     )
     @world.bo.registration_details_page.sites.click
     @world.bo.sites_page.sites.first.exemptions_link.click
@@ -59,9 +59,8 @@ When("I deregister a whole registration") do
   @world.bo.registration_details_page.deregister_reg_link.click
 
   @world.bo.registration_details_page.wait_until_submit_button_visible
-  # rubocop:disable Layout/LineLength
+  # rubocop:disable-next Layout/LineLength
   expect(@world.bo.deregister_page.heading).to have_text("Deregister all active Exemptions for Registration #{@world.last_reg_no}")
-  # rubocop:enable Layout/LineLength
 
   @world.bo.deregister_page.cease_radio.click
   @reg_status = "ceased"
