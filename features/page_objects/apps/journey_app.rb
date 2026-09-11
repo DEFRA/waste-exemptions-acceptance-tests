@@ -3,7 +3,7 @@
 # Represents all pages in the registration journey. Was created to avoid needing
 # to create individual instances of each page throughout the steps.
 # https://github.com/natritmeyer/site_prism#epilogue
-# rubocop:disable  Metrics/ClassLength
+# rubocop:disable-next  Metrics/ClassLength
 class JourneyApp
   # Using an attr_reader automatically gives us a my_app.last_page method
   attr_reader :last_page, :base_page
@@ -213,4 +213,3 @@ class JourneyApp
   end
 
 end
-# rubocop:enable  Metrics/ClassLength

@@ -26,7 +26,7 @@ class InvitationPage < BasePage
 
   private
 
-  # rubocop:disable Metrics/CyclomaticComplexity
+  # rubocop:disable-next Metrics/CyclomaticComplexity
   def invite(type)
     case type
     when :customer_service_advisor
@@ -47,5 +47,4 @@ class InvitationPage < BasePage
       policy_advisor.click
     end
   end
-  # rubocop:enable Metrics/CyclomaticComplexity
 end
