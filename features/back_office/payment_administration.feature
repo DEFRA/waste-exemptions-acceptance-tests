@@ -11,7 +11,7 @@ Scenario: Recording full bank transfer payment to registration sends confirmatio
      Then the balance will be zero
      And I will receive a registration confirmation email
      And I will receive a proof of payment email
-
+@fix
 Scenario: Overpayment bank transfer payment to registration sends confirmation email
     Given I sign in as an admin team leader
       And I find the payment details for the registration
