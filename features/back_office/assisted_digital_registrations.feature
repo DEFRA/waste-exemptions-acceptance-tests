@@ -19,6 +19,7 @@ Scenario: Succesful payment for registration using card
      When I pay by card
      Then I will see a registration confirmation
       And I will receive a registration confirmation email
+      And I will receive a proof of payment email
 
 @bacs
 Scenario: Succesful registration by bank transfer
