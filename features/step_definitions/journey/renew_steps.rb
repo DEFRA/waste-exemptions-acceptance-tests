@@ -31,6 +31,7 @@ When("I renew the registration {string} changes") do |changes|
     complete_address(:manual)
   end
   @world.journey.check_details_page.submit
+  @world.journey.renew_splash_page.wait_until_heading_visible
   expect(@world.journey.renew_splash_page.heading).to have_text("You are about to renew for 3 years")
   @world.journey.renew_splash_page.submit
   @world.journey.declaration_page.submit
