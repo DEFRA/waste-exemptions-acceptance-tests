@@ -17,3 +17,4 @@ Background: Sign into back office
       And I renew the registration "without" changes
      Then I will be informed the registration is complete
       And a registration confirmation letter has been sent
+      And a proof of payment letter has been sent
