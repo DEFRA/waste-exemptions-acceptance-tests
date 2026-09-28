@@ -8,7 +8,7 @@ Background: Sign into back office
   Scenario: Registration in back office where no contact email is given user sends confirmation letter to contact
      When I complete an AD "limited_company" registration without an email address paying by "bank_transfer"
       And I will see a registration pending payment confirmation
-     Then a payment by bank transfer letter has been sent
+     Then a breakdown of charges letter has been sent
 
 @letter
   Scenario: Registration in back office where no contact email is given user sends confirmation letter to contact

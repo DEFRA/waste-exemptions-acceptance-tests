@@ -59,11 +59,17 @@ Then("a proof of payment letter has been sent") do
   expect(@world.bo.communication_log_page).to have_text(@world.last_reg_no)
 end
 
-Then("I will receive a registration received pending payment email") do
-  expected_text = [
-    "Payment needed for your waste exemption registration", @world.last_reg_no
-  ]
-  expect(email_exists?(expected_text, @world.last_reg)).to be true
+Then("I will receive a breakdown of charges email") do
+  login_user(@world.admin_team_leader)
+  visit_communication_history_page(@world.last_reg_no)
+  @message_template = "Breakdown of charges email"
+
+  log = @world.bo.communication_history_page.log_details(@message_template)
+
+  log.template_title.click
+  puts "Proof of payment letter: #{current_url}"
+  expect(@world.bo.communication_log_page.template_title).to have_text(@message_template)
+  expect(@world.bo.communication_log_page).to have_text(@world.last_reg_no)
 end
 
 Then("I will see a registration received pending payment confirmation") do
@@ -107,11 +113,16 @@ Then("a registration confirmation letter has been sent") do
   expect(@world.bo.communication_log_page).to have_text(@world.last_reg_no)
 end
 
-Then("a payment by bank transfer letter has been sent") do
-  expected_text = [
-    "Payment due for #{@world.last_reg_no}"
-  ]
-  expect(letter_exists?(expected_text)).to be true
+Then("a breakdown of charges letter has been sent") do
+  login_user(@world.admin_team_leader)
+  visit_communication_history_page(@world.last_reg_no)
+  @message_template = "Breakdown of charges letter"
+
+  log = @world.bo.communication_history_page.log_details(@message_template)
+
+  log.template_title.click
+  expect(@world.bo.communication_log_page.template_title).to have_text(@message_template)
+  expect(@world.bo.communication_log_page).to have_text(@world.last_reg_no)
 end
 
 When("I carry out a partial registration") do
