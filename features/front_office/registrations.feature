@@ -3,7 +3,7 @@ Feature: Registration payments using card or bank transfer
 
 Background: Create registration
     Given I start a new waste exemption registration
-@card
+@card @fix
   Scenario: Succesful payment for registration using card
     Given I select waste activity "We use waste in building and construction"
       And I select exemption "U1" from the activities list 
@@ -18,6 +18,7 @@ Background: Create registration
      When I pay by card
      Then I will see a registration confirmation
       And I will receive a registration confirmation email
+      And I will receive a proof of payment email
 
 @bacs
   Scenario: Succesful registration by bank transfer
@@ -52,7 +53,7 @@ Background: Create registration
      Then I will see a registration confirmation
       And I will receive a registration confirmation email
 
-@smoke @multiple @card
+@smoke @multiple @card @fix
   Scenario: Multiple site registration
     Given I select waste activity "We use waste in manufacturing or for a specified purpose"
       And I select waste activity "We sort, blend and recover waste"
@@ -72,6 +73,7 @@ Background: Create registration
      When I pay by card
      Then I will see a registration confirmation
       And I will receive a registration confirmation email
+      And I will receive a proof of payment email
 
 @t28
   Scenario: Registration with only a T28 exemption is not charged

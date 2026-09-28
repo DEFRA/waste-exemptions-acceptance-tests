@@ -16,6 +16,16 @@ class CommunicationHistoryPage < BasePage
   end
 
   def log_details(template_title)
+    5.times do
+      unless communication_logs.any? { |log| log.template_title.text == template_title }
+        sleep 1
+        page.evaluate_script "window.location.reload()"
+      end
+    end
+    raise "No communication log found with template title: #{template_title}" unless communication_logs.any? do |log|
+      log.template_title.text == template_title
+    end
+
     communication_logs.find { |log| log.template_title.text == template_title }
   end
 end

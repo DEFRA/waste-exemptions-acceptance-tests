@@ -21,12 +21,42 @@ Then("I will be informed the registration is complete") do
 end
 
 Then("I will receive a registration confirmation email") do
-  expected_text = [
-    "Waste exemptions registration #{@world.last_reg_no} completed",
-    "Download your confirmation",
-    "causing a nuisance through noise and odours"
-  ]
-  expect(email_exists?(expected_text, @world.last_reg)).to be true
+  login_user(@world.admin_team_leader)
+  visit_communication_history_page(@world.last_reg_no)
+  @message_template = "Registration completion email"
+
+  log = @world.bo.communication_history_page.log_details(@message_template)
+
+  log.template_title.click
+  puts current_url
+  expect(@world.bo.communication_log_page.template_title).to have_text(@message_template)
+  expect(@world.bo.communication_log_page).to have_text(@world.last_reg_no)
+end
+
+Then("I will receive a proof of payment email") do
+  login_user(@world.admin_team_leader)
+  visit_communication_history_page(@world.last_reg_no)
+  @message_template = "Proof of payment email"
+
+  log = @world.bo.communication_history_page.log_details(@message_template)
+
+  log.template_title.click
+  puts "Proof of payment email: #{current_url}"
+  expect(@world.bo.communication_log_page.template_title).to have_text(@message_template)
+  expect(@world.bo.communication_log_page).to have_text(@world.last_reg_no)
+end
+
+Then("a proof of payment letter has been sent") do
+  login_user(@world.admin_team_leader)
+  visit_communication_history_page(@world.last_reg_no)
+  @message_template = "Proof of payment letter"
+
+  log = @world.bo.communication_history_page.log_details(@message_template)
+
+  log.template_title.click
+  puts "Proof of payment letter: #{current_url}"
+  expect(@world.bo.communication_log_page.template_title).to have_text(@message_template)
+  expect(@world.bo.communication_log_page).to have_text(@world.last_reg_no)
 end
 
 Then("I will receive a registration received pending payment email") do
@@ -66,10 +96,15 @@ Then("I am on the check site address page") do
 end
 
 Then("a registration confirmation letter has been sent") do
-  expected_text = [
-    "Your reference: #{@world.last_reg_no}"
-  ]
-  expect(letter_exists?(expected_text)).to be true
+  login_user(@world.admin_team_leader)
+  visit_communication_history_page(@world.last_reg_no)
+  @message_template = "Registration completion letter"
+
+  log = @world.bo.communication_history_page.log_details(@message_template)
+
+  log.template_title.click
+  expect(@world.bo.communication_log_page.template_title).to have_text(@message_template)
+  expect(@world.bo.communication_log_page).to have_text(@world.last_reg_no)
 end
 
 Then("a payment by bank transfer letter has been sent") do

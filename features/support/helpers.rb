@@ -79,3 +79,14 @@ end
 def visit_govpay_mock_refund_status_page(status)
   visit("#{Quke::Quke.config.custom['urls']['back_office']}/bo/mocks/govpay/v1/payments/set_test_refund_response_status/#{status}")
 end
+
+def visit_registration_details_page(registration_number)
+  visit(back_office_root_url("/registrations/#{registration_number}"))
+  expect(@world.bo.registration_details_page.heading).to have_text("Registration details")
+end
+
+def visit_communication_history_page(registration_number)
+  visit(back_office_root_url("/registrations/#{registration_number}/communication_logs"))
+  expect(@world.bo.communication_history_page.heading).to have_text("Communication history")
+  puts current_url
+end
