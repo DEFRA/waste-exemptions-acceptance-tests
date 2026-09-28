@@ -177,7 +177,7 @@ end
 
 Then "I will see the deregistration confirmation page" do
   expect(@world.journey.front_office_edit_complete_page)
-    .to have_text("Your registration is now inactive and will be removed from the public register")
+    .to have_text("Your exemptions have been deregistered and are no longer active")
 end
 
 Then "I will not receive a confirmation email" do
