@@ -37,7 +37,7 @@ Scenario: Succesful registration by bank transfer
       And I confirm the registration details
      When I choose to pay by bank transfer
      Then I will see a registration received pending payment confirmation
-      And I will receive a registration received pending payment email
+      And I will receive a breakdown of charges email
   
   Scenario: Charities can register by calling the Environment Agency
     Given I select waste activity "We use waste in building and construction"
