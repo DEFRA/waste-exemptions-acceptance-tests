@@ -193,7 +193,7 @@ Then("the registration remains active") do
   @world.bo.dashboard_page.admin_menu.home_page.click
   # Search for the last reference number
   @world.bo.dashboard_page.submit(search_term: @world.last_reg_no)
-  expect(@world.bo.dashboard_page).to have_active_tag
+  expect(@world.bo.dashboard_page.results.first.text).to have_text("active")
 end
 
 Then("each exemption on the site has been {string}") do |status|
